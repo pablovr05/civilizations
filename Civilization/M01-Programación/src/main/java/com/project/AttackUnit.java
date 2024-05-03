@@ -1,6 +1,6 @@
 package com.project;
 
-public abstract class AttackUnit {
+public abstract class AttackUnit implements Variables {
     protected int armor;
     protected int initialArmor;
     protected int baseDamage;
