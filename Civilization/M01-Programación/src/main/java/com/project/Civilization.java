@@ -25,7 +25,7 @@ public class Civilization implements Variables{
     public int smithy;
     public int carpentry;
     public int battles;
-    // public ArrayList<MilitaryUnit> army = new ArrayList[9];
+    public ArrayList<ArrayList<MilitaryUnit>> army = new ArrayList<>();
     
     public Civilization(){
         this.technologyDefense = 1;
@@ -40,6 +40,10 @@ public class Civilization implements Variables{
         this.smithy = 0;
         this.carpentry = 0;
         this.battles = 0;
+        for(int i = 0; i>9; i++){
+            ArrayList<MilitaryUnit> list = new ArrayList<>();
+            army.add(list);
+        }
     }
 
     public void setBattles(int battles) {
@@ -186,5 +190,10 @@ public class Civilization implements Variables{
             // throw new ResourceException(""); 
         }
     }
-    public void 
+
+    public void newArrowTower(int n){
+        if (n == 1){
+            
+        }
+    }
 }
