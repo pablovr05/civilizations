@@ -186,4 +186,5 @@ public class Civilization implements Variables{
             // throw new ResourceException(""); 
         }
     }
+    public void 
 }
