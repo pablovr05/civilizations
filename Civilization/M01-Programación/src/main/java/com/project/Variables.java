@@ -86,12 +86,13 @@ public interface Variables {
     public final int FOOD_COST_SMITHY = 5000;
     public final int WOOD_COST_SMITHY = 10000;
     public final int IRON_COST_SMITHY = 12000;
-    public final int FOOD_COST_CHURCH = 5000;
-    public final int WOOD_COST_CHURCH = 10000;
-    public final int IRON_COST_CHURCH = 12000;
-    public final int FOOD_COST_MAGICTOWER = 5000;
-    public final int WOOD_COST_MAGICTOWER = 10000;
-    public final int IRON_COST_MAGICTOWER = 12000;
+    public final int FOOD_COST_CHURCH = 10000;
+    public final int WOOD_COST_CHURCH = 20000;
+    public final int IRON_COST_CHURCH = 24000;
+    public final int MANA_COST_CHURCH = 20000;
+    public final int FOOD_COST_MAGICTOWER = 10000;
+    public final int WOOD_COST_MAGICTOWER = 20000;
+    public final int IRON_COST_MAGICTOWER = 24000;
     // BASE DAMAGE ATTACK UNITS
     public final int BASE_DAMAGE_SWORDSMAN = 80;
     public final int BASE_DAMAGE_SPEARMAN = 150;
