@@ -193,7 +193,7 @@ public class Civilization implements Variables{
 
     public void newArrowTower(int n){
         if (n == 1){
-            
+            ArrowTower torre = new ArrowTower()
         }
     }
 }

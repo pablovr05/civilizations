@@ -12,6 +12,6 @@ public abstract class MilitaryUnit {
     abstract int getChanceAttackAgain();
     abstract void resetArmor();
     abstract void setExperience(int n);
-    abstract void getExperience();
+    abstract int getExperience();
     
 }
