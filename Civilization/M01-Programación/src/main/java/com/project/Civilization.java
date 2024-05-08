@@ -29,8 +29,8 @@ public class Civilization implements Variables{
     public ArrayList<ArrayList<MilitaryUnit>> army = new ArrayList<>();
     
     public Civilization(){
-        this.technologyDefense = 1;
-        this.technologyAttack = 1;
+        this.technologyDefense = 0;
+        this.technologyAttack = 0;
         this.wood = 5000;
         this.iron = 5000;
         this.food = 5000;
