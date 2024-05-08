@@ -208,6 +208,43 @@ public class Civilization implements Variables{
                 }
             }
         }
-        
+    }
+    
+    public void newCatapult(int n){
+        if (n < 1){
+            return;
+        }
+        else{
+            for(int i=0;i<n;i++){
+                Catapult Catapult = new Catapult(getTechnologyDefense(), getTechnologyAtack());
+                if (this.food>= Catapult.getFoodCost() && this.wood >= Catapult.getWoodCost() && this.iron >= Catapult.getIronCost() && this.mana >= Catapult.getManaCost()){
+                    this.army.get(catapult_index).add(Catapult);
+                }
+                else{
+                    System.out.println("Se han agregado " + i + " tropas");
+                    break;
+                    //throw new ResourceException("");
+                }
+            }
+        }
+    }
+
+    public void newRocketLauncherTower(int n){
+        if (n < 1){
+            return;
+        }
+        else{
+            for(int i=0;i<n;i++){
+                RocketLauncherTower RocketLauncherTower = new RocketLauncherTower(getTechnologyDefense(), getTechnologyAtack());
+                if (this.food>= RocketLauncherTower.getFoodCost() && this.wood >= RocketLauncherTower.getWoodCost() && this.iron >= RocketLauncherTower.getIronCost() && this.mana >= RocketLauncherTower.getManaCost()){
+                    this.army.get(rocket_launcher_index).add(RocketLauncherTower);
+                }
+                else{
+                    System.out.println("Se han agregado " + i + " tropas");
+                    break;
+                    //throw new ResourceException("");
+                }
+            }
+        }
     }
 }
