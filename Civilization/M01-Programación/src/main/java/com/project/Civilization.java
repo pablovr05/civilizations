@@ -40,7 +40,7 @@ public class Civilization implements Variables{
         this.smithy = 0;
         this.carpentry = 0;
         this.battles = 0;
-        for(int i = 0; i>9; i++){
+        for(int i = 0; i<9; i++){
             ArrayList<MilitaryUnit> list = new ArrayList<>();
             army.add(list);
         }
@@ -192,8 +192,22 @@ public class Civilization implements Variables{
     }
 
     public void newArrowTower(int n){
-        if (n == 1){
-            ArrowTower torre = new ArrowTower()
+        if (n < 1){
+            return;
         }
+        else{
+            for(int i=0;i<n;i++){
+                ArrowTower ArrowTower = new ArrowTower(getTechnologyDefense(), getTechnologyAtack());
+                if (this.food>= ArrowTower.getFoodCost() && this.wood >= ArrowTower.getWoodCost() && this.iron >= ArrowTower.getIronCost() && this.mana >= ArrowTower.getManaCost()){
+                    this.army.get(arrow_tower_index).add(ArrowTower);
+                }
+                else{
+                    System.out.println("Se han agregado " + i + " tropas");
+                    break;
+                    //throw new ResourceException("");
+                }
+            }
+        }
+        
     }
 }
