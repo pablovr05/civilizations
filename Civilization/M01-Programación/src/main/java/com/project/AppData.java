@@ -24,16 +24,16 @@ class AppData {
     }
 
     private void connect() {
-        String url = "jdbc:oracle:thin:@192.168.192.2:1521/orcl";
-        String user = "admin";
-        String password = "admin";
+        String url = "jdbc:mysql://localhost:3308/school?useSSL=false&allowPublicKeyRetrieval=true";
+        String user = "root";
+        String password = "pwd";
 
         try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(url, user, password);
             conn.setAutoCommit(false); // Desactiva l'autocommit per permetre control manual de transaccions
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Error connectant a la base de dades Oracle.");
+            System.out.println("Error connectant a la base de dades MySQL.");
             e.printStackTrace();
         }
     }
