@@ -26,35 +26,38 @@ CREATE TABLE Civilization_stats (
 );
 
 CREATE TABLE attack_units_stats (
-    unit_id INTEGER PRIMARY KEY,
-    civilization_id INTEGER,
+    unit_id INTEGER NOT NULL,
+    civilization_id INTEGER NOT NULL,
     type VARCHAR2(20) CHECK (type IN ('Swordsman','Spearman','Crossbow','Cannon')),
     armor INTEGER,
     base_damage INTEGER,
     experience INTEGER,
     sanctified NUMBER(1,0),
-    CONSTRAINT fk_civilization_id FOREIGN KEY (civilization_id) REFERENCES Civilization_stats(civilization_id)
+    CONSTRAINT fk_civilization_id FOREIGN KEY (civilization_id) REFERENCES Civilization_stats(civilization_id),
+    CONSTRAINT pk_attack_units_stats PRIMARY KEY (unit_id, civilization_id)
 );
 
 CREATE TABLE defense_units_stats (
-    unit_id INTEGER PRIMARY KEY,
-    civilization_id INTEGER,
+    unit_id INTEGER NOT NULL,
+    civilization_id INTEGER NOT NULL,
     type VARCHAR2(50) CHECK (type IN ('ArrowTower','Catapult','RocketLauncherTower')),
     armor INTEGER,
     base_damage INTEGER,
     experience INTEGER,
     sanctified NUMBER(1,0),
-    CONSTRAINT fk_civilization_id_defense FOREIGN KEY (civilization_id) REFERENCES Civilization_stats(civilization_id)
+    CONSTRAINT fk_civilization_id_defense FOREIGN KEY (civilization_id) REFERENCES Civilization_stats(civilization_id),
+    CONSTRAINT pk_defense_units_stats PRIMARY KEY (unit_id, civilization_id)
 );
 
 CREATE TABLE special_units_stats (
-    unit_id INTEGER PRIMARY KEY,
-    civilization_id INTEGER,
+    unit_id INTEGER NOT NULL,
+    civilization_id INTEGER NOT NULL,
     type VARCHAR2(50) CHECK (type IN ('Magician','Priest')),
     armor INTEGER,
     base_damage INTEGER,
     experience INTEGER,
-    CONSTRAINT fk_civilization_id_special FOREIGN KEY (civilization_id) REFERENCES Civilization_stats(civilization_id)
+    CONSTRAINT fk_civilization_id_special FOREIGN KEY (civilization_id) REFERENCES Civilization_stats(civilization_id),
+    CONSTRAINT pk_special_units_stats PRIMARY KEY (unit_id, civilization_id)
 );
 
 CREATE SEQUENCE civilization_id_seq START WITH 1 INCREMENT BY 1;
