@@ -41,7 +41,7 @@ public class Civilization implements Variables{
         this.smithy = 0;
         this.carpentry = 0;
         this.battles = 0;
-        for(int i = 0; i>9; i++){
+        for(int i = 0; i<9; i++){
             ArrayList<MilitaryUnit> list = new ArrayList<>();
             army.add(list);
         }
@@ -231,5 +231,63 @@ public class Civilization implements Variables{
         System.out.println("-Wood: "+this.wood);
         System.out.println("-Iron: "+this.iron);
         System.out.println("-Mana: "+this.mana);
+    }
+
+
+    public void newArrowTower(int n){
+        if (n < 1){
+            return;
+        }
+        else{
+            for(int i=0;i<n;i++){
+                ArrowTower ArrowTower = new ArrowTower(getTechnologyDefense(), getTechnologyAtack());
+                if (this.food>= ArrowTower.getFoodCost() && this.wood >= ArrowTower.getWoodCost() && this.iron >= ArrowTower.getIronCost() && this.mana >= ArrowTower.getManaCost()){
+                    this.army.get(arrow_tower_index).add(ArrowTower);
+                }
+                else{
+                    System.out.println("Se han agregado " + i + " tropas");
+                    break;
+                    //throw new ResourceException("");
+                }
+            }
+        }
+    }
+    
+    public void newCatapult(int n){
+        if (n < 1){
+            return;
+        }
+        else{
+            for(int i=0;i<n;i++){
+                Catapult Catapult = new Catapult(getTechnologyDefense(), getTechnologyAtack());
+                if (this.food>= Catapult.getFoodCost() && this.wood >= Catapult.getWoodCost() && this.iron >= Catapult.getIronCost() && this.mana >= Catapult.getManaCost()){
+                    this.army.get(catapult_index).add(Catapult);
+                }
+                else{
+                    System.out.println("Se han agregado " + i + " tropas");
+                    break;
+                    //throw new ResourceException("");
+                }
+            }
+        }
+    }
+
+    public void newRocketLauncherTower(int n){
+        if (n < 1){
+            return;
+        }
+        else{
+            for(int i=0;i<n;i++){
+                RocketLauncherTower RocketLauncherTower = new RocketLauncherTower(getTechnologyDefense(), getTechnologyAtack());
+                if (this.food>= RocketLauncherTower.getFoodCost() && this.wood >= RocketLauncherTower.getWoodCost() && this.iron >= RocketLauncherTower.getIronCost() && this.mana >= RocketLauncherTower.getManaCost()){
+                    this.army.get(rocket_launcher_index).add(RocketLauncherTower);
+                }
+                else{
+                    System.out.println("Se han agregado " + i + " tropas");
+                    break;
+                    //throw new ResourceException("");
+                }
+            }
+        }
     }
 }
