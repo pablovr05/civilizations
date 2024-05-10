@@ -42,8 +42,7 @@ public class Civilization implements Variables{
         this.carpentry = 0;
         this.battles = 0;
         for(int i = 0; i<9; i++){
-            ArrayList<MilitaryUnit> list = new ArrayList<>();
-            army.add(list);
+            army.add(new ArrayList<>());
         }
     }
 

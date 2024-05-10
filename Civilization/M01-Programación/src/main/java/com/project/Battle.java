@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 
 public class Battle {
-    ArrayList<MilitaryUnit> civilizationArmy;
-    ArrayList<MilitaryUnit> enemyArmy;
+    ArrayList<ArrayList<MilitaryUnit>> civilizationArmy;
+    ArrayList<ArrayList<MilitaryUnit>> enemyArmy;
     ArrayList<MilitaryUnit> armies;
     String battleDevelopment;
     int initialCostFleet;
@@ -19,8 +19,9 @@ public class Battle {
     int[] actualNumberUnitsCivilization;
     int[] actualNumberUnitsEnemy;
 
-    public Battle(ArrayList<MilitaryUnit> army){
+    public Battle(ArrayList<ArrayList<MilitaryUnit>> civilizationArmy, ArrayList<ArrayList<MilitaryUnit>> enemyArmy ){
         this.civilizationArmy = civilizationArmy;
+        this.enemyArmy = enemyArmy;
     }
 
     String getBattleReport(int battles){
