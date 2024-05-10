@@ -16,8 +16,8 @@ public class Battle {
     int civilizationDrops;
     int resourcesLooses;
     int initialArmies;
-    int[] actualNumberUnitsCivilization;
-    int[] actualNumberUnitsEnemy;
+    int[] actualNumberUnitsCivilization;//
+    int[] actualNumberUnitsEnemy;//
 
     public Battle(ArrayList<ArrayList<MilitaryUnit>> civilizationArmy, ArrayList<ArrayList<MilitaryUnit>> enemyArmy ){
         this.civilizationArmy = civilizationArmy;
@@ -27,8 +27,10 @@ public class Battle {
         this.armies.add(enemyArmy);
         this.battleDevelopment = "";
         this.initialCostFleet = getInitialCostFleet();
-        initialNumberUnitsCivilization = getArmyQuantity(civilizationArmy);
-        initialNumberUnitsEnemy = getArmyQuantity(enemyArmy);
+        this.initialNumberUnitsCivilization = getArmyQuantity(civilizationArmy);
+        this.initialNumberUnitsEnemy = getArmyQuantity(enemyArmy);
+        this.actualNumberUnitsCivilization = getArrayQuantities(civilizationArmy);
+        this.actualNumberUnitsEnemy = getArrayQuantities(enemyArmy);
     }
 
     public int getArmyQuantity(ArrayList<ArrayList<MilitaryUnit>> army){
@@ -38,6 +40,14 @@ public class Battle {
         }
         
         return suma;
+    }
+
+    public int[] getArrayQuantities(ArrayList<ArrayList<MilitaryUnit>> army){
+        int[] array = new int[army.size()];
+        for(int i = 0; i<army.size(); i++){
+            array[i] = army.get(i).size();
+        }
+        return array;
     }
 
     public ArrayList<int[]> getInitialCostFleet(){
