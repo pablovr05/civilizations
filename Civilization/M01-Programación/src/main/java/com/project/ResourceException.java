@@ -1,7 +1,7 @@
 package com.project;
 
-public class ResourceException {
-    public void noMaterials() 
-
-
+public class ResourceException extends Exception {
+    public ResourceException(String message) {
+        super(message);
+    }
 }
