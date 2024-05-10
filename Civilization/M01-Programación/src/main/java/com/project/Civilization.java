@@ -1,6 +1,7 @@
 package com.project;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Civilization implements Variables{
     private final int swordsman_index = 0;
@@ -14,7 +15,7 @@ public class Civilization implements Variables{
     private final int priest_index = 8;
 
     public int technologyDefense;
-    public int technologyAtack;
+    public int technologyAttack;
     public int wood;
     public int iron;
     public int food;
@@ -25,11 +26,11 @@ public class Civilization implements Variables{
     public int smithy;
     public int carpentry;
     public int battles;
-    // public ArrayList<MilitaryUnit> army = new ArrayList[9];
+    public ArrayList<ArrayList<MilitaryUnit>> army = new ArrayList<>();
     
     public Civilization(){
-        this.technologyDefense = 1;
-        this.technologyAtack = 1;
+        this.technologyDefense = 0;
+        this.technologyAttack = 0;
         this.wood = 5000;
         this.iron = 5000;
         this.food = 5000;
@@ -40,6 +41,10 @@ public class Civilization implements Variables{
         this.smithy = 0;
         this.carpentry = 0;
         this.battles = 0;
+        for(int i = 0; i>9; i++){
+            ArrayList<MilitaryUnit> list = new ArrayList<>();
+            army.add(list);
+        }
     }
 
     public void setBattles(int battles) {
@@ -69,8 +74,8 @@ public class Civilization implements Variables{
     public void setSmithy(int smithy) {
         this.smithy = smithy;
     }
-    public void setTechnologyAtack(int technologyAtack) {
-        this.technologyAtack = technologyAtack;
+    public void setTechnologyAttack(int technologyAttack) {
+        this.technologyAttack = technologyAttack;
     }
     public void setTechnologyDefense(int technologyDefense) {
         this.technologyDefense = technologyDefense;
@@ -84,8 +89,8 @@ public class Civilization implements Variables{
     public int getCarpentry() {
         return carpentry;
     }
-    public int getTechnologyAtack() {
-        return technologyAtack;
+    public int getTechnologyAttack() {
+        return technologyAttack;
     }
     public int getTechnologyDefense() {
         return technologyDefense;
@@ -167,23 +172,64 @@ public class Civilization implements Variables{
         }
     }
     public void upgradeTechnologyDefense(){
-        if(this.food>= 5000 && this.wood >=10000 && this.iron >= 12000){
-            this.food -= 5000;
-            this.wood -= 10000;
-            this.iron -= 12000;
+        int comida = UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST+this.technologyDefense*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST;
+        int madera = UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST+this.technologyDefense*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST;
+        int hierro = UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST+this.technologyDefense*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST;
+        if(this.food >= comida && this.wood >= madera && this.iron >= hierro){
+            this.food -= comida;
+            this.wood -= madera;
+            this.iron -= hierro;
             this.technologyDefense += 1;
         }else{
             // throw new ResourceException(""); 
         }
     }
     public void upgradeTechnologyAttack(){
-        if(this.food>= 5000 && this.wood >=10000 && this.iron >= 12000){
-            this.food -= 5000;
-            this.wood -= 10000;
-            this.iron -= 12000;
-            this.technologyAtack += 1;
+        int comida = UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST+this.technologyAttack*UPGRADE_PLUS_ATTACK_TECHNOLOGY_FOOD_COST;
+        int madera = UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST+this.technologyAttack*UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST;
+        int hierro = UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST+this.technologyAttack*UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST;
+        if(this.food >= comida && this.wood >= madera && this.iron >= hierro){
+            this.food -= comida;
+            this.wood -= madera;
+            this.iron -= hierro;
+            this.technologyAttack += 1;
         }else{
             // throw new ResourceException(""); 
         }
+    }
+
+    public void printStats(){
+        System.out.println("----CIVILIZATION STATS----");
+        System.out.println("TECHNOLOGY");
+        System.out.println("-Attack: "+this.technologyAttack);
+        System.out.println("-Defense: "+this.technologyDefense);
+        System.out.println("BUILDINGS");
+        System.out.println("-Farm: "+this.farm);
+        System.out.println("-Smithy: "+this.smithy);
+        System.out.println("-Carpentry: "+this.carpentry);
+        System.out.println("-Magic Tower: "+this.magicTower);
+        System.out.println("-Church: "+this.church);
+        System.out.println("DEFENSE UNITS");
+        System.out.println("-Arrow Tower: "+this.army.get(arrow_tower_index).size());
+        System.out.println("-Catapult: "+this.army.get(catapult_index).size());
+        System.out.println("-Rocket Launcher: "+this.army.get(rocket_launcher_index).size());
+        System.out.println("ATTACK UNITS");
+        System.out.println("-Swordsman: "+this.army.get(swordsman_index).size());
+        System.out.println("-Spearman: "+this.army.get(spearman_index).size());
+        System.out.println("-Crossbow: "+this.army.get(crossbow_index).size());
+        System.out.println("-Cannon: "+this.army.get(cannon_index).size());
+        System.out.println("ESPECIAL UNITS");
+        System.out.println("-Magician: "+this.army.get(magician_index).size());
+        System.out.println("-Priest: "+this.army.get(priest_index).size());
+        System.out.println("RESOURCES");
+        System.out.println("-Food: "+this.food);
+        System.out.println("-Wood: "+this.wood);
+        System.out.println("-Iron: "+this.iron);
+        System.out.println("-Mana: "+this.mana);
+        System.out.println("GENERATION RESOURCES");
+        System.out.println("-Food: "+this.food);
+        System.out.println("-Wood: "+this.wood);
+        System.out.println("-Iron: "+this.iron);
+        System.out.println("-Mana: "+this.mana);
     }
 }
