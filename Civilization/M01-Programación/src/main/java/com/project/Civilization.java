@@ -244,6 +244,11 @@ public class Civilization implements Variables {
                 ArrowTower ArrowTower = new ArrowTower(getTechnologyDefense(), getTechnologyAttack());
                 if (this.food>= ArrowTower.getFoodCost() && this.wood >= ArrowTower.getWoodCost() && this.iron >= ArrowTower.getIronCost() && this.mana >= ArrowTower.getManaCost()){
                     this.army.get(arrow_tower_index).add(ArrowTower);
+                    this.food -= ArrowTower.getFoodCost();
+                    this.wood -= ArrowTower.getWoodCost();
+                    this.iron -= ArrowTower.getIronCost();
+                    this.mana -= ArrowTower.getManaCost();
+                    cnt += 1;
                 }
                 else{
                     System.out.println("Se han agregado " + cnt + " tropas");
@@ -264,6 +269,11 @@ public class Civilization implements Variables {
                 Catapult Catapult = new Catapult(getTechnologyDefense(), getTechnologyAttack());
                 if (this.food>= Catapult.getFoodCost() && this.wood >= Catapult.getWoodCost() && this.iron >= Catapult.getIronCost() && this.mana >= Catapult.getManaCost()){
                     this.army.get(catapult_index).add(Catapult);
+                    this.food -= Catapult.getFoodCost();
+                    this.wood -= Catapult.getWoodCost();
+                    this.iron -= Catapult.getIronCost();
+                    this.mana -= Catapult.getManaCost();
+                    cnt += 1;
                 }
                 else{
                     System.out.println("Se han agregado " + cnt + " tropas");
@@ -284,11 +294,71 @@ public class Civilization implements Variables {
                 RocketLauncherTower RocketLauncherTower = new RocketLauncherTower(getTechnologyDefense(), getTechnologyAttack());
                 if (this.food>= RocketLauncherTower.getFoodCost() && this.wood >= RocketLauncherTower.getWoodCost() && this.iron >= RocketLauncherTower.getIronCost() && this.mana >= RocketLauncherTower.getManaCost()){
                     this.army.get(rocket_launcher_index).add(RocketLauncherTower);
+                    this.food -= RocketLauncherTower.getFoodCost();
+                    this.wood -= RocketLauncherTower.getWoodCost();
+                    this.iron -= RocketLauncherTower.getIronCost();
+                    this.mana -= RocketLauncherTower.getManaCost();
                     cnt += 1;
                 }
                 else{
                     System.out.println("Se han agregado " + cnt + " tropas");
                     throw new ResourceException("Faltan recursos para añadir mas RocketLauncherTowers");
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " tropas");
+        }
+    }
+
+    public void newMagician(int n) throws ResourceException, BuildingException{
+        int cnt = 0;
+        if (n < 1){
+            return;
+        }
+        else{
+            for(int i=0;i<n;i++){
+                Magician Magician = new Magician(getTechnologyDefense(), getTechnologyAttack());
+                if (this.magicTower < 1){
+                    throw new BuildingException("No tienes una magicTower para poder crear la unidad");
+                }
+                if (this.food>= Magician.getFoodCost() && this.wood >= Magician.getWoodCost() && this.iron >= Magician.getIronCost() && this.mana >= Magician.getManaCost()){
+                    this.army.get(magician_index).add(Magician);
+                    this.food -= Magician.getFoodCost();
+                    this.wood -= Magician.getWoodCost();
+                    this.iron -= Magician.getIronCost();
+                    this.mana -= Magician.getManaCost();
+                    cnt += 1;
+                }
+                else{
+                    System.out.println("Se han agregado " + cnt + " tropas");
+                    throw new ResourceException("Faltan recursos para añadir mas Magicians");
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " tropas");
+        }
+    }
+
+    public void newPriest(int n) throws ResourceException, BuildingException{
+        int cnt = 0;
+        if (n < 1){
+            return;
+        }
+        else{
+            for(int i=0;i<n;i++){
+                Priest Priest = new Priest(getTechnologyDefense(), getTechnologyAttack());
+                if (this.church < 1){
+                    throw new BuildingException("No tienes una Church para poder crear la unidad");
+                }
+                if (this.food>= Priest.getFoodCost() && this.wood >= Priest.getWoodCost() && this.iron >= Priest.getIronCost() && this.mana >= Priest.getManaCost()){
+                    this.army.get(priest_index).add(Priest);
+                    this.food -= Priest.getFoodCost();
+                    this.wood -= Priest.getWoodCost();
+                    this.iron -= Priest.getIronCost();
+                    this.mana -= Priest.getManaCost();
+                    cnt += 1;
+                }
+                else{
+                    System.out.println("Se han agregado " + cnt + " tropas");
+                    throw new ResourceException("Faltan recursos para añadir mas Priests");
                 }
             }
             System.out.println("Se han agregado " + cnt + " tropas");
