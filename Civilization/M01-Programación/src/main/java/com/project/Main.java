@@ -1,6 +1,7 @@
 package com.project;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static ArrayList<ArrayList<MilitaryUnit>> enemyArmy;
@@ -10,6 +11,7 @@ public class Main {
     }
 
     private static void PrintMenuPrincipal(){
+        String error = "";
         String cabecera = ("""
             a88888b.  dP dP     dP dP dP        dP d8888888P  .d888888  d888888P dP  .88888.  888888ba  .d88888b  
             d8'   `88 88 88     88 88 88        88      .d8' d8'    88     88    88 d8'   `8b 88    `8b 88.    "' 
@@ -18,14 +20,55 @@ public class Main {
             Y8.   .88 88 88  .d8P  88 88        88 d8'       88     88     88    88 Y8.   .8P 88     88 d8'   .8P 
              Y88888P' dP 888888'   dP 88888888P dP Y8888888P 88     88     dP    dP  `8888P'  dP     dP  Y88888P  
             """);
-        limpiarTerminal();
-        System.out.print(cabecera);
-        System.out.println("                                               Hecho por Joel Martinez, Adria Martinez, Pablo Vicente");
-        System.out.println("\n\n          1. Crear edificios");
-        System.out.println("\n          2. Añadir tropas al ejército");
-        System.err.println("\n          3. Ver estadisticas de la civilización");
-        System.out.println("\n          4. Ver historial de ataques\n\n");
+        while (true){
+            limpiarTerminal();
+            Scanner scanner = new Scanner(System.in);
+            System.out.print(cabecera);
+            System.out.println("                                               Hecho por Joel Martinez, Adria Martinez, Pablo Vicente");
+            System.out.println("\n\n          1. Crear edificios");
+            System.out.println("\n          2. Añadir tropas al ejército");
+            System.err.println("\n          3. Ver estadisticas de la civilización");
+            System.out.println("\n          4. Ver historial de ataques\n\n");
+            if (error != ""){
+                System.err.println(error);
+            }
+            System.out.print("          Escoja una opcion [1,2,3,4]: ");
+            int opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1:
+                    PrintMenuEdificios();
+                    break;
+                case 2:
+                    PrintMenuTropas();
+                    break;
+                case 3:
+                    PrintMenuStats();
+                    break;
+                case 4:
+                    PrintMenuHistorial();
+                    break;
+                default:
+                    error = "          Opción " + opcion + " no es vàlida, vuelva a intentar.";
+            }
+        }
+    }
 
+    private static void PrintMenuEdificios(){
+        while (true){
+            System.out.println("a");
+        }
+    }
+
+    private static void PrintMenuTropas(){
+        System.out.println("a");
+    }
+
+    private static void PrintMenuStats(){
+        System.out.println("a");
+    }
+
+    private static void PrintMenuHistorial(){
+        System.out.println("a");
     }
 
     public static void limpiarTerminal() {
