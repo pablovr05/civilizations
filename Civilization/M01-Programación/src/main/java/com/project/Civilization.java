@@ -240,7 +240,7 @@ public class Civilization implements Variables{
         }
         else{
             for(int i=0;i<n;i++){
-                ArrowTower ArrowTower = new ArrowTower(getTechnologyDefense(), getTechnologyAtack());
+                ArrowTower ArrowTower = new ArrowTower(getTechnologyDefense(), getTechnologyAttack());
                 if (this.food>= ArrowTower.getFoodCost() && this.wood >= ArrowTower.getWoodCost() && this.iron >= ArrowTower.getIronCost() && this.mana >= ArrowTower.getManaCost()){
                     this.army.get(arrow_tower_index).add(ArrowTower);
                 }
@@ -259,7 +259,7 @@ public class Civilization implements Variables{
         }
         else{
             for(int i=0;i<n;i++){
-                Catapult Catapult = new Catapult(getTechnologyDefense(), getTechnologyAtack());
+                Catapult Catapult = new Catapult(getTechnologyDefense(), getTechnologyAttack());
                 if (this.food>= Catapult.getFoodCost() && this.wood >= Catapult.getWoodCost() && this.iron >= Catapult.getIronCost() && this.mana >= Catapult.getManaCost()){
                     this.army.get(catapult_index).add(Catapult);
                 }
@@ -278,7 +278,7 @@ public class Civilization implements Variables{
         }
         else{
             for(int i=0;i<n;i++){
-                RocketLauncherTower RocketLauncherTower = new RocketLauncherTower(getTechnologyDefense(), getTechnologyAtack());
+                RocketLauncherTower RocketLauncherTower = new RocketLauncherTower(getTechnologyDefense(), getTechnologyAttack());
                 if (this.food>= RocketLauncherTower.getFoodCost() && this.wood >= RocketLauncherTower.getWoodCost() && this.iron >= RocketLauncherTower.getIronCost() && this.mana >= RocketLauncherTower.getManaCost()){
                     this.army.get(rocket_launcher_index).add(RocketLauncherTower);
                 }
