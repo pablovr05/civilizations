@@ -4,8 +4,14 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ResourceException {
         Civilization civilization = new Civilization();
+        civilization.setWood(2000);
+        civilization.setFood(2000);
+        civilization.setIron(2000);
+        civilization.setMana(2000);
+        civilization.newRocketLauncherTower(20);
+        civilization.printStats();
     }
 
     public static ArrayList<MilitaryUnit> createEnemyArmy(int battles){
