@@ -7,13 +7,8 @@ public class Main {
 
     public static void main(String[] args) throws ResourceException, BuildingException {
         Civilization civilization = new Civilization();
-        civilization.setWood(200000);
-        civilization.setFood(200000);
-        civilization.setIron(200000);
-        civilization.setMana(200000);
-        civilization.setMagicTower(1);
-        civilization.newMagician(20);
-        civilization.printStats();
+        enemyArmy = createEnemyArmy(0);
+        viewThreat();
     }
 
     public static ArrayList<ArrayList<MilitaryUnit>> createEnemyArmy(int battles){
@@ -26,9 +21,8 @@ public class Main {
         int hierro = Variables.IRON_BASE_ENEMY_ARMY + (battles*Variables.ENEMY_FLEET_INCREASE*Variables.IRON_BASE_ENEMY_ARMY/100);
 
         while(madera>=Variables.WOOD_COST_SWORDSMAN && comida >=Variables.FOOD_COST_SWORDSMAN && hierro>=Variables.IRON_COST_SWORDSMAN){
-            int prob = enemyCreationAvailable(madera, comida, hierro); 
+            int prob = enemyCreationProbability(madera, comida, hierro); 
             int chance = (int) (Math.random()*prob);
-            System.out.println(chance);
             if(chance<= 35){
                 enemyArmy.get(0).add(new Swordsman());
                 madera -= Variables.WOOD_COST_SWORDSMAN;
@@ -51,22 +45,23 @@ public class Main {
                 hierro -= Variables.IRON_COST_CANNON;
             }
         }
-
         return enemyArmy;
     }
 
-    private static int enemyCreationAvailable(int madera, int comida, int hierro){
+    private static int enemyCreationProbability(int madera, int comida, int hierro){
         if(madera>=Variables.WOOD_COST_CANNON && comida >=Variables.FOOD_COST_CANNON && hierro>=Variables.IRON_COST_CANNON){
             return 100;
-        } else if(madera>=Variables.WOOD_COST_CROSSBOW && comida >=Variables.FOOD_COST_CROSSBOW && hierro>=Variables.IRON_COST_CROSSBOW){
+        } 
+        if(madera>=Variables.WOOD_COST_CROSSBOW && comida >=Variables.FOOD_COST_CROSSBOW && hierro>=Variables.IRON_COST_CROSSBOW){
             return 80;
-        } else if(madera>=Variables.WOOD_COST_SPEARMAN && comida >=Variables.FOOD_COST_SPEARMAN && hierro>=Variables.IRON_COST_SPEARMAN){
-            return 60;
-        } else if(madera>=Variables.WOOD_COST_SWORDSMAN && comida >=Variables.FOOD_COST_SWORDSMAN && hierro>=Variables.IRON_COST_SWORDSMAN){
-            return 35;
-        } else {
-            return 0;
         }
+        if(madera>=Variables.WOOD_COST_SPEARMAN && comida >=Variables.FOOD_COST_SPEARMAN && hierro>=Variables.IRON_COST_SPEARMAN){
+            return 60;
+        }
+        if(madera>=Variables.WOOD_COST_SWORDSMAN && comida >=Variables.FOOD_COST_SWORDSMAN && hierro>=Variables.IRON_COST_SWORDSMAN){
+            return 35;
+        }
+        return 0;
     }
 
     private static void viewThreat(){
