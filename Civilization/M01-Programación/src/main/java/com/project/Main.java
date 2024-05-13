@@ -7,10 +7,17 @@ public class Main {
     public static ArrayList<ArrayList<MilitaryUnit>> enemyArmy;
 
     public static void main(String[] args) throws ResourceException, BuildingException {
-        PrintMenuPrincipal();
+        Civilization civilization = new Civilization();
+        civilization.setFood(20000);
+        civilization.setIron(200000);
+        civilization.setMana(200000);
+        civilization.setWood(200000);
+        PrintMenuPrincipal(civilization);
     }
 
-    private static void PrintMenuPrincipal(){
+    private static void PrintMenuPrincipal(Civilization civilization) throws ResourceException{
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_RESET = "\u001B[0m";
         String error = "";
         String cabecera = ("""
             a88888b.  dP dP     dP dP dP        dP d8888888P  .d888888  d888888P dP  .88888.  888888ba  .d88888b  
@@ -30,13 +37,13 @@ public class Main {
             System.err.println("\n          3. Ver estadisticas de la civilización");
             System.out.println("\n          4. Ver historial de ataques\n\n");
             if (error != ""){
-                System.err.println(error);
+                System.err.println(ANSI_RED + error + ANSI_RESET);
             }
             System.out.print("          Escoja una opcion [1,2,3,4]: ");
             int opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
-                    PrintMenuEdificios();
+                    PrintMenuEdificios(civilization);
                     break;
                 case 2:
                     PrintMenuTropas();
@@ -53,9 +60,38 @@ public class Main {
         }
     }
 
-    private static void PrintMenuEdificios(){
+    private static void PrintMenuEdificios(Civilization civilization) throws ResourceException{
+        String castillo = """
+                     █▄██▄█
+            █▄█▄█▄█▄█▐█┼██▌█▄█▄█▄█▄█
+            ███┼█████▐████▌█████┼███
+            █████████▐████▌█████████
+        """;
+        String error = "";
         while (true){
-            System.out.println("a");
+            limpiarTerminal();
+            System.out.println("\n    Crear Edificios");
+            System.out.println("\n\n" + castillo);
+            System.out.println("\n\n            - Farm: "+civilization.getFarm());
+            System.out.println("            - Smithy: "+civilization.getSmithy());
+            System.out.println("            - Carpentry: "+civilization.getCarpentry());
+            System.out.println("            - Magic Tower: "+civilization.getMagicTower());
+            System.out.println("            - Church: "+civilization.getChurch());
+            Scanner scanner = new Scanner(System.in);
+            System.out.print(" \n\n   Indica que acción quiere realizar [Help]: ");
+            String opcion = scanner.nextLine();
+            String[] comanda = opcion.toLowerCase().split(" ");
+            if (comanda[0].equals("add")){
+                switch (comanda[1]){
+                    case "farm":
+                        civilization.newFarm();
+                        break;
+                    case "smithy":
+                        civilization.newSmithy();
+                        break;
+                }
+
+            }
         }
     }
 
