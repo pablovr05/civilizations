@@ -11,7 +11,7 @@ public class Battle {
     ArrayList<int[]> initialCostFleet;//
     int initialNumberUnitsCivilization;//
     int initialNumberUnitsEnemy;//
-    int[] wasteWoodIron = new int[2];
+    int[] wasteWoodIron = new int[2];//
     int[] enemyDrops = new int[4];
     int[] civilizationDrops = new int[9];
     ArrayList<int[]> resourcesLooses;//
@@ -259,6 +259,51 @@ public class Battle {
                     wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_PRIEST;
                     wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_PRIEST;
                 } break;
+        }
+    }
+
+    void addDropUnit(MilitaryUnit unit, boolean enemy){
+        Class clase = unit.getClass();
+        switch (clase.getName()){
+            case("Swordsman"):
+                if(enemy){
+                    enemyDrops[0] += 1;
+                }else{
+                    civilizationDrops[0] += 1;
+                } break;
+            case("Spearman"):
+                if(enemy){
+                    enemyDrops[1] += 1;
+                }else{
+                    civilizationDrops[1] += 1;
+                } break;
+            case("Crossbow"):
+                if(enemy){
+                    enemyDrops[2] += 1;
+                }else{
+                    civilizationDrops[2] += 1;
+                } break;
+            case("Cannon"):
+                if(enemy){
+                    enemyDrops[3] += 1;
+                }else{
+                    civilizationDrops[3] += 1;
+                } break;
+            case("ArrowTower"):
+                civilizationDrops[4] += 1;
+                break;
+            case("Catapult"):
+                civilizationDrops[5] += 1;
+                break;
+            case("RocketLauncherTower"):
+                civilizationDrops[6] += 1;
+                break;
+            case("Magician"):
+                civilizationDrops[7] += 1;
+                break;
+            case("Priest"):
+                civilizationDrops[8] += 1;
+                break;
         }
     }
 }
