@@ -51,7 +51,7 @@ public class Battle {
     }
 
     public ArrayList<int[]> getInitialCostFleet(){
-        ArrayList<int[]> initialCostFleet = new ArrayList<>(); 
+        ArrayList<int[]> initialCostFleetArray = new ArrayList<>(); 
         int[] lista = new int[3];
         int comida = 0;
         int madera = 0;
@@ -64,7 +64,7 @@ public class Battle {
         lista[0] = comida;
         lista[1] = madera;
         lista[2] = hierro;
-        initialCostFleet.add(lista);
+        initialCostFleetArray.add(lista);
 
         lista = new int[3];
         comida = 0;
@@ -78,7 +78,7 @@ public class Battle {
         lista[0] = comida;
         lista[1] = madera;
         lista[2] = hierro;
-        initialCostFleet.add(lista);
+        initialCostFleetArray.add(lista);
         return initialCostFleet;
     }
 
