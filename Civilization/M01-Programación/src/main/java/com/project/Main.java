@@ -2,6 +2,7 @@ package com.project;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Main {
     public static ArrayList<ArrayList<MilitaryUnit>> enemyArmy;
@@ -41,24 +42,27 @@ public class Main {
                 System.err.println(ANSI_RED + error + ANSI_RESET);
             }
             System.out.print("          Escoja una opcion [1,2,3,4,0]: ");
-            int opcion = scanner.nextInt();
-            switch (opcion) {
-                case 1:
-                    PrintMenuEdificios(civilization);
-                    break;
-                case 2:
-                    PrintMenuTropas();
-                    break;
-                case 3:
-                    PrintMenuStats(civilization);
-                    break;
-                case 4:
-                    PrintMenuHistorial();
-                    break;
-                case 0:
-                    System.exit(0);
-                default:
-                    error = "          Opción " + opcion + " no es vàlida, vuelva a intentar.";
+            try{int opcion = scanner.nextInt();
+                switch (opcion) {
+                    case 1:
+                        PrintMenuEdificios(civilization);
+                        break;
+                    case 2:
+                        PrintMenuTropas();
+                        break;
+                    case 3:
+                        PrintMenuStats(civilization);
+                        break;
+                    case 4:
+                        PrintMenuHistorial();
+                        break;
+                    case 0:
+                        System.exit(0);
+                    default:
+                        error = "          Opción " + opcion + " no es vàlida, vuelva a intentar.";
+                }
+            }catch (InputMismatchException e) {
+                error = "          No has introducido un numero, vuelva a intentar";
             }
         }
     }
@@ -98,6 +102,8 @@ public class Main {
                         civilization.newChurch();
                     case "magictower":
                         civilization.newMagicTower();
+                    case "carpentry":
+                        civilization.newCarpentry();
                 }
             }
             else if (comanda[0].equals("exit")){
