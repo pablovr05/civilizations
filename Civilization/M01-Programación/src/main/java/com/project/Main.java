@@ -35,11 +35,12 @@ public class Main {
             System.out.println("\n\n          1. Crear edificios");
             System.out.println("\n          2. Añadir tropas al ejército");
             System.err.println("\n          3. Ver estadisticas de la civilización");
-            System.out.println("\n          4. Ver historial de ataques\n\n");
+            System.out.println("\n          4. Ver historial de ataques");
+            System.out.println("\n          0. Salir\n\n");
             if (error != ""){
                 System.err.println(ANSI_RED + error + ANSI_RESET);
             }
-            System.out.print("          Escoja una opcion [1,2,3,4]: ");
+            System.out.print("          Escoja una opcion [1,2,3,4,0]: ");
             int opcion = scanner.nextInt();
             switch (opcion) {
                 case 1:
@@ -54,6 +55,8 @@ public class Main {
                 case 4:
                     PrintMenuHistorial();
                     break;
+                case 0:
+                    System.exit(0);
                 default:
                     error = "          Opción " + opcion + " no es vàlida, vuelva a intentar.";
             }
