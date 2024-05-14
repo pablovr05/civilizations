@@ -127,56 +127,118 @@ public class Civilization implements Variables {
         return wood;
     }
 
-    public void newChurch() throws ResourceException{
-        if(this.food>= FOOD_COST_CHURCH && this.wood >= WOOD_COST_CHURCH && this.iron >= IRON_COST_CHURCH && this.mana >= MANA_COST_CHURCH){
-            this.food -= FOOD_COST_CHURCH;
-            this.wood -= WOOD_COST_CHURCH;
-            this.iron -= IRON_COST_CHURCH;
-            this.mana -= MANA_COST_CHURCH;
-            this.church += 1;
-        }else{
-            throw new ResourceException("Faltan recursos para crear un nuevo Church"); 
+    public void newChurch(int n) throws ResourceException{
+        int cnt = 0;
+        if (n < 1){
+            return;
         }
+        else{
+            for(int i=0;i<n;i++){
+                if (this.food>= FOOD_COST_CHURCH && this.wood >= WOOD_COST_CHURCH && this.iron >= IRON_COST_CHURCH && this.mana >= MANA_COST_CHURCH){
+                    this.food -= FOOD_COST_CHURCH;
+                    this.wood -= WOOD_COST_CHURCH;
+                    this.iron -= IRON_COST_CHURCH;
+                    this.mana -= MANA_COST_CHURCH;
+                    this.church += 1;
+                    cnt += 1;
+                }
+                else{
+                    System.out.println("Se han agregado " + cnt + " Church");
+                    throw new ResourceException("Faltan recursos para crear mas Church");
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Church");
+            }
     }
-    public void newMagicTower() throws ResourceException{
-        if(this.food>= FOOD_COST_MAGICTOWER && this.wood >= WOOD_COST_MAGICTOWER && this.iron >= IRON_COST_MAGICTOWER){
-            this.food -= FOOD_COST_MAGICTOWER;
-            this.wood -= WOOD_COST_MAGICTOWER;
-            this.iron -= IRON_COST_MAGICTOWER;
-            this.magicTower += 1;
-        }else{
-            throw new ResourceException("Faltan recursos para crear una nueva MagicTower"); 
+
+    public void newMagicTower(int n) throws ResourceException{
+        int cnt = 0;
+        if (n < 1){
+            return;
         }
+        else{
+            for(int i=0;i<n;i++){
+                if (this.food>= FOOD_COST_MAGICTOWER && this.wood >= WOOD_COST_MAGICTOWER && this.iron >= IRON_COST_MAGICTOWER){
+                    this.food -= FOOD_COST_MAGICTOWER;
+                    this.wood -= WOOD_COST_MAGICTOWER;
+                    this.iron -= IRON_COST_MAGICTOWER;
+                    this.magicTower += 1;
+                    cnt += 1;
+                }
+                else{
+                    System.out.println("Se han agregado " + cnt + " Magic Tower");
+                    throw new ResourceException("Faltan recursos para crear mas Magic Tower");
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Magic Tower");
+            }
     }
-    public void newFarm() throws ResourceException{
-        if(this.food>= FOOD_COST_FARM && this.wood >= WOOD_COST_FARM && this.iron >= IRON_COST_FARM){
-            this.food -= FOOD_COST_FARM;
-            this.wood -= WOOD_COST_FARM;
-            this.iron -= IRON_COST_FARM;
-            this.farm += 1;
-        }else{
-            throw new ResourceException("Faltan recursos para crear una nueva Farm");  
+    public void newFarm(int n) throws ResourceException{
+        int cnt = 0;
+        if (n < 1){
+            return;
         }
+        else{
+            for(int i=0;i<n;i++){
+                if (this.food>= FOOD_COST_FARM && this.wood >= WOOD_COST_FARM && this.iron >= IRON_COST_FARM){
+                    this.food -= FOOD_COST_FARM;
+                    this.wood -= WOOD_COST_FARM;
+                    this.iron -= IRON_COST_FARM;
+                    this.farm += 1;
+                    cnt += 1;
+                }
+                else{
+                    System.out.println("Se han agregado " + cnt + " Farm");
+                    throw new ResourceException("Faltan recursos para crear mas Farm");
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Farm");
+            }
     }
-    public void newCarpentry() throws ResourceException{
-        if(this.food>= FOOD_COST_CARPENTRY && this.wood >= WOOD_COST_CARPENTRY && this.iron >= IRON_COST_CARPENTRY){
-            this.food -= FOOD_COST_CARPENTRY;
-            this.wood -= WOOD_COST_CARPENTRY;
-            this.iron -= IRON_COST_CARPENTRY;
-            this.carpentry += 1;
-        }else{
-            throw new ResourceException("Faltan recursos para crear un nuevo Carpentry");  
+    public void newCarpentry(int n) throws ResourceException{
+        int cnt = 0;
+        if (n < 1){
+            return;
         }
+        else{
+            for(int i=0;i<n;i++){
+                if (this.food>= FOOD_COST_CARPENTRY && this.wood >= WOOD_COST_CARPENTRY && this.iron >= IRON_COST_CARPENTRY){
+                    this.food -= FOOD_COST_CARPENTRY;
+                    this.wood -= WOOD_COST_CARPENTRY;
+                    this.iron -= IRON_COST_CARPENTRY;
+                    this.carpentry += 1;
+                    cnt += 1;
+                }
+                else{
+                    System.out.println("Se han agregado " + cnt + " Carpentry");
+                    throw new ResourceException("Faltan recursos para crear mas Carpentry");
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Carpentry");
+            }
+        
     }
-    public void newSmithy() throws ResourceException{
-        if(this.food>= FOOD_COST_SMITHY && this.wood >= WOOD_COST_SMITHY && this.iron >= IRON_COST_SMITHY){
-            this.food -= FOOD_COST_SMITHY;
-            this.wood -= WOOD_COST_SMITHY;
-            this.iron -= IRON_COST_SMITHY;
-            this.smithy += 1;
-        }else{
-            throw new ResourceException("Faltan recursos para crear un nuevo Smithy");  
+    public void newSmithy(int n) throws ResourceException{
+        int cnt = 0;
+        if (n < 1){
+            return;
         }
+        else{
+            for(int i=0;i<n;i++){
+                if (this.food>= FOOD_COST_SMITHY && this.wood >= WOOD_COST_SMITHY && this.iron >= IRON_COST_SMITHY){
+                    this.food -= FOOD_COST_SMITHY;
+                    this.wood -= WOOD_COST_SMITHY;
+                    this.iron -= IRON_COST_SMITHY;
+                    this.smithy += 1;
+                    cnt += 1;
+                }
+                else{
+                    System.out.println("Se han agregado " + cnt + " Smithy");
+                    throw new ResourceException("Faltan recursos para crear mas Smithy");
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Smithy");
+            }
     }
     public void upgradeTechnologyDefense() throws ResourceException{
         int comida = UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST+this.technologyDefense*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST;

@@ -89,15 +89,61 @@ public class Main {
             if (comanda[0].equals("add") && comanda.length > 1){
                 switch (comanda[1]){
                     case "farm":
-                        civilization.newFarm();
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newFarm(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newFarm(1);
+                        }
                         break;
                     case "smithy":
-                        civilization.newSmithy();
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newSmithy(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newSmithy(1);
+                        }
                         break;
                     case "church":
-                        civilization.newChurch();
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newChurch(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newChurch(1);
+                        }
+                        break;
                     case "magictower":
-                        civilization.newMagicTower();
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newMagicTower(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newMagicTower(1);
+                        }
+                        break;
                 }
             }
             else if (comanda[0].equals("exit")){
