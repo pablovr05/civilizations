@@ -49,7 +49,7 @@ public class Main {
                     PrintMenuTropas();
                     break;
                 case 3:
-                    PrintMenuStats();
+                    PrintMenuStats(civilization);
                     break;
                 case 4:
                     PrintMenuHistorial();
@@ -68,6 +68,9 @@ public class Main {
             █████████▐████▌█████████
         """;
         String error = "";
+        Scanner scanner = new Scanner(System.in);
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_RESET = "\u001B[0m";
         while (true){
             limpiarTerminal();
             System.out.println("\n    Crear Edificios");
@@ -77,11 +80,10 @@ public class Main {
             System.out.println("            - Carpentry: "+civilization.getCarpentry());
             System.out.println("            - Magic Tower: "+civilization.getMagicTower());
             System.out.println("            - Church: "+civilization.getChurch());
-            Scanner scanner = new Scanner(System.in);
             System.out.print(" \n\n   Indica que acción quiere realizar [Help]: ");
             String opcion = scanner.nextLine();
             String[] comanda = opcion.toLowerCase().split(" ");
-            if (comanda[0].equals("add")){
+            if (comanda[0].equals("add") && comanda.length > 1){
                 switch (comanda[1]){
                     case "farm":
                         civilization.newFarm();
@@ -89,9 +91,20 @@ public class Main {
                     case "smithy":
                         civilization.newSmithy();
                         break;
+                    case "church":
+                        civilization.newChurch();
+                    case "magictower":
+                        civilization.newMagicTower();
                 }
-
             }
+            else if (comanda[0].equals("exit")){
+                PrintMenuPrincipal(civilization);
+            }
+            else{
+                System.out.println(error);
+            }
+
+            
         }
     }
 
@@ -99,8 +112,28 @@ public class Main {
         System.out.println("a");
     
     }
-    private static void PrintMenuStats(){
-        
+    private static void PrintMenuStats(Civilization civilization) throws ResourceException{
+        String error = "";
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_RESET = "\u001B[0m";
+        while (true){
+            limpiarTerminal();
+            civilization.printStats();
+            System.out.println("\n\n");
+            Scanner scanner = new Scanner(System.in);
+            if (error != ""){
+                System.out.println(error);
+            }
+            System.out.print("Escriba 'exit' para salir: ");
+            String opcion = scanner.nextLine();
+            if (opcion.equals("exit")){
+                PrintMenuPrincipal(civilization);
+            }
+            else{
+                error = ANSI_RED + "Opcion no valida, vuelva a intentar" + ANSI_RESET;
+            }
+
+        }
     }
 
     private static void PrintMenuHistorial(){
