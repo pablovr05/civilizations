@@ -119,7 +119,7 @@ public class Main {
         while (true){
             limpiarTerminal();
             civilization.printStats();
-            System.out.println("\n\n");
+            System.out.println("\n");
             Scanner scanner = new Scanner(System.in);
             if (error != ""){
                 System.out.println(error);
