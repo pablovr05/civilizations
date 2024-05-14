@@ -97,10 +97,10 @@ public class Main {
 
     private static void PrintMenuTropas(){
         System.out.println("a");
+    
     }
-
     private static void PrintMenuStats(){
-        System.out.println("a");
+        
     }
 
     private static void PrintMenuHistorial(){
