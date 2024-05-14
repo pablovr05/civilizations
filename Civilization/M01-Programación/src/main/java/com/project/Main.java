@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) throws ResourceException, BuildingException {
         Civilization civilization = new Civilization();
-        civilization.setFood(20000);
+        civilization.setFood(200000);
         civilization.setIron(200000);
         civilization.setMana(200000);
         civilization.setWood(200000);
@@ -142,6 +142,20 @@ public class Main {
                             
                         }else {
                             civilization.newMagicTower(1);
+                        }
+                        break;
+                    case "carpentry":
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newCarpentry(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newCarpentry(1);
                         }
                         break;
                 }
