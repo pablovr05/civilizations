@@ -26,6 +26,10 @@ public class Civilization implements Variables {
     public int smithy;
     public int carpentry;
     public int battles;
+    public int foodGeneration;
+    public int woodGeneration;
+    public int ironGeneration;
+    public int manaGeneration;
     public ArrayList<ArrayList<MilitaryUnit>> army = new ArrayList<>();
     
     public Civilization(){
@@ -41,6 +45,10 @@ public class Civilization implements Variables {
         this.smithy = 0;
         this.carpentry = 0;
         this.battles = 0;
+        this.foodGeneration = CIVILIZATION_FOOD_GENERATED;
+        this.woodGeneration = CIVILIZATION_WOOD_GENERATED;
+        this.ironGeneration = CIVILIZATION_IRON_GENERATED;
+        this.manaGeneration = 0;
         for(int i = 0; i<9; i++){
             army.add(new ArrayList<>());
         }
@@ -198,38 +206,63 @@ public class Civilization implements Variables {
     }
 
     public void printStats(){
-        System.out.println("----CIVILIZATION STATS----");
-        System.out.println("TECHNOLOGY");
-        System.out.println("-Attack: "+this.technologyAttack);
-        System.out.println("-Defense: "+this.technologyDefense);
-        System.out.println("BUILDINGS");
-        System.out.println("-Farm: "+this.farm);
-        System.out.println("-Smithy: "+this.smithy);
-        System.out.println("-Carpentry: "+this.carpentry);
-        System.out.println("-Magic Tower: "+this.magicTower);
-        System.out.println("-Church: "+this.church);
-        System.out.println("DEFENSE UNITS");
-        System.out.println("-Arrow Tower: "+this.army.get(arrow_tower_index).size());
-        System.out.println("-Catapult: "+this.army.get(catapult_index).size());
-        System.out.println("-Rocket Launcher: "+this.army.get(rocket_launcher_index).size());
-        System.out.println("ATTACK UNITS");
-        System.out.println("-Swordsman: "+this.army.get(swordsman_index).size());
-        System.out.println("-Spearman: "+this.army.get(spearman_index).size());
-        System.out.println("-Crossbow: "+this.army.get(crossbow_index).size());
-        System.out.println("-Cannon: "+this.army.get(cannon_index).size());
-        System.out.println("ESPECIAL UNITS");
-        System.out.println("-Magician: "+this.army.get(magician_index).size());
-        System.out.println("-Priest: "+this.army.get(priest_index).size());
-        System.out.println("RESOURCES");
-        System.out.println("-Food: "+this.food);
-        System.out.println("-Wood: "+this.wood);
-        System.out.println("-Iron: "+this.iron);
-        System.out.println("-Mana: "+this.mana);
-        System.out.println("GENERATION RESOURCES");
-        System.out.println("-Food: "+this.food);
-        System.out.println("-Wood: "+this.wood);
-        System.out.println("-Iron: "+this.iron);
-        System.out.println("-Mana: "+this.mana);
+        // System.out.println("----CIVILIZATION STATS----");
+        // System.out.println("TECHNOLOGY");
+        // System.out.println("-Attack: "+this.technologyAttack);
+        // System.out.println("-Defense: "+this.technologyDefense);
+        // System.out.println("BUILDINGS");
+        // System.out.println("-Farm: "+this.farm);
+        // System.out.println("-Smithy: "+this.smithy);
+        // System.out.println("-Carpentry: "+this.carpentry);
+        // System.out.println("-Magic Tower: "+this.magicTower);
+        // System.out.println("-Church: "+this.church);
+        // System.out.println("DEFENSE UNITS");
+        // System.out.println("-Arrow Tower: "+this.army.get(arrow_tower_index).size());
+        // System.out.println("-Catapult: "+this.army.get(catapult_index).size());
+        // System.out.println("-Rocket Launcher: "+this.army.get(rocket_launcher_index).size());
+        // System.out.println("ATTACK UNITS");
+        // System.out.println("-Swordsman: "+this.army.get(swordsman_index).size());
+        // System.out.println("-Spearman: "+this.army.get(spearman_index).size());
+        // System.out.println("-Crossbow: "+this.army.get(crossbow_index).size());
+        // System.out.println("-Cannon: "+this.army.get(cannon_index).size());
+        // System.out.println("ESPECIAL UNITS");
+        // System.out.println("-Magician: "+this.army.get(magician_index).size());
+        // System.out.println("-Priest: "+this.army.get(priest_index).size());
+        // System.out.println("RESOURCES");
+        // System.out.println("-Food: "+this.food);
+        // System.out.println("-Wood: "+this.wood);
+        // System.out.println("-Iron: "+this.iron);
+        // System.out.println("-Mana: "+this.mana);
+        // System.out.println("GENERATION RESOURCES");
+        // System.out.println("-Food: "+this.foodGeneration);
+        // System.out.println("-Wood: "+this.woodGeneration);
+        // System.out.println("-Iron: "+this.ironGeneration);
+        // System.out.println("-Mana: "+this.manaGeneration);
+
+        System.out.println("***************************CIVILIZATION STATS***************************");
+        System.out.println("--------------------------------------------------TECHNOLOGY----------------------------------------");
+        System.out.printf("%-7s%-8s%n", "Attack", "Defense");
+        System.out.printf("%-7d%-8d%n", this.technologyAttack, this.technologyDefense);
+        System.out.println("---------------------------------------------------BUILDINGS----------------------------------------");
+        System.out.printf("%-5s%-6s%-10s%-12s%-6s%n", "Farm", "Smithy", "Carpentry", "Magic Tower", "Church");
+        System.out.printf("%-5d%-6d%-10d%-12d%-6d%n", this.farm, this.smithy, this.carpentry, this.magicTower, this.church);
+        System.out.println("----------------------------------------------------DEFENSES----------------------------------------");
+        System.out.printf("%d de %-4d%n", this.army.get(arrow_tower_index).size(), 30);
+        System.out.println("Projecte Civilizations");
+        System.out.printf("%-11s%-8s%-15s%n", "Arrow Tower", "Catapult", "Rocket Launcher");
+        System.out.printf("%-11d%-8d%-15d%n", this.army.get(arrow_tower_index).size(), this.army.get(catapult_index).size(), this.army.get(rocket_launcher_index).size());
+        System.out.println("------------------------------------------------ATTACK UNITS----------------------------------------");
+        System.out.printf("%-9s%-9s%-9s%-9s%n", "Swordsman", "Spearman", "Crossbow", "Cannon");
+        System.out.printf("%-9d%-9d%-9d%-9d%n", this.army.get(swordsman_index).size(), this.army.get(spearman_index).size(), this.army.get(crossbow_index).size(), this.army.get(cannon_index).size());
+        System.out.println("----------------------------------------------ESPECIAL UNITS----------------------------------------");
+        System.out.printf("%-9s%-7s%n", "Magician", "Priest");
+        System.out.printf("%-9d%-7d%n", this.army.get(magician_index).size(), this.army.get(priest_index).size());
+        System.out.println("---------------------------------------------------RESOURCES----------------------------------------");
+        System.out.printf("%-5s%-6s%-6s%-5s%n", "Food", "Wood", "Iron", "Mana");
+        System.out.printf("%-5d%-6d%-6d%-5d%n", this.food, this.wood, this.iron, this.mana);
+        System.out.println("----------------------------------------GENERATION RESOURCES----------------------------------------");
+        System.out.printf("%-5s%-6s%-6s%-5s%n", "Food", "Wood", "Iron", "Mana");
+        System.out.printf("%-5d%-6d%-6d%-5d%n", this.foodGeneration, this.woodGeneration, this.ironGeneration, this.manaGeneration);
     }
 
 
@@ -362,5 +395,12 @@ public class Civilization implements Variables {
             }
             System.out.println("Se han agregado " + cnt + " tropas");
         }
+    }
+
+    public void updateResourceGeneration(){
+        this.foodGeneration = CIVILIZATION_FOOD_GENERATED+this.farm*CIVILIZATION_FOOD_GENERATED_PER_FARM;
+        this.woodGeneration = CIVILIZATION_WOOD_GENERATED+this.carpentry*CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY;
+        this.ironGeneration = CIVILIZATION_IRON_GENERATED+this.smithy*CIVILIZATION_IRON_GENERATED_PER_SMITHY;
+        this.manaGeneration = 0+this.magicTower*CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER;
     }
 }

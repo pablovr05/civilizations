@@ -36,7 +36,7 @@ public class Battle {
         initInitialArmies();
     }
 
-    void startBattle(){
+    String startBattle(){
         while(remainderPercentageFleet(civilizationArmy)>=20 || remainderPercentageFleet(enemyArmy)>=20){
             int attackGroupCivilization = getCivilizationGroupAttacker();
             int attackGroupEnemy = getEnemyGroupAttacker();
@@ -109,6 +109,12 @@ public class Battle {
                     addDropUnit(defenderCivilization, false); 
                 }
             }
+        }
+
+        if(remainderPercentageFleet(enemyArmy)<=20){
+            return "civilization";
+        } else {
+            return "enemy";
         }
     }
 
