@@ -117,14 +117,24 @@ public class Main {
                             }
                             
                         }else {
-                            civilization.newSmithy(1);
+                            try{
+                                civilization.newSmithy(1);
+                            }
+                            catch (ResourceException e){
+                                error = e.getMessage();
+                            }
                         }
                         break;
                     case "church":
                         if(comanda.length == 3){
                             try{
                                 int n = Integer.parseInt(comanda[2]);
-                                civilization.newChurch(n);
+                                try{
+                                    civilization.newChurch(n);
+                                }
+                                catch (ResourceException e){
+                                    error = e.getMessage();
+                                }
                             }
                             catch (NumberFormatException e) {
                                 error = "No has introducido una cantidad válida";
@@ -199,13 +209,71 @@ public class Main {
             limpiarTerminal();
             System.out.println("\n    Añadir Tropas");
             System.out.println("\n\n" + escudo);
-            System.out.println("    Arrow Towers: " + civilization.army.get(4).size() + "                Catapults: " + civilization.army.get(5).size() + "                Rocket Launcher Towers: " + civilization.army.get(6).size());
-            System.out.println("    Magicians: " + civilization.army.get(7).size() + "                   Priests: " + civilization.army.get(8).size());
-            System.out.print(" \n\n    Indica que acción quiere realizar [Help,exit]: ");
+            System.out.println("   Swordsmen: " + civilization.army.get(0).size() + "              Spearmen: " + civilization.army.get(1).size() + "              Crossbows: " + civilization.army.get(2).size() + "              Cannons: " + civilization.army.get(3).size());
+            System.out.println("   Arrow Towers: " + civilization.army.get(4).size() + "           Catapults: " + civilization.army.get(5).size() + "             Rocket Launcher Towers: " + civilization.army.get(6).size());
+            System.out.println("   Magicians: " + civilization.army.get(7).size() + "              Priests: " + civilization.army.get(8).size());
+            System.out.print("\n\n   Indica que acción quiere realizar [Help,exit]: ");
             String opcion = scanner.nextLine();
             String[] comanda = opcion.toLowerCase().split(" ");
             if (comanda[0].equals("add") && comanda.length > 1){
                 switch (comanda[1]){
+                    case "swordsman":
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newSwordsman(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newSwordsman(1);
+                        }
+                        break;
+                    case "spearman":
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newSpearman(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newSpearman(0);
+                        }
+                        break;
+                    case "cannon":
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newCannon(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newCannon(0);
+                        }
+                        break;
+                    case "crossbow":
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newCrossbow(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newCrossbow(0);
+                        }
+                        break;
+                    
                     case "arrowtower":
                         if(comanda.length == 3){
                             try{
@@ -302,11 +370,15 @@ public class Main {
                 System.out.println(error);
             }
             System.out.print("Escriba 'exit' para salir: ");
-            String opcion = scanner.nextLine();
-            if (opcion.equals("exit")){
-                PrintMenuPrincipal(civilization);
-            }
-            else{
+            try{
+                String opcion = scanner.nextLine();
+                if (opcion.equals("exit")){
+                    PrintMenuPrincipal(civilization);
+                }
+                else{
+                    error = ANSI_RED + "Opcion no valida, vuelva a intentar" + ANSI_RESET;
+                }
+            } catch (InputMismatchException e){
                 error = ANSI_RED + "Opcion no valida, vuelva a intentar" + ANSI_RESET;
             }
 
