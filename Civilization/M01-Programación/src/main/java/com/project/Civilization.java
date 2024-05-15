@@ -126,7 +126,9 @@ public class Civilization implements Variables {
     public int getWood() {
         return wood;
     }
-
+    public ArrayList<ArrayList<MilitaryUnit>> getArmy(){
+        return army;
+    }
     public void newChurch(int n) throws ResourceException{
         int cnt = 0;
         if (n < 1){

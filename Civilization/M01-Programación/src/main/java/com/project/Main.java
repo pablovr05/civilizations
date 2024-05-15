@@ -16,7 +16,7 @@ public class Main {
         PrintMenuPrincipal(civilization);
     }
 
-    private static void PrintMenuPrincipal(Civilization civilization) throws ResourceException{
+    private static void PrintMenuPrincipal(Civilization civilization) throws ResourceException, BuildingException{
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_RESET = "\u001B[0m";
         String error = "";
@@ -48,7 +48,7 @@ public class Main {
                         PrintMenuEdificios(civilization);
                         break;
                     case 2:
-                        PrintMenuTropas();
+                        PrintMenuTropas(civilization);
                         break;
                     case 3:
                         PrintMenuStats(civilization);
@@ -67,7 +67,7 @@ public class Main {
         }
     }
 
-    private static void PrintMenuEdificios(Civilization civilization) throws ResourceException{
+    private static void PrintMenuEdificios(Civilization civilization) throws ResourceException, BuildingException{
         String castillo = """
                      █▄██▄█
             █▄█▄█▄█▄█▐█┼██▌█▄█▄█▄█▄█
@@ -87,7 +87,7 @@ public class Main {
             System.out.println("            - Carpentry: "+civilization.getCarpentry());
             System.out.println("            - Magic Tower: "+civilization.getMagicTower());
             System.out.println("            - Church: "+civilization.getChurch());
-            System.out.print(" \n\n   Indica que acción quiere realizar [Help]: ");
+            System.out.print(" \n\n   Indica que acción quiere realizar [Help,exit]: ");
             String opcion = scanner.nextLine();
             String[] comanda = opcion.toLowerCase().split(" ");
             if (comanda[0].equals("add") && comanda.length > 1){
@@ -175,11 +175,119 @@ public class Main {
         }
     }
 
-    private static void PrintMenuTropas(){
-        System.out.println("a");
+    private static void PrintMenuTropas(Civilization civilization) throws ResourceException, BuildingException{
+        String error = "";
+        String escudo = """
+            |\\                     /)
+            /\\_\\\\__               (_//
+           |   `>\\-`     _._       //`)
+            \\ /` \\\\  _.-`:::`-._  //
+             `    \\|`    :::    `|/
+                   |     :::     |
+                   |.....:::.....|
+                   |:::::::::::::|
+                   |     :::     |
+                   \\     :::     /
+                    \\    :::    /
+                     `-. ::: .-'
+                      //`:::`\\\\
+                     //   '   \\\\
+                    |/         \\\\
+            """;
+        Scanner scanner = new Scanner(System.in);
+        while (true){
+            limpiarTerminal();
+            System.out.println("\n    Añadir Tropas");
+            System.out.println("\n\n" + escudo);
+            System.out.print(" \n\n   Indica que acción quiere realizar [Help,exit]: ");
+            String opcion = scanner.nextLine();
+            String[] comanda = opcion.toLowerCase().split(" ");
+            if (comanda[0].equals("add") && comanda.length > 1){
+                switch (comanda[1]){
+                    case "arrowtower":
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newArrowTower(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newArrowTower(0);
+                        }
+                        break;
+                    case "catapult":
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newCatapult(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newCatapult(1);
+                        }
+                        break;
+                    case "rocketlaunchertower":
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newRocketLauncherTower(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newRocketLauncherTower(1);
+                        }
+                        break;
+                    case "priest":
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newPriest(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newPriest(1);
+                        }
+                        break;
+                    case "magician":
+                        if(comanda.length == 3){
+                            try{
+                                int n = Integer.parseInt(comanda[2]);
+                                civilization.newMagician(n);
+                            }
+                            catch (NumberFormatException e) {
+                                error = "No has introducido una cantidad válida";
+                            }
+                            
+                        }else {
+                            civilization.newMagician(1);
+                        }
+                        break;
+                }
+            }
+            else if (comanda[0].equals("exit")){
+                PrintMenuPrincipal(civilization);
+            }
+            else{
+                System.out.println(error);
+            }
+
+            
+        }
     
     }
-    private static void PrintMenuStats(Civilization civilization) throws ResourceException{
+    private static void PrintMenuStats(Civilization civilization) throws ResourceException, BuildingException{
         String error = "";
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_RESET = "\u001B[0m";
