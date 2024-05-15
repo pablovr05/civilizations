@@ -117,14 +117,24 @@ public class Main {
                             }
                             
                         }else {
-                            civilization.newSmithy(1);
+                            try{
+                                civilization.newSmithy(1);
+                            }
+                            catch (ResourceException e){
+                                error = e.getMessage();
+                            }
                         }
                         break;
                     case "church":
                         if(comanda.length == 3){
                             try{
                                 int n = Integer.parseInt(comanda[2]);
-                                civilization.newChurch(n);
+                                try{
+                                    civilization.newChurch(n);
+                                }
+                                catch (ResourceException e){
+                                    error = e.getMessage();
+                                }
                             }
                             catch (NumberFormatException e) {
                                 error = "No has introducido una cantidad válida";
@@ -300,11 +310,15 @@ public class Main {
                 System.out.println(error);
             }
             System.out.print("Escriba 'exit' para salir: ");
-            String opcion = scanner.nextLine();
-            if (opcion.equals("exit")){
-                PrintMenuPrincipal(civilization);
-            }
-            else{
+            try{
+                String opcion = scanner.nextLine();
+                if (opcion.equals("exit")){
+                    PrintMenuPrincipal(civilization);
+                }
+                else{
+                    error = ANSI_RED + "Opcion no valida, vuelva a intentar" + ANSI_RESET;
+                }
+            } catch (InputMismatchException e){
                 error = ANSI_RED + "Opcion no valida, vuelva a intentar" + ANSI_RESET;
             }
 
