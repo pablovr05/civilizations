@@ -180,7 +180,7 @@ public class Main {
         String escudo = """
             |\\                     /)
             /\\_\\\\__               (_//
-           |   `>\\-`     _._       //`)
+           |   `>\\-`     _._       //`)        
             \\ /` \\\\  _.-`:::`-._  //
              `    \\|`    :::    `|/
                    |     :::     |
@@ -199,7 +199,9 @@ public class Main {
             limpiarTerminal();
             System.out.println("\n    Añadir Tropas");
             System.out.println("\n\n" + escudo);
-            System.out.print(" \n\n   Indica que acción quiere realizar [Help,exit]: ");
+            System.out.println("    Arrow Towers: " + civilization.army.get(4).size() + "                Catapults: " + civilization.army.get(5).size() + "                Rocket Launcher Towers: " + civilization.army.get(6).size());
+            System.out.println("    Magicians: " + civilization.army.get(7).size() + "                   Priests: " + civilization.army.get(8).size());
+            System.out.print(" \n\n    Indica que acción quiere realizar [Help,exit]: ");
             String opcion = scanner.nextLine();
             String[] comanda = opcion.toLowerCase().split(" ");
             if (comanda[0].equals("add") && comanda.length > 1){
@@ -215,7 +217,7 @@ public class Main {
                             }
                             
                         }else {
-                            civilization.newArrowTower(0);
+                            civilization.newArrowTower(1);
                         }
                         break;
                     case "catapult":
