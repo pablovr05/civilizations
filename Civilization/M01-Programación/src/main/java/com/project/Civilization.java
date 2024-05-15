@@ -294,6 +294,107 @@ public class Civilization implements Variables {
         System.out.printf("%-11d%-11d%-11d%-11d%n", this.foodGeneration, this.woodGeneration, this.ironGeneration, this.manaGeneration);
     }
 
+    public void newSwordsman(int n) throws ResourceException{
+        int cnt = 0;
+        if (n < 1){
+            return;
+        }
+        else{
+            for(int i=0;i<n;i++){
+                Swordsman Swordsman = new Swordsman(getTechnologyDefense(), getTechnologyAttack());
+                if (this.food>= Swordsman.getFoodCost() && this.wood >= Swordsman.getWoodCost() && this.iron >= Swordsman.getIronCost() && this.mana >= Swordsman.getManaCost()){
+                    this.army.get(swordsman_index).add(Swordsman);
+                    this.food -= Swordsman.getFoodCost();
+                    this.wood -= Swordsman.getWoodCost();
+                    this.iron -= Swordsman.getIronCost();
+                    this.mana -= Swordsman.getManaCost();
+                    cnt += 1;
+                }
+                else{
+                    System.out.println("Se han agregado " + cnt + " tropas");
+                    throw new ResourceException("Faltan recursos para añadir mas Swordsmen");
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " tropas");
+        }
+    }
+
+    public void newCrossbow(int n) throws ResourceException{
+        int cnt = 0;
+        if (n < 1){
+            return;
+        }
+        else{
+            for(int i=0;i<n;i++){
+                Crossbow Crossbow = new Crossbow(getTechnologyDefense(), getTechnologyAttack());
+                if (this.food>= Crossbow.getFoodCost() && this.wood >= Crossbow.getWoodCost() && this.iron >= Crossbow.getIronCost() && this.mana >= Crossbow.getManaCost()){
+                    this.army.get(crossbow_index).add(Crossbow);
+                    this.food -= Crossbow.getFoodCost();
+                    this.wood -= Crossbow.getWoodCost();
+                    this.iron -= Crossbow.getIronCost();
+                    this.mana -= Crossbow.getManaCost();
+                    cnt += 1;
+                }
+                else{
+                    System.out.println("Se han agregado " + cnt + " tropas");
+                    throw new ResourceException("Faltan recursos para añadir mas Crossbows");
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " tropas");
+        }
+    }
+
+    public void newSpearman(int n) throws ResourceException{
+        int cnt = 0;
+        if (n < 1){
+            return;
+        }
+        else{
+            for(int i=0;i<n;i++){
+                Spearman Spearman = new Spearman(getTechnologyDefense(), getTechnologyAttack());
+                if (this.food>= Spearman.getFoodCost() && this.wood >= Spearman.getWoodCost() && this.iron >= Spearman.getIronCost() && this.mana >= Spearman.getManaCost()){
+                    this.army.get(spearman_index).add(Spearman);
+                    this.food -= Spearman.getFoodCost();
+                    this.wood -= Spearman.getWoodCost();
+                    this.iron -= Spearman.getIronCost();
+                    this.mana -= Spearman.getManaCost();
+                    cnt += 1;
+                }
+                else{
+                    System.out.println("Se han agregado " + cnt + " tropas");
+                    throw new ResourceException("Faltan recursos para añadir mas Spearmen");
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " tropas");
+        }
+    }
+
+    public void newCannon(int n) throws ResourceException{
+        int cnt = 0;
+        if (n < 1){
+            return;
+        }
+        else{
+            for(int i=0;i<n;i++){
+                Cannon Cannon = new Cannon(getTechnologyDefense(), getTechnologyAttack());
+                if (this.food>= Cannon.getFoodCost() && this.wood >= Cannon.getWoodCost() && this.iron >= Cannon.getIronCost() && this.mana >= Cannon.getManaCost()){
+                    this.army.get(cannon_index).add(Cannon);
+                    this.food -= Cannon.getFoodCost();
+                    this.wood -= Cannon.getWoodCost();
+                    this.iron -= Cannon.getIronCost();
+                    this.mana -= Cannon.getManaCost();
+                    cnt += 1;
+                }
+                else{
+                    System.out.println("Se han agregado " + cnt + " tropas");
+                    throw new ResourceException("Faltan recursos para añadir mas Cannons");
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " tropas");
+        }
+    }
+
+
 
     public void newArrowTower(int n) throws ResourceException{
         int cnt = 0;
