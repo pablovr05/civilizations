@@ -37,6 +37,7 @@ public class Main {
             System.out.println("\n          2. Añadir tropas al ejército");
             System.err.println("\n          3. Ver estadisticas de la civilización");
             System.out.println("\n          4. Ver historial de ataques");
+            System.out.println("\n          5. Batalla");
             System.out.println("\n          0. Salir\n\n");
             if (error != ""){
                 System.err.println(ANSI_RED + error + ANSI_RESET);
@@ -56,6 +57,23 @@ public class Main {
                     case 4:
                         PrintMenuHistorial();
                         break;
+                    case 5:
+                        enemyArmy = createEnemyArmy(civilization.battles);
+                        Battle batalla = new Battle(civilization.army, enemyArmy);
+                        // String ganador = batalla.startBattle();
+                        // System.out.println("ha ganado "+ganador);
+                        System.out.println("Quieres ver el desarrollo de la batalla? (S/N)");
+                        String verDesarrollo = scanner.nextLine();
+                        // switch (verDesarrollo){
+                        //     case "S":
+                        //         System.out.println(batalla.getBattleDevelopment());
+                        //         String vacio = scanner.nextLine();
+                                
+                        //     default:
+                        //         System.out.println("Te doy las opciones atontao, escoge una.");
+                        // }
+                        break;
+                        
                     case 0:
                         System.exit(0);
                     default:
@@ -415,7 +433,6 @@ public class Main {
         while(madera>=Variables.WOOD_COST_SWORDSMAN && comida >=Variables.FOOD_COST_SWORDSMAN && hierro>=Variables.IRON_COST_SWORDSMAN){
             int prob = enemyCreationAvailable(madera, comida, hierro); 
             int chance = (int) (Math.random()*prob);
-            System.out.println(chance);
             if(chance<= 35){
                 enemyArmy.get(0).add(new Swordsman());
                 madera -= Variables.WOOD_COST_SWORDSMAN;
