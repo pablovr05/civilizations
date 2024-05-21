@@ -3,14 +3,9 @@ package com.project;
 public class Crossbow extends AttackUnit {
     public Crossbow(int armor, int baseDamage){
 
-        double armorPercentage = 1 + (double)armor * PLUS_ARMOR_CROSSBOW_BY_TECHNOLOGY / 100;
-        double damagePercentage = 1 + (double)baseDamage  * PLUS_ATTACK_CROSSBOW_BY_TECHNOLOGY / 100;
-        int adjustedArmor = (int)(armor * armorPercentage);
-        int adjustedDamage = (int)(baseDamage * damagePercentage);
-        
-        super.armor = adjustedArmor;
-        super.baseDamage = adjustedDamage;
+        super.armor = ARMOR_CROSSBOW + (PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY * armor) * 1000/100;
         super.initialArmor = super.armor;
+        super.baseDamage = BASE_DAMAGE_CROSSBOW + (PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY * baseDamage) * 1000/100;
         super.experience = 0;
         super.sanctified = false;
     }
