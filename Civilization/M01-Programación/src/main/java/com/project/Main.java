@@ -19,6 +19,7 @@ public class Main {
     private static void PrintMenuPrincipal(Civilization civilization) throws ResourceException, BuildingException{
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_RESET = "\u001B[0m";
+        Scanner scanner = new Scanner(System.in);
         String error = "";
         String cabecera = ("""
             a88888b.  dP dP     dP dP dP        dP d8888888P  .d888888  d888888P dP  .88888.  888888ba  .d88888b  
@@ -30,7 +31,6 @@ public class Main {
             """);
         while (true){
             limpiarTerminal();
-            Scanner scanner = new Scanner(System.in);
             System.out.print(cabecera);
             System.out.println("                                               Hecho por Joel Martinez, Adria Martinez, Pablo Vicente");
             System.out.println("\n\n          1. Crear edificios");
@@ -44,6 +44,7 @@ public class Main {
             }
             System.out.print("          Escoja una opcion [1,2,3,4,0]: ");
             try{int opcion = scanner.nextInt();
+                scanner.nextLine();
                 switch (opcion) {
                     case 1:
                         PrintMenuEdificios(civilization);
@@ -60,18 +61,19 @@ public class Main {
                     case 5:
                         enemyArmy = createEnemyArmy(civilization.battles);
                         Battle batalla = new Battle(civilization.army, enemyArmy);
-                        // String ganador = batalla.startBattle();
-                        // System.out.println("ha ganado "+ganador);
-                        System.out.println("Quieres ver el desarrollo de la batalla? (S/N)");
+                        String ganador = batalla.startBattle();
+                        System.out.println("ha ganado "+ganador);
+                        System.out.print("Quieres ver el desarrollo de la batalla? (S/N)");
                         String verDesarrollo = scanner.nextLine();
-                        // switch (verDesarrollo){
-                        //     case "S":
-                        //         System.out.println(batalla.getBattleDevelopment());
-                        //         String vacio = scanner.nextLine();
+
+                        switch (verDesarrollo){
+                            case "S":
+                                System.out.println(batalla.getBattleDevelopment());
+                                String vacio = scanner.nextLine();
                                 
-                        //     default:
-                        //         System.out.println("Te doy las opciones atontao, escoge una.");
-                        // }
+                            default:
+                                System.out.println("Te doy las opciones atontao, escoge una.");
+                        }
                         break;
                         
                     case 0:
