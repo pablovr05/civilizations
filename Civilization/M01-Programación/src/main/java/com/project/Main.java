@@ -242,7 +242,7 @@ public class Main {
                             }
                             
                         }else {
-                            civilization.newSpearman(0);
+                            civilization.newSpearman(1);
                         }
                         break;
                     case "cannon":
@@ -256,7 +256,7 @@ public class Main {
                             }
                             
                         }else {
-                            civilization.newCannon(0);
+                            civilization.newCannon(1);
                         }
                         break;
                     case "crossbow":
@@ -270,7 +270,7 @@ public class Main {
                             }
                             
                         }else {
-                            civilization.newCrossbow(0);
+                            civilization.newCrossbow(1);
                         }
                         break;
                     
@@ -285,7 +285,7 @@ public class Main {
                             }
                             
                         }else {
-                            civilization.newArrowTower(0);
+                            civilization.newArrowTower(1);
                         }
                         break;
                     case "catapult":
