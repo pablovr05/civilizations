@@ -366,6 +366,31 @@ public class Main {
                         break;
                 }
             }
+            else if (comanda[0].equals("sanctify")){
+                switch(comanda[1]){
+                    case "swordsman":
+                        civilization.sanctifyGroup(0);
+                        break;
+                    case "spearman":
+                        civilization.sanctifyGroup(1);
+                        break;
+                    case "crossbow":
+                        civilization.sanctifyGroup(2);
+                        break;
+                    case "cannon":
+                        civilization.sanctifyGroup(3);
+                        break;
+                    case "arrowtower":
+                        civilization.sanctifyGroup(4);
+                        break;
+                    case "catapult":
+                        civilization.sanctifyGroup(5);
+                        break;
+                    case "rocketlaunchertower":
+                        civilization.sanctifyGroup(6);
+                        break;
+                }
+            }
             else if (comanda[0].equals("exit")){
                 PrintMenuPrincipal(civilization);
             }
