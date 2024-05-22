@@ -533,4 +533,10 @@ public class Civilization implements Variables {
         this.ironGeneration = CIVILIZATION_IRON_GENERATED+this.smithy*CIVILIZATION_IRON_GENERATED_PER_SMITHY;
         this.manaGeneration = 0+this.magicTower*CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER;
     }
+
+    public void sanctifyGroup(int n){
+        for(int i = 0; i<army.get(n).size(); i++){
+            
+        }
+    }
 }

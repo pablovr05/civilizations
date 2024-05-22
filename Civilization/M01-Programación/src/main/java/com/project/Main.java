@@ -19,6 +19,7 @@ public class Main {
     private static void PrintMenuPrincipal(Civilization civilization) throws ResourceException, BuildingException{
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_RESET = "\u001B[0m";
+        Scanner scanner = new Scanner(System.in);
         String error = "";
         String cabecera = ("""
             a88888b.  dP dP     dP dP dP        dP d8888888P  .d888888  d888888P dP  .88888.  888888ba  .d88888b  
@@ -30,19 +31,20 @@ public class Main {
             """);
         while (true){
             limpiarTerminal();
-            Scanner scanner = new Scanner(System.in);
             System.out.print(cabecera);
             System.out.println("                                               Hecho por Joel Martinez, Adria Martinez, Pablo Vicente");
             System.out.println("\n\n          1. Crear edificios");
             System.out.println("\n          2. Añadir tropas al ejército");
             System.err.println("\n          3. Ver estadisticas de la civilización");
             System.out.println("\n          4. Ver historial de ataques");
+            System.out.println("\n          5. Batalla");
             System.out.println("\n          0. Salir\n\n");
             if (error != ""){
                 System.err.println(ANSI_RED + error + ANSI_RESET);
             }
             System.out.print("          Escoja una opcion [1,2,3,4,0]: ");
             try{int opcion = scanner.nextInt();
+                scanner.nextLine();
                 switch (opcion) {
                     case 1:
                         PrintMenuEdificios(civilization);
@@ -56,6 +58,24 @@ public class Main {
                     case 4:
                         PrintMenuHistorial();
                         break;
+                    case 5:
+                        enemyArmy = createEnemyArmy(civilization.battles);
+                        Battle batalla = new Battle(civilization.army, enemyArmy);
+                        String ganador = batalla.startBattle();
+                        System.out.println("ha ganado "+ganador);
+                        System.out.print("Quieres ver el desarrollo de la batalla? (S/N)");
+                        String verDesarrollo = scanner.nextLine();
+
+                        switch (verDesarrollo){
+                            case "S":
+                                System.out.println(batalla.getBattleDevelopment());
+                                String vacio = scanner.nextLine();
+                                
+                            default:
+                                System.out.println("Te doy las opciones atontao, escoge una.");
+                        }
+                        break;
+                        
                     case 0:
                         System.exit(0);
                     default:
@@ -190,7 +210,7 @@ public class Main {
         String escudo = """
             |\\                     /)
             /\\_\\\\__               (_//
-           |   `>\\-`     _._       //`)
+           |   `>\\-`     _._       //`)        
             \\ /` \\\\  _.-`:::`-._  //
              `    \\|`    :::    `|/
                    |     :::     |
@@ -415,7 +435,6 @@ public class Main {
         while(madera>=Variables.WOOD_COST_SWORDSMAN && comida >=Variables.FOOD_COST_SWORDSMAN && hierro>=Variables.IRON_COST_SWORDSMAN){
             int prob = enemyCreationAvailable(madera, comida, hierro); 
             int chance = (int) (Math.random()*prob);
-            System.out.println(chance);
             if(chance<= 35){
                 enemyArmy.get(0).add(new Swordsman());
                 madera -= Variables.WOOD_COST_SWORDSMAN;
