@@ -54,6 +54,14 @@ public class Civilization implements Variables {
         }
     }
 
+    public void sanctifyGroup(int group){
+        if(group>=0 && group<=6){
+            for(MilitaryUnit unit : army.get(group)){
+                unit.sanctify();
+            }
+        }
+    }
+
     public void setBattles(int battles) {
         this.battles = battles;
     }
@@ -532,11 +540,5 @@ public class Civilization implements Variables {
         this.woodGeneration = CIVILIZATION_WOOD_GENERATED+this.carpentry*CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY;
         this.ironGeneration = CIVILIZATION_IRON_GENERATED+this.smithy*CIVILIZATION_IRON_GENERATED_PER_SMITHY;
         this.manaGeneration = 0+this.magicTower*CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER;
-    }
-
-    public void sanctifyGroup(int n){
-        for(int i = 0; i<army.get(n).size(); i++){
-            
-        }
     }
 }
