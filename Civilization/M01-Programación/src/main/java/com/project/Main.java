@@ -76,6 +76,10 @@ public class Main {
                         }
                         break;
                         
+                    case 6:
+                        viewThreat();
+                        String vacio = scanner.nextLine();
+                        break;
                     case 0:
                         System.exit(0);
                     default:
