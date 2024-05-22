@@ -18,6 +18,14 @@ public class Crossbow extends AttackUnit {
         super.sanctified = false;
     }
 
+    public void sanctify(){
+        if(super.sanctified == false){
+            super.armor += armor*PLUS_ARMOR_UNIT_SANCTIFIED/100;
+            super.baseDamage += baseDamage*PLUS_ATTACK_UNIT_SANCTIFIED/100;
+        }
+        super.sanctified = true;
+    }
+
     public int attack(){
         return super.baseDamage;
     }

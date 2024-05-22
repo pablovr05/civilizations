@@ -9,6 +9,10 @@ public class Priest extends SpecialUnit {
         super.experience = 0;
     }
 
+    public void sanctify(){
+        
+    }
+
     public int attack(){
         return super.baseDamage;
     }
