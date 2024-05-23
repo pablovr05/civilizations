@@ -65,9 +65,11 @@ public class Civilization implements Variables {
     public void setBattles(int battles) {
         this.battles = battles;
     }
+
     public void setCarpentry(int carpentry) {
         this.carpentry = carpentry;
     }
+    
     public void setChurch(int church) {
         this.church = church;
     }

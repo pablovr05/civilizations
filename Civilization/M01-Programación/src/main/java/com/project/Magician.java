@@ -5,7 +5,7 @@ public class Magician extends SpecialUnit {
     public Magician(int armor, int baseDamage){
         super.armor = 0;
         super.initialArmor = 0;
-        super.baseDamage = BASE_DAMAGE_MAGICIAN + (PLUS_ATTACK_MAGICIAN_BY_TECHNOLOGY * baseDamage) * 1000/100;
+        super.baseDamage = BASE_DAMAGE_MAGICIAN + (PLUS_ATTACK_MAGICIAN_BY_TECHNOLOGY * baseDamage) * BASE_DAMAGE_MAGICIAN/100;
         super.experience = 0;
     }
 
