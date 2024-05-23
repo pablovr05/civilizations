@@ -3,9 +3,9 @@ package com.project;
 public class RocketLauncherTower extends DefenseUnit {
 
     public RocketLauncherTower(int armor, int baseDamage){
-        super.armor = ARMOR_ROCKETLAUNCHERTOWER + (PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY * armor) * 1000/100;
+        super.armor = ARMOR_ROCKETLAUNCHERTOWER + (PLUS_ARMOR_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY * armor) * ARMOR_ROCKETLAUNCHERTOWER/100;
         super.initialArmor = super.armor;
-        super.baseDamage = BASE_DAMAGE_ROCKETLAUNCHERTOWER + (PLUS_ATTACK_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY * baseDamage) * 1000/100;
+        super.baseDamage = BASE_DAMAGE_ROCKETLAUNCHERTOWER + (PLUS_ATTACK_ROCKETLAUNCHERTOWER_BY_TECHNOLOGY * baseDamage) * BASE_DAMAGE_ROCKETLAUNCHERTOWER/100;
         super.experience = 0;
         super.sanctified = false;
     }
