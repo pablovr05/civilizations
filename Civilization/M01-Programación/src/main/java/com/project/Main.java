@@ -35,7 +35,10 @@ public class Main {
             limpiarTerminal();
             System.out.print(cabecera);
             System.out.println("                                               Hecho por Joel Martinez, Adria Martinez, Pablo Vicente");
-            System.out.println("\n\n                   ");
+            System.out.println("\n\n                                                    Wood: " + civilization.getWood());
+            System.out.println("                                                    Iron: " + civilization.getIron());
+            System.out.println("                                                    Mana: " + civilization.getMana());
+            System.out.println("                                                    Food: " + civilization.getFood());
             System.out.println("\n\n          1. Crear edificios");
             System.out.println("\n          2. Añadir tropas al ejército");
             System.out.println("\n          3. Mejorar Tecnologias");
@@ -83,7 +86,7 @@ public class Main {
                         }
                         break;
                         
-                    case 6:
+                    case 7:
                         viewThreat();
                         String vacio = scanner.nextLine();
                         break;
@@ -98,7 +101,7 @@ public class Main {
         }
     }
 
-    private static void PrintMenuUpgrade(Civilization civilization){
+    private static void PrintMenuUpgrade(Civilization civilization) throws ResourceException, BuildingException{
         String espada = """
                 ()xxxxx[[{:::::::::::::::::::::::::::::::::::::::>
         """;
@@ -143,6 +146,8 @@ public class Main {
                             error = e.getMessage();
                         }
                         break;
+                    case 0:
+                        PrintMenuPrincipal(civilization);
                 }
             }catch (InputMismatchException e) {
                 error = "          No has introducido un numero, vuelva a intentar";
