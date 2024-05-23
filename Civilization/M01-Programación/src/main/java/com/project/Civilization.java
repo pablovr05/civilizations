@@ -507,32 +507,36 @@ public class Civilization implements Variables {
         }
     }
 
-    public void newPriest(int n) throws ResourceException, BuildingException{
+    public int newPriest(int n) throws ResourceException, BuildingException {
         int cnt = 0;
-        if (n < 1){
-            return;
-        }
-        else{
-            for(int i=0;i<n;i++){
-                Priest Priest = new Priest(getTechnologyDefense(), getTechnologyAttack());
-                if (this.church < 1){
-                    throw new BuildingException("No tienes una Church para poder crear la unidad");
+        if (n < 1) {
+            return cnt;
+        } else {
+            try {
+                for (int i = 0; i < n; i++) {
+                    Priest priest = new Priest(getTechnologyDefense(), getTechnologyAttack());
+                    if (this.church < 1) {
+                        System.out.println("Se han agregado " + cnt + " tropas");
+                        throw new BuildingException("No tienes una Church para poder crear la unidad");
+                    }
+                    if (this.food >= priest.getFoodCost() && this.wood >= priest.getWoodCost() && this.iron >= priest.getIronCost() && this.mana >= priest.getManaCost()) {
+                        this.army.get(priest_index).add(priest);
+                        this.food -= priest.getFoodCost();
+                        this.wood -= priest.getWoodCost();
+                        this.iron -= priest.getIronCost();
+                        this.mana -= priest.getManaCost();
+                        cnt += 1;
+                    } else {
+                        System.out.println("Se han agregado " + cnt + " tropas");
+                        throw new ResourceException("Faltan recursos para añadir más Priests");
+                    }
                 }
-                if (this.food>= Priest.getFoodCost() && this.wood >= Priest.getWoodCost() && this.iron >= Priest.getIronCost() && this.mana >= Priest.getManaCost()){
-                    this.army.get(priest_index).add(Priest);
-                    this.food -= Priest.getFoodCost();
-                    this.wood -= Priest.getWoodCost();
-                    this.iron -= Priest.getIronCost();
-                    this.mana -= Priest.getManaCost();
-                    cnt += 1;
-                }
-                else{
-                    System.out.println("Se han agregado " + cnt + " tropas");
-                    throw new ResourceException("Faltan recursos para añadir mas Priests");
-                }
+            } catch (ResourceException | BuildingException e) {
+                System.out.println("Se han agregado " + cnt + " tropas");
+                throw e;
             }
-            System.out.println("Se han agregado " + cnt + " tropas");
         }
+        return cnt;
     }
 
     public void updateResourceGeneration(){
