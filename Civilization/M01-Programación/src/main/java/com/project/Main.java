@@ -3,6 +3,7 @@ package com.project;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class Main {
     public static ArrayList<ArrayList<MilitaryUnit>> enemyArmy;
@@ -344,14 +345,89 @@ public class Main {
                         if(comanda.length == 3){
                             try{
                                 int n = Integer.parseInt(comanda[2]);
-                                civilization.newPriest(n);
+                                int cnt = civilization.newPriest(n);
+                                List<String> opciones = new ArrayList<>();
+                                opciones.add("swordsman");
+                                opciones.add("spearman");
+                                opciones.add("crossbow");
+                                opciones.add("cannon");
+                                opciones.add("arrowtower");
+                                opciones.add("catapult");
+                                opciones.add("rocketlaunchertower");
+
+                                for (int i=0; i<cnt; i++){
+                                    String sanctify = "";
+                                    while (!opciones.contains(sanctify)){
+                                        System.out.print("Que tipo de unidad quieres santificar?: ");
+                                        sanctify = scanner.nextLine();
+                                        switch(sanctify){
+                                            case "swordsman":
+                                                civilization.sanctifyGroup(0);
+                                                break;
+                                            case "spearman":
+                                                civilization.sanctifyGroup(1);
+                                                break;
+                                            case "crossbow":
+                                                civilization.sanctifyGroup(2);
+                                                break;
+                                            case "cannon":
+                                                civilization.sanctifyGroup(3);
+                                                break;
+                                            case "arrowtower":
+                                                civilization.sanctifyGroup(4);
+                                                break;
+                                            case "catapult":
+                                                civilization.sanctifyGroup(5);
+                                                break;
+                                            case "rocketlaunchertower":
+                                                civilization.sanctifyGroup(6);
+                                                break;
+                                        }
+                                    }  
+                                }
                             }
                             catch (NumberFormatException e) {
                                 error = "No has introducido una cantidad válida";
                             }
                             
                         }else {
-                            civilization.newPriest(1);
+                            int cnt = civilization.newPriest(1);
+                            List<String> opciones = new ArrayList<>();
+                            opciones.add("swordsman");
+                            opciones.add("spearman");
+                            opciones.add("crossbow");
+                            opciones.add("cannon");
+                            opciones.add("arrowtower");
+                            opciones.add("catapult");
+                            opciones.add("rocketlaunchertower");
+                            String sanctify = "";
+                                while (!opciones.contains(sanctify)){
+                                    System.out.print("Que tipo de unidad quieres santificar?: ");
+                                    sanctify = scanner.nextLine();
+                                    switch(sanctify){
+                                        case "swordsman":
+                                            civilization.sanctifyGroup(0);
+                                            break;
+                                        case "spearman":
+                                            civilization.sanctifyGroup(1);
+                                            break;
+                                        case "crossbow":
+                                            civilization.sanctifyGroup(2);
+                                            break;
+                                        case "cannon":
+                                            civilization.sanctifyGroup(3);
+                                            break;
+                                        case "arrowtower":
+                                            civilization.sanctifyGroup(4);
+                                            break;
+                                        case "catapult":
+                                            civilization.sanctifyGroup(5);
+                                            break;
+                                        case "rocketlaunchertower":
+                                            civilization.sanctifyGroup(6);
+                                            break;
+                                    }
+                                }
                         }
                         break;
                     case "magician":
@@ -367,31 +443,6 @@ public class Main {
                         }else {
                             civilization.newMagician(1);
                         }
-                        break;
-                }
-            }
-            else if (comanda[0].equals("sanctify")){
-                switch(comanda[1]){
-                    case "swordsman":
-                        civilization.sanctifyGroup(0);
-                        break;
-                    case "spearman":
-                        civilization.sanctifyGroup(1);
-                        break;
-                    case "crossbow":
-                        civilization.sanctifyGroup(2);
-                        break;
-                    case "cannon":
-                        civilization.sanctifyGroup(3);
-                        break;
-                    case "arrowtower":
-                        civilization.sanctifyGroup(4);
-                        break;
-                    case "catapult":
-                        civilization.sanctifyGroup(5);
-                        break;
-                    case "rocketlaunchertower":
-                        civilization.sanctifyGroup(6);
                         break;
                 }
             }
