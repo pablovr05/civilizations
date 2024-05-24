@@ -20,7 +20,7 @@ public class FadeOutGifDialog extends JDialog {
         setResizable(false);
         setBackground(new Color(0,0,0,0));
 
-        SoundPlayer.playSound("./music/alerta.wav", 0.5f);
+        SoundPlayer.playSound("alerta.wav", 0.5f);
 
         // Cargar la imagen GIF
         gifIcon = new ImageIcon(gifPath);

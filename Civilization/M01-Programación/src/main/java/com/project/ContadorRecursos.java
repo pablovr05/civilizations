@@ -34,7 +34,7 @@ public class ContadorRecursos {
     private void accion() {
         // Aquí puedes colocar la acción que deseas realizar cada segundo
         System.out.println("Se generan recursos");
-        SoundPlayer.playSound("./music/money.wav", 0.2f);
+        SoundPlayer.playSound("money.wav", 0.2f);
         segundos = 0;
     }
 }

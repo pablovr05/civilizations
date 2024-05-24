@@ -29,7 +29,7 @@ public class TecnologíasControlador {
 
     public void runCommand(String command) {
         if (command.equals("Salir")) {
-            SoundPlayer.playSound("./music/clickselect.wav", 0.5f);
+            SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Salir");
             llamarMenú();
         }

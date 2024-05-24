@@ -54,7 +54,7 @@ public class ContadorAtacar {
 
     private void aviso() {
         System.out.println("aviso");
-        FadeOutGifDialog dialog = new FadeOutGifDialog(mainWindow, "images/avecina.gif");
+        FadeOutGifDialog dialog = new FadeOutGifDialog(mainWindow, "src\\main\\java\\com\\project\\images\\avecina.gif");
         dialog.setVisible(true);
     }
 

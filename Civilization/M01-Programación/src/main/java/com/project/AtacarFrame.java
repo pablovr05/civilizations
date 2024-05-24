@@ -41,7 +41,7 @@ public class AtacarFrame extends JPanel {
 
         try {
             // Cargar la imagen de fondo desde el archivo
-            backgroundImage = ImageIO.read(new File("images/patternbrown.jpg"));
+            backgroundImage = ImageIO.read(new File("src\\main\\java\\com\\project\\images\\patternbrown.jpg"));
             leftPanel.setBackgroundImage(backgroundImage);
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,7 +90,7 @@ public class AtacarFrame extends JPanel {
         títuloC.setFont(new Font("Bahnschrift", Font.ROMAN_BASELINE, 18));
         lowerLeftPanel.add(títuloC);
 
-        ImageIcon iconC1 = new ImageIcon("images/icons/espada.png"); 
+        ImageIcon iconC1 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\espada.png"); 
         Image imgC1 = iconC1.getImage();
         Image newImgC1 = imgC1.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconC1 = new ImageIcon(newImgC1);
@@ -99,7 +99,7 @@ public class AtacarFrame extends JPanel {
         imageLabelC1.setHorizontalTextPosition(JLabel.RIGHT);
         lowerLeftPanel.add(imageLabelC1);
 
-        ImageIcon iconC2 = new ImageIcon("images/icons/lanza.png"); 
+        ImageIcon iconC2 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\lanza.png"); 
         Image imgC2 = iconC2.getImage();
         Image newImgC2 = imgC2.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconC2 = new ImageIcon(newImgC2);
@@ -108,7 +108,7 @@ public class AtacarFrame extends JPanel {
         imageLabelC2.setHorizontalTextPosition(JLabel.RIGHT);
         lowerLeftPanel.add(imageLabelC2);
 
-        ImageIcon iconC3 = new ImageIcon("images/icons/ballesta.png"); 
+        ImageIcon iconC3 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\ballesta.png"); 
         Image imgC3 = iconC3.getImage();
         Image newImgC3 = imgC3.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconC3 = new ImageIcon(newImgC3);
@@ -117,7 +117,7 @@ public class AtacarFrame extends JPanel {
         imageLabelC3.setHorizontalTextPosition(JLabel.RIGHT);
         lowerLeftPanel.add(imageLabelC3);
 
-        ImageIcon iconC4 = new ImageIcon("images/icons/canon.png"); 
+        ImageIcon iconC4 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\canon.png"); 
         Image imgC4 = iconC4.getImage();
         Image newImgC4 = imgC4.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconC4 = new ImageIcon(newImgC4);
@@ -126,7 +126,7 @@ public class AtacarFrame extends JPanel {
         imageLabelC4.setHorizontalTextPosition(JLabel.RIGHT);
         lowerLeftPanel.add(imageLabelC4);
 
-        ImageIcon iconC5 = new ImageIcon("images/icons/tiro-al-arco.png"); 
+        ImageIcon iconC5 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\tiro-al-arco.png"); 
         Image imgC5 = iconC5.getImage();
         Image newImgC5 = imgC5.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconC5 = new ImageIcon(newImgC5);
@@ -135,7 +135,7 @@ public class AtacarFrame extends JPanel {
         imageLabelC5.setHorizontalTextPosition(JLabel.RIGHT);
         lowerLeftPanel.add(imageLabelC5);
 
-        ImageIcon iconC6 = new ImageIcon("images/icons/catapulta.png"); 
+        ImageIcon iconC6 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\catapulta.png"); 
         Image imgC6 = iconC6.getImage();
         Image newImgC6 = imgC6.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconC6 = new ImageIcon(newImgC6);
@@ -144,7 +144,7 @@ public class AtacarFrame extends JPanel {
         imageLabelC6.setHorizontalTextPosition(JLabel.RIGHT);
         lowerLeftPanel.add(imageLabelC6);
 
-        ImageIcon iconC7 = new ImageIcon("images/icons/misil.png"); 
+        ImageIcon iconC7 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\misil.png"); 
         Image imgC7 = iconC7.getImage();
         Image newImgC7 = imgC7.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconC6 = new ImageIcon(newImgC7);
@@ -153,7 +153,7 @@ public class AtacarFrame extends JPanel {
         imageLabelC7.setHorizontalTextPosition(JLabel.RIGHT);
         lowerLeftPanel.add(imageLabelC7);
 
-        ImageIcon iconC8 = new ImageIcon("images/icons/mago.png"); 
+        ImageIcon iconC8 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\mago.png"); 
         Image imgC8 = iconC8.getImage();
         Image newImgC8 = imgC8.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconC8 = new ImageIcon(newImgC8);
@@ -162,7 +162,7 @@ public class AtacarFrame extends JPanel {
         imageLabelC8.setHorizontalTextPosition(JLabel.RIGHT);
         lowerLeftPanel.add(imageLabelC8);
 
-        ImageIcon iconC9 = new ImageIcon("images/icons/sacerdote.png"); 
+        ImageIcon iconC9 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\sacerdote.png"); 
         Image imgC9 = iconC9.getImage();
         Image newImgC9 = imgC9.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconC9 = new ImageIcon(newImgC9);
@@ -175,7 +175,7 @@ public class AtacarFrame extends JPanel {
         títuloE.setFont(new Font("Bahnschrift", Font.ROMAN_BASELINE, 18));
         lowerRightPanel.add(títuloE);
 
-        ImageIcon iconE1 = new ImageIcon("images/icons/espada.png"); 
+        ImageIcon iconE1 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\espada.png"); 
         Image imgE1 = iconC1.getImage();
         Image newImgE1 = imgE1.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconE1 = new ImageIcon(newImgE1);
@@ -184,7 +184,7 @@ public class AtacarFrame extends JPanel {
         imageLabelE1.setHorizontalTextPosition(JLabel.RIGHT);
         lowerRightPanel.add(imageLabelE1);
 
-        ImageIcon iconE2 = new ImageIcon("images/icons/lanza.png"); 
+        ImageIcon iconE2 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\lanza.png"); 
         Image imgE2 = iconE2.getImage();
         Image newImgE2 = imgE2.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconE2 = new ImageIcon(newImgE2);
@@ -193,7 +193,7 @@ public class AtacarFrame extends JPanel {
         imageLabelE2.setHorizontalTextPosition(JLabel.RIGHT);
         lowerRightPanel.add(imageLabelE2);
 
-        ImageIcon iconE3 = new ImageIcon("images/icons/ballesta.png"); 
+        ImageIcon iconE3 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\ballesta.png"); 
         Image imgE3 = iconE3.getImage();
         Image newImgE3 = imgE3.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconC3 = new ImageIcon(newImgE3);
@@ -202,7 +202,7 @@ public class AtacarFrame extends JPanel {
         imageLabelE3.setHorizontalTextPosition(JLabel.RIGHT);
         lowerRightPanel.add(imageLabelE3);
 
-        ImageIcon iconE4 = new ImageIcon("images/icons/canon.png"); 
+        ImageIcon iconE4 = new ImageIcon("src\\main\\java\\com\\project\\images\\icons\\canon.png"); 
         Image imgE4 = iconE4.getImage();
         Image newImgE4 = imgE4.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
         iconE4 = new ImageIcon(newImgE4);
@@ -220,7 +220,7 @@ public class AtacarFrame extends JPanel {
         rightPanel.setOpaque(false); // Hacer el fondo transparente
         add(rightPanel, BorderLayout.EAST);
 
-        JLabel gifLabel = new JLabel(new ImageIcon("images/peleapuentegif.gif"));
+        JLabel gifLabel = new JLabel(new ImageIcon("src\\main\\java\\com\\project\\images\\peleapuentegif.gif"));
         gifLabel.setLayout(new BorderLayout());
 
         // Panel para el contador

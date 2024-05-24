@@ -25,7 +25,7 @@ public class EjércitoFrame extends JPanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 try {
-                    BufferedImage image = ImageIO.read(new File("images/Fondocrear.jpg")); // Ruta de la imagen
+                    BufferedImage image = ImageIO.read(new File("src\\main\\java\\com\\project\\images\\Fondocrear.jpg")); // Ruta de la imagen
                     g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -82,7 +82,7 @@ public class EjércitoFrame extends JPanel {
         add(leftPanel, BorderLayout.WEST);
 
         // Gif en la parte derecha
-        ImageIcon gifIcon = new ImageIcon("images/CrearEjercito.gif"); // Reemplaza con la ruta de tu archivo gif
+        ImageIcon gifIcon = new ImageIcon("src\\main\\java\\com\\project\\images\\CrearEjercito.gif"); // Reemplaza con la ruta de tu archivo gif
         JLabel gifLabel = new JLabel(gifIcon);
         add(gifLabel, BorderLayout.EAST);
     }

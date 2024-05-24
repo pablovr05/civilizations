@@ -18,11 +18,11 @@ public class ResultadoBattallaFrame extends JPanel {
 
         if ( winner ) {
             título = "VICTORIA";
-            fondo = "images/victoria.gif";
+            fondo = "src\\main\\java\\com\\project\\images\\victoria.gif";
             color = new Color(0,255,0);
         } else {
             título = "DERROTA";
-            fondo = "images/derrota.gif";
+            fondo = "src\\main\\java\\com\\project\\images\\derrota.gif";
             color = new Color(255,0,0);
         }
 
@@ -89,7 +89,7 @@ public class ResultadoBattallaFrame extends JPanel {
         ButtonVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ButtonVolver.setForeground(color); // Cambia el color de fondo cuando el cursor entra
-                SoundPlayer.playSound("./music/botónopciones.wav", 0.5f);
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {

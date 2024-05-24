@@ -21,10 +21,10 @@ public class FixedPanel extends JPanel {
         setOpaque(false); // Hace que el panel sea transparente
         setPreferredSize(new Dimension(200, 200)); // Establece el tamaño del panel
 
-        madera = createButton("Madera: " + qmadera, "images/madera.png");
-        comida = createButton("Comida: " + qcomida, "images/naranja.png");
-        hierro = createButton("Hierro: " + qhierro, "images/minerals.png");
-        maná = createButton("Maná: " + qmaná, "images/mana.png");
+        madera = createButton("Madera: " + qmadera, "src\\main\\java\\com\\project\\images\\madera.png");
+        comida = createButton("Comida: " + qcomida, "src\\main\\java\\com\\project\\images\\naranja.png");
+        hierro = createButton("Hierro: " + qhierro, "src\\main\\java\\com\\project\\images\\minerals.png");
+        maná = createButton("Maná: " + qmaná, "src\\main\\java\\com\\project\\images\\mana.png");
 
         // Cambia el layout a BoxLayout con orientación vertical
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
