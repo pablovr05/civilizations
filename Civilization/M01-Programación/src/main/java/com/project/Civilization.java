@@ -30,7 +30,7 @@ public class Civilization implements Variables {
     public int woodGeneration;
     public int ironGeneration;
     public int manaGeneration;
-    public ArrayList<ArrayList<MilitaryUnit>> army = new ArrayList<>();
+    public static ArrayList<ArrayList<MilitaryUnit>> army = new ArrayList<>();
     
     public Civilization(){
         this.technologyDefense = 0;
@@ -65,9 +65,11 @@ public class Civilization implements Variables {
     public void setBattles(int battles) {
         this.battles = battles;
     }
+
     public void setCarpentry(int carpentry) {
         this.carpentry = carpentry;
     }
+    
     public void setChurch(int church) {
         this.church = church;
     }
@@ -544,5 +546,9 @@ public class Civilization implements Variables {
         this.woodGeneration = CIVILIZATION_WOOD_GENERATED+this.carpentry*CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY;
         this.ironGeneration = CIVILIZATION_IRON_GENERATED+this.smithy*CIVILIZATION_IRON_GENERATED_PER_SMITHY;
         this.manaGeneration = 0+this.magicTower*CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER;
+    }
+
+    public void gainExperience(){
+
     }
 }

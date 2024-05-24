@@ -3,9 +3,9 @@ package com.project;
 public class Cannon extends AttackUnit  {
     public Cannon(int armor, int baseDamage){
     
-        super.armor = ARMOR_CANNON + (PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY * armor) * 1000/100;
+        super.armor = ARMOR_CANNON + (PLUS_ARMOR_CATAPULT_BY_TECHNOLOGY * armor) * ARMOR_CANNON/100;
         super.initialArmor = super.armor;
-        super.baseDamage = BASE_DAMAGE_CANNON + (PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY * baseDamage) * 1000/100;
+        super.baseDamage = BASE_DAMAGE_CANNON + (PLUS_ATTACK_CATAPULT_BY_TECHNOLOGY * baseDamage) * BASE_DAMAGE_CANNON/100;
         super.experience = 0;
         super.sanctified = false;
     }

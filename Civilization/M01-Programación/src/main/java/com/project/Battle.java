@@ -19,7 +19,7 @@ public class Battle {
     int[] actualNumberUnitsCivilization;
     int[] actualNumberUnitsEnemy;
 
-    public Battle(ArrayList<ArrayList<MilitaryUnit>> civilizationArmy, ArrayList<ArrayList<MilitaryUnit>> enemyArmy ){
+    public Battle(ArrayList<ArrayList<MilitaryUnit>> civilizationArmy, ArrayList<ArrayList<MilitaryUnit>> enemyArmy){
         this.civilizationArmy = civilizationArmy;
         this.enemyArmy = enemyArmy;
         initInitialArmies();
@@ -55,8 +55,6 @@ public class Battle {
         System.out.println(remainderPercentageFleet(enemyArmy));
     }
 
-    // chatGPT 2
-
 
     String startBattle() {
         Scanner scan = new Scanner(System.in);
@@ -76,27 +74,24 @@ public class Battle {
                     .get((int) (Math.random() * enemyArmy.get(attackGroupEnemy).size()));
             
             // Imprime el estado de la batalla
-            printBattle();
-            System.out.println(remainderPercentageFleet(civilizationArmy));
-            System.out.println(remainderPercentageFleet(enemyArmy));
-            String hola = scan.nextLine();  // Esto parece para debugging, puedes quitarlo si no es necesario
+            // printBattle();
+            // String hola = scan.nextLine();  // Esto aparece para debugging, puedes quitarlo si no es necesario
             
             // Ataca la unidad enemiga
             this.battleDevelopment += "********************CHANGE ATTACKER********************\n";
-            this.battleDevelopment += "Attacks Civilization: " + attackerCivilization.getClass().getName() + " attacks " + defenderEnemy.getClass().getName() + "\n";
+            this.battleDevelopment += "Attacks Civilization: " + getClassName(attackerCivilization) + " attacks " + getClassName(defenderEnemy) + "\n";
             int attackCivilization = attackerCivilization.attack();
-            this.battleDevelopment += attackerCivilization.getClass().getName() + " generates the damage = " + attackCivilization + "\n";
+            this.battleDevelopment += getClassName(attackerCivilization) + " generates the damage = " + attackCivilization + "\n";
             defenderEnemy.takeDamage(attackCivilization);
             int defenseEnemy = defenderEnemy.getActualArmor();
-            this.battleDevelopment += defenderEnemy.getClass().getName() + " stays with armor = " + defenseEnemy + "\n";
+            this.battleDevelopment += getClassName(defenderEnemy) + " stays with armor = " + defenseEnemy + "\n";
             
             if (defenseEnemy <= 0) {
-                this.battleDevelopment += "We eliminate " + defenderEnemy + "\n";
+                this.battleDevelopment += "We eliminate " + getClassName(defenderEnemy) + "\n";
                 generateWaste(defenderEnemy);
                 addDropUnit(defenderEnemy, true);
                 enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
-                this.battleDevelopment += Integer.toString(remainderPercentageFleet(civilizationArmy))+"\n";
-                this.battleDevelopment += Integer.toString(remainderPercentageFleet(enemyArmy))+"\n";
+                Main.enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
             }
             
             // Segunda posibilidad de ataque
@@ -104,19 +99,19 @@ public class Battle {
             if (random <= attackerCivilization.getChanceAttackAgain() && !enemyArmy.get(attackGroupEnemy).isEmpty()) {
                 defenderEnemy = enemyArmy.get(attackGroupEnemy)
                         .get((int) (Math.random() * enemyArmy.get(attackGroupEnemy).size()));
-                this.battleDevelopment += "Attacks Civilization: " + attackerCivilization.getClass().getName() + " attacks " + defenderEnemy.getClass().getName() + "\n";
+                this.battleDevelopment += "Attacks Civilization: " + getClassName(attackerCivilization) + " attacks " + getClassName(defenderEnemy) + "\n";
                 attackCivilization = attackerCivilization.attack();
-                this.battleDevelopment += attackerCivilization.getClass().getName() + " generates the damage = " + attackCivilization + "\n";
+                this.battleDevelopment += getClassName(attackerCivilization) + " generates the damage = " + attackCivilization + "\n";
                 defenderEnemy.takeDamage(attackCivilization);
                 defenseEnemy = defenderEnemy.getActualArmor();
-                this.battleDevelopment += defenderEnemy.getClass().getName() + " stays with armor = " + defenseEnemy + "\n";
+                this.battleDevelopment += getClassName(defenderEnemy) + " stays with armor = " + defenseEnemy + "\n";
                 if (defenseEnemy <= 0) {
-                    this.battleDevelopment += "We eliminate " + defenderEnemy + "\n";
+                    this.battleDevelopment += "We eliminate " + getClassName(defenderEnemy) + "\n";
                     generateWaste(defenderEnemy);
                     addDropUnit(defenderEnemy, true);
                     enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
-                    this.battleDevelopment += Integer.toString(remainderPercentageFleet(civilizationArmy))+"\n";
-                    this.battleDevelopment += Integer.toString(remainderPercentageFleet(enemyArmy))+"\n";
+                    Main.enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
+                    
                 }
             }
             
@@ -137,20 +132,19 @@ public class Battle {
                     .get((int) (Math.random() * enemyArmy.get(attackGroupEnemy).size()));
             
             this.battleDevelopment += "********************CHANGE ATTACKER********************\n";
-            this.battleDevelopment += "Attacks enemy army: " + attackerEnemy.getClass().getName() + " attacks " + defenderCivilization.getClass().getName() + "\n";
+            this.battleDevelopment += "Attacks enemy army: " + getClassName(attackerEnemy) + " attacks " + getClassName(defenderCivilization) + "\n";
             int attackEnemy = attackerEnemy.attack();
-            this.battleDevelopment += attackerEnemy.getClass().getName() + " generates the damage = " + attackEnemy + "\n";
+            this.battleDevelopment += getClassName(attackerEnemy) + " generates the damage = " + attackEnemy + "\n";
             defenderCivilization.takeDamage(attackEnemy);
             int defenseCivilization = defenderCivilization.getActualArmor();
-            this.battleDevelopment += defenderCivilization.getClass().getName() + " stays with armor = " + defenseCivilization + "\n";
+            this.battleDevelopment += getClassName(defenderCivilization) + " stays with armor = " + defenseCivilization + "\n";
             
             if (defenseCivilization <= 0) {
-                this.battleDevelopment += "We lose " + defenderCivilization + "\n";
+                this.battleDevelopment += "We lose " + getClassName(defenderCivilization) + "\n";
                 generateWaste(defenderCivilization);
                 addDropUnit(defenderCivilization, false);
                 civilizationArmy.get(defenseGroup).remove(defenderCivilization);
-                this.battleDevelopment += Integer.toString(remainderPercentageFleet(civilizationArmy))+"\n";
-                this.battleDevelopment += Integer.toString(remainderPercentageFleet(enemyArmy))+"\n";
+                Civilization.army.get(defenseGroup).remove(defenderCivilization);
             }
             
             // Segunda posibilidad de ataque del enemigo
@@ -158,30 +152,32 @@ public class Battle {
             if (random <= attackerEnemy.getChanceAttackAgain() && !civilizationArmy.get(defenseGroup).isEmpty()) {
                 defenderCivilization = civilizationArmy.get(defenseGroup)
                         .get((int) (Math.random() * civilizationArmy.get(defenseGroup).size()));
-                this.battleDevelopment += "Attacks enemy army: " + attackerEnemy.getClass().getName() + " attacks " + defenderCivilization.getClass().getName() + "\n";
+                this.battleDevelopment += "Attacks enemy army: " + getClassName(attackerEnemy) + " attacks " + getClassName(defenderCivilization) + "\n";
                 attackEnemy = attackerEnemy.attack();
-                this.battleDevelopment += attackerEnemy.getClass().getName() + " generates the damage = " + attackEnemy + "\n";
+                this.battleDevelopment += getClassName(attackerEnemy) + " generates the damage = " + attackEnemy + "\n";
                 defenderCivilization.takeDamage(attackEnemy);
                 defenseCivilization = defenderCivilization.getActualArmor();
-                this.battleDevelopment += defenderCivilization.getClass().getName() + " stays with armor = " + defenseCivilization + "\n";
+                this.battleDevelopment += getClassName(defenderCivilization) + " stays with armor = " + defenseCivilization + "\n";
                 if (defenseCivilization <= 0) {
-                    this.battleDevelopment += "We lose " + defenderCivilization + "\n";
+                    this.battleDevelopment += "We lose " + getClassName(defenderCivilization) + "\n";
                     generateWaste(defenderCivilization);
                     addDropUnit(defenderCivilization, false);
                     civilizationArmy.get(defenseGroup).remove(defenderCivilization);
-                    this.battleDevelopment += Integer.toString(remainderPercentageFleet(civilizationArmy))+"\n";
-                    this.battleDevelopment += Integer.toString(remainderPercentageFleet(enemyArmy))+"\n";
+                    Civilization.army.get(defenseGroup).remove(defenderCivilization);
                 }
             }
             
             this.actualNumberUnitsCivilization = getArrayQuantities(civilizationArmy);
             this.actualNumberUnitsEnemy = getArrayQuantities(enemyArmy);
         }
+
+        updateResourcesLooses();
         
-        if (remainderPercentageFleet(enemyArmy) <= 20) {
-            return "civilization";
-        } else {
+
+        if (this.resourcesLooses.get(0)[3]>this.resourcesLooses.get(1)[3]) {
             return "enemy";
+        } else {
+            return "civilization";
         }
     }
     
@@ -284,7 +280,7 @@ public class Battle {
     }
 
     void updateResourcesLooses(){
-        resourcesLooses = new ArrayList<>();
+        this.resourcesLooses = new ArrayList<>();
         int[] loss = new int[4];
         int madera = 0;
         int comida = 0;
@@ -383,9 +379,9 @@ public class Battle {
     }
 
     void generateWaste(MilitaryUnit unit){
-        Class clase = unit.getClass();
+        String clase = getClassName(unit);
         int random = (int)(Math.random()*100);
-        switch (clase.getName()){
+        switch (clase){
             case("Swordsman"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_SWORDSMAN){
                     wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_SWORDSMAN;
@@ -476,6 +472,30 @@ public class Battle {
             case("Priest"):
                 civilizationDrops[8] += 1;
                 break;
+        }
+    }
+
+    public String getClassName(MilitaryUnit unit){
+        Class clase = unit.getClass();
+        String name = clase.getName();
+        if(name.contains("Swordsman")){
+            return "Swordsman";
+        } else if(name.contains("Spearman")){
+            return "Spearman";
+        } else if(name.contains("Crossbow")){
+            return "Crossbow";
+        } else if(name.contains("Cannon")){
+            return "Cannon";
+        } else if(name.contains("ArrowTower")){
+            return "ArrowTower";
+        } else if(name.contains("Catapult")){
+            return "Catapult";
+        } else if(name.contains("Magician")){
+            return "Magician";
+        } else if(name.contains("RocketLauncherTower")){
+            return "RocketLauncherTower";
+        }else {
+            return "";
         }
     }
 }
