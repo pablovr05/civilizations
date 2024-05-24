@@ -19,7 +19,7 @@ public class FightButtonPanel extends JDialog {
         super(parent, "Ventana emergente", true);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-        Clblucle = playSoundBucle("./music/firesound.wav");
+        Clblucle = playSoundBucle("src\\main\\java\\com\\project\\music\\firesound.wav");
 
         setLayout(new BorderLayout());
         setUndecorated(true); // Elimina la decoración de la ventana (bordes, botones de cierre, etc.)
@@ -32,7 +32,7 @@ public class FightButtonPanel extends JDialog {
         contentPane.setBorder(new EmptyBorder(4, 4, 4, 4)); // Añade un espacio en los bordes
 
         // Crear el botón con el GIF
-        gifButton = createGifButton("images/fightbutton.gif");
+        gifButton = createGifButton("src\\main\\java\\com\\project\\images\\fightbutton.gif");
 
         gifButton.setPreferredSize(new Dimension(420,115));
 
@@ -68,8 +68,7 @@ public class FightButtonPanel extends JDialog {
             @Override
             public void mouseEntered(MouseEvent e) {
                 System.out.println("Entra");
-                playSoundOne("./music/clickfight.wav");
-
+                playSoundOne("clickfight.wav");
             }
 
             @Override
@@ -83,7 +82,7 @@ public class FightButtonPanel extends JDialog {
                 System.out.println("click");
                 dispose(); // Cerrar la ventana emergente después de detener el sonido
                 System.out.println("Cerrando la ventana emergente...");
-                playSoundOne("./music/selectbattle.wav");
+                playSoundOne("selectbattle.wav");
             }
         });
         return button;

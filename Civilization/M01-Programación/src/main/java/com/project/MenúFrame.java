@@ -24,7 +24,7 @@ public class MenúFrame extends JPanel {
     private Color colorCambio = new Color(0, 133, 0);
     private Color colorDefault = new Color(0, 0, 0);
 
-    private List<String> strings = List.of("images/fondomenu9.jpg", "images/fondomenu10.jpg");
+    private List<String> strings = List.of("src\\main\\java\\com\\project\\images\\fondomenu9.jpg", "src\\main\\java\\com\\project\\images\\fondomenu10.jpg");
     private String randomString = getRandomString(strings);
    
     public MenúFrame() {
@@ -75,7 +75,7 @@ public class MenúFrame extends JPanel {
         btnEstadísticas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnEstadísticas.setForeground(colorCambio); // Cambia el color de fondo cuando el cursor entra
-                SoundPlayer.playSound("./music/botónopciones.wav", 0.5f);
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -86,7 +86,7 @@ public class MenúFrame extends JPanel {
         btnCrearEdificios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnCrearEdificios.setForeground(colorCambio); // Cambia el color de fondo cuando el cursor entra
-                SoundPlayer.playSound("./music/botónopciones.wav", 0.5f);
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -97,7 +97,7 @@ public class MenúFrame extends JPanel {
         btnCrearEjército.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnCrearEjército.setForeground(colorCambio); // Cambia el color de fondo cuando el cursor entra
-                SoundPlayer.playSound("./music/botónopciones.wav", 0.5f);
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -108,7 +108,7 @@ public class MenúFrame extends JPanel {
         btnTecnologías.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnTecnologías.setForeground(colorCambio); // Cambia el color de fondo cuando el cursor entra
-                SoundPlayer.playSound("./music/botónopciones.wav", 0.5f);
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -119,7 +119,7 @@ public class MenúFrame extends JPanel {
         btnHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnHistorial.setForeground(colorCambio); // Cambia el color de fondo cuando el cursor entra
-                SoundPlayer.playSound("./music/botónopciones.wav", 0.5f);
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -130,7 +130,7 @@ public class MenúFrame extends JPanel {
         btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnSalir.setForeground(colorCambio); // Cambia el color de fondo cuando el cursor entra
-                SoundPlayer.playSound("./music/botónopciones.wav", 0.5f);
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {

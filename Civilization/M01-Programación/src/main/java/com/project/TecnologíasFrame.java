@@ -12,7 +12,7 @@ public class TecnologíasFrame extends JPanel {
 
         setLayout(new BorderLayout());
 
-        JLabel background = new JLabel(new ImageIcon("images/probar1.gif"));
+        JLabel background = new JLabel(new ImageIcon("src\\main\\java\\com\\project\\images\\probar1.gif"));
         background.setLayout(new BorderLayout());
         add(background, BorderLayout.CENTER);
 
