@@ -48,7 +48,7 @@ public class Main {
         };
 
         timer.scheduleAtFixedRate(generarRecursos, 0, 1000);
-        timer.scheduleAtFixedRate(generateBattle, 0, 1000);
+        // timer.scheduleAtFixedRate(generateBattle, 0, 1000);
 
         PrintMenuPrincipal(civilization);
         
