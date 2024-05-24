@@ -25,7 +25,7 @@ public class EdificacionesFrame extends JPanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 try {
-                    BufferedImage image = ImageIO.read(new File("images/Fondocrear.jpg")); // Ruta de la imagen
+                    BufferedImage image = ImageIO.read(new File("src\\main\\java\\com\\project\\images\\Fondocrear.jpg")); // Ruta de la imagen
                     g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -81,7 +81,7 @@ public class EdificacionesFrame extends JPanel {
         leftPanel.setBorder(new EmptyBorder(80, 15, 80, 15)); // Ajusta el margen del panel izquierdo
         add(leftPanel, BorderLayout.WEST);
 
-        ImageIcon gifIcon = new ImageIcon("images/Edificios.gif"); // Reemplaza con la ruta de tu archivo gif
+        ImageIcon gifIcon = new ImageIcon("src\\main\\java\\com\\project\\images\\Edificios.gif"); // Reemplaza con la ruta de tu archivo gif
         JLabel gifLabel = new JLabel(gifIcon);
         add(gifLabel, 0);
     }

@@ -44,27 +44,27 @@ public class MenúControlador {
 
     public void runCommand(String command) {
         if (command.equals("Estadísticas")) {
-            SoundPlayer.playSound("./music/clickselect.wav", 0.5f);
+            SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Estadísticas");
             llamarEstadísticas();
         } if (command.equals("Crear edificios")) {
-            SoundPlayer.playSound("./music/clickselect.wav", 0.5f);
+            SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Crear edificios");
             llamarEdificaciones();
         } if (command.equals("Crear ejército")) {
-            SoundPlayer.playSound("./music/clickselect.wav", 0.5f);
+            SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Crear ejército");
             llamarEjército();
         } if (command.equals("Tecnologías")) {
-            SoundPlayer.playSound("./music/clickselect.wav", 0.5f);
+            SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Tecnologías");
             llamarTecnologías();
         } if (command.equals("Ver historial de batallas")) {
-            SoundPlayer.playSound("./music/clickselect.wav", 0.5f);
+            SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Ver historial de batallas");
             llamarHistorial();
         } if (command.equals("Salir")) {
-            SoundPlayer.playSound("./music/clickselect.wav", 0.5f);
+            SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Salir");
             mainWindow.contadorAtacar.segundos = 0;
             mainWindow.contadorAtacar.detenerContador();

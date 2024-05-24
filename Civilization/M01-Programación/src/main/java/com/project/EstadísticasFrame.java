@@ -27,7 +27,7 @@ public class EstadísticasFrame extends JPanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 try {
-                    BufferedImage image = ImageIO.read(new File("images/fondomenu8.jpg"));
+                    BufferedImage image = ImageIO.read(new File("src\\main\\java\\com\\project\\images\\fondomenu8.jpg"));
                     g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -181,7 +181,7 @@ public class EstadísticasFrame extends JPanel {
         backButtonEstadísticas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 backButtonEstadísticas.setForeground(colorCambio); // Cambia el color de fondo cuando el cursor entra
-                SoundPlayer.playSound("./music/botónopciones.wav", 0.5f);
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {

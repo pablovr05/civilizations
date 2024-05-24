@@ -30,7 +30,7 @@ public class ResultadoBatallaControlador {
 
     public void runCommand(String command) {
         if (command.equals("Volver")) {
-            SoundPlayer.playSound("./music/clickselect.wav", 0.5f);
+            SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Volver");
             llamarMenú();
             mainWindow.setSize(585,415);
