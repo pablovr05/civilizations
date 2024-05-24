@@ -27,7 +27,7 @@ public class CivilizaciónFrame extends JPanel {
         JLabel imageLabel = new JLabel();
         try {
             // Carga la imagen desde el archivo "imagen.jpg" en la carpeta "images" (ajusta la ruta según tu estructura de directorios)
-            Image img = ImageIO.read(new File("images/imagenfondoportada.png"));
+            Image img = ImageIO.read(new File("src\\main\\java\\com\\project\\images\\imagenfondoportada.png"));
             // Escalamos la imagen para que ocupe todo el espacio disponible
             Image scaledImg = img.getScaledInstance(300, 400, Image.SCALE_SMOOTH);
             imageLabel.setIcon(new ImageIcon(scaledImg));
@@ -80,7 +80,7 @@ public class CivilizaciónFrame extends JPanel {
         btnCargarPartida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnCargarPartida.setForeground(Color.RED); // Cambia el color de fondo cuando el cursor entra
-                SoundPlayer.playSound("./music/botónopciones.wav", 0.5f);
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
@@ -91,7 +91,7 @@ public class CivilizaciónFrame extends JPanel {
         btnNuevaPartida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnNuevaPartida.setForeground(Color.RED); // Cambia el color de fondo cuando el cursor entra
-                SoundPlayer.playSound("./music/botónopciones.wav", 0.5f);
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {

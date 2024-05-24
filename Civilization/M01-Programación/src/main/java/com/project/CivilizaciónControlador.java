@@ -30,13 +30,13 @@ public class CivilizaciónControlador {
 
     public void runCommand(String command) {
         if (command.equals("Cargar Partida")) {
-            SoundPlayer.playSound("./music/clickselect.wav", 0.5f);
+            SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Cargar Partida");
             // Mostrar el diálogo de la lista de opciones utilizando la clase CustomOptionListPane
-            String selectedOption = CustomOptionListPane.showOptionListDialog(mainWindow, "Selecciona una opción:", "Cargar Partida", "images/logo.png");
+            String selectedOption = CustomOptionListPane.showOptionListDialog(mainWindow, "Selecciona una opción:", "Cargar Partida", "src\\main\\java\\com\\project\\images\\logo.png");
             if (selectedOption != null) {
                 // Aquí puedes hacer algo con la opción seleccionada
-                SoundPlayer.playSound("./music/botónASSERT.wav", 0.5f);
+                SoundPlayer.playSound("botónASSERT.wav", 0.5f);
                 System.out.println("Opción seleccionada: " + selectedOption);
                 System.out.println("Se inició el contadorRecursos");
                 mainWindow.contadorRecursos.iniciarContador();
@@ -47,13 +47,13 @@ public class CivilizaciónControlador {
                 ErrorDialog.showErrorDialog(mainWindow, "¡No has seleccionado ninguna civilización!");
             }
         } else if (command.equals("Nueva Partida")) {
-            SoundPlayer.playSound("./music/clickselect.wav", 0.5f);
+            SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Nueva Partida");
             // Mostrar el diálogo de entrada del nombre de la civilización utilizando la clase CustomOptionPane
-            String nombreCivilizacion = CustomOptionPane.showCivilizationNameInputDialog(mainWindow, "Introduce el nombre de tu nueva civilización:", "Nombre de la Civilización", "images/logo.png");
+            String nombreCivilizacion = CustomOptionPane.showCivilizationNameInputDialog(mainWindow, "Introduce el nombre de tu nueva civilización:", "Nombre de la Civilización", "src\\main\\java\\com\\project\\images\\logo.png");
             if (nombreCivilizacion != null && !nombreCivilizacion.isEmpty()) {
                 // Aquí puedes hacer algo con el nombre de la civilización, como mostrarlo en la interfaz
-                SoundPlayer.playSound("./music/botónASSERT.wav", 0.5f);
+                SoundPlayer.playSound("botónASSERT.wav", 0.5f);
                 System.out.println("Nombre de la nueva civilización: " + nombreCivilizacion);
                 System.out.println("Se inició el contadorRecursos");
                 mainWindow.contadorRecursos.iniciarContador();

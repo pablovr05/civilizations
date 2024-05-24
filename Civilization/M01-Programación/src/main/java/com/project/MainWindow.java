@@ -17,7 +17,7 @@ public class MainWindow extends JFrame {
         super("CIVILIZATIONS");
         setSize(585, 415);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon icon = new ImageIcon("images/logo.png");
+        ImageIcon icon = new ImageIcon("src\\main\\java\\com\\project\\images\\logo.png");
         setIconImage(icon.getImage());
         setResizable(false);
 
@@ -32,7 +32,7 @@ public class MainWindow extends JFrame {
         civilizaciónControlador = new CivilizaciónControlador(civilizaciónFrame, this);
         civilizaciónControlador.start();
 
-        playBackgroundMusic("music/firesound.wav"); // Ruta de tu archivo de música de fondo
+        playBackgroundMusic("src\\main\\java\\com\\project\\music\\firesound.wav"); // Ruta de tu archivo de música de fondo
     }
 
     private void initComponents() {

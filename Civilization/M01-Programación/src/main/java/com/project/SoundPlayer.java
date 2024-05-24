@@ -1,12 +1,18 @@
 package com.project;
 
 import javax.sound.sampled.*;
+import java.io.File;
 
 public class SoundPlayer {
     public static void playSound(String soundFilePath, float volume) {
         try {
-            // Cargar el archivo de sonido desde la ruta proporcionada
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(SoundPlayer.class.getResource(soundFilePath));
+            soundFilePath = "src\\main\\java\\com\\project\\music\\" + soundFilePath;
+            File soundFile = new File(soundFilePath);
+            if (!soundFile.exists()) {
+                throw new IllegalArgumentException("Archivo de sonido no encontrado: " + soundFilePath);
+            }
+            
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
             
             // Obtener el formato de audio del archivo
             AudioFormat format = audioInputStream.getFormat();
@@ -33,6 +39,3 @@ public class SoundPlayer {
         }
     }
 }
-/*
-SoundPlayer.playSound("./music/botón.wav", 0.5f);
-*/
