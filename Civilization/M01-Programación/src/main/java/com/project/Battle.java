@@ -172,8 +172,8 @@ public class Battle {
         }
 
         updateResourcesLooses();
+        Civilization.gainExperience();
         
-
         if (this.resourcesLooses.get(0)[3]>this.resourcesLooses.get(1)[3]) {
             return "enemy";
         } else {

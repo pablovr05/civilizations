@@ -14,4 +14,5 @@ public abstract class MilitaryUnit {
     abstract void setExperience(int n);
     abstract int getExperience();
     abstract void sanctify();
+    abstract void setBaseDamage(int damage);
 }

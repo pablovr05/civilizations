@@ -9,6 +9,10 @@ public class ArrowTower extends DefenseUnit {
         super.experience = 0;
         super.sanctified = false;
     }
+
+    public void setBaseDamage(int damage){
+        this.baseDamage = damage;
+    }
     
     public void sanctify(){
         if(super.sanctified == false){
