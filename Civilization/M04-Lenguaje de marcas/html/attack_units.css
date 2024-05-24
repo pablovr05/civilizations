@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.hover-div {
+    width: 200px;
+    height: 200px;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.hover-div p {
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+
+.hover-div:hover {
+    transform: scale(1.2);
+    background-color: lightcoral;
+}
