@@ -1,3 +1,5 @@
+package com.project;
+
 import java.awt.event.ActionEvent;
 
 public class EdificacionesControlador {

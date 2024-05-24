@@ -1,3 +1,5 @@
+package com.project;
+
 import javax.swing.*;
 
 public class Notificación {

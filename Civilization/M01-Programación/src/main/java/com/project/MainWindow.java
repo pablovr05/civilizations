@@ -1,3 +1,5 @@
+package com.project;
+
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.io.File;
