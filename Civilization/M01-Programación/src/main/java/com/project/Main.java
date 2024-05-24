@@ -5,11 +5,12 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.List;
 
 public class Main {
     public static ArrayList<ArrayList<MilitaryUnit>> enemyArmy;
 
-    public static void main(String[] args) throws ResourceException, BuildingException {
+    public static void main(String[] args) throws ResourceException, BuildingException{
         Civilization civilization = new Civilization();
         civilization.setFood(200000);
         civilization.setIron(200000);
@@ -67,21 +68,27 @@ public class Main {
              Y88888P' dP 888888'   dP 88888888P dP Y8888888P 88     88     dP    dP  `8888P'  dP     dP  Y88888P  
             """);
         while (true){
+            Scanner main = new Scanner(System.in);
             limpiarTerminal();
             System.out.print(cabecera);
             System.out.println("                                               Hecho por Joel Martinez, Adria Martinez, Pablo Vicente");
-            System.out.println("\n\n          1. Crear edificios         ");
+            System.out.println("\n\n                                                    Wood: " + civilization.getWood());
+            System.out.println("                                                    Iron: " + civilization.getIron());
+            System.out.println("                                                    Mana: " + civilization.getMana());
+            System.out.println("                                                    Food: " + civilization.getFood());
+            System.out.println("\n\n          1. Crear edificios");
             System.out.println("\n          2. Añadir tropas al ejército");
-            System.err.println("\n          3. Ver estadisticas de la civilización");
-            System.out.println("\n          4. Ver historial de ataques");
-            System.out.println("\n          5. Batalla");
-            System.out.println("\n          0. Salir\n");
+            System.out.println("\n          3. Mejorar Tecnologias");
+            System.err.println("\n          4. Ver estadisticas de la civilización");
+            System.out.println("\n          5. Ver historial de ataques");
+            System.out.println("\n          6. Batalla");
+            System.out.println("\n          0. Salir\n\n");
             if (error != ""){
                 System.err.println(ANSI_RED + error + ANSI_RESET);
             }
-            System.out.println("          Escoja una opcion [1,2,3,4,0]: ");
-            try{int opcion = scanner.nextInt();
-                scanner.nextLine();
+            System.out.print("          Escoja una opcion [1,2,3,4,0]: ");
+            try{int opcion = main.nextInt();
+                main.nextLine();
                 switch (opcion) {
                     case 1:
                         PrintMenuEdificios(civilization);
@@ -90,12 +97,15 @@ public class Main {
                         PrintMenuTropas(civilization);
                         break;
                     case 3:
-                        PrintMenuStats(civilization);
+                        PrintMenuUpgrade(civilization);
                         break;
                     case 4:
-                        PrintMenuHistorial();
+                        PrintMenuStats(civilization);
                         break;
                     case 5:
+                        PrintMenuHistorial();
+                        break;
+                    case 6:
                         enemyArmy = createEnemyArmy(civilization.battles);
                         Battle batalla = new Battle(civilization.army, enemyArmy);
                         String ganador = batalla.startBattle();
@@ -113,7 +123,7 @@ public class Main {
                         }
                         break;
                         
-                    case 6:
+                    case 7:
                         viewThreat();
                         String vacio = scanner.nextLine();
                         break;
@@ -126,6 +136,63 @@ public class Main {
                 error = "          No has introducido un numero, vuelva a intentar";
             }
         }
+    }
+
+    private static void PrintMenuUpgrade(Civilization civilization) throws ResourceException, BuildingException{
+        String espada = """
+                ()xxxxx[[{:::::::::::::::::::::::::::::::::::::::>
+        """;
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_RESET = "\u001B[0m";
+        String error = "";
+        while (true){
+            Scanner scanner = new Scanner(System.in);
+            int acomida = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST+civilization.technologyAttack*Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_FOOD_COST;
+            int amadera = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST+civilization.technologyAttack*Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST;
+            int ahierro = Variables.UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST+civilization.technologyAttack*Variables.UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST;
+            int dcomida = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST+civilization.technologyDefense*Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST;
+            int dmadera = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST+civilization.technologyDefense*Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST;
+            int dhierro = Variables.UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST+civilization.technologyDefense*Variables.UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST;
+            limpiarTerminal();
+            System.out.println("\n    Mejorar Tecnologia\n"); 
+            System.out.print(espada + "\n\n");
+            System.out.println("              Civilization Attack: " + civilization.getTechnologyAttack() + "              Civilization Defense: " + civilization.getTechnologyDefense() + "\n\n");
+            System.out.println("    1. Mejorar Attack [Wood: " + amadera+ ", Iron: " + ahierro + ", Food: " + acomida + "]");
+            System.out.println("    2. Mejorar Defense [Wood: " + dmadera + ", Iron: " + dhierro + ", Food: " + dcomida + "]");
+            System.out.println("    0. Salir\n");
+            if (error != ""){
+                System.out.println(ANSI_RED + error + ANSI_RESET);
+            }
+            System.out.print("          Escoja una opcion [1,2,0]: ");
+            try{int opcion = scanner.nextInt();
+                scanner.nextLine();
+                switch (opcion) {
+                    case 1:
+                        try {
+                            civilization.upgradeTechnologyAttack();
+                        }
+                        catch (ResourceException e){
+                            error = "          " + e.getMessage();
+                        }
+                        break;
+                    case 2:
+                        try {
+                            civilization.upgradeTechnologyDefense();
+                        }
+                        catch (ResourceException e){
+                            error = e.getMessage();
+                        }
+                        break;
+                    case 0:
+                        PrintMenuPrincipal(civilization);
+                }
+            }catch (InputMismatchException e) {
+                error = "          No has introducido un numero, vuelva a intentar";
+            }
+
+
+        }
+
     }
 
     private static void PrintMenuEdificios(Civilization civilization) throws ResourceException, BuildingException{
@@ -381,14 +448,89 @@ public class Main {
                         if(comanda.length == 3){
                             try{
                                 int n = Integer.parseInt(comanda[2]);
-                                civilization.newPriest(n);
+                                int cnt = civilization.newPriest(n);
+                                List<String> opciones = new ArrayList<>();
+                                opciones.add("swordsman");
+                                opciones.add("spearman");
+                                opciones.add("crossbow");
+                                opciones.add("cannon");
+                                opciones.add("arrowtower");
+                                opciones.add("catapult");
+                                opciones.add("rocketlaunchertower");
+
+                                for (int i=0; i<cnt; i++){
+                                    String sanctify = "";
+                                    while (!opciones.contains(sanctify)){
+                                        System.out.print("Que tipo de unidad quieres santificar?: ");
+                                        sanctify = scanner.nextLine();
+                                        switch(sanctify){
+                                            case "swordsman":
+                                                civilization.sanctifyGroup(0);
+                                                break;
+                                            case "spearman":
+                                                civilization.sanctifyGroup(1);
+                                                break;
+                                            case "crossbow":
+                                                civilization.sanctifyGroup(2);
+                                                break;
+                                            case "cannon":
+                                                civilization.sanctifyGroup(3);
+                                                break;
+                                            case "arrowtower":
+                                                civilization.sanctifyGroup(4);
+                                                break;
+                                            case "catapult":
+                                                civilization.sanctifyGroup(5);
+                                                break;
+                                            case "rocketlaunchertower":
+                                                civilization.sanctifyGroup(6);
+                                                break;
+                                        }
+                                    }  
+                                }
                             }
                             catch (NumberFormatException e) {
                                 error = "No has introducido una cantidad válida";
                             }
                             
                         }else {
-                            civilization.newPriest(1);
+                            int cnt = civilization.newPriest(1);
+                            List<String> opciones = new ArrayList<>();
+                            opciones.add("swordsman");
+                            opciones.add("spearman");
+                            opciones.add("crossbow");
+                            opciones.add("cannon");
+                            opciones.add("arrowtower");
+                            opciones.add("catapult");
+                            opciones.add("rocketlaunchertower");
+                            String sanctify = "";
+                                while (!opciones.contains(sanctify)){
+                                    System.out.print("  Que tipo de unidad quieres santificar?: ");
+                                    sanctify = scanner.nextLine();
+                                    switch(sanctify){
+                                        case "swordsman":
+                                            civilization.sanctifyGroup(0);
+                                            break;
+                                        case "spearman":
+                                            civilization.sanctifyGroup(1);
+                                            break;
+                                        case "crossbow":
+                                            civilization.sanctifyGroup(2);
+                                            break;
+                                        case "cannon":
+                                            civilization.sanctifyGroup(3);
+                                            break;
+                                        case "arrowtower":
+                                            civilization.sanctifyGroup(4);
+                                            break;
+                                        case "catapult":
+                                            civilization.sanctifyGroup(5);
+                                            break;
+                                        case "rocketlaunchertower":
+                                            civilization.sanctifyGroup(6);
+                                            break;
+                                    }
+                                }
                         }
                         break;
                     case "magician":
