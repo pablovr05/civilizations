@@ -231,28 +231,44 @@ public class CivilizationDAO {
     public static Civilization load(int id) {
         AppData db = AppData.getInstance();
         List<Map<String, Object>> query = db.query("SELECT * FROM Civilization_stats WHERE civilization_id = "+id);
+        System.out.println(1);
 
         if (query.isEmpty()) {
             return null; // No se encontró la civilización
         }
 
         Map<String, Object> infoCivilization = query.get(0);
+        System.out.println(infoCivilization);
+        String name = (String) infoCivilization.get("NAME");
+        System.out.println(name);
+        BigDecimal wood_amount = (BigDecimal) infoCivilization.get("WOOD_AMOUNT");
+        System.out.println(wood_amount.intValue());
+        BigDecimal iron_amount = (BigDecimal) infoCivilization.get("IRON_AMOUNT");
+        System.out.println(iron_amount.intValue());
+        BigDecimal food_amount = (BigDecimal) infoCivilization.get("FOOD_AMOUNT");
+        System.out.println(food_amount.intValue());
+        BigDecimal mana_amount = (BigDecimal) infoCivilization.get("MANA_AMOUNT");
+        System.out.println(mana_amount.intValue());
+        BigDecimal magic_tower = (BigDecimal) infoCivilization.get("MAGICTOWER_COUNTER");
+        System.out.println(magic_tower.intValue());
+        BigDecimal church = (BigDecimal) infoCivilization.get("CHURCH_COUNTER");
+        System.out.println(church.intValue());
+        BigDecimal farm = (BigDecimal) infoCivilization.get("FARM_COUNTER");
+        System.out.println(farm.intValue());
+        BigDecimal smithy = (BigDecimal) infoCivilization.get("SMITHY_COUNTER");
+        System.out.println(smithy.intValue());
+        BigDecimal carpentry = (BigDecimal) infoCivilization.get("CARPENTRY_COUNTER");
+        System.out.println(carpentry.intValue());
+        BigDecimal defense_level = (BigDecimal) infoCivilization.get("TECHNOLOGY_DEFENSE_LEVEL");
+        System.out.println(defense_level.intValue());
+        BigDecimal attack_lever = (BigDecimal) infoCivilization.get("TECHNOLOGY_ATTACK_LEVEL");
+        System.out.println(attack_lever.intValue());
+        BigDecimal battles = (BigDecimal) infoCivilization.get("BATTLES_COUNTER");
+        System.out.println(battles.intValue());
 
-        Civilization civilization = new Civilization((String) infoCivilization.get("name"));
-        civilization.wood = (int) infoCivilization.get("wood_amount");
-        civilization.iron = (int) infoCivilization.get("iron_amount");
-        civilization.food = (int) infoCivilization.get("food_amount");
-        civilization.mana = (int) infoCivilization.get("mana_amount");
-        civilization.magicTower = (int) infoCivilization.get("magicTower_counter");
-        civilization.church = (int) infoCivilization.get("church_counter");
-        civilization.farm = (int) infoCivilization.get("farm_counter");
-        civilization.smithy = (int) infoCivilization.get("smithy_counter");
-        civilization.carpentry = (int) infoCivilization.get("carpentry_counter");
-        civilization.technologyDefense = (int) infoCivilization.get("technology_defense_level");
-        civilization.technologyAttack = (int) infoCivilization.get("technology_attack_level");
-        civilization.battles = (int) infoCivilization.get("battles_counter");
+        Civilization civilization = new Civilization(name);
 
-        loadUnits(civilization, id);
+        //loadUnits(civilization, id);
 
         return civilization;
     }

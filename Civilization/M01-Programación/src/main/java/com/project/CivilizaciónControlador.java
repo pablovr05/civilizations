@@ -10,7 +10,7 @@ public class CivilizaciónControlador {
     private MenúControlador menúControlador;
     private MenúFrame menúFrame;
     public static int civilization_id = 0;
-
+    public Civilization civilización;
     public CivilizaciónControlador(CivilizaciónFrame vBasic, MainWindow mainWindow) {
         this.civilizaciónFrame = vBasic;
         this.mainWindow = mainWindow;
@@ -36,10 +36,11 @@ public class CivilizaciónControlador {
             System.out.println("Se pulsó el botón Cargar Partida");
             // Mostrar el diálogo de la lista de opciones utilizando la clase CustomOptionListPane
             String selectedOption = CustomOptionListPane.showOptionListDialog(mainWindow, "Selecciona una opción:", "Cargar Partida", "src\\main\\java\\com\\project\\images\\logo.png");
-            civilization_id = CivilizationDAO.getIdByName(selectedOption).intValue();
-            System.out.println(civilization_id);
             if (selectedOption != null) {
                 // Aquí puedes hacer algo con la opción seleccionada
+                civilization_id = CivilizationDAO.getIdByName(selectedOption).intValue();
+                System.out.println(civilization_id);
+                civilización = CivilizationDAO.load(civilization_id); 
                 SoundPlayer.playSound("botónASSERT.wav", 0.5f);
                 System.out.println("Opción seleccionada: " + selectedOption);
                 System.out.println("Se inició el contadorRecursos");
@@ -60,6 +61,7 @@ public class CivilizaciónControlador {
                 System.out.println("Nombre de la nueva civilización: " + nombreCivilizacion);
                 civilization_id = CivilizationDAO.addCivilization(nombreCivilizacion).intValue();
                 System.out.println(civilization_id);
+                civilización = CivilizationDAO.load(civilization_id); 
                 SoundPlayer.playSound("botónASSERT.wav", 0.5f);
                 System.out.println("Se inició el contadorRecursos");
                 mainWindow.contadorRecursos.iniciarContador();
