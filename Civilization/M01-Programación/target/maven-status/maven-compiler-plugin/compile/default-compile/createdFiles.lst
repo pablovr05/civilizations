@@ -4,6 +4,7 @@ com\project\Swordsman.class
 com\project\Main.class
 com\project\BackgroundPanel.class
 com\project\EjércitoControlador.class
+com\project\TecnologíasFrame$2.class
 com\project\EstadísticasFrame$3.class
 com\project\FightButtonPanel.class
 com\project\Catapult.class
@@ -15,6 +16,7 @@ com\project\SpecialUnit.class
 com\project\EdificacionesFrame.class
 com\project\BuildingException.class
 com\project\EstadísticasFrame$2.class
+com\project\TecnologíasFrame$1.class
 com\project\MilitaryUnit.class
 com\project\EjércitoFrame$1.class
 com\project\TecnologíasFrame.class
@@ -51,6 +53,7 @@ com\project\FadeOutGifDialog$1.class
 com\project\MenúFrame$2.class
 com\project\Cannon.class
 com\project\Magician.class
+com\project\TooltipHelper.class
 com\project\Variables.class
 com\project\FightButtonPanel$1.class
 com\project\FontViewer.class

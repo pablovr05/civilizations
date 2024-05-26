@@ -32,7 +32,7 @@ public class MainWindow extends JFrame {
         civilizaciónControlador = new CivilizaciónControlador(civilizaciónFrame, this);
         civilizaciónControlador.start();
 
-        playBackgroundMusic("src\\main\\java\\com\\project\\music\\firesound.wav"); // Ruta de tu archivo de música de fondo
+        playBackgroundMusic("src\\main\\java\\com\\project\\music\\BandaSonora.wav"); // Ruta de tu archivo de música de fondo
     }
 
     private void initComponents() {
