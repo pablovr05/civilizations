@@ -10,6 +10,14 @@ public class Catapult extends DefenseUnit {
         super.sanctified = false;
     }
 
+    public Catapult(int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+        super.armor = armor;
+        super.initialArmor = Variables.ARMOR_CATAPULT;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+        super.sanctified = sanctified;
+    }
+
     public void sanctify(){
         if(super.sanctified == false){
             super.armor += armor*PLUS_ARMOR_UNIT_SANCTIFIED/100;

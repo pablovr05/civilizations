@@ -10,6 +10,14 @@ public class RocketLauncherTower extends DefenseUnit {
         super.sanctified = false;
     }
 
+    public RocketLauncherTower(int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+        super.armor = armor;
+        super.initialArmor = Variables.ARMOR_ROCKETLAUNCHERTOWER;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+        super.sanctified = sanctified;
+    }
+
     public void setBaseDamage(int damage){
         this.baseDamage = damage;
     }

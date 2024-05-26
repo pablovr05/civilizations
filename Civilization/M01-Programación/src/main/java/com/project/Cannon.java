@@ -10,6 +10,14 @@ public class Cannon extends AttackUnit  {
         super.sanctified = false;
     }
 
+    public Cannon(int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+        super.armor = armor;
+        super.initialArmor = Variables.ARMOR_CANNON;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+        super.sanctified = sanctified;
+    }
+
     public Cannon() {
         super.armor = ARMOR_CANNON;
         super.initialArmor = ARMOR_CANNON;

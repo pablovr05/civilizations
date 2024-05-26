@@ -3,10 +3,17 @@ package com.project;
 public class Priest extends SpecialUnit {
 
     public Priest(int armor, int baseDamage){
-        super.armor = 0;
+        super.armor = 1;
         super.initialArmor = 0;
         super.baseDamage = 0;
         super.experience = 0;
+    }
+
+    public Priest(int unitId, int armor, int baseDamage, int experience) {
+        super.armor = armor;
+        super.initialArmor = 1;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
     }
 
     public void sanctify(){

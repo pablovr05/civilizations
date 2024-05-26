@@ -3,10 +3,16 @@ package com.project;
 public class Magician extends SpecialUnit {
 
     public Magician(int armor, int baseDamage){
-        super.armor = 0;
-        super.initialArmor = 0;
+        super.armor = 1;
+        super.initialArmor = 1;
         super.baseDamage = BASE_DAMAGE_MAGICIAN + (PLUS_ATTACK_MAGICIAN_BY_TECHNOLOGY * baseDamage) * BASE_DAMAGE_MAGICIAN/100;
         super.experience = 0;
+    }
+    public Magician(int unitId, int armor, int baseDamage, int experience) {
+        super.armor = armor;
+        super.initialArmor = 1;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
     }
 
     public void sanctify(){

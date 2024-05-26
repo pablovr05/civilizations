@@ -9,6 +9,14 @@ public class Swordsman extends AttackUnit {
         super.sanctified = false;
     }
 
+    public Swordsman(int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+        super.armor = armor;
+        super.initialArmor = Variables.ARMOR_SWORDSMAN;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+        super.sanctified = sanctified;
+    }
+
     public Swordsman() {
         super.armor = ARMOR_SWORDSMAN;
         super.initialArmor = ARMOR_SWORDSMAN;

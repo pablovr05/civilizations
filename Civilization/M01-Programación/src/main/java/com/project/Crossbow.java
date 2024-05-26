@@ -10,6 +10,14 @@ public class Crossbow extends AttackUnit {
         super.sanctified = false;
     }
 
+    public Crossbow(int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+        super.armor = armor;
+        super.initialArmor = Variables.ARMOR_CROSSBOW;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+        super.sanctified = sanctified;
+    }
+
     public Crossbow() {
         super.armor = ARMOR_CROSSBOW;
         super.initialArmor = ARMOR_CROSSBOW;
