@@ -55,6 +55,7 @@ com\project\EstadísticasControlador.class
 com\project\AppData.class
 com\project\Civilization.class
 com\project\FadeOutGifDialog$1.class
+com\project\Main$1.class
 com\project\MenúFrame$2.class
 com\project\Cannon.class
 com\project\Magician.class
@@ -69,6 +70,7 @@ com\project\HistorialFrame.class
 com\project\AtacarControlador$3.class
 com\project\Notificación.class
 com\project\EstadísticasFrame$4.class
+com\project\Main$2.class
 com\project\ContadorRecursos.class
 com\project\RocketLauncherTower.class
 com\project\CivilizaciónFrame$3.class
@@ -77,6 +79,7 @@ com\project\AtacarControlador.class
 com\project\FixedPanel.class
 com\project\MenúFrame$6.class
 com\project\MenúFrame$3.class
+com\project\CivilizationDAO.class
 com\project\HistorialControlador.class
 com\project\ArrowTower.class
 com\project\ContadorAtacar$1.class

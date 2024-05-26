@@ -13,6 +13,10 @@ public class Magician extends SpecialUnit {
         
     }
 
+    public void setBaseDamage(int damage){
+        this.baseDamage = damage;
+    }
+
     public int attack(){
         return super.baseDamage;
     }

@@ -14,6 +14,7 @@ public class Civilization implements Variables {
     private final int magician_index = 7;
     private final int priest_index = 8;
 
+    public String name;
     public int technologyDefense;
     public int technologyAttack;
     public int wood;
@@ -33,6 +34,29 @@ public class Civilization implements Variables {
     public static ArrayList<ArrayList<MilitaryUnit>> army = new ArrayList<>();
     
     public Civilization(){
+        this.technologyDefense = 0;
+        this.technologyAttack = 0;
+        this.wood = 5000;
+        this.iron = 5000;
+        this.food = 5000;
+        this.mana = 0;
+        this.magicTower = 0;
+        this.church = 0;
+        this.farm = 0;
+        this.smithy = 0;
+        this.carpentry = 0;
+        this.battles = 0;
+        this.foodGeneration = CIVILIZATION_FOOD_GENERATED;
+        this.woodGeneration = CIVILIZATION_WOOD_GENERATED;
+        this.ironGeneration = CIVILIZATION_IRON_GENERATED;
+        this.manaGeneration = 0;
+        for(int i = 0; i<9; i++){
+            army.add(new ArrayList<>());
+        }
+    }
+
+    public Civilization(String name){
+        this.name = name;
         this.technologyDefense = 0;
         this.technologyAttack = 0;
         this.wood = 5000;
@@ -160,7 +184,8 @@ public class Civilization implements Variables {
                 }
             }
             System.out.println("Se han agregado " + cnt + " Church");
-            }
+        }
+        updateResourceGeneration();
     }
 
     public void newMagicTower(int n) throws ResourceException{
@@ -183,7 +208,8 @@ public class Civilization implements Variables {
                 }
             }
             System.out.println("Se han agregado " + cnt + " Magic Tower");
-            }
+        }
+        updateResourceGeneration();
     }
     public void newFarm(int n) throws ResourceException{
         int cnt = 0;
@@ -205,7 +231,8 @@ public class Civilization implements Variables {
                 }
             }
             System.out.println("Se han agregado " + cnt + " Farm");
-            }
+        }
+        updateResourceGeneration();
     }
     public void newCarpentry(int n) throws ResourceException{
         int cnt = 0;
@@ -227,8 +254,8 @@ public class Civilization implements Variables {
                 }
             }
             System.out.println("Se han agregado " + cnt + " Carpentry");
-            }
-        
+        }
+        updateResourceGeneration();
     }
     public void newSmithy(int n) throws ResourceException{
         int cnt = 0;
@@ -250,7 +277,8 @@ public class Civilization implements Variables {
                 }
             }
             System.out.println("Se han agregado " + cnt + " Smithy");
-            }
+        }
+        updateResourceGeneration();
     }
     public void upgradeTechnologyDefense() throws ResourceException{
         int comida = UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST+this.technologyDefense*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST;
@@ -302,6 +330,19 @@ public class Civilization implements Variables {
         System.out.println("---------------------------GENERATION RESOURCES-------------------------");
         System.out.printf("%-11s%-11s%-11s%-11s%n", "Food", "Wood", "Iron", "Mana");
         System.out.printf("%-11d%-11d%-11d%-11d%n", this.foodGeneration, this.woodGeneration, this.ironGeneration, this.manaGeneration);
+    }
+
+    public void printArmy(){
+        System.out.println("***************************CIVILIZATION ARMY***************************\n");
+        System.out.println("---------------------------DEFENSES-------------------------------------");
+        System.out.printf("%-18s%-18s%-18s%n", "Arrow Tower", "Catapult", "Rocket Launcher");
+        System.out.printf("%-18d%-18d%-18d%n", this.army.get(arrow_tower_index).size(), this.army.get(catapult_index).size(), this.army.get(rocket_launcher_index).size());
+        System.out.println("---------------------------ATTACK UNITS---------------------------------");
+        System.out.printf("%-11s%-11s%-11s%-11s%n", "Swordsman", "Spearman", "Crossbow", "Cannon");
+        System.out.printf("%-11d%-11d%-11d%-11d%n", this.army.get(swordsman_index).size(), this.army.get(spearman_index).size(), this.army.get(crossbow_index).size(), this.army.get(cannon_index).size());
+        System.out.println("---------------------------ESPECIAL UNITS-------------------------------");
+        System.out.printf("%-11s%-11s%n", "Magician", "Priest");
+        System.out.printf("%-11d%-11d%n", this.army.get(magician_index).size(), this.army.get(priest_index).size());
     }
 
     public void newSwordsman(int n) throws ResourceException{
@@ -548,7 +589,20 @@ public class Civilization implements Variables {
         this.manaGeneration = 0+this.magicTower*CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER;
     }
 
-    public void gainExperience(){
+    public void generateResources(){
+        this.food += this.foodGeneration;
+        this.wood += this.woodGeneration;
+        this.iron += this.ironGeneration;
+        this.mana += this.manaGeneration;
+    }
 
+    public static void gainExperience(){
+        for(int i = 0; i<army.size(); i++){
+            for(MilitaryUnit unit : army.get(i)){
+                unit.setExperience(unit.getExperience()+1);
+                unit.takeDamage(-(PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT));
+                unit.setBaseDamage(unit.attack()+PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT);
+            }
+        }
     }
 }

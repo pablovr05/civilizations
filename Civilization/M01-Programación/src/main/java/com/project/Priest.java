@@ -12,6 +12,10 @@ public class Priest extends SpecialUnit {
     public void sanctify(){
         
     }
+    
+    public void setBaseDamage(int damage){
+        this.baseDamage = damage;
+    }
 
     public int attack(){
         return super.baseDamage;
