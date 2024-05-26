@@ -25,7 +25,7 @@ class AppData {
     }
 
     private void connect() {
-        String url = "jdbc:oracle:thin:@192.168.192.2:1521/orcl";
+        String url = "jdbc:oracle:thin:@192.168.47.33:1521/orcl";
         String user = "admin";
         String password = "admin";
 
@@ -134,4 +134,10 @@ class AppData {
         BigDecimal civilization_id = (BigDecimal) query.get(0).get("CIVILIZATION_ID");
         return civilization_id;
     }
+
+    public static void main(String[] args) {
+        AppData db = AppData.getInstance();
+        System.out.println(db.query("Select * from Civilization_stats"));
+    };
 }
+

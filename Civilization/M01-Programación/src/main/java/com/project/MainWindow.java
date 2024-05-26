@@ -59,16 +59,9 @@ public class MainWindow extends JFrame {
             // Obtener el control de volumen del clip
             volumeControl = (FloatControl) backgroundMusic.getControl(FloatControl.Type.MASTER_GAIN);
             // Establecer el volumen (en dB)
-            setVolume(-10.0f); // Por ejemplo, -10.0f para bajar el volumen
 
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
-        }
-    }
-
-    private void setVolume(float volume) {
-        if (volumeControl != null) {
-            volumeControl.setValue(volume);
         }
     }
 }
