@@ -14,6 +14,7 @@ public class Civilization implements Variables {
     private final int magician_index = 7;
     private final int priest_index = 8;
 
+    public String name;
     public int technologyDefense;
     public int technologyAttack;
     public int wood;
@@ -33,6 +34,29 @@ public class Civilization implements Variables {
     public static ArrayList<ArrayList<MilitaryUnit>> army = new ArrayList<>();
     
     public Civilization(){
+        this.technologyDefense = 0;
+        this.technologyAttack = 0;
+        this.wood = 5000;
+        this.iron = 5000;
+        this.food = 5000;
+        this.mana = 0;
+        this.magicTower = 0;
+        this.church = 0;
+        this.farm = 0;
+        this.smithy = 0;
+        this.carpentry = 0;
+        this.battles = 0;
+        this.foodGeneration = CIVILIZATION_FOOD_GENERATED;
+        this.woodGeneration = CIVILIZATION_WOOD_GENERATED;
+        this.ironGeneration = CIVILIZATION_IRON_GENERATED;
+        this.manaGeneration = 0;
+        for(int i = 0; i<9; i++){
+            army.add(new ArrayList<>());
+        }
+    }
+
+    public Civilization(String name){
+        this.name = name;
         this.technologyDefense = 0;
         this.technologyAttack = 0;
         this.wood = 5000;
