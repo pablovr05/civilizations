@@ -1,6 +1,7 @@
 package com.project;
 
 import java.awt.event.ActionEvent;
+import java.text.Format;
 
 public class CivilizaciónControlador {
 
@@ -8,6 +9,7 @@ public class CivilizaciónControlador {
     private MainWindow mainWindow;
     private MenúControlador menúControlador;
     private MenúFrame menúFrame;
+    public static int civilization_id = 0;
 
     public CivilizaciónControlador(CivilizaciónFrame vBasic, MainWindow mainWindow) {
         this.civilizaciónFrame = vBasic;
@@ -34,6 +36,8 @@ public class CivilizaciónControlador {
             System.out.println("Se pulsó el botón Cargar Partida");
             // Mostrar el diálogo de la lista de opciones utilizando la clase CustomOptionListPane
             String selectedOption = CustomOptionListPane.showOptionListDialog(mainWindow, "Selecciona una opción:", "Cargar Partida", "src\\main\\java\\com\\project\\images\\logo.png");
+            civilization_id = CivilizationDAO.getIdByName(selectedOption).intValue();
+            System.out.println(civilization_id);
             if (selectedOption != null) {
                 // Aquí puedes hacer algo con la opción seleccionada
                 SoundPlayer.playSound("botónASSERT.wav", 0.5f);
@@ -53,8 +57,10 @@ public class CivilizaciónControlador {
             String nombreCivilizacion = CustomOptionPane.showCivilizationNameInputDialog(mainWindow, "Introduce el nombre de tu nueva civilización:", "Nombre de la Civilización", "src\\main\\java\\com\\project\\images\\logo.png");
             if (nombreCivilizacion != null && !nombreCivilizacion.isEmpty()) {
                 // Aquí puedes hacer algo con el nombre de la civilización, como mostrarlo en la interfaz
-                SoundPlayer.playSound("botónASSERT.wav", 0.5f);
                 System.out.println("Nombre de la nueva civilización: " + nombreCivilizacion);
+                civilization_id = CivilizationDAO.addCivilization(nombreCivilizacion).intValue();
+                System.out.println(civilization_id);
+                SoundPlayer.playSound("botónASSERT.wav", 0.5f);
                 System.out.println("Se inició el contadorRecursos");
                 mainWindow.contadorRecursos.iniciarContador();
                 System.out.println("Se inició el contadorAtacar");

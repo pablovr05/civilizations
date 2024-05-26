@@ -115,7 +115,7 @@ public class CivilizationDAO {
         db.update("COMMIT");
     }
 
-    public void loadUnits(Civilization civilization, int id) {
+    public static void loadUnits(Civilization civilization, int id) {
         loadAttackUnits(civilization, id);
         loadDefenseUnits(civilization, id);
         loadSpecialUnits(civilization, id);
@@ -223,7 +223,7 @@ public class CivilizationDAO {
         List<Map<String, Object>> nombres = db.query("SELECT civilization_id, name FROM Civilization_stats");
         String[] listaNombres = new String[nombres.size()];
         for(int i = 0; i<nombres.size(); i++){
-            listaNombres[i] = nombres.get(i).get("CIVILIZATION_ID")+". "+nombres.get(i).get("NAME");
+            listaNombres[i] = nombres.get(i).get("NAME").toString();
         }
         return listaNombres;
     }
@@ -268,7 +268,6 @@ public class CivilizationDAO {
             db.update("COMMIT");
         }
         List<Map<String, Object>> query = db.query("SELECT * FROM Civilization_stats where name = '" + name + "'");
-        System.out.println(query);
         BigDecimal civilization_id = (BigDecimal) query.get(0).get("CIVILIZATION_ID");
         return civilization_id;
     }

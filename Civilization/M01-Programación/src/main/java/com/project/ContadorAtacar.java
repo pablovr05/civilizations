@@ -26,10 +26,10 @@ public class ContadorAtacar {
                 // Incrementar los segundos
                 segundos++;
                 // Si han pasado 30 segundos, realizar la acción y reiniciar el contador de segundos
-                if (segundos % 10 == 0) {
+                if (segundos % 150 == 0) {
                     aviso();
                 }
-                if (segundos % 18 == 0) {
+                if (segundos % 180 == 0) {
                     accion();
                     segundos = 0;
                 }
