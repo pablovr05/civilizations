@@ -18,7 +18,7 @@ public class CivilizationDAO {
         return id;
     }
 
-    public void saveUnits(Civilization civilization) {
+    public static void saveUnits(Civilization civilization) {
         AppData db = AppData.getInstance();
 
         // Eliminar las unidades existentes de las tablas
@@ -30,7 +30,7 @@ public class CivilizationDAO {
         saveSpecialUnits(civilization);
     }
 
-    public void deleteUnits(AppData db, int civilizationId) {
+    public static void deleteUnits(AppData db, int civilizationId) {
         db.update("DELETE FROM attack_units_stats WHERE civilization_id = "+ civilizationId);
         db.update("DELETE FROM defense_units_stats WHERE civilization_id = "+ civilizationId);
         db.update("DELETE FROM special_units_stats WHERE civilization_id = "+ civilizationId);
@@ -38,7 +38,7 @@ public class CivilizationDAO {
         db.update("COMMIT");
     }
 
-    public void saveAttackUnits(Civilization civilization) {
+    public static void saveAttackUnits(Civilization civilization) {
         AppData db = AppData.getInstance();
 
         for (MilitaryUnit unit : civilization.army.get(civilization.swordsman_index)) {
@@ -56,7 +56,7 @@ public class CivilizationDAO {
         db.update("COMMIT");
     }
 
-    public void saveDefenseUnits(Civilization civilization) {
+    public static void saveDefenseUnits(Civilization civilization) {
         AppData db = AppData.getInstance();
 
         for (MilitaryUnit unit : civilization.army.get(civilization.arrow_tower_index)) {
@@ -71,7 +71,7 @@ public class CivilizationDAO {
         db.update("COMMIT");
     }
 
-    public void saveSpecialUnits(Civilization civilization) {
+    public static void saveSpecialUnits(Civilization civilization) {
         AppData db = AppData.getInstance();
 
         for (MilitaryUnit unit : civilization.army.get(civilization.magician_index)) {
@@ -83,7 +83,7 @@ public class CivilizationDAO {
         db.update("COMMIT");
     }
 
-    public void saveUnit(AppData db, MilitaryUnit unit, String type, int civilizationId) {
+    public static void saveUnit(AppData db, MilitaryUnit unit, String type, int civilizationId) {
         String table;
         if (unit instanceof AttackUnit) {
             table = "attack_units_stats";
@@ -106,7 +106,7 @@ public class CivilizationDAO {
     }
     
 
-    public void save(Civilization civilization){
+    public static void save(Civilization civilization){
         AppData db = AppData.getInstance();
 
         BigDecimal id = getIdByName(civilization.name);
@@ -121,7 +121,7 @@ public class CivilizationDAO {
         loadSpecialUnits(civilization, id);
     }
 
-    private void loadAttackUnits(Civilization civilization, int id) {
+    private static void loadAttackUnits(Civilization civilization, int id) {
         AppData db = AppData.getInstance();
         List<Map<String, Object>> query = db.query("SELECT * FROM attack_units_stats WHERE civilization_id = ?"+ id);
     
@@ -138,7 +138,7 @@ public class CivilizationDAO {
         }
     }
     
-    private void loadDefenseUnits(Civilization civilization, int id) {
+    private static void loadDefenseUnits(Civilization civilization, int id) {
         AppData db = AppData.getInstance();
         List<Map<String, Object>> query = db.query("SELECT * FROM defense_units_stats WHERE civilization_id = ?"+id);
     
@@ -155,7 +155,7 @@ public class CivilizationDAO {
         }
     }
 
-    private void loadSpecialUnits(Civilization civilization, int id) {
+    private static void loadSpecialUnits(Civilization civilization, int id) {
         AppData db = AppData.getInstance();
         List<Map<String, Object>> query = db.query("SELECT * FROM special_units_stats WHERE civilization_id = ?"+ id);
     
@@ -171,7 +171,7 @@ public class CivilizationDAO {
         }
     }
     
-    private MilitaryUnit createUnit(String type, int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+    private static MilitaryUnit createUnit(String type, int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
         try {
             Class<?> unitClass = Class.forName(type);
             return (MilitaryUnit) unitClass.getConstructor(int.class, int.class, int.class, int.class, boolean.class)
@@ -183,7 +183,7 @@ public class CivilizationDAO {
     }
     
 
-    public void addUnitToArmy(Civilization civilization, MilitaryUnit unit, String type) {
+    public static void addUnitToArmy(Civilization civilization, MilitaryUnit unit, String type) {
         if (unit == null) return;
 
         switch (type) {
@@ -217,18 +217,18 @@ public class CivilizationDAO {
         }
     }
 
-    public String[] getCargarPartidaContent(){
+    public static String[] getCargarPartidaContent(){
         AppData db = AppData.getInstance();
 
         List<Map<String, Object>> nombres = db.query("SELECT civilization_id, name FROM Civilization_stats");
         String[] listaNombres = new String[nombres.size()];
         for(int i = 0; i<nombres.size(); i++){
-            listaNombres[i] = nombres.get(i).get("civilization_id")+". "+nombres.get(i).get("name");
+            listaNombres[i] = nombres.get(i).get("CIVILIZATION_ID")+". "+nombres.get(i).get("NAME");
         }
         return listaNombres;
     }
 
-    public Civilization load(int id) {
+    public static Civilization load(int id) {
         AppData db = AppData.getInstance();
         List<Map<String, Object>> query = db.query("SELECT * FROM Civilization_stats WHERE civilization_id = "+id);
 
@@ -257,7 +257,7 @@ public class CivilizationDAO {
         return civilization;
     }
 
-    public BigDecimal addCivilization(String name) {
+    public static BigDecimal addCivilization(String name) {
         AppData db = AppData.getInstance();
         List<Map<String, Object>> resultado = db.query("SELECT * FROM Civilization_stats where name = '" + name + "'");
         if (!resultado.isEmpty()) {
@@ -273,14 +273,14 @@ public class CivilizationDAO {
         return civilization_id;
     }
 
-    public void delCivlizations(){
+    public static void delCivlizations(){
         AppData db = AppData.getInstance();
         String sql = "DELETE FROM CIVILIZATION_STATS";
         db.update(sql);
         db.update("COMMIT");
     }
 
-    public BigDecimal getIdByName(String name) {
+    public static BigDecimal getIdByName(String name) {
         AppData db = AppData.getInstance();
         List<Map<String, Object>> query = db.query("SELECT * FROM Civilization_stats where name = '" + name + "'");
         BigDecimal civilization_id = (BigDecimal) query.get(0).get("CIVILIZATION_ID");
