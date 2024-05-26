@@ -15,14 +15,48 @@ public class AtacarControlador {
     private ResultadoBatallaControlador resultadoBatallaControlador;
     private MainWindow mainWindow;
 
+    private MenúFrame menúFrame;
+    private MenúControlador menúControlador;
+
     public AtacarControlador(AtacarFrame atacarFrame, MainWindow mainWindow) {
         this.atacarFrame = atacarFrame;
         this.mainWindow = mainWindow;
         mainWindow.setSize(1150, 650);
     }
 
-    public void start() {
+    public void start() { 
+        setupActionListeners();
         startTimer();
+    }
+
+    private void setupActionListeners() {
+        // Agregar ActionListener para el botón "Empezar"
+        atacarFrame.empezarBotón.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Lógica cuando se hace clic en el botón "Empezar"
+                timer.stop();
+                System.out.println("Botón Empezar clicado");
+                llamarResultadoBatalla();
+            }
+        });
+
+        // Agregar ActionListener para el botón "Escapar"
+        atacarFrame.escaparBotón.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Lógica cuando se hace clic en el botón "Escapar"
+                timer.stop();
+                System.out.println("Botón Escapar clicado");
+                //si no se puede escapar con tan solo llamar la función ya se llama a la interfaz de ataque
+                llamarResultadoBatalla();
+                //si se puede escar:
+                llamarMenú();
+                mainWindow.setSize(585,415);
+                mainWindow.contadorAtacar.iniciarContador();
+                mainWindow.contadorRecursos.iniciarContador();
+            }
+        });
     }
 
     private void startTimer() {
@@ -54,5 +88,12 @@ public class AtacarControlador {
         mainWindow.cambiarPanel(resultadoBattallaFrame);
         resultadoBatallaControlador = new ResultadoBatallaControlador(resultadoBattallaFrame, mainWindow);
         resultadoBatallaControlador.start();
+    }
+
+    private void llamarMenú() {
+        menúFrame = new MenúFrame();
+        mainWindow.cambiarPanel(menúFrame);
+        menúControlador = new MenúControlador(menúFrame, mainWindow);
+        menúControlador.start();
     }
 }

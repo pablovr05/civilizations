@@ -3,6 +3,7 @@ package com.project;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +28,9 @@ public class AtacarFrame extends JPanel {
     public int E_cnt_Spearmans;
     public int E_cnt_Crossbows;
     public int E_cnt_Canons;
+
+    public JButton escaparBotón;
+    public JButton empezarBotón;
 
     public AtacarFrame() {
 
@@ -72,6 +76,7 @@ public class AtacarFrame extends JPanel {
         toptextpanel.setCornerRadius(20);
         toptextpanel.setBackground(new Color(0,0,0,150));
         toptextpanel.setPreferredSize(new Dimension(725,250));
+        toptextpanel.add(new AtacarFramePanel());
         upperPanel.add(toptextpanel);
 
         // Panel inferior izquierdo
@@ -223,16 +228,88 @@ public class AtacarFrame extends JPanel {
         JLabel gifLabel = new JLabel(new ImageIcon("src\\main\\java\\com\\project\\images\\peleapuentegif.gif"));
         gifLabel.setLayout(new BorderLayout());
 
-        // Panel para el contador
-        JPanel timerPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
+        // Panel para contener los botones azules y el contador
+        JPanel timerPanel = new JPanel(new BorderLayout());
         timerPanel.setOpaque(false); // Hacer el fondo transparente
-        timerLabel = new JLabel("00:30", SwingConstants.CENTER);
+
+        // Panel para los botones azules
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        bottomPanel.setOpaque(false); // Hacer el fondo transparente
+
+        RoundedPanel botón1 = new RoundedPanel();
+        botón1.setCornerRadius(15);
+        botón1.setBackground(Color.LIGHT_GRAY);
+        botón1.setPreferredSize(new Dimension(100, 42));
+
+        escaparBotón = new JButton("Escapar");
+
+        escaparBotón.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                escaparBotón.setForeground(Color.RED); // Cambia el color de fondo cuando el cursor entra
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                escaparBotón.setForeground(Color.BLACK); // Restaura el color de fondo cuando el cursor sale
+            }
+        });
+
+        escaparBotón.setFont(new Font("Segoe UI", Font.ROMAN_BASELINE, 15));
+        escaparBotón.setOpaque(false);
+        escaparBotón.setContentAreaFilled(false);
+        escaparBotón.setBorderPainted(false);
+        escaparBotón.setFocusPainted(false);
+        escaparBotón.setHorizontalAlignment(SwingConstants.CENTER); // Alinea el texto a la izquierda
+
+        botón1.add(escaparBotón);
+
+        bottomPanel.add(botón1);
+
+        RoundedPanel botón2 = new RoundedPanel();
+        botón2.setCornerRadius(15);
+        botón2.setBackground(Color.LIGHT_GRAY);
+        botón2.setPreferredSize(new Dimension(100, 42));
+
+        empezarBotón = new JButton("Empezar");
+
+        empezarBotón.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                empezarBotón.setForeground(Color.RED); // Cambia el color de fondo cuando el cursor entra
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                empezarBotón.setForeground(Color.BLACK); // Restaura el color de fondo cuando el cursor sale
+            }
+        });
+
+        empezarBotón.setFont(new Font("Segoe UI", Font.ROMAN_BASELINE, 15));
+        empezarBotón.setOpaque(false);
+        empezarBotón.setContentAreaFilled(false);
+        empezarBotón.setBorderPainted(false);
+        empezarBotón.setFocusPainted(false);
+        empezarBotón.setHorizontalAlignment(SwingConstants.CENTER); // Alinea el texto a la izquierda
+
+        botón2.add(empezarBotón);
+
+        bottomPanel.add(botón2);
+
+        bottomPanel.setBorder(new EmptyBorder(505,0,0,0));
+
+        timerPanel.add(bottomPanel, BorderLayout.SOUTH);
+
+        // Contador
+        timerLabel = new JLabel("00:30", SwingConstants.RIGHT);
         timerLabel.setFont(new Font("Comforta", Font.BOLD, 44));
         timerLabel.setForeground(Color.WHITE);
-        timerPanel.add(timerLabel);
+
+        // Agregar el timerLabel al timerPanel después de establecer el borde
+        timerPanel.add(timerLabel, BorderLayout.NORTH);
 
         gifLabel.add(timerPanel, BorderLayout.NORTH);
         rightPanel.add(gifLabel);
+
+        
     }
 
     // Método para actualizar el contador con el tiempo restante

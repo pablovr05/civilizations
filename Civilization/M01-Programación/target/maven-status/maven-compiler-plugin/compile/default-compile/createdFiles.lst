@@ -1,6 +1,7 @@
 com\project\CustomOptionPane.class
 com\project\FadeOutGifDialog.class
 com\project\Swordsman.class
+com\project\AtacarFramePanel.class
 com\project\Main.class
 com\project\BackgroundPanel.class
 com\project\EjércitoControlador.class
@@ -16,8 +17,10 @@ com\project\SpecialUnit.class
 com\project\EdificacionesFrame.class
 com\project\BuildingException.class
 com\project\EstadísticasFrame$2.class
+com\project\AtacarFramePanel$1.class
 com\project\TecnologíasFrame$1.class
 com\project\MilitaryUnit.class
+com\project\AtacarFrame$2.class
 com\project\EjércitoFrame$1.class
 com\project\TecnologíasFrame.class
 com\project\EstadísticasFrame.class
@@ -42,6 +45,8 @@ com\project\FadeOutGifDialog$2.class
 com\project\Battle.class
 com\project\TecnologíasControlador.class
 com\project\AtacarFrame.class
+com\project\AtacarControlador$2.class
+com\project\AtacarFrame$1.class
 com\project\DefenseUnit.class
 com\project\MenúFrame$5.class
 com\project\ErrorDialog.class
@@ -61,6 +66,7 @@ com\project\EstadísticasFrame$1.class
 com\project\CivilizaciónFrame$1.class
 com\project\ResultadoBattallaFrame.class
 com\project\HistorialFrame.class
+com\project\AtacarControlador$3.class
 com\project\Notificación.class
 com\project\EstadísticasFrame$4.class
 com\project\ContadorRecursos.class
