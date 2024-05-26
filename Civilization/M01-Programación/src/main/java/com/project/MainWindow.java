@@ -9,7 +9,6 @@ public class MainWindow extends JFrame {
     private CivilizaciónFrame civilizaciónFrame;
     private CivilizaciónControlador civilizaciónControlador;
     private Clip backgroundMusic;
-    private FloatControl volumeControl;
     public ContadorRecursos contadorRecursos;
     public ContadorAtacar contadorAtacar;
 
@@ -55,10 +54,6 @@ public class MainWindow extends JFrame {
             backgroundMusic.open(audioInputStream);
             backgroundMusic.loop(Clip.LOOP_CONTINUOUSLY);
             backgroundMusic.start();
-
-            // Obtener el control de volumen del clip
-            volumeControl = (FloatControl) backgroundMusic.getControl(FloatControl.Type.MASTER_GAIN);
-            // Establecer el volumen (en dB)
 
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
