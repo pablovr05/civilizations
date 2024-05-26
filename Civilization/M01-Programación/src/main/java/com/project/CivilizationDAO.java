@@ -3,6 +3,7 @@ package com.project;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 import oracle.net.aso.c;
 
@@ -12,7 +13,46 @@ public class CivilizationDAO {
 
         BigDecimal id = getIdByName(civilization.name);
 
-        db.update("UPDATE Civilization_stats SET wood_amount = "+civilization.wood+", food_amount = "+civilization.food+"");
+        db.update("UPDATE Civilization_stats SET wood_amount = "+civilization.wood+", food_amount = "+civilization.food+", iron_amount = "+civilization.iron+", mana_amount = "+civilization.mana+", magicTower_counter = "+civilization.magicTower+", church_counter"+ civilization.church+", farm_count = "+civilization.farm+", smithy_count = "+civilization.smithy+", carpentry_count = "+civilization.carpentry+", technology_defense_level = "+civilization.technologyDefense+", technology_attack_level = "+civilization.technologyAttack+", battles_counter"+civilization.battles);
+        db.update("COMMIT");
+    }
+
+    public String[] getCargarPartidaContent(){
+        AppData db = AppData.getInstance();
+
+        List<Map<String, Object>> nombres = db.query("SELECT civilization_id, name FROM Civilization_stats");
+        String[] listaNombres = new String[nombres.size()];
+        for(int i = 0; i<nombres.size(); i++){
+            listaNombres[i] = nombres.get(i).get("civilization_id")+". "+nombres.get(i).get("name");
+        }
+        return listaNombres;
+    }
+
+    public Civilization load(int id) {
+        AppData db = AppData.getInstance();
+        List<Map<String, Object>> query = db.query("SELECT * FROM Civilization_stats WHERE civilization_id = "+id);
+
+        if (query.isEmpty()) {
+            return null; // No se encontró la civilización
+        }
+
+        Map<String, Object> infoCivilization = query.get(0);
+
+        Civilization civilization = new Civilization((String) infoCivilization.get("name"));
+        civilization.wood = (int) infoCivilization.get("wood_amount");
+        civilization.iron = (int) infoCivilization.get("iron_amount");
+        civilization.food = (int) infoCivilization.get("food_amount");
+        civilization.mana = (int) infoCivilization.get("mana_amount");
+        civilization.magicTower = (int) infoCivilization.get("magicTower_counter");
+        civilization.church = (int) infoCivilization.get("church_counter");
+        civilization.farm = (int) infoCivilization.get("farm_counter");
+        civilization.smithy = (int) infoCivilization.get("smithy_counter");
+        civilization.carpentry = (int) infoCivilization.get("carpentry_counter");
+        civilization.technologyDefense = (int) infoCivilization.get("technology_defense_level");
+        civilization.technologyAttack = (int) infoCivilization.get("technology_attack_level");
+        civilization.battles = (int) infoCivilization.get("battles_counter");
+
+        return civilization;
     }
 
     public BigDecimal addCivilization(String name) {

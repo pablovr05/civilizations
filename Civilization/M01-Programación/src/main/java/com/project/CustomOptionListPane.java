@@ -17,6 +17,15 @@ public class CustomOptionListPane extends JPanel {
         add(comboBox, BorderLayout.CENTER);
     }
 
+    public CustomOptionListPane(String[] optionsBox) {
+        setLayout(new BorderLayout());
+
+        String[] options = optionsBox;
+        comboBox = new JComboBox<>(options);
+
+        add(comboBox, BorderLayout.CENTER);
+    }
+
     public String getSelectedOption() {
         return selectedOption;
     }

@@ -70,6 +70,7 @@ com\project\AtacarControlador.class
 com\project\FixedPanel.class
 com\project\MenúFrame$6.class
 com\project\MenúFrame$3.class
+com\project\CivilizationDAO.class
 com\project\HistorialControlador.class
 com\project\ArrowTower.class
 com\project\ContadorAtacar$1.class

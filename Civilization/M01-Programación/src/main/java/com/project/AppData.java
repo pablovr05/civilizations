@@ -25,7 +25,7 @@ class AppData {
     }
 
     private void connect() {
-        String url = "jdbc:oracle:thin:@192.168.192.2:1521/orcl";
+        String url = "jdbc:oracle:thin:@192.168.1.40:1521/orcl";
         String user = "admin";
         String password = "admin";
 
