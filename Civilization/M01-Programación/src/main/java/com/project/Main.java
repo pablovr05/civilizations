@@ -3,8 +3,6 @@ package com.project;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.InputMismatchException;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.List;
 
 public class Main {
@@ -16,42 +14,7 @@ public class Main {
         civilization.setIron(200000);
         civilization.setMana(200000);
         civilization.setWood(200000);
-
-        Timer timer = new Timer();
-        int tiempoGeneracionRecursos = 60;
-        TimerTask generarRecursos = new TimerTask() {
-            int segundos = tiempoGeneracionRecursos;
-
-            @Override
-            public void run(){
-                if(segundos>0){
-                    segundos--;
-                } else{
-                    civilization.generateResources();
-                    segundos = tiempoGeneracionRecursos;
-                }
-            }
-        };
-        int tiempoGenerarBatalla = 180;
-        TimerTask generateBattle = new TimerTask() {
-            int segundos = 10;
-
-            @Override
-            public void run(){
-                if(segundos>0){
-                    segundos--;
-                } else {
-                    PrintMenuBatalla(civilization);
-                    segundos = tiempoGenerarBatalla;
-                }
-            }
-        };
-
-        timer.scheduleAtFixedRate(generarRecursos, 0, 1000);
-        // timer.scheduleAtFixedRate(generateBattle, 0, 1000);
-
         PrintMenuPrincipal(civilization);
-        
     }
 
     private static void PrintMenuPrincipal(Civilization civilization) throws ResourceException, BuildingException{
@@ -590,32 +553,6 @@ public class Main {
 
     private static void PrintMenuHistorial(){
         System.out.println("a");
-    }
-
-    private static void PrintMenuBatalla(Civilization civilization){
-        String error = "";
-        final String ANSI_RED = "\u001B[31m";
-        final String ANSI_RESET = "\u001B[0m";
-        Scanner scanner = new Scanner(System.in);
-        while(true){
-            limpiarTerminal();
-            System.out.println("\n\n          1. Ver ejercito civilizacion");
-            System.out.println("\n          2. Ver ejercito enemigo");
-            System.out.println("\n          3. Comenzar Batalla");
-            System.out.println("\n          Escoje una opción [1-3]: ");
-            try{
-                int opcion = scanner.nextInt();
-                if(opcion == 1){
-                    civilization.printArmy();
-                    System.out.println();
-                    String enter = scanner.nextLine();
-                }
-            } catch (InputMismatchException e){
-                error = ANSI_RED + "Opcion no valida, vuelva a intentar" + ANSI_RESET;
-
-            }
-        }
-        
     }
 
     public static void limpiarTerminal() {

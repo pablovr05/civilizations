@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Civilization implements Variables {
-    private final int swordsman_index = 0;
-    private final int spearman_index = 1;
-    private final int crossbow_index = 2;
-    private final int cannon_index = 3;
-    private final int arrow_tower_index = 4;
-    private final int catapult_index = 5;
-    private final int rocket_launcher_index = 6;
-    private final int magician_index = 7;
-    private final int priest_index = 8;
+    public final int swordsman_index = 0;
+    public final int spearman_index = 1;
+    public final int crossbow_index = 2;
+    public final int cannon_index = 3;
+    public final int arrow_tower_index = 4;
+    public final int catapult_index = 5;
+    public final int rocket_launcher_index = 6;
+    public final int magician_index = 7;
+    public final int priest_index = 8;
 
+
+    public int id;
     public String name;
     public int technologyDefense;
     public int technologyAttack;
@@ -34,6 +36,7 @@ public class Civilization implements Variables {
     public static ArrayList<ArrayList<MilitaryUnit>> army = new ArrayList<>();
     
     public Civilization(){
+        this.id = CivilizationDAO.getLastID();
         this.technologyDefense = 0;
         this.technologyAttack = 0;
         this.wood = 5000;

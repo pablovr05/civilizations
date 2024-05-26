@@ -9,12 +9,28 @@ public class Spearman extends AttackUnit {
         super.sanctified = false;
     }
 
+    public Spearman(int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+        super.armor = armor;
+        super.initialArmor = Variables.ARMOR_SPEARMAN;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+        super.sanctified = sanctified;
+    }
+
     public Spearman() {
         super.armor = ARMOR_SPEARMAN;
         super.initialArmor = ARMOR_SPEARMAN;
         super.baseDamage =  BASE_DAMAGE_SPEARMAN;
         super.experience = 0;
         super.sanctified = false;
+    }
+
+    public int getSanctified(){
+        if(super.sanctified){
+            return 1;
+        } else{
+            return 0;
+        }
     }
 
     public void setBaseDamage(int damage){
