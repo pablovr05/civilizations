@@ -8,6 +8,104 @@ import java.util.ArrayList;
 import oracle.net.aso.c;
 
 public class CivilizationDAO {
+
+    public static int getLastID(){
+        AppData db = AppData.getInstance();
+
+        List<Map<String, Object>> listaID = db.query("SELECT civilization_id FROM Civilization_stats ORDER BY civilization_id LIMIT 1");
+
+        int id = (int) listaID.get(0).get("civilization_id");
+        return id;
+    }
+
+    public void saveUnits(Civilization civilization) {
+        AppData db = AppData.getInstance();
+
+        // Eliminar las unidades existentes de las tablas
+        deleteUnits(db, civilization.id);
+
+        // Guardar las nuevas unidades
+        saveAttackUnits(civilization);
+        saveDefenseUnits(civilization);
+        saveSpecialUnits(civilization);
+    }
+
+    public void deleteUnits(AppData db, int civilizationId) {
+        db.update("DELETE FROM attack_units_stats WHERE civilization_id = "+ civilizationId);
+        db.update("DELETE FROM defense_units_stats WHERE civilization_id = "+ civilizationId);
+        db.update("DELETE FROM special_units_stats WHERE civilization_id = "+ civilizationId);
+
+        db.update("COMMIT");
+    }
+
+    public void saveAttackUnits(Civilization civilization) {
+        AppData db = AppData.getInstance();
+
+        for (MilitaryUnit unit : civilization.army.get(civilization.swordsman_index)) {
+            saveUnit(db, unit, "Swordsman", civilization.id);
+        }
+        for (MilitaryUnit unit : civilization.army.get(civilization.spearman_index)) {
+            saveUnit(db, unit, "Spearman", civilization.id);
+        }
+        for (MilitaryUnit unit : civilization.army.get(civilization.crossbow_index)) {
+            saveUnit(db, unit, "Crossbow", civilization.id);
+        }
+        for (MilitaryUnit unit : civilization.army.get(civilization.cannon_index)) {
+            saveUnit(db, unit, "Cannon", civilization.id);
+        }
+        db.update("COMMIT");
+    }
+
+    public void saveDefenseUnits(Civilization civilization) {
+        AppData db = AppData.getInstance();
+
+        for (MilitaryUnit unit : civilization.army.get(civilization.arrow_tower_index)) {
+            saveUnit(db, unit, "ArrowTower", civilization.id);
+        }
+        for (MilitaryUnit unit : civilization.army.get(civilization.catapult_index)) {
+            saveUnit(db, unit, "Catapult", civilization.id);
+        }
+        for (MilitaryUnit unit : civilization.army.get(civilization.rocket_launcher_index)) {
+            saveUnit(db, unit, "RocketLauncherTower", civilization.id);
+        }
+        db.update("COMMIT");
+    }
+
+    public void saveSpecialUnits(Civilization civilization) {
+        AppData db = AppData.getInstance();
+
+        for (MilitaryUnit unit : civilization.army.get(civilization.magician_index)) {
+            saveUnit(db, unit, "Magician", civilization.id);
+        }
+        for (MilitaryUnit unit : civilization.army.get(civilization.priest_index)) {
+            saveUnit(db, unit, "Priest", civilization.id);
+        }
+        db.update("COMMIT");
+    }
+
+    public void saveUnit(AppData db, MilitaryUnit unit, String type, int civilizationId) {
+        String table;
+        if (unit instanceof AttackUnit) {
+            table = "attack_units_stats";
+        } else if (unit instanceof DefenseUnit) {
+            table = "defense_units_stats";
+        } else if (unit instanceof SpecialUnit) {
+            table = "special_units_stats";
+        } else {
+            return; // Tipo de unidad desconocido
+        }
+    
+        String sql;
+    if (unit instanceof SpecialUnit) {
+        sql = "INSERT INTO " + table + " (civilization_id, type, armor, base_damage, experience) VALUES ("+civilizationId+", '"+type+"', "+unit.getActualArmor()+", "+unit.attack()+", "+unit.getExperience()+")";
+        db.update(sql);
+    } else {
+        sql = "INSERT INTO " + table + " (civilization_id, type, armor, base_damage, experience, sanctified) VALUES ("+civilizationId+", '"+type+"', "+unit.getActualArmor()+", "+unit.attack()+", "+unit.getExperience()+", "+unit.getSanctified()+")";
+        db.update(sql);
+    }
+    }
+    
+
     public void save(Civilization civilization){
         AppData db = AppData.getInstance();
 

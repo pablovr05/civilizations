@@ -17,6 +17,14 @@ public class ArrowTower extends DefenseUnit {
         super.sanctified = sanctified;
     }
 
+    public int getSanctified(){
+        if(super.sanctified){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
+
     public void setBaseDamage(int damage){
         this.baseDamage = damage;
     }

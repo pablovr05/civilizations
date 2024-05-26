@@ -25,6 +25,14 @@ public class Swordsman extends AttackUnit {
         super.sanctified = false;
     }
 
+    public int getSanctified(){
+        if(super.sanctified){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
+
     public void setBaseDamage(int damage){
         this.baseDamage = damage;
     }

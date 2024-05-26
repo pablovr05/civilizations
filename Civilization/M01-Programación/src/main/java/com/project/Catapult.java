@@ -18,6 +18,14 @@ public class Catapult extends DefenseUnit {
         super.sanctified = sanctified;
     }
 
+    public int getSanctified(){
+        if(super.sanctified){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
+
     public void sanctify(){
         if(super.sanctified == false){
             super.armor += armor*PLUS_ARMOR_UNIT_SANCTIFIED/100;

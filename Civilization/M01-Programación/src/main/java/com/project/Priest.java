@@ -16,6 +16,12 @@ public class Priest extends SpecialUnit {
         super.experience = experience;
     }
 
+    public int getSanctified(){
+        
+            return 0;
+        
+    }
+
     public void sanctify(){
         
     }

@@ -14,6 +14,8 @@ public class Civilization implements Variables {
     public final int magician_index = 7;
     public final int priest_index = 8;
 
+
+    public int id;
     public String name;
     public int technologyDefense;
     public int technologyAttack;
@@ -34,6 +36,7 @@ public class Civilization implements Variables {
     public static ArrayList<ArrayList<MilitaryUnit>> army = new ArrayList<>();
     
     public Civilization(){
+        this.id = CivilizationDAO.getLastID();
         this.technologyDefense = 0;
         this.technologyAttack = 0;
         this.wood = 5000;
