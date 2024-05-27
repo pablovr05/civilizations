@@ -9,8 +9,8 @@ body {
 }
 
 .content {
-    width: 90%;
-    max-width: 600px;
+    width: 60%;
+    max-width: 6000px;
     text-align: center;
     margin-top: 40px;
     padding: 20px;
@@ -18,7 +18,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 
 .content h1 {
     margin-bottom: 20px;
@@ -44,7 +43,7 @@ body {
     font-weight: 900;
     font-size: 20px;
     color: white
-
+    
 }
 
 .hover-div:hover {

@@ -20,7 +20,7 @@
 			<iron_cost>50</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>swordsman.jpg</sprite>
 	</unit>
 	<unit>
 		<name>SPEARMAN</name>
@@ -42,7 +42,7 @@
 			<iron_cost>50</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>spearman.jpg</sprite>
 	</unit>
 	<unit>
 		<name>CROSSBOW</name>
@@ -64,7 +64,7 @@
 			<iron_cost>7000</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>crossbow.jpg</sprite>
 	</unit>
 	<unit>
 		<name>CANNON</name>
@@ -86,6 +86,6 @@
 			<iron_cost>15000</iron_cost>
 			<mana_cost>0</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>cannon.jpg</sprite>
 	</unit>
 </attack_units>
