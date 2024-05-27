@@ -33,6 +33,7 @@ com\project\Crossbow.class
 com\project\MainWindow.class
 com\project\CivilizaciónControlador.class
 com\project\EdificacionesControlador.class
+com\project\InfoWindow$2.class
 com\project\EdificacionesFrame$1.class
 com\project\EjércitoFrame.class
 com\project\MenúControlador.class
@@ -70,10 +71,12 @@ com\project\AtacarControlador$3.class
 com\project\Notificación.class
 com\project\EstadísticasFrame$4.class
 com\project\ContadorRecursos.class
+com\project\InfoWindow$1.class
 com\project\RocketLauncherTower.class
 com\project\CivilizaciónFrame$3.class
 com\project\MenúFrame.class
 com\project\AtacarControlador.class
+com\project\InfoWindow.class
 com\project\FixedPanel.class
 com\project\MenúFrame$6.class
 com\project\MenúFrame$3.class

@@ -224,6 +224,18 @@ public class Civilization implements Variables {
             return null;
         }
     }
+
+    public int[] getUpgradeMaterials() {
+        int comida1 = UPGRADE_BASE_ATTACK_TECHNOLOGY_FOOD_COST + CivilizaciónControlador.civilización.technologyAttack * UPGRADE_PLUS_ATTACK_TECHNOLOGY_FOOD_COST;
+        int madera1 = UPGRADE_BASE_ATTACK_TECHNOLOGY_WOOD_COST + CivilizaciónControlador.civilización.technologyAttack * UPGRADE_PLUS_ATTACK_TECHNOLOGY_WOOD_COST;
+        int hierro1 = UPGRADE_BASE_ATTACK_TECHNOLOGY_IRON_COST + CivilizaciónControlador.civilización.technologyAttack * UPGRADE_PLUS_ATTACK_TECHNOLOGY_IRON_COST;
+    
+        int comida2 = UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST + CivilizaciónControlador.civilización.technologyDefense * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST;
+        int madera2 = UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST + CivilizaciónControlador.civilización.technologyDefense * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST;
+        int hierro2 = UPGRADE_BASE_DEFENSE_TECHNOLOGY_IRON_COST + CivilizaciónControlador.civilización.technologyDefense * UPGRADE_PLUS_DEFENSE_TECHNOLOGY_IRON_COST;
+    
+        return new int[]{comida1, madera1, hierro1, comida2, madera2, hierro2};
+    }    
     
     public void newChurch(int n) throws ResourceException{
         int cnt = 0;
@@ -274,6 +286,10 @@ public class Civilization implements Variables {
         updateResourceGeneration();
     }
     public void newFarm(int n) throws ResourceException{
+        System.out.println(this.food);
+        System.out.println(this.wood);
+        System.out.println(this.iron);
+        System.out.println(n);
         int cnt = 0;
         if (n < 1){
             return;
@@ -342,6 +358,127 @@ public class Civilization implements Variables {
         }
         updateResourceGeneration();
     }
+
+    public String[] newChurchN(int n) {
+        int cnt = 0;
+        if (n < 1){
+            return null;
+        } else {
+            for(int i=0; i<n; i++) {
+                if (this.food >= FOOD_COST_CHURCH && this.wood >= WOOD_COST_CHURCH && this.iron >= IRON_COST_CHURCH && this.mana >= MANA_COST_CHURCH) {
+                    this.food -= FOOD_COST_CHURCH;
+                    this.wood -= WOOD_COST_CHURCH;
+                    this.iron -= IRON_COST_CHURCH;
+                    this.mana -= MANA_COST_CHURCH;
+                    this.church += 1;
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Church";
+                    String message = "Faltan recursos para crear más Church";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Church");
+        }
+        updateResourceGeneration();
+        return new String[]{"Se han agregado " + cnt + " Church", ""};
+    }
+    
+    public String[] newMagicTowerN(int n) {
+        int cnt = 0;
+        if (n < 1){
+            return null;
+        } else {
+            for(int i=0; i<n; i++) {
+                if (this.food >= FOOD_COST_MAGICTOWER && this.wood >= WOOD_COST_MAGICTOWER && this.iron >= IRON_COST_MAGICTOWER) {
+                    this.food -= FOOD_COST_MAGICTOWER;
+                    this.wood -= WOOD_COST_MAGICTOWER;
+                    this.iron -= IRON_COST_MAGICTOWER;
+                    this.magicTower += 1;
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Magic Tower";
+                    String message = "Faltan recursos para crear más Magic Tower";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Magic Tower");
+        }
+        updateResourceGeneration();
+        return new String[]{"Se han agregado " + cnt + " Magic Tower", ""};
+    }
+    
+    public String[] newFarmN(int n) {
+        int cnt = 0;
+        if (n < 1){
+            return null;
+        } else {
+            for(int i=0; i<n; i++) {
+                if (this.food >= FOOD_COST_FARM && this.wood >= WOOD_COST_FARM && this.iron >= IRON_COST_FARM) {
+                    this.food -= FOOD_COST_FARM;
+                    this.wood -= WOOD_COST_FARM;
+                    this.iron -= IRON_COST_FARM;
+                    this.farm += 1;
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Farm";
+                    String message = "Faltan recursos para crear más Farm";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Farm");
+        }
+        updateResourceGeneration();
+        return new String[]{"Se han agregado " + cnt + " Farm", ""};
+    }
+    
+    public String[] newCarpentryN(int n) {
+        int cnt = 0;
+        if (n < 1){
+            return null;
+        } else {
+            for(int i=0; i<n; i++) {
+                if (this.food >= FOOD_COST_CARPENTRY && this.wood >= WOOD_COST_CARPENTRY && this.iron >= IRON_COST_CARPENTRY) {
+                    this.food -= FOOD_COST_CARPENTRY;
+                    this.wood -= WOOD_COST_CARPENTRY;
+                    this.iron -= IRON_COST_CARPENTRY;
+                    this.carpentry += 1;
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Carpentry";
+                    String message = "Faltan recursos para crear más Carpentry";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Carpentry");
+        }
+        updateResourceGeneration();
+        return new String[]{"Se han agregado " + cnt + " Carpentry", ""};
+    }
+
+    public String[] newSmithyN(int n) {
+        int cnt = 0;
+        if (n < 1){
+            return null;
+        } else {
+            for(int i=0; i<n; i++) {
+                if (this.food >= FOOD_COST_SMITHY && this.wood >= WOOD_COST_SMITHY && this.iron >= IRON_COST_SMITHY) {
+                    this.food -= FOOD_COST_SMITHY;
+                    this.wood -= WOOD_COST_SMITHY;
+                    this.iron -= IRON_COST_SMITHY;
+                    this.smithy += 1;
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Smithy";
+                    String message = "Faltan recursos para crear más Smithy";
+                    return new String[]{title, message};
+                }
+            }
+        }
+        updateResourceGeneration();
+        return new String[]{"Se han agregado " + cnt + " Smithy", ""};
+    }
+    
     public void upgradeTechnologyDefense() throws ResourceException{
         int comida = UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST+this.technologyDefense*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST;
         int madera = UPGRADE_BASE_DEFENSE_TECHNOLOGY_WOOD_COST+this.technologyDefense*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_WOOD_COST;
@@ -406,6 +543,242 @@ public class Civilization implements Variables {
         System.out.printf("%-11s%-11s%n", "Magician", "Priest");
         System.out.printf("%-11d%-11d%n", this.army.get(magician_index).size(), this.army.get(priest_index).size());
     }
+
+    public String[] newSwordsmanN(int n) {
+        int cnt = 0;
+        if (n < 1) {
+            return null;
+        } else {
+            for (int i = 0; i < n; i++) {
+                Swordsman Swordsman = new Swordsman(getTechnologyDefense(), getTechnologyAttack());
+                if (this.food >= Swordsman.getFoodCost() && this.wood >= Swordsman.getWoodCost() && this.iron >= Swordsman.getIronCost() && this.mana >= Swordsman.getManaCost()) {
+                    this.army.get(swordsman_index).add(Swordsman);
+                    this.food -= Swordsman.getFoodCost();
+                    this.wood -= Swordsman.getWoodCost();
+                    this.iron -= Swordsman.getIronCost();
+                    this.mana -= Swordsman.getManaCost();
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Swordsman";
+                    String message = "Faltan recursos para crear más Swordsman";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Swordsman");
+        }
+        return new String[]{"Se han agregado " + cnt + " Swordsman", ""};
+    }
+    
+    public String[] newCrossbowN(int n) {
+        int cnt = 0;
+        if (n < 1) {
+            return null;
+        } else {
+            for (int i = 0; i < n; i++) {
+                Crossbow Crossbow = new Crossbow(getTechnologyDefense(), getTechnologyAttack());
+                if (this.food >= Crossbow.getFoodCost() && this.wood >= Crossbow.getWoodCost() && this.iron >= Crossbow.getIronCost() && this.mana >= Crossbow.getManaCost()) {
+                    this.army.get(crossbow_index).add(Crossbow);
+                    this.food -= Crossbow.getFoodCost();
+                    this.wood -= Crossbow.getWoodCost();
+                    this.iron -= Crossbow.getIronCost();
+                    this.mana -= Crossbow.getManaCost();
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Crossbows";
+                    String message = "Faltan recursos para crear más Crossbows";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Crossbows");
+        }
+        return new String[]{"Se han agregado " + cnt + " Crossbows", ""};
+    }
+
+    public String[] newSpearmanN(int n) {
+        int cnt = 0;
+        if (n < 1) {
+            return null;
+        } else {
+            for (int i = 0; i < n; i++) {
+                Spearman Spearman = new Spearman(getTechnologyDefense(), getTechnologyAttack());
+                if (this.food >= Spearman.getFoodCost() && this.wood >= Spearman.getWoodCost() && this.iron >= Spearman.getIronCost() && this.mana >= Spearman.getManaCost()) {
+                    this.army.get(spearman_index).add(Spearman);
+                    this.food -= Spearman.getFoodCost();
+                    this.wood -= Spearman.getWoodCost();
+                    this.iron -= Spearman.getIronCost();
+                    this.mana -= Spearman.getManaCost();
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Spearmen";
+                    String message = "Faltan recursos para crear más Spearmen";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Spearmen");
+        }
+        return new String[]{"Se han agregado " + cnt + " Spearmen", ""};
+    }
+    
+    public String[] newCannonN(int n) {
+        int cnt = 0;
+        if (n < 1) {
+            return null;
+        } else {
+            for (int i = 0; i < n; i++) {
+                Cannon Cannon = new Cannon(getTechnologyDefense(), getTechnologyAttack());
+                if (this.food >= Cannon.getFoodCost() && this.wood >= Cannon.getWoodCost() && this.iron >= Cannon.getIronCost() && this.mana >= Cannon.getManaCost()) {
+                    this.army.get(cannon_index).add(Cannon);
+                    this.food -= Cannon.getFoodCost();
+                    this.wood -= Cannon.getWoodCost();
+                    this.iron -= Cannon.getIronCost();
+                    this.mana -= Cannon.getManaCost();
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Cannons";
+                    String message = "Faltan recursos para crear más Cannons";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Cannons");
+        }
+        return new String[]{"Se han agregado " + cnt + " Cannons", ""};
+    }
+
+    public String[] newArrowTowerN(int n) {
+        int cnt = 0;
+        if (n < 1) {
+            return null;
+        } else {
+            for (int i = 0; i < n; i++) {
+                ArrowTower arrowTower = new ArrowTower(getTechnologyDefense(), getTechnologyAttack());
+                if (this.food >= arrowTower.getFoodCost() && this.wood >= arrowTower.getWoodCost() && this.iron >= arrowTower.getIronCost() && this.mana >= arrowTower.getManaCost()) {
+                    this.army.get(arrow_tower_index).add(arrowTower);
+                    this.food -= arrowTower.getFoodCost();
+                    this.wood -= arrowTower.getWoodCost();
+                    this.iron -= arrowTower.getIronCost();
+                    this.mana -= arrowTower.getManaCost();
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Arrow Towers";
+                    String message = "Faltan recursos para crear más Arrow Towers";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Arrow Towers");
+        }
+        return new String[]{"Se han agregado " + cnt + " Arrow Towers", ""};
+    }
+    
+    public String[] newCatapultN(int n) {
+        int cnt = 0;
+        if (n < 1) {
+            return null;
+        } else {
+            for (int i = 0; i < n; i++) {
+                Catapult catapult = new Catapult(getTechnologyDefense(), getTechnologyAttack());
+                if (this.food >= catapult.getFoodCost() && this.wood >= catapult.getWoodCost() && this.iron >= catapult.getIronCost() && this.mana >= catapult.getManaCost()) {
+                    this.army.get(catapult_index).add(catapult);
+                    this.food -= catapult.getFoodCost();
+                    this.wood -= catapult.getWoodCost();
+                    this.iron -= catapult.getIronCost();
+                    this.mana -= catapult.getManaCost();
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Catapults";
+                    String message = "Faltan recursos para crear más Catapults";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Catapults");
+        }
+        return new String[]{"Se han agregado " + cnt + " Catapults", ""};
+    }
+    
+    public String[] newRocketLauncherTowerN(int n) {
+        int cnt = 0;
+        if (n < 1) {
+            return null;
+        } else {
+            for (int i = 0; i < n; i++) {
+                RocketLauncherTower rocketLauncherTower = new RocketLauncherTower(getTechnologyDefense(), getTechnologyAttack());
+                if (this.food >= rocketLauncherTower.getFoodCost() && this.wood >= rocketLauncherTower.getWoodCost() && this.iron >= rocketLauncherTower.getIronCost() && this.mana >= rocketLauncherTower.getManaCost()) {
+                    this.army.get(rocket_launcher_index).add(rocketLauncherTower);
+                    this.food -= rocketLauncherTower.getFoodCost();
+                    this.wood -= rocketLauncherTower.getWoodCost();
+                    this.iron -= rocketLauncherTower.getIronCost();
+                    this.mana -= rocketLauncherTower.getManaCost();
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Rocket Launcher Towers";
+                    String message = "Faltan recursos para crear más Rocket Launcher Towers";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Rocket Launcher Towers");
+        }
+        return new String[]{"Se han agregado " + cnt + " Rocket Launcher Towers", ""};
+    }
+
+    public String[] newMagicianN(int n) {
+        int cnt = 0;
+        if (n < 1) {
+            return null;
+        } else {
+            for (int i = 0; i < n; i++) {
+                Magician magician = new Magician(getTechnologyDefense(), getTechnologyAttack());
+                if (this.magicTower < 1) {
+                    String title = "Se han agregado " + cnt + " Magicians";
+                    String message = "No tienes una Magic Tower para poder crear la unidad";
+                    return new String[]{title, message};
+                }
+                if (this.food >= magician.getFoodCost() && this.wood >= magician.getWoodCost() && this.iron >= magician.getIronCost() && this.mana >= magician.getManaCost()) {
+                    this.army.get(magician_index).add(magician);
+                    this.food -= magician.getFoodCost();
+                    this.wood -= magician.getWoodCost();
+                    this.iron -= magician.getIronCost();
+                    this.mana -= magician.getManaCost();
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Magicians";
+                    String message = "Faltan recursos para añadir más Magicians";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Magicians");
+        }
+        return new String[]{"Se han agregado " + cnt + " Magicians", ""};
+    }
+    
+    public String[] newPriestN(int n) {
+        int cnt = 0;
+        if (n < 1) {
+            return null;
+        } else {
+            for (int i = 0; i < n; i++) {
+                Priest priest = new Priest(getTechnologyDefense(), getTechnologyAttack());
+                if (this.church < 1) {
+                    String title = "Se han agregado " + cnt + " Priests";
+                    String message = "No tienes una Church para poder crear la unidad";
+                    return new String[]{title, message};
+                }
+                if (this.food >= priest.getFoodCost() && this.wood >= priest.getWoodCost() && this.iron >= priest.getIronCost() && this.mana >= priest.getManaCost()) {
+                    this.army.get(priest_index).add(priest);
+                    this.food -= priest.getFoodCost();
+                    this.wood -= priest.getWoodCost();
+                    this.iron -= priest.getIronCost();
+                    this.mana -= priest.getManaCost();
+                    cnt += 1;
+                } else {
+                    String title = "Se han agregado " + cnt + " Priests";
+                    String message = "Faltan recursos para añadir más Priests";
+                    return new String[]{title, message};
+                }
+            }
+            System.out.println("Se han agregado " + cnt + " Priests");
+        }
+        return new String[]{"Se han agregado " + cnt + " Priests", ""};
+    }
+        
 
     public void newSwordsman(int n) throws ResourceException{
         int cnt = 0;

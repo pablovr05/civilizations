@@ -39,7 +39,7 @@ public class TecnologíasControlador {
             if (upgradeAttack()) {
                 SoundPlayer.playSound("levelup.wav", 0.15f);
             } else {
-                SoundPlayer.playSound("error4", 0.15f);
+                SoundPlayer.playSound("error4.wav", 0.15f);
             }
         } if (command.equals("upgradeDefense")) {
             System.out.println("Se pulsó el botón upgradear defensa");
@@ -58,19 +58,48 @@ public class TecnologíasControlador {
         menúControlador.start();
     }
 
-    private boolean upgradeAttack() {
-        return true;
-        //primero comprobar que se puede upgradear y en caso de si o no devolver true o false, si es false se return false...
-        //hacer las operaciones de restar los recursos
-        //subir el nivel de tecnologia
-        //cambiar los contadores de los materiales necesarios para el proximo nivel
+    public boolean upgradeDefense() {
+        int comida = tecnologíasFrame.comida2;
+        int madera = tecnologíasFrame.madera2;
+        int hierro = tecnologíasFrame.hierro2;
+        if(CivilizaciónControlador.civilización.food >= comida && CivilizaciónControlador.civilización.wood >= madera && CivilizaciónControlador.civilización.iron >= hierro){
+            CivilizaciónControlador.civilización.food -= comida;
+            CivilizaciónControlador.civilización.wood -= madera;
+            CivilizaciónControlador.civilización.iron -= hierro;
+            CivilizaciónControlador.civilización.technologyDefense += 1;
+
+            actualizarLabels();
+
+            return true;
+        }else{
+            System.out.println("Faltan recursos para mejorar la TechnologyDefense");  
+            return false;
+        }
+    }
+    public boolean upgradeAttack() {
+        int comida = tecnologíasFrame.comida1;
+        int madera = tecnologíasFrame.madera1;
+        int hierro = tecnologíasFrame.hierro1;
+        if(CivilizaciónControlador.civilización.food >= comida && CivilizaciónControlador.civilización.wood >= madera && CivilizaciónControlador.civilización.iron >= hierro){
+            CivilizaciónControlador.civilización.food -= comida;
+            CivilizaciónControlador.civilización.wood -= madera;
+            CivilizaciónControlador.civilización.iron -= hierro;
+            CivilizaciónControlador.civilización.technologyAttack += 1;
+
+            actualizarLabels();
+
+            return true;
+        }else{
+            System.out.println("Faltan recursos para mejorar la TechnologyAttack");  
+            return false;
+        }
     }
 
-    private boolean upgradeDefense() {
-        return false;
-        //primero comprobar que se puede upgradear y en caso de si o no devolver true o false, si es false se return false...
-        //hacer las operaciones de restar los recursos
-        //subir el nivel de tecnologia
-        //cambiar los contadores de los materiales necesarios para el proximo nivel
+    private void actualizarLabels() {
+        int[] costes = CivilizaciónControlador.civilización.getUpgradeMaterials();
+        tecnologíasFrame.actualizarLabels(costes);
+
+        tecnologíasFrame.titleRight.setText("Defensa: " + CivilizaciónControlador.civilización.technologyDefense);
+        tecnologíasFrame.titleLeft.setText("Ataque: " + CivilizaciónControlador.civilización.technologyAttack);
     }
 }
