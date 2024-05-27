@@ -11,6 +11,7 @@ public class MainWindow extends JFrame {
     private Clip backgroundMusic;
     public ContadorRecursos contadorRecursos;
     public ContadorAtacar contadorAtacar;
+    public static FixedPanel fixedPanel = new FixedPanel();
 
     public MainWindow() {
         super("CIVILIZATIONS");
@@ -26,7 +27,7 @@ public class MainWindow extends JFrame {
         contadorAtacar = new ContadorAtacar(this);
 
         System.out.println("Se creó el contadorRecursos");
-        contadorRecursos = new ContadorRecursos();
+        contadorRecursos = new ContadorRecursos(fixedPanel);
 
         civilizaciónControlador = new CivilizaciónControlador(civilizaciónFrame, this);
         civilizaciónControlador.start();

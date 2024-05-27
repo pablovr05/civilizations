@@ -165,9 +165,66 @@ public class Civilization implements Variables {
     public int getWood() {
         return wood;
     }
+    
     public ArrayList<ArrayList<MilitaryUnit>> getArmy(){
         return army;
     }
+
+    public int getNombreSwordsman() {
+        return getElementCount(swordsman_index);
+    }
+    
+    public int getNombreSpearman() {
+        return getElementCount(spearman_index);
+    }
+    
+    public int getNombreCrossbow() {
+        return getElementCount(crossbow_index);
+    }
+    
+    public int getNombreCannon() {
+        return getElementCount(cannon_index);
+    }
+    
+    public int getNombreArrowTower() {
+        return getElementCount(arrow_tower_index);
+    }
+    
+    public int getNombreCatapult() {
+        return getElementCount(catapult_index);
+    }
+    
+    public int getNombreRocketLauncher() {
+        return getElementCount(rocket_launcher_index);
+    }
+    
+    public int getNombreMagician() {
+        return getElementCount(magician_index);
+    }
+    
+    public int getNombrePriest() {
+        return getElementCount(priest_index);
+    }
+    
+    public int getElementCount(int index) {
+        if (index >= 0 && index < army.size()) {
+            List<MilitaryUnit> sublista = army.get(index); // Obtener la sublista de MilitaryUnit
+            return sublista.size(); // Devolver el tamaño de la sublista
+        } else {
+            // Manejo de error si el índice está fuera de rango
+            return -1; // o cualquier otro valor que indique un error
+        }
+    }
+
+    public List<MilitaryUnit> getSublista(int index) {
+        if (index >= 0 && index < army.size()) {
+            return army.get(index);
+        } else {
+            // Manejo de error si el índice está fuera de rango
+            return null;
+        }
+    }
+    
     public void newChurch(int n) throws ResourceException{
         int cnt = 0;
         if (n < 1){
@@ -599,6 +656,20 @@ public class Civilization implements Variables {
         this.wood += this.woodGeneration;
         this.iron += this.ironGeneration;
         this.mana += this.manaGeneration;
+    }
+
+    public void generateResourcesPerSecond(){
+        // Calcula la generación por segundo dividiendo la generación total entre 60
+        int foodPerSecond = Math.round((float) this.foodGeneration / 60);
+        int woodPerSecond = Math.round((float) this.woodGeneration / 60);
+        int ironPerSecond = Math.round((float) this.ironGeneration / 60);
+        int manaPerSecond = Math.round((float) this.manaGeneration / 60);
+        
+        // Suma la generación por segundo al recurso correspondiente
+        this.food += foodPerSecond;
+        this.wood += woodPerSecond;
+        this.iron += ironPerSecond;
+        this.mana += manaPerSecond;
     }
 
     public static void gainExperience(){
