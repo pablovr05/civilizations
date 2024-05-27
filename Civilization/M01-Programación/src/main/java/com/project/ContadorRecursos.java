@@ -39,8 +39,6 @@ public class ContadorRecursos {
         // Aquí puedes colocar la acción que deseas realizar cada segundo
 
         CivilizaciónControlador.civilización.updateResourceGeneration();
-
-        System.out.println("Se generan recursos");
         
         CivilizaciónControlador.civilización.generateResourcesPerSecond();
         

@@ -56,6 +56,7 @@ com\project\AppData.class
 com\project\Civilization.class
 com\project\FadeOutGifDialog$1.class
 com\project\MenúFrame$2.class
+com\project\BattleDAO.class
 com\project\Cannon.class
 com\project\Magician.class
 com\project\TooltipHelper.class

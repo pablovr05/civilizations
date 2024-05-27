@@ -36,7 +36,7 @@ public class Civilization implements Variables {
     public static ArrayList<ArrayList<MilitaryUnit>> army = new ArrayList<>();
     
     public Civilization(){
-        this.id = CivilizationDAO.getLastID();
+        // this.id = CivilizationDAO.getLastID();
         this.technologyDefense = 0;
         this.technologyAttack = 0;
         this.wood = 5000;
