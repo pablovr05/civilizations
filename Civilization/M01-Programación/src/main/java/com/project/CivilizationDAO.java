@@ -18,72 +18,85 @@ public class CivilizationDAO {
         return id;
     }
 
-    public static void saveUnits(Civilization civilization) {
+    public static void saveUnits(Civilization civilization, int id) {
         AppData db = AppData.getInstance();
 
         // Eliminar las unidades existentes de las tablas
-        deleteUnits(db, civilization.id);
+        deleteUnits(id);
 
-        // Guardar las nuevas unidades
-        saveAttackUnits(civilization);
-        saveDefenseUnits(civilization);
-        saveSpecialUnits(civilization);
+        saveAttackUnits(civilization, id);
+        saveDefenseUnits(civilization, id);
+        saveSpecialUnits(civilization, id);
+
+        System.out.println("UNIDADES DESPUÉS DE GUARDARLAS");
+
+        System.out.println(db.query("Select * from attack_units_stats"));
     }
 
-    public static void deleteUnits(AppData db, int civilizationId) {
-        db.update("DELETE FROM attack_units_stats WHERE civilization_id = "+ civilizationId);
-        db.update("DELETE FROM defense_units_stats WHERE civilization_id = "+ civilizationId);
-        db.update("DELETE FROM special_units_stats WHERE civilization_id = "+ civilizationId);
+    public static void deleteUnits(int id) {
+        AppData db = AppData.getInstance();
+
+        System.out.println("id: " + id);
+
+        db.update("DELETE FROM attack_units_stats WHERE civilization_id = "+ id);
+        db.update("DELETE FROM defense_units_stats WHERE civilization_id = "+ id);
+        db.update("DELETE FROM special_units_stats WHERE civilization_id = "+ id);
 
         db.update("COMMIT");
+
+        System.out.println("UNIDADES DESPUÉS DE BORRAR");
+
+        System.out.println(db.query("Select * from attack_units_stats"));
+
+
     }
 
-    public static void saveAttackUnits(Civilization civilization) {
+    public static void saveAttackUnits(Civilization civilization, int id) {
         AppData db = AppData.getInstance();
 
         for (MilitaryUnit unit : civilization.army.get(civilization.swordsman_index)) {
-            saveUnit(db, unit, "Swordsman", civilization.id);
+            saveUnit(db, unit, "Swordsman", id);
         }
         for (MilitaryUnit unit : civilization.army.get(civilization.spearman_index)) {
-            saveUnit(db, unit, "Spearman", civilization.id);
+            saveUnit(db, unit, "Spearman", id);
         }
         for (MilitaryUnit unit : civilization.army.get(civilization.crossbow_index)) {
-            saveUnit(db, unit, "Crossbow", civilization.id);
+            saveUnit(db, unit, "Crossbow", id);
         }
         for (MilitaryUnit unit : civilization.army.get(civilization.cannon_index)) {
-            saveUnit(db, unit, "Cannon", civilization.id);
+            saveUnit(db, unit, "Cannon", id);
         }
         db.update("COMMIT");
     }
 
-    public static void saveDefenseUnits(Civilization civilization) {
+    public static void saveDefenseUnits(Civilization civilization, int id) {
         AppData db = AppData.getInstance();
 
         for (MilitaryUnit unit : civilization.army.get(civilization.arrow_tower_index)) {
-            saveUnit(db, unit, "ArrowTower", civilization.id);
+            saveUnit(db, unit, "ArrowTower", id);
         }
         for (MilitaryUnit unit : civilization.army.get(civilization.catapult_index)) {
-            saveUnit(db, unit, "Catapult", civilization.id);
+            saveUnit(db, unit, "Catapult", id);
         }
         for (MilitaryUnit unit : civilization.army.get(civilization.rocket_launcher_index)) {
-            saveUnit(db, unit, "RocketLauncherTower", civilization.id);
+            saveUnit(db, unit, "RocketLauncherTower", id);
         }
         db.update("COMMIT");
     }
 
-    public static void saveSpecialUnits(Civilization civilization) {
+    public static void saveSpecialUnits(Civilization civilization, int id) {
         AppData db = AppData.getInstance();
 
         for (MilitaryUnit unit : civilization.army.get(civilization.magician_index)) {
-            saveUnit(db, unit, "Magician", civilization.id);
+            saveUnit(db, unit, "Magician", id);
         }
         for (MilitaryUnit unit : civilization.army.get(civilization.priest_index)) {
-            saveUnit(db, unit, "Priest", civilization.id);
+            saveUnit(db, unit, "Priest", id);
         }
         db.update("COMMIT");
     }
 
-    public static void saveUnit(AppData db, MilitaryUnit unit, String type, int civilizationId) {
+    public static void saveUnit(AppData db, MilitaryUnit unit, String type, int id) {
         String table;
         if (unit instanceof AttackUnit) {
             table = "attack_units_stats";
@@ -97,22 +110,54 @@ public class CivilizationDAO {
     
         String sql;
     if (unit instanceof SpecialUnit) {
-        sql = "INSERT INTO " + table + " (civilization_id, type, armor, base_damage, experience) VALUES ("+civilizationId+", '"+type+"', "+unit.getActualArmor()+", "+unit.attack()+", "+unit.getExperience()+")";
+        sql = "INSERT INTO " + table + " (civilization_id, type, armor, base_damage, experience) VALUES ("+id+", '"+type+"', "+unit.getActualArmor()+", "+unit.attack()+", "+unit.getExperience()+")";
         db.update(sql);
     } else {
-        sql = "INSERT INTO " + table + " (civilization_id, type, armor, base_damage, experience, sanctified) VALUES ("+civilizationId+", '"+type+"', "+unit.getActualArmor()+", "+unit.attack()+", "+unit.getExperience()+", "+unit.getSanctified()+")";
+        sql = "INSERT INTO " + table + " (civilization_id, type, armor, base_damage, experience, sanctified) VALUES ("+id+", '"+type+"', "+unit.getActualArmor()+", "+unit.attack()+", "+unit.getExperience()+", "+unit.getSanctified()+")";
         db.update(sql);
     }
     }
     
 
     public static void save(Civilization civilization){
+
         AppData db = AppData.getInstance();
 
         BigDecimal id = getIdByName(civilization.name);
 
-        db.update("UPDATE Civilization_stats SET wood_amount = "+civilization.wood+", food_amount = "+civilization.food+", iron_amount = "+civilization.iron+", mana_amount = "+civilization.mana+", magicTower_counter = "+civilization.magicTower+", church_counter"+ civilization.church+", farm_count = "+civilization.farm+", smithy_count = "+civilization.smithy+", carpentry_count = "+civilization.carpentry+", technology_defense_level = "+civilization.technologyDefense+", technology_attack_level = "+civilization.technologyAttack+", battles_counter"+civilization.battles);
+        System.out.println("Guardando datos de la civilización: " + civilization.name + " ID:" + id);
+        System.out.println("wood_amount = " + civilization.wood);
+        System.out.println("food_amount = " + civilization.food);
+        System.out.println("iron_amount = " + civilization.iron);
+        System.out.println("mana_amount = " + civilization.mana);
+        System.out.println("magicTower_counter = " + civilization.magicTower);
+        System.out.println("church_counter = " + civilization.church);
+        System.out.println("farm_counter = " + civilization.farm);
+        System.out.println("smithy_counter = " + civilization.smithy);
+        System.out.println("carpentry_counter = " + civilization.carpentry);
+        System.out.println("technology_defense_level = " + civilization.technologyDefense);
+        System.out.println("technology_attack_level = " + civilization.technologyAttack);
+        System.out.println("battles_counter = " + civilization.battles);
+
+        db.update("UPDATE Civilization_stats SET wood_amount = " + civilization.wood + 
+          ", food_amount = " + civilization.food + 
+          ", iron_amount = " + civilization.iron + 
+          ", mana_amount = " + civilization.mana + 
+          ", magicTower_counter = " + civilization.magicTower + 
+          ", church_counter = " + civilization.church + 
+          ", farm_counter = " + civilization.farm + 
+          ", smithy_counter = " + civilization.smithy + 
+          ", carpentry_counter = " + civilization.carpentry + 
+          ", technology_defense_level = " + civilization.technologyDefense + 
+          ", technology_attack_level = " + civilization.technologyAttack + 
+          ", battles_counter = " + civilization.battles + 
+          " WHERE civilization_id = " + id);
         db.update("COMMIT");
+
+        saveUnits(civilization, id.intValue());
+
+        System.out.println("GUARDADO COMPLETADO");
+
     }
 
     public static void loadUnits(Civilization civilization, int id) {
