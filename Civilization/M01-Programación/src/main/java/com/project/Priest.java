@@ -77,4 +77,9 @@ public class Priest extends SpecialUnit {
     public int getExperience(){
         return super.experience;
     }
+
+    public void printearBonito() {
+        String sql = "Type: Priest" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience;
+        System.out.println(sql);
+    }
 }

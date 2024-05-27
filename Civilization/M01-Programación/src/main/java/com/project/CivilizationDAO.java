@@ -123,15 +123,16 @@ public class CivilizationDAO {
 
     private static void loadAttackUnits(Civilization civilization, int id) {
         AppData db = AppData.getInstance();
-        List<Map<String, Object>> query = db.query("SELECT * FROM attack_units_stats WHERE civilization_id = ?"+ id);
+        List<Map<String, Object>> query = db.query("SELECT * FROM attack_units_stats WHERE civilization_id = " + id);
     
         for (Map<String, Object> unitData : query) {
-            String type = (String) unitData.get("type");
-            int unitId = (int) unitData.get("unit_id");
-            int armor = (int) unitData.get("armor");
-            int baseDamage = (int) unitData.get("base_damage");
-            int experience = (int) unitData.get("experience");
-            boolean sanctified = (int) unitData.get("sanctified") == 1;
+
+            String type = (String) unitData.get("TYPE");
+            BigDecimal unitId = (BigDecimal) unitData.get("UNIT_ID");
+            BigDecimal armor = (BigDecimal) unitData.get("ARMOR");
+            BigDecimal baseDamage = (BigDecimal) unitData.get("BASE_DAMAGE");
+            BigDecimal experience = (BigDecimal) unitData.get("EXPERIENCE");
+            BigDecimal sanctified = (BigDecimal) unitData.get("SANCTIFIED");
     
             MilitaryUnit unit = createUnit(type, unitId, armor, baseDamage, experience, sanctified);
             addUnitToArmy(civilization, unit, type);
@@ -140,15 +141,15 @@ public class CivilizationDAO {
     
     private static void loadDefenseUnits(Civilization civilization, int id) {
         AppData db = AppData.getInstance();
-        List<Map<String, Object>> query = db.query("SELECT * FROM defense_units_stats WHERE civilization_id = ?"+id);
+        List<Map<String, Object>> query = db.query("SELECT * FROM defense_units_stats WHERE civilization_id = " +id);
     
         for (Map<String, Object> unitData : query) {
-            String type = (String) unitData.get("type");
-            int unitId = (int) unitData.get("unit_id");
-            int armor = (int) unitData.get("armor");
-            int baseDamage = (int) unitData.get("base_damage");
-            int experience = (int) unitData.get("experience");
-            boolean sanctified = (int) unitData.get("sanctified") == 1;
+            String type = (String) unitData.get("TYPE");
+            BigDecimal unitId = (BigDecimal) unitData.get("UNIT_ID");
+            BigDecimal armor = (BigDecimal) unitData.get("ARMOR");
+            BigDecimal baseDamage = (BigDecimal) unitData.get("BASE_DAMAGE");
+            BigDecimal experience = (BigDecimal) unitData.get("EXPERIENCE");
+            BigDecimal sanctified = (BigDecimal) unitData.get("SANCTIFIED");
     
             MilitaryUnit unit = createUnit(type, unitId, armor, baseDamage, experience, sanctified);
             addUnitToArmy(civilization, unit, type);
@@ -157,35 +158,75 @@ public class CivilizationDAO {
 
     private static void loadSpecialUnits(Civilization civilization, int id) {
         AppData db = AppData.getInstance();
-        List<Map<String, Object>> query = db.query("SELECT * FROM special_units_stats WHERE civilization_id = ?"+ id);
+        List<Map<String, Object>> query = db.query("SELECT * FROM special_units_stats WHERE civilization_id = "+ id);
     
         for (Map<String, Object> unitData : query) {
-            String type = (String) unitData.get("type");
-            int unitId = (int) unitData.get("unit_id");
-            int armor = (int) unitData.get("armor");
-            int baseDamage = (int) unitData.get("base_damage");
-            int experience = (int) unitData.get("experience");
+            String type = (String) unitData.get("TYPE");
+            BigDecimal unitId = (BigDecimal) unitData.get("UNIT_ID");
+            BigDecimal armor = (BigDecimal) unitData.get("ARMOR");
+            BigDecimal baseDamage = (BigDecimal) unitData.get("BASE_DAMAGE");
+            BigDecimal experience = (BigDecimal) unitData.get("EXPERIENCE");
     
-            MilitaryUnit unit = createUnit(type, unitId, armor, baseDamage, experience, false);
+            MilitaryUnit unit = createUnit(type, unitId, armor, baseDamage, experience, BigDecimal.valueOf(1));
             addUnitToArmy(civilization, unit, type);
         }
     }
     
-    private static MilitaryUnit createUnit(String type, int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
-        try {
-            Class<?> unitClass = Class.forName(type);
-            return (MilitaryUnit) unitClass.getConstructor(int.class, int.class, int.class, int.class, boolean.class)
-                    .newInstance(unitId, armor, baseDamage, experience, sanctified);
-        } catch (Exception e) {
-            e.printStackTrace();
+    private static MilitaryUnit createUnit(String type, BigDecimal unitId, BigDecimal armor, BigDecimal baseDamage, BigDecimal experience, BigDecimal sanctified) {
+        boolean booleanSanctified = false;
+        if (sanctified.intValue() == 1) {
+            booleanSanctified = true;
+        }
+    
+        int iunitId = unitId.intValue();
+        int iarmor = armor.intValue();
+        int ibaseDamage = baseDamage.intValue();
+        int iexperience = experience.intValue();
+        
+        if ("Swordsman".equals(type.trim())) {
+            Swordsman swordsman = new Swordsman(iunitId, iarmor, ibaseDamage, iexperience, booleanSanctified);
+            swordsman.printearBonito();
+            return swordsman;
+        } else if ("Spearman".equals(type.trim())) {
+            Spearman spearman = new Spearman(iunitId, iarmor, ibaseDamage, iexperience, booleanSanctified);
+            spearman.printearBonito();
+            return spearman;
+        } else if ("Crossbow".equals(type.trim())) {
+            Crossbow crossbow = new Crossbow(iunitId, iarmor, ibaseDamage, iexperience, booleanSanctified);
+            crossbow.printearBonito();
+            return crossbow;
+        } else if ("Cannon".equals(type.trim())) {
+            Cannon cannon = new Cannon(iunitId, iarmor, ibaseDamage, iexperience, booleanSanctified);
+            cannon.printearBonito();
+            return cannon;
+        } else if ("ArrowTower".equals(type.trim())) {
+            ArrowTower arrowTower = new ArrowTower(iunitId, iarmor, ibaseDamage, iexperience, booleanSanctified);
+            arrowTower.printearBonito();
+            return arrowTower;
+        } else if ("Catapult".equals(type.trim())) {
+            Catapult catapult = new Catapult(iunitId, iarmor, ibaseDamage, iexperience, booleanSanctified);
+            catapult.printearBonito();
+            return catapult;
+        } else if ("RocketLauncherTower".equals(type.trim())) {
+            RocketLauncherTower rocketLauncherTower = new RocketLauncherTower(iunitId, iarmor, ibaseDamage, iexperience, booleanSanctified);
+            rocketLauncherTower.printearBonito();
+            return rocketLauncherTower;
+        } else if ("Magician".equals(type.trim())) {
+            Magician magician = new Magician(iunitId, iarmor, ibaseDamage, iexperience); 
+            magician.printearBonito();
+            return magician;
+        } else if ("Priest".equals(type.trim())) {
+            Priest priest = new Priest(iunitId, iarmor, ibaseDamage, iexperience); 
+            priest.printearBonito();
+            return priest;
+        } else {
             return null;
         }
     }
     
-
+    
     public static void addUnitToArmy(Civilization civilization, MilitaryUnit unit, String type) {
         if (unit == null) return;
-
         switch (type) {
             case "Swordsman":
                 civilization.army.get(civilization.swordsman_index).add(unit);
@@ -231,44 +272,52 @@ public class CivilizationDAO {
     public static Civilization load(int id) {
         AppData db = AppData.getInstance();
         List<Map<String, Object>> query = db.query("SELECT * FROM Civilization_stats WHERE civilization_id = "+id);
-        System.out.println(1);
 
         if (query.isEmpty()) {
             return null; // No se encontró la civilización
         }
 
         Map<String, Object> infoCivilization = query.get(0);
-        System.out.println(infoCivilization);
         String name = (String) infoCivilization.get("NAME");
-        System.out.println(name);
-        BigDecimal wood_amount = (BigDecimal) infoCivilization.get("WOOD_AMOUNT");
-        System.out.println(wood_amount.intValue());
-        BigDecimal iron_amount = (BigDecimal) infoCivilization.get("IRON_AMOUNT");
-        System.out.println(iron_amount.intValue());
-        BigDecimal food_amount = (BigDecimal) infoCivilization.get("FOOD_AMOUNT");
-        System.out.println(food_amount.intValue());
-        BigDecimal mana_amount = (BigDecimal) infoCivilization.get("MANA_AMOUNT");
-        System.out.println(mana_amount.intValue());
-        BigDecimal magic_tower = (BigDecimal) infoCivilization.get("MAGICTOWER_COUNTER");
-        System.out.println(magic_tower.intValue());
-        BigDecimal church = (BigDecimal) infoCivilization.get("CHURCH_COUNTER");
-        System.out.println(church.intValue());
-        BigDecimal farm = (BigDecimal) infoCivilization.get("FARM_COUNTER");
-        System.out.println(farm.intValue());
-        BigDecimal smithy = (BigDecimal) infoCivilization.get("SMITHY_COUNTER");
-        System.out.println(smithy.intValue());
-        BigDecimal carpentry = (BigDecimal) infoCivilization.get("CARPENTRY_COUNTER");
-        System.out.println(carpentry.intValue());
-        BigDecimal defense_level = (BigDecimal) infoCivilization.get("TECHNOLOGY_DEFENSE_LEVEL");
-        System.out.println(defense_level.intValue());
-        BigDecimal attack_lever = (BigDecimal) infoCivilization.get("TECHNOLOGY_ATTACK_LEVEL");
-        System.out.println(attack_lever.intValue());
-        BigDecimal battles = (BigDecimal) infoCivilization.get("BATTLES_COUNTER");
-        System.out.println(battles.intValue());
-
         Civilization civilization = new Civilization(name);
 
-        //loadUnits(civilization, id);
+        BigDecimal wood_amount = (BigDecimal) infoCivilization.get("WOOD_AMOUNT");
+        civilization.setWood(wood_amount.intValue());
+
+        BigDecimal iron_amount = (BigDecimal) infoCivilization.get("IRON_AMOUNT");
+        civilization.setIron(iron_amount.intValue());
+
+        BigDecimal food_amount = (BigDecimal) infoCivilization.get("FOOD_AMOUNT"); 
+        civilization.setFood(food_amount.intValue());
+
+        BigDecimal mana_amount = (BigDecimal) infoCivilization.get("MANA_AMOUNT");
+        civilization.setMana(mana_amount.intValue());
+
+        BigDecimal magic_tower = (BigDecimal) infoCivilization.get("MAGICTOWER_COUNTER");
+        civilization.setMagicTower(magic_tower.intValue());
+
+        BigDecimal church = (BigDecimal) infoCivilization.get("CHURCH_COUNTER");
+        civilization.setChurch(church.intValue());
+
+        BigDecimal farm = (BigDecimal) infoCivilization.get("FARM_COUNTER");
+        civilization.setFarm(farm.intValue());
+
+        BigDecimal smithy = (BigDecimal) infoCivilization.get("SMITHY_COUNTER");
+        civilization.setSmithy(smithy.intValue());
+
+        BigDecimal carpentry = (BigDecimal) infoCivilization.get("CARPENTRY_COUNTER");
+        civilization.setCarpentry(carpentry.intValue());
+
+        BigDecimal defense_level = (BigDecimal) infoCivilization.get("TECHNOLOGY_DEFENSE_LEVEL");
+        civilization.setTechnologyDefense(defense_level.intValue());
+
+        BigDecimal attack_level = (BigDecimal) infoCivilization.get("TECHNOLOGY_ATTACK_LEVEL");
+        civilization.setTechnologyAttack(defense_level.intValue());
+
+        BigDecimal battles = (BigDecimal) infoCivilization.get("BATTLES_COUNTER");
+        civilization.setBattles(battles.intValue());
+
+        loadUnits(civilization, id);
 
         return civilization;
     }
@@ -279,7 +328,7 @@ public class CivilizationDAO {
         if (!resultado.isEmpty()) {
             return new BigDecimal("-1");
         } else {
-            String sql = "INSERT INTO Civilization_stats (name, wood_amount, iron_amount, food_amount, mana_amount, magicTower_counter, church_counter, farm_counter, smithy_counter, carpentry_counter, technology_defense_level, technology_attack_level, battles_counter) VALUES ('" + name + "', 10000, 10000, 10000, 10000, 0, 0, 0, 0, 0, 0, 0, 0)";
+            String sql = "INSERT INTO Civilization_stats (name, wood_amount, iron_amount, food_amount, mana_amount, magicTower_counter, church_counter, farm_counter, smithy_counter, carpentry_counter, technology_defense_level, technology_attack_level, battles_counter) VALUES ('" + name + "', 5000, 5000, 5000, 0, 0, 0, 0, 0, 0, 0, 0, 0)";
             db.update(sql);
             db.update("COMMIT");
         }

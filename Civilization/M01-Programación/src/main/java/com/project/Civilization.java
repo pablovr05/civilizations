@@ -53,6 +53,7 @@ public class Civilization implements Variables {
         this.woodGeneration = CIVILIZATION_WOOD_GENERATED;
         this.ironGeneration = CIVILIZATION_IRON_GENERATED;
         this.manaGeneration = 0;
+        army = new ArrayList<>();
         for(int i = 0; i<9; i++){
             army.add(new ArrayList<>());
         }
@@ -76,6 +77,7 @@ public class Civilization implements Variables {
         this.woodGeneration = CIVILIZATION_WOOD_GENERATED;
         this.ironGeneration = CIVILIZATION_IRON_GENERATED;
         this.manaGeneration = 0;
+        army = new ArrayList<>();
         for(int i = 0; i<9; i++){
             army.add(new ArrayList<>());
         }
@@ -607,5 +609,10 @@ public class Civilization implements Variables {
                 unit.setBaseDamage(unit.attack()+PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT);
             }
         }
+    }
+
+    public void printearBonito() {
+        String str = "Nombre: " + this.name + " Comida: " + this.food + " Hierro: " + this.iron + " Wood: " + this.wood + " Mana: " + this.mana + " Defense Level: " + this.technologyDefense + " Attack Level: " + this.technologyAttack + " Magic Tower: " + this.magicTower + " Church: " + this.church + " Farms: " + this.farm + " Smithy: " + this.smithy + " Carpentry: " + this.carpentry + " Battle: " + this.battles + " F:" + this.foodGeneration + " I:" + this.ironGeneration + " W:" + this.woodGeneration + " M:" + this.manaGeneration + " Army: " + this.army;
+        System.out.println(str);
     }
 }

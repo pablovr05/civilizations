@@ -76,4 +76,9 @@ public class Magician extends SpecialUnit {
     public int getExperience(){
         return super.experience;
     }
+
+    public void printearBonito() {
+        String sql = "Type: Magician" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience;
+        System.out.println(sql);
+    }
 }

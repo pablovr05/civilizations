@@ -93,6 +93,11 @@ public class Cannon extends AttackUnit  {
     public int getExperience(){
         return super.experience;
     }
+
+    public void printearBonito() {
+        String sql = "Type: Cannon" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience + " sanctified: " + this.sanctified;
+        System.out.println(sql);
+    }
 }
 
 

@@ -85,4 +85,9 @@ public class Catapult extends DefenseUnit {
     public int getExperience(){
         return super.experience;
     }
+
+    public void printearBonito() {
+        String sql = "Type: Catapult" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience + " sancitfied: " + this.sanctified;
+        System.out.println(sql);
+    }
 }

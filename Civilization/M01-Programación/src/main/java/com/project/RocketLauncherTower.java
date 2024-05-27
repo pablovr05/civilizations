@@ -85,4 +85,9 @@ public class RocketLauncherTower extends DefenseUnit {
     public int getExperience(){
         return super.experience;
     }
+
+    public void printearBonito() {
+        String sql = "Type: RocketLauncherTower" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience + " sanctified: " + this.sanctified;
+        System.out.println(sql);
+    }
 }

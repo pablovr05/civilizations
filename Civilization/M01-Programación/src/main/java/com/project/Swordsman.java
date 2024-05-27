@@ -92,4 +92,9 @@ public class Swordsman extends AttackUnit {
     public int getExperience(){
         return super.experience;
     }
+
+    public void printearBonito() {
+        String sql = "Type: Swordsman" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience + " sanctified: " + this.sanctified;
+        System.out.println(sql);
+    }
 }

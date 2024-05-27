@@ -84,4 +84,9 @@ public class ArrowTower extends DefenseUnit {
     public int getExperience(){
         return super.experience;
     }
+
+    public void printearBonito() {
+        String sql = "Type: ArrowTower" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience + " sanctified: " + this.sanctified;
+        System.out.println(sql);
+    }
 }

@@ -41,6 +41,7 @@ public class CivilizaciónControlador {
                 civilization_id = CivilizationDAO.getIdByName(selectedOption).intValue();
                 System.out.println(civilization_id);
                 civilización = CivilizationDAO.load(civilization_id); 
+                civilización.printearBonito();
                 SoundPlayer.playSound("botónASSERT.wav", 0.5f);
                 System.out.println("Opción seleccionada: " + selectedOption);
                 System.out.println("Se inició el contadorRecursos");
@@ -61,7 +62,8 @@ public class CivilizaciónControlador {
                 System.out.println("Nombre de la nueva civilización: " + nombreCivilizacion);
                 civilization_id = CivilizationDAO.addCivilization(nombreCivilizacion).intValue();
                 System.out.println(civilization_id);
-                civilización = CivilizationDAO.load(civilization_id); 
+                civilización = CivilizationDAO.load(civilization_id);
+                civilización.printearBonito();
                 SoundPlayer.playSound("botónASSERT.wav", 0.5f);
                 System.out.println("Se inició el contadorRecursos");
                 mainWindow.contadorRecursos.iniciarContador();
