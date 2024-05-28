@@ -208,10 +208,10 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
 
         Civilization.gainExperience();
 
-        if (this.resourcesLooses.get(0)[3]>this.resourcesLooses.get(1)[3]) {
-            this.winner = "enemy";
-        } else {
+        if (remainderPercentageFleet(civilizationArmy) >= 20) {
             this.winner = "civilization";
+        } else {
+            this.winner = "enemy";
         }
         return this.winner;
     }
