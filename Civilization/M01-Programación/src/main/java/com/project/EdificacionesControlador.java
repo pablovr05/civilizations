@@ -33,7 +33,9 @@ public class EdificacionesControlador {
 
     public void runCommand(String command) {
         if (command.equals("GIF_BUTTON_CLICKED")) {
-            System.out.println("gifbuttonapretado");
+            String tipo = edificacionesFrame.optionsComboBoxEdificios.getSelectedItem().toString();
+            ShowEdificios dialog = new ShowEdificios(mainWindow, tipo);
+            dialog.setVisible(true);
         } if (command.equals("Cancelar")) {
             SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Salir");

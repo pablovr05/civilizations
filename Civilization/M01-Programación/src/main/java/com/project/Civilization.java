@@ -478,6 +478,49 @@ public class Civilization implements Variables {
         updateResourceGeneration();
         return new String[]{"Se han agregado " + cnt + " Smithy", ""};
     }
+
+    //Comida, Madera, Hierro, Maná, plusFood, plusWoood, PlusHierro, Plus maná
+    public int[] getEdificaciónInfo(String tipo) {
+        switch (tipo) {
+            case "Farm":
+                return new int[] {FOOD_COST_FARM, WOOD_COST_FARM, IRON_COST_FARM, 0, CIVILIZATION_FOOD_GENERATED_PER_FARM, 0, 0, 0};
+            case "Smithy":
+                return new int[] {FOOD_COST_SMITHY, WOOD_COST_SMITHY, IRON_COST_SMITHY, 0, 0, 0, CIVILIZATION_IRON_GENERATED_PER_SMITHY, 0};
+            case "Church":
+                return new int[] {FOOD_COST_CHURCH, WOOD_COST_CHURCH, IRON_COST_CHURCH, MANA_COST_CHURCH, 0, 0, 0, 0};
+            case "Magic Tower":
+                return new int[] {FOOD_COST_MAGICTOWER, WOOD_COST_MAGICTOWER, IRON_COST_MAGICTOWER, 0, 0, 0, 0, CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER};
+            case "Carpentry":
+                return new int[] {FOOD_COST_CARPENTRY, WOOD_COST_CARPENTRY, IRON_COST_CARPENTRY, 0, 0,  CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY, 0, 0};
+            default:
+                return null;
+        }
+    }
+    //Comida, Madera, Hierro, Maná, Armor, Attack power, Chance attack again, Chance of generate wastings
+    public int[] getEjércitoInfo(String tipo) {
+        switch (tipo) {
+            case "Swordsman":
+                return new int[] {FOOD_COST_SWORDSMAN, WOOD_COST_SWORDSMAN, IRON_COST_SWORDSMAN, MANA_COST_SWORDSMAN, ARMOR_SWORDSMAN, BASE_DAMAGE_SWORDSMAN, CHANCE_ATTACK_AGAIN_SWORDSMAN, CHANCE_GENERATNG_WASTE_SWORDSMAN};
+            case "Spearman":
+                return new int[] {FOOD_COST_SPEARMAN, WOOD_COST_SPEARMAN, IRON_COST_SPEARMAN, MANA_COST_SPEARMAN, ARMOR_SPEARMAN, BASE_DAMAGE_SPEARMAN, CHANCE_ATTACK_AGAIN_SPEARMAN, CHANCE_GENERATNG_WASTE_SPEARMAN};
+            case "Crossbow":
+                return new int[] {FOOD_COST_CROSSBOW, WOOD_COST_CROSSBOW, IRON_COST_CROSSBOW, MANA_COST_CROSSBOW, ARMOR_CROSSBOW, BASE_DAMAGE_CROSSBOW, CHANCE_ATTACK_AGAIN_CROSSBOW, CHANCE_GENERATNG_WASTE_CROSSBOW};
+            case "Cannon":
+                return new int[] {FOOD_COST_CANNON, WOOD_COST_CANNON, IRON_COST_CANNON, MANA_COST_CANNON, ARMOR_CANNON, BASE_DAMAGE_CANNON, CHANCE_ATTACK_AGAIN_CANNON, CHANCE_GENERATNG_WASTE_CANNON};
+            case "Arrow Tower":
+                return new int[] {FOOD_COST_ARROWTOWER, WOOD_COST_ARROWTOWER, IRON_COST_ARROWTOWER, MANA_COST_ARROWTOWER, ARMOR_ARROWTOWER, BASE_DAMAGE_ARROWTOWER, CHANCE_ATTACK_AGAIN_ARROWTOWER, CHANCE_GENERATNG_WASTE_ARROWTOWER};
+            case "Catapult":
+                return new int[] {FOOD_COST_CATAPULT, WOOD_COST_CATAPULT, IRON_COST_CATAPULT, MANA_COST_CATAPULT, ARMOR_CATAPULT, BASE_DAMAGE_CATAPULT, CHANCE_ATTACK_AGAIN_CATAPULT, CHANCE_GENERATNG_WASTE_CATAPULT};
+            case "Rocket Launcher Tower":
+                return new int[] {FOOD_COST_ROCKETLAUNCHERTOWER, WOOD_COST_ROCKETLAUNCHERTOWER, IRON_COST_ROCKETLAUNCHERTOWER, MANA_COST_ROCKETLAUNCHERTOWER, ARMOR_ROCKETLAUNCHERTOWER, BASE_DAMAGE_ROCKETLAUNCHERTOWER, CHANCE_ATTACK_AGAIN_ROCKETLAUNCHERTOWER, CHANCE_GENERATNG_WASTE_ROCKETLAUNCHERTOWER};
+            case "Magician":
+                return new int[] {FOOD_COST_MAGICIAN, WOOD_COST_MAGICIAN, IRON_COST_MAGICIAN, MANA_COST_MAGICIAN, 1, BASE_DAMAGE_MAGICIAN, CHANCE_ATTACK_AGAIN_MAGICIAN, CHANCE_GENERATNG_WASTE_MAGICIAN};
+            case "Priest":
+                return new int[] {FOOD_COST_PRIEST, WOOD_COST_PRIEST, IRON_COST_PRIEST, MANA_COST_PRIEST, 1, 0, CHANCE_ATTACK_AGAIN_PRIEST, CHANCE_GENERATNG_WASTE_PRIEST};
+            default:
+                return null;
+        }
+    }
     
     public void upgradeTechnologyDefense() throws ResourceException{
         int comida = UPGRADE_BASE_DEFENSE_TECHNOLOGY_FOOD_COST+this.technologyDefense*UPGRADE_PLUS_DEFENSE_TECHNOLOGY_FOOD_COST;
