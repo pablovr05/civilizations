@@ -81,11 +81,8 @@ public class AtacarControlador {
     }
 
     private void llamarResultadoBatalla() {
-        System.out.println(1);
         Battle battle = new Battle(CivilizaciónControlador.civilización.army, atacarFrame.enemyArmy);
-        System.out.println(1);
-        String mecagoentusmuertos = battle.startBattle(CivilizaciónControlador.civilización);
-        System.out.println(1);
+        boolean mecagoentusmuertos = battle.startBattle(CivilizaciónControlador.civilización);
         System.out.println(mecagoentusmuertos);
 
         resultadoBattallaFrame = new ResultadoBattallaFrame(false);

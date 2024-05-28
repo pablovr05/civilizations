@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Battle {
 
-    String winner;
+    boolean winner;
     ArrayList<ArrayList<MilitaryUnit>> civilizationArmy;
     ArrayList<ArrayList<MilitaryUnit>> enemyArmy;
     ArrayList<ArrayList<ArrayList<MilitaryUnit>>> armies;
@@ -68,7 +68,7 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
 
 
 
-    String startBattle(Civilization civilization) {
+    boolean startBattle(Civilization civilization) {
 
         System.out.println(initialCostFleet);
 
@@ -209,9 +209,9 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         Civilization.gainExperience();
 
         if (remainderPercentageFleet(civilizationArmy) >= 20) {
-            this.winner = "civilization";
+            this.winner = true;
         } else {
-            this.winner = "enemy";
+            this.winner = false;
         }
         return this.winner;
     }
@@ -499,8 +499,8 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
     }
 
     void addDropUnit(MilitaryUnit unit, boolean enemy){
-        Class clase = unit.getClass();
-        switch (clase.getName()){
+        String clase = unit.getClassName();
+        switch (clase){
             case("Swordsman"):
                 if(enemy){
                     enemyDrops[0] += 1;
