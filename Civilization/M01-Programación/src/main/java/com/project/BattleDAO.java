@@ -3,6 +3,7 @@ package com.project;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 public class BattleDAO {
     public void save(int civilization_id, Battle battle){
@@ -58,5 +59,271 @@ public class BattleDAO {
         }
 
         db.update("COMMIT");
+    }
+
+    public static int[] queryEnemyArmy(int id_battle, int id_civilization){
+        AppData db = AppData.getInstance();
+
+        int[] enemyArmy = new int[4];
+
+        List<Map<String, Object>> listaEnemigos = db.query("SELECT * FROM Enemy_attack_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+
+        for(Map<String, Object> enemigo : listaEnemigos){
+            String tipo = (String) enemigo.get("TYPE");
+            BigDecimal cantidad = (BigDecimal) enemigo.get("INITIAL");
+
+            switch (tipo){
+                case "Swordsman":
+                    enemyArmy[0] = cantidad.intValue();
+                    break;
+                case "Spearman":
+                    enemyArmy[1] = cantidad.intValue();
+                    break;
+                case "Crossbow":
+                    enemyArmy[2] = cantidad.intValue();
+                    break;
+                case "Cannon":
+                    enemyArmy[3] = cantidad.intValue();
+                    break;
+            }
+        }
+
+        return enemyArmy;
+    }
+
+    public static int[] queryCivilizationArmy(int id_battle, int id_civilization){
+        AppData db = AppData.getInstance();
+
+        int[] civilizationArmy = new int[9];
+
+        List<Map<String, Object>> listaCivilization = db.query("SELECT * FROM Civilization_attack_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+
+        for(Map<String, Object> tropa : listaCivilization){
+            String tipo = (String) tropa.get("TYPE");
+            BigDecimal cantidad = (BigDecimal) tropa.get("INITIAL");
+
+            switch (tipo){
+                case "Swordsman":
+                    civilizationArmy[0] = cantidad.intValue();
+                    break;
+                case "Spearman":
+                    civilizationArmy[1] = cantidad.intValue();
+                    break;
+                case "Crossbow":
+                    civilizationArmy[2] = cantidad.intValue();
+                    break;
+                case "Cannon":
+                    civilizationArmy[3] = cantidad.intValue();
+                    break;
+            }
+        }
+
+
+        listaCivilization = db.query("SELECT * FROM Civilization_defense_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+
+        for(Map<String, Object> tropa : listaCivilization){
+            String tipo = (String) tropa.get("TYPE");
+            BigDecimal cantidad = (BigDecimal) tropa.get("INITIAL");
+
+            switch (tipo){
+                case "ArrowTower":
+                    civilizationArmy[4] = cantidad.intValue();
+                    break;
+                case "Catapult":
+                    civilizationArmy[5] = cantidad.intValue();
+                    break;
+                case "RocketLauncherTower":
+                    civilizationArmy[6] = cantidad.intValue();
+                    break;
+            }
+        }
+
+
+        listaCivilization = db.query("SELECT * FROM Civilization_special_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+
+        for(Map<String, Object> tropa : listaCivilization){
+            String tipo = (String) tropa.get("TYPE");
+            BigDecimal cantidad = (BigDecimal) tropa.get("INITIAL");
+
+            switch (tipo){
+                case "Magician":
+                    civilizationArmy[7] = cantidad.intValue();
+                    break;
+                case "Priest":
+                    civilizationArmy[8] = cantidad.intValue();
+                    break;
+            }
+        }
+
+        return civilizationArmy;
+    }
+
+    public static int[] queryEnemyDrops(int id_battle, int id_civilization){
+        AppData db = AppData.getInstance();
+
+        int[] enemyArmy = new int[4];
+
+        List<Map<String, Object>> listaEnemigos = db.query("SELECT * FROM Enemy_attack_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+
+        for(Map<String, Object> enemigo : listaEnemigos){
+            String tipo = (String) enemigo.get("TYPE");
+            BigDecimal cantidad = (BigDecimal) enemigo.get("DROPS");
+
+            switch (tipo){
+                case "Swordsman":
+                    enemyArmy[0] = cantidad.intValue();
+                    break;
+                case "Spearman":
+                    enemyArmy[1] = cantidad.intValue();
+                    break;
+                case "Crossbow":
+                    enemyArmy[2] = cantidad.intValue();
+                    break;
+                case "Cannon":
+                    enemyArmy[3] = cantidad.intValue();
+                    break;
+            }
+        }
+
+        return enemyArmy;
+    }
+
+    public static int[] queryCivilizationDrops(int id_battle, int id_civilization){
+        AppData db = AppData.getInstance();
+
+        int[] civilizationArmy = new int[9];
+
+        List<Map<String, Object>> listaCivilization = db.query("SELECT * FROM Civilization_attack_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+
+        for(Map<String, Object> tropa : listaCivilization){
+            String tipo = (String) tropa.get("TYPE");
+            BigDecimal cantidad = (BigDecimal) tropa.get("DROPS");
+
+            switch (tipo){
+                case "Swordsman":
+                    civilizationArmy[0] = cantidad.intValue();
+                    break;
+                case "Spearman":
+                    civilizationArmy[1] = cantidad.intValue();
+                    break;
+                case "Crossbow":
+                    civilizationArmy[2] = cantidad.intValue();
+                    break;
+                case "Cannon":
+                    civilizationArmy[3] = cantidad.intValue();
+                    break;
+            }
+        }
+
+
+        listaCivilization = db.query("SELECT * FROM Civilization_defense_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+
+        for(Map<String, Object> tropa : listaCivilization){
+            String tipo = (String) tropa.get("TYPE");
+            BigDecimal cantidad = (BigDecimal) tropa.get("DROPS");
+
+            switch (tipo){
+                case "ArrowTower":
+                    civilizationArmy[4] = cantidad.intValue();
+                    break;
+                case "Catapult":
+                    civilizationArmy[5] = cantidad.intValue();
+                    break;
+                case "RocketLauncherTower":
+                    civilizationArmy[6] = cantidad.intValue();
+                    break;
+            }
+        }
+
+
+        listaCivilization = db.query("SELECT * FROM Civilization_special_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+
+        for(Map<String, Object> tropa : listaCivilization){
+            String tipo = (String) tropa.get("TYPE");
+            BigDecimal cantidad = (BigDecimal) tropa.get("DROPS");
+
+            switch (tipo){
+                case "Magician":
+                    civilizationArmy[7] = cantidad.intValue();
+                    break;
+                case "Priest":
+                    civilizationArmy[8] = cantidad.intValue();
+                    break;
+            }
+        }
+
+        return civilizationArmy;
+    }
+
+    public static String getBattleWinner(int id_battle, int id_civilization){
+        AppData db = AppData.getInstance();
+
+        List<Map<String, Object>> listaGanador = db.query("SELECT winner FROM Battle_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+
+        String ganador = (String) listaGanador.get(0).get("WINNER");
+
+        return ganador;
+    }
+
+    public static int[] getBattleWaste(int id_battle, int id_civilization){
+        AppData db = AppData.getInstance();
+
+        int[] listaWaste = new int[2];
+        List<Map<String, Object>> listaRecursos = db.query("SELECT winner FROM Battle_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+
+        listaWaste[0] = ((BigDecimal) listaRecursos.get(0).get("WOOD_ACQUIRED")).intValue();
+        listaWaste[1] = ((BigDecimal) listaRecursos.get(0).get("IRON_ACQUIRED")).intValue();
+
+        return listaWaste;
+    }
+
+    public static ArrayList<int[]> getInitialCosts(int id_battle, int id_civilization){
+        ArrayList<int[]> listaCostes = new ArrayList<>();
+        int[] costes = new int[3];
+        int[] listaCivilization = queryCivilizationArmy(id_battle, id_civilization);
+        int[] listaEnemy = queryEnemyArmy(id_battle, id_civilization);
+
+        for(int i = 0; i<listaCivilization.length; i++){
+            costes[0] += listaCivilization[i]*Variables.FOOD_COST_UNITS[i];
+            costes[1] += listaCivilization[i]*Variables.WOOD_COST_UNITS[i];
+            costes[2] += listaCivilization[i]*Variables.IRON_COST_UNITS[i];
+        }
+
+        listaCostes.add(costes);
+
+        costes = new int[3];
+        for(int i = 0; i<listaEnemy.length; i++){
+            costes[0] += listaEnemy[i]*Variables.FOOD_COST_UNITS[i];
+            costes[1] += listaEnemy[i]*Variables.WOOD_COST_UNITS[i];
+            costes[2] += listaEnemy[i]*Variables.IRON_COST_UNITS[i];
+        }
+        listaCostes.add(costes);
+
+        return listaCostes;
+    }
+
+    public static ArrayList<int[]> getBattleLosses(int id_battle, int id_civilization){
+        ArrayList<int[]> listaLosses = new ArrayList<>();
+        int[] costes = new int[3];
+        int[] listaCivilization = queryCivilizationDrops(id_battle, id_civilization);
+        int[] listaEnemy = queryEnemyDrops(id_battle, id_civilization);
+
+        for(int i = 0; i<listaCivilization.length; i++){
+            costes[0] += listaCivilization[i]*Variables.FOOD_COST_UNITS[i];
+            costes[1] += listaCivilization[i]*Variables.WOOD_COST_UNITS[i];
+            costes[2] += listaCivilization[i]*Variables.IRON_COST_UNITS[i];
+        }
+
+        listaLosses.add(costes);
+
+        costes = new int[3];
+        for(int i = 0; i<listaEnemy.length; i++){
+            costes[0] += listaEnemy[i]*Variables.FOOD_COST_UNITS[i];
+            costes[1] += listaEnemy[i]*Variables.WOOD_COST_UNITS[i];
+            costes[2] += listaEnemy[i]*Variables.IRON_COST_UNITS[i];
+        }
+        listaLosses.add(costes);
+
+        return listaLosses;
     }
 }
