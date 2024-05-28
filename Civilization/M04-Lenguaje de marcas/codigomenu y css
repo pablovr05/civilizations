@@ -1,0 +1,128 @@
+//html
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilization</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="#" class="nav-link home-icon">
+                    <img src="home-icon.png" alt="Home" class="icon">
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle">Units and Buildings</a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a href="attack_units.html" class="dropdown-link">Attack Units</a></li>
+                    <li class="dropdown-item"><a href="defense_units.html" class="dropdown-link">Defense Units</a></li>
+                    <li class="dropdown-item"><a href="special_units.html" class="dropdown-link">Special Units</a></li>
+                    <li class="dropdown-item"><a href="buildings.html" class="dropdown-link">Buildings</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Tutorial</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">About us</a>
+            </li>
+        </ul>
+    </nav>
+
+    <script src="menu.js"></script>
+</body>
+</html>
+
+//css
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #4a90e2;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-right: 20px;
+    position: relative;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 8px 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #357ab8;
+    border-radius: 4px;
+}
+
+.home-icon {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: #4a90e2;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1000;
+    white-space: nowrap;
+}
+
+.dropdown-item {
+    margin: 0;
+}
+
+.dropdown-link {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-link:hover {
+    background-color: #357ab8;
+}
+
+.dropdown.open .dropdown-menu {
+    display: block;
+}

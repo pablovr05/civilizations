@@ -54,7 +54,7 @@ def transform_units_to_html(xml_path, xsl_path, output_dir):
         for i, unit in enumerate(units):
             unit_html_dom = transform(unit)
             unit_html_result = etree.tostring(unit_html_dom, pretty_print=True, method="html").decode('utf-8')
-            unit_output_path = os.path.join(output_dir, f"unit_{i+1}.html")
+            unit_output_path = os.path.join(output_dir, f"defenseunit_{i+1}.html")
             write_html(unit_output_path, unit_html_result)
             print(f"Transformación completa para unit_{i+1}: {unit_output_path}")
     except Exception as e:
@@ -70,14 +70,14 @@ def main():
         os.makedirs(output_dir)
 
     # Archivos XML y XSL principales
-    main_xml_file = 'attack_units.xml'
-    main_xsl_file = 'attack_units.xsl'
-    unit_xsl_file = 'attack_unit.xsl'
+    main_xml_file = 'defense_units.xml'
+    main_xsl_file = 'defense_units.xsl'
+    unit_xsl_file = 'defense_unit.xsl'
 
     # Transformar el archivo XML principal
     xml_path = os.path.join(input_dir, main_xml_file)
     main_xsl_path = os.path.join(input_dir, main_xsl_file)
-    output_path = os.path.join(output_dir, 'attack_units.html')
+    output_path = os.path.join(output_dir, 'defense_units.html')
     transform_xml_to_html(xml_path, main_xsl_path, output_path)
 
     # Transformar cada unidad en un archivo HTML individual
