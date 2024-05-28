@@ -70,16 +70,19 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
 
     boolean startBattle(Civilization civilization) {
         this.desarrolloBatalla = new ArrayList<>();
-
-        Scanner scan = new Scanner(System.in);
         while (remainderPercentageFleet(civilizationArmy) >= 20 && remainderPercentageFleet(enemyArmy) >= 20) {
-
+            System.out.println(6);
             int attackGroupCivilization = getCivilizationGroupAttacker();
+            System.out.println(61);
             int attackGroupEnemy = getEnemyGroupAttacker();
+            System.out.println(62);
             // Verifica que los grupos no estén vacíos
             if (civilizationArmy.get(attackGroupCivilization).isEmpty() || enemyArmy.get(attackGroupEnemy).isEmpty()) {
+                System.out.println(63);
                 continue;
             }
+
+            System.out.println(7);
             
             // Selecciona unidades atacante y defensora
             MilitaryUnit attackerCivilization = civilizationArmy.get(attackGroupCivilization)
@@ -91,6 +94,8 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
             // printBattle();
             // String hola = scan.nextLine();  // Esto aparece para debugging, puedes quitarlo si no es necesario
             
+            System.out.println(8);
+
             // Ataca la unidad enemiga
             this.battleDevelopment += "********************CHANGE ATTACKER********************\n";
             String[] turnoCivilizacion = new String[5];
@@ -105,17 +110,28 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
             turnoCivilizacion[3] = String.valueOf(defenseEnemy);
             this.battleDevelopment += getClassName(defenderEnemy) + " stays with armor = " + defenseEnemy + "\n";
 
+            System.out.println(9);
+
             turnoCivilizacion[4] = "0";
-            
             if (defenseEnemy <= 0) {
                 this.battleDevelopment += "We eliminate " + getClassName(defenderEnemy) + "\n";
+                System.out.println(11);
                 generateWaste(defenderEnemy);
+                System.out.println(13);
                 addDropUnit(defenderEnemy, true);
+                System.out.println(14);
                 enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
-                Main.enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
+                System.out.println(15);
+                System.out.println(12);
             } else{
+
+                System.out.println(10);
                 // Segunda posibilidad de ataque
                 int random = (int) (Math.random() * 100);
+
+                System.out.println(random);
+                System.out.println(attackerCivilization.getChanceAttackAgain());
+                System.out.println(enemyArmy.get(attackGroupEnemy).isEmpty());
                 if (random <= attackerCivilization.getChanceAttackAgain() && !enemyArmy.get(attackGroupEnemy).isEmpty()) {
                     // defenderEnemy = enemyArmy.get(attackGroupEnemy)
                     //         .get((int) (Math.random() * enemyArmy.get(attackGroupEnemy).size()));
@@ -131,11 +147,15 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
                         generateWaste(defenderEnemy);
                         addDropUnit(defenderEnemy, true);
                         enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
-                        Main.enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
                         
-                    }
+                    } else {
+                    } 
+                } else {
+                    System.out.println(" muy mal");
                 }
             }
+
+            System.out.println(1);
             
             
             this.actualNumberUnitsCivilization = getArrayQuantities(civilizationArmy);
@@ -143,11 +163,14 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
             
             // Selecciona defensor y atacante del enemigo
             attackGroupEnemy = getEnemyGroupAttacker();
+            System.out.println(167);
             int defenseGroup = getGroupDefender(civilizationArmy);
             
             if (civilizationArmy.get(defenseGroup).isEmpty()) {
                 continue;  // Evita seleccionar un defensor de un grupo vacío
             }
+
+            System.out.println(2);
             
             MilitaryUnit defenderCivilization = civilizationArmy.get(defenseGroup)
                     .get((int) (Math.random() * civilizationArmy.get(defenseGroup).size()));
@@ -168,6 +191,8 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
             turnoEnemigo[3] = String.valueOf(defenseCivilization);
             this.battleDevelopment += getClassName(defenderCivilization) + " stays with armor = " + defenseCivilization + "\n";
             turnoEnemigo[4] = "0";
+
+            System.out.println(3);
 
             if (defenseCivilization <= 0) {
                 this.battleDevelopment += "We lose " + getClassName(defenderCivilization) + "\n";
@@ -198,21 +223,26 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
                 }
             }
 
+            System.out.println(4);
+
             ArrayList<String[]> turnoCompleto = new ArrayList<>();
             turnoCompleto.add(turnoCivilizacion);
             turnoCompleto.add(turnoEnemigo);
             this.desarrolloBatalla.add(turnoCompleto);
             
-            
             this.actualNumberUnitsCivilization = getArrayQuantities(civilizationArmy);
             this.actualNumberUnitsEnemy = getArrayQuantities(enemyArmy);
+
+            System.out.println(5);
         }
 
 
         civilization.battles += 1;
         updateResourcesLooses();
+
         Civilization.gainExperience();
-        
+
+        System.out.println(resourcesLooses);
         if (this.resourcesLooses.get(0)[3]>this.resourcesLooses.get(1)[3]) {
             this.winner = false;
         } else {
@@ -237,7 +267,7 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         }
     }
     
-    int getCivilizationGroupAttacker() {
+    public int getCivilizationGroupAttacker() {
         while (true) {
             int random = (int) (Math.random() * 100);
             if (random <= 4 && !civilizationArmy.get(0).isEmpty()) {
@@ -266,7 +296,7 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         return suma;
     }
 
-    public int[] getArrayQuantities(ArrayList<ArrayList<MilitaryUnit>> army){
+    public static int[] getArrayQuantities(ArrayList<ArrayList<MilitaryUnit>> army){
         int[] array = new int[army.size()];
         for(int i = 0; i<army.size(); i++){
             array[i] = army.get(i).size();
@@ -373,7 +403,7 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
     }
     
 
-    int getGroupDefender(ArrayList<ArrayList<MilitaryUnit>> army){
+    public int getGroupDefender(ArrayList<ArrayList<MilitaryUnit>> army){
         int total = 0;
 
         for(int i = 0; i<4; i++){

@@ -48,9 +48,6 @@ public class AtacarControlador {
                 // Lógica cuando se hace clic en el botón "Escapar"
                 timer.stop();
                 System.out.println("Botón Escapar clicado");
-                //si no se puede escapar con tan solo llamar la función ya se llama a la interfaz de ataque
-                llamarResultadoBatalla();
-                //si se puede escar:
                 llamarMenú();
                 mainWindow.setSize(585,415);
                 mainWindow.contadorAtacar.iniciarContador();
@@ -84,7 +81,14 @@ public class AtacarControlador {
     }
 
     private void llamarResultadoBatalla() {
-        resultadoBattallaFrame = new ResultadoBattallaFrame(true);
+        System.out.println(1);
+        Battle battle = new Battle(CivilizaciónControlador.civilización.army, atacarFrame.enemyArmy);
+        System.out.println(1);
+        String mecagoentusmuertos = battle.startBattle(CivilizaciónControlador.civilización);
+        System.out.println(1);
+        System.out.println(mecagoentusmuertos);
+
+        resultadoBattallaFrame = new ResultadoBattallaFrame(false);
         mainWindow.cambiarPanel(resultadoBattallaFrame);
         resultadoBatallaControlador = new ResultadoBatallaControlador(resultadoBattallaFrame, mainWindow);
         resultadoBatallaControlador.start();

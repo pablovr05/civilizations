@@ -8,31 +8,45 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class AtacarFrame extends JPanel {
 
     private JLabel timerLabel;
 
     private Image backgroundImage;
+    
+    public ArrayList<ArrayList<MilitaryUnit>> enemyArmy;
 
-    public int cnt_Swordsmans = CivilizaciónControlador.civilización.getNombreSwordsman();
-    public int cnt_Spearmans = CivilizaciónControlador.civilización.getNombreSpearman();
-    public int cnt_Crossbows = CivilizaciónControlador.civilización.getNombreCrossbow();
-    public int cnt_Canons = CivilizaciónControlador.civilización.getNombreCannon();
-    public int cnt_Arrow_towers = CivilizaciónControlador.civilización.getNombreArrowTower();
-    public int cnt_Catapults = CivilizaciónControlador.civilización.getNombreCatapult();
-    public int cnt_Rocket_launchers = CivilizaciónControlador.civilización.getNombreRocketLauncher();
-    public int cnt_Magicians = CivilizaciónControlador.civilización.getNombreMagician();
-    public int cnt_Priests = CivilizaciónControlador.civilización.getNombrePriest();
+    private int cnt_Swordsmans = CivilizaciónControlador.civilización.getNombreSwordsman();
+    private int cnt_Spearmans = CivilizaciónControlador.civilización.getNombreSpearman();
+    private int cnt_Crossbows = CivilizaciónControlador.civilización.getNombreCrossbow();
+    private int cnt_Canons = CivilizaciónControlador.civilización.getNombreCannon();
+    private int cnt_Arrow_towers = CivilizaciónControlador.civilización.getNombreArrowTower();
+    private int cnt_Catapults = CivilizaciónControlador.civilización.getNombreCatapult();
+    private int cnt_Rocket_launchers = CivilizaciónControlador.civilización.getNombreRocketLauncher();
+    private int cnt_Magicians = CivilizaciónControlador.civilización.getNombreMagician();
+    private int cnt_Priests = CivilizaciónControlador.civilización.getNombrePriest();
 
-    public int E_cnt_Swordsmans;
-    public int E_cnt_Spearmans;
-    public int E_cnt_Crossbows;
-    public int E_cnt_Canons;
+    private int E_cnt_Swordsmans = -1;
+    private int E_cnt_Spearmans = -1;
+    private int E_cnt_Crossbows = -1;
+    private int E_cnt_Canons = -1;
 
     public JButton escaparBotón;
     public JButton empezarBotón;
 
     public AtacarFrame() {
+
+        this.enemyArmy = Main.createEnemyArmy(CivilizaciónControlador.civilización.battles);
+
+        this.E_cnt_Swordsmans = getNombreSwordsman(enemyArmy);
+        this.E_cnt_Spearmans = getNombreSpearman(enemyArmy);
+        this.E_cnt_Crossbows = getNombreCrossbow(enemyArmy);
+        this.E_cnt_Canons = getNombreCannon(enemyArmy);
+
+        System.out.println(enemyArmy);
 
         setLayout(new BorderLayout());
 
@@ -317,17 +331,28 @@ public class AtacarFrame extends JPanel {
         timerLabel.setText(tiempo);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("AtacarFrame Demo");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(1150, 650);
-            frame.setLocationRelativeTo(null);
+    public int getNombreSwordsman(ArrayList<ArrayList<MilitaryUnit>> ejercitoEnemigo) {
+        return getElementCount(0);
+    }
+    
+    public int getNombreSpearman(ArrayList<ArrayList<MilitaryUnit>> ejercitoEnemigo) {
+        return getElementCount(1);
+    }
+    
+    public int getNombreCrossbow(ArrayList<ArrayList<MilitaryUnit>> ejercitoEnemigo) {
+        return getElementCount(2);
+    }
+    
+    public int getNombreCannon(ArrayList<ArrayList<MilitaryUnit>> ejercitoEnemigo) {
+        return getElementCount(3);
+    }
 
-            AtacarFrame atacarFrame = new AtacarFrame();
-            frame.add(atacarFrame);
-
-            frame.setVisible(true);
-        });
+    public int getElementCount(int index) {
+        if (index >= 0 && index < enemyArmy.size()) {
+            List<MilitaryUnit> sublista = enemyArmy.get(index); 
+            return sublista.size(); 
+        } else {
+            return -1; 
+        }
     }
 }
