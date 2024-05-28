@@ -407,13 +407,19 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
     public int getGroupDefender(ArrayList<ArrayList<MilitaryUnit>> army){
         int total = 0;
 
-        for(int i = 0; i<4; i++){
+        for(int i = 0; i<9; i++){
             total += actualNumberUnitsCivilization[i];
         }
 
         int swordsman = 100*actualNumberUnitsCivilization[0]/total;
         int spearman = swordsman + 100*actualNumberUnitsCivilization[1]/total;
         int crossbow = spearman + 100*actualNumberUnitsCivilization[2]/total;
+        int cannon = crossbow + 100*actualNumberUnitsCivilization[3]/total;
+        int arrow_tower = cannon + 100*actualNumberUnitsCivilization[4]/total;
+        int catapult = arrow_tower + 100*actualNumberUnitsCivilization[5]/total;
+        int rocketlaunchertower = catapult + 100*actualNumberUnitsCivilization[6]/total;
+        int magician = rocketlaunchertower + 100*actualNumberUnitsCivilization[7]/total;
+        int priest = magician + 100*actualNumberUnitsCivilization[8]/total;
 
         while(true){
             int random = (int)(Math.random()*100);
@@ -432,8 +438,33 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
                     if(!army.get(num).isEmpty()){
                         return num;
                     }
-            } else{
+            } else if(random<=cannon){
                 int num = 3;
+                    if(!army.get(num).isEmpty()){
+                        return num;
+                    }
+            }if(random<=arrow_tower){
+                int num = 4;
+                    if(!army.get(num).isEmpty()){
+                        return num;
+                    }
+            } else if(random<=catapult){
+                int num = 5;
+                    if(!army.get(num).isEmpty()){
+                        return num;
+                    }
+            } else if(random<=rocketlaunchertower){
+                int num = 6;
+                    if(!army.get(num).isEmpty()){
+                        return num;
+                    }
+            } else if(random<=magician){
+                int num = 7;
+                    if(!army.get(num).isEmpty()){
+                        return num;
+                    }
+            } else {
+                int num = 8;
                     if(!army.get(num).isEmpty()){
                         return num;
                     }
