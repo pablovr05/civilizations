@@ -23,6 +23,7 @@ public class EjércitoControlador {
         ejércitoFrame.optionsComboBoxEjército.addActionListener(this::controllerButtonAction);
         ejércitoFrame.acceptButtonEjército.addActionListener(this::controllerButtonAction);
         ejércitoFrame.cancelButtonEjército.addActionListener(this::controllerButtonAction);
+        ejércitoFrame.gifButton.addActionListener(this::controllerButtonAction);
     }
 
     public void controllerButtonAction(ActionEvent e) {
@@ -31,7 +32,9 @@ public class EjércitoControlador {
     }
 
     public void runCommand(String command) {
-        if (command.equals("Cancelar")) {
+        if (command.equals("GIF_BUTTON_CLICKED")) {
+            System.out.println("gifbuttonapretado");
+        } if (command.equals("Cancelar")) {
             SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Salir");
             llamarMenú();

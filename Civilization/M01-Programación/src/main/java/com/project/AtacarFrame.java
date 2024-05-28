@@ -14,15 +14,15 @@ public class AtacarFrame extends JPanel {
 
     private Image backgroundImage;
 
-    public int cnt_Swordsmans;
-    public int cnt_Spearmans;
-    public int cnt_Crossbows;
-    public int cnt_Canons;
-    public int cnt_Arrow_towers;
-    public int cnt_Catapults;
-    public int cnt_Rocket_launchers;
-    public int cnt_Magicians;
-    public int cnt_Priests;
+    public int cnt_Swordsmans = CivilizaciónControlador.civilización.getNombreSwordsman();
+    public int cnt_Spearmans = CivilizaciónControlador.civilización.getNombreSpearman();
+    public int cnt_Crossbows = CivilizaciónControlador.civilización.getNombreCrossbow();
+    public int cnt_Canons = CivilizaciónControlador.civilización.getNombreCannon();
+    public int cnt_Arrow_towers = CivilizaciónControlador.civilización.getNombreArrowTower();
+    public int cnt_Catapults = CivilizaciónControlador.civilización.getNombreCatapult();
+    public int cnt_Rocket_launchers = CivilizaciónControlador.civilización.getNombreRocketLauncher();
+    public int cnt_Magicians = CivilizaciónControlador.civilización.getNombreMagician();
+    public int cnt_Priests = CivilizaciónControlador.civilización.getNombrePriest();
 
     public int E_cnt_Swordsmans;
     public int E_cnt_Spearmans;

@@ -23,6 +23,7 @@ public class EdificacionesControlador {
         edificacionesFrame.optionsComboBoxEdificios.addActionListener(this::controllerButtonAction);
         edificacionesFrame.acceptButtonEdificios.addActionListener(this::controllerButtonAction);
         edificacionesFrame.cancelButtonEdificios.addActionListener(this::controllerButtonAction);
+        edificacionesFrame.gifButton.addActionListener(this::controllerButtonAction);
     }
 
     public void controllerButtonAction(ActionEvent e) {
@@ -31,7 +32,9 @@ public class EdificacionesControlador {
     }
 
     public void runCommand(String command) {
-        if (command.equals("Cancelar")) {
+        if (command.equals("GIF_BUTTON_CLICKED")) {
+            System.out.println("gifbuttonapretado");
+        } if (command.equals("Cancelar")) {
             SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Salir");
             llamarMenú();
