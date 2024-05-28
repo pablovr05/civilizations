@@ -53,7 +53,8 @@ public class BattleDAO {
         // Falta la tabla de battle_log después de crear la lista de battle
 
         for(int i = 0; i<battle.desarrolloBatalla.size(); i++){
-            
+            updateQuery = "INSERT INTO Battle_log (civilization_id, num_battle, num_line, atacante_civilization, defensor_enemy, ataque_civilization, defensa_enemy, repite_civilization, atacante_enemy, defensor_civilization, ataque_enemy, defensa_civilization, repite_enemy)"+
+                " VALUES ("+civilization_id+", "+id+", "+i+", '"+battle.desarrolloBatalla.get(i).get(0)[0]+"','"+battle.desarrolloBatalla.get(i).get(0)[1]+"', "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(0)[2])+", "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(0)[3])+", "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(0)[4])+", '"+battle.desarrolloBatalla.get(i).get(1)[0]+"','"+battle.desarrolloBatalla.get(i).get(1)[1]+"', "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(1)[2])+", "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(1)[3])+", "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(1)[4])+")";
         }
 
         db.update("COMMIT");
