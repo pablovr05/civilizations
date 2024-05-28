@@ -270,21 +270,24 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
             int random = (int) (Math.random() * 100);
             if (random <= 4 && !civilizationArmy.get(0).isEmpty()) {
                 return 0;
-            } else if (random <= 13 && !civilizationArmy.get(1).isEmpty()) {
+            } else if (random <= 16 && !civilizationArmy.get(1).isEmpty()) {
                 return 1;
-            } else if (random <= 26 && !civilizationArmy.get(2).isEmpty()) {
+            } else if (random <= 29 && !civilizationArmy.get(2).isEmpty()) {
                 return 2;
-            } else if (random <= 44 && !civilizationArmy.get(3).isEmpty()) {
+            } else if (random <= 47 && !civilizationArmy.get(3).isEmpty()) {
                 return 3;
-            } else if (random <= 70 && !civilizationArmy.get(4).isEmpty()) {
+            } else if (random <= 68 && !civilizationArmy.get(4).isEmpty()) {
                 return 4;
-            } else if (!civilizationArmy.get(5).isEmpty()) {
+            } else if (random <= 72 && !civilizationArmy.get(5).isEmpty()) {
                 return 5;
-            }
+            } else if (random <= 86 && !civilizationArmy.get(6).isEmpty()) {
+                return 6;
+            } else if (random <= 100 && !civilizationArmy.get(7).isEmpty()) {
+                return 7;
+            } 
         }
     }
     
-
     public int getArmyQuantity(ArrayList<ArrayList<MilitaryUnit>> army){
         int suma = 0;
         for(int i = 0; i<army.size(); i++){
