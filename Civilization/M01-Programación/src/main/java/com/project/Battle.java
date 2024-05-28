@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Battle {
 
-    String winner;
+    boolean winner;
     ArrayList<ArrayList<MilitaryUnit>> civilizationArmy;
     ArrayList<ArrayList<MilitaryUnit>> enemyArmy;
     ArrayList<ArrayList<ArrayList<MilitaryUnit>>> armies;
@@ -68,7 +68,7 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
 
 
 
-    String startBattle(Civilization civilization) {
+    boolean startBattle(Civilization civilization) {
         this.desarrolloBatalla = new ArrayList<>();
 
         Scanner scan = new Scanner(System.in);
@@ -208,13 +208,15 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
             this.actualNumberUnitsEnemy = getArrayQuantities(enemyArmy);
         }
 
+
+        civilization.battles += 1;
         updateResourcesLooses();
         Civilization.gainExperience();
         
         if (this.resourcesLooses.get(0)[3]>this.resourcesLooses.get(1)[3]) {
-            this.winner = "enemy";
+            this.winner = false;
         } else {
-            this.winner = "civilization";
+            this.winner = true;
         }
         return this.winner;
     }

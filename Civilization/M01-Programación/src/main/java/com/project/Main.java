@@ -71,7 +71,7 @@ public class Main {
                     case 6:
                         enemyArmy = createEnemyArmy(civilization.battles);
                         Battle batalla = new Battle(civilization.army, enemyArmy);
-                        String ganador = batalla.startBattle(civilization);
+                        boolean ganador = batalla.startBattle(civilization);
                         System.out.println("ha ganado "+ganador);
                         System.out.print("Quieres ver el desarrollo de la batalla? (S/N)");
                         String verDesarrollo = scanner.nextLine();
