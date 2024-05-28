@@ -12,10 +12,10 @@ public class CivilizationDAO {
     public static int getLastID(){
         AppData db = AppData.getInstance();
 
-        List<Map<String, Object>> listaID = db.query("SELECT civilization_id FROM Civilization_stats ORDER BY civilization_id LIMIT 1");
+        List<Map<String, Object>> listaID = db.query("SELECT civilization_id FROM Civilization_stats ORDER BY civilization_id DESC LIMIT 1");
 
-        int id = (int) listaID.get(0).get("civilization_id");
-        return id;
+        BigDecimal id = (BigDecimal) listaID.get(0).get("CIVILIZATION_ID");
+        return id.intValue();
     }
 
     public static void saveUnits(Civilization civilization, int id) {
