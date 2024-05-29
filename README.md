@@ -1,5 +1,7 @@
 # Civilizations
 
+![Foto](Civilization/M01-Programación/src/main/java/com/project/images/gifmedieval.gif)
+
 Civilizations es un simulador de batallas desarrollado en Java. En este proyecto, los jugadores pueden gestionar civilizaciones, entrenar unidades militares, mejorar tecnologías y enfrentar otras civilizaciones en combates estratégicos.
 
 ## Características
@@ -68,6 +70,6 @@ Las contribuciones son bienvenidas. Para contribuir:
 
 Para cualquier consulta o sugerencia, puedes contactar a los siguientes correos:
 
-[Joel Martínez](mailto:joelmv2004@gmail.com)
-[Adrià Martínez](mailto:am76635@gmail.com)
-[Pablo Vicente](mailto:pablovicenteroura2005@gmail.com)
+- [Joel Martínez](mailto:joelmv2004@gmail.com)
+- [Adrià Martínez](mailto:am76635@gmail.com)
+- [Pablo Vicente](mailto:pablovicenteroura2005@gmail.com)
