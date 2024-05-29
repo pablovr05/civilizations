@@ -123,3 +123,33 @@
 .dropdown.open .dropdown-menu {
     display: block;
 }
+
+
+
+//footer html
+
+<footer class="footer">
+    <div class="footer-content">
+        <p>&copy; 2024 Civilizations. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+//footer css
+
+.footer {
+    background-color: #4a90e2;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
