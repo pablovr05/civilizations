@@ -12,6 +12,8 @@ public class HistorialControlador {
     public HistorialControlador(HistorialFrame vBasic, MainWindow mainWindow) {
         this.historialFrame = vBasic;
         this.mainWindow = mainWindow;
+        mainWindow.contadorAtacar.detenerContador();
+        mainWindow.contadorRecursos.detenerContador();
         mainWindow.setSize(1150, 650);
     }
 
@@ -29,9 +31,11 @@ public class HistorialControlador {
     }
 
     public void runCommand(String command) {
-        if (command.equals("Salir")) {
+        if (command.equals("Volver")) {
             SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Salir");
+            mainWindow.contadorAtacar.iniciarContador();
+            mainWindow.contadorRecursos.iniciarContador();
             llamarMenú();
         }
     } 

@@ -72,140 +72,6 @@ Coded with 💚​ by Óscar Medina, Víctor Valero and Pablo Vicente
 
 <br/>
 
-<div align="left">
-
-# Introduction
-
-<div>
-
-<p>
-
-<img width="400px" height="auto" align="right" src="https://static.wikia.nocookie.net/zelda/images/0/02/BotW_Link_Shooting_Artwork.png/revision/latest?cb=20170628164822&path-prefix=pl" />
-
-<p align="right">
-
-10,000 years ago, Hyrule was a land of prosperity thanks to the Sheikah  
-tribe. The Sheikah were a tribe of warriors who protected  the Triforce,  
-a sacred relic that granted wishes.  
-
-But one day, Ganondorf, an evil sorcerer, stole the Triforce and began  
-to rule Hyrule with an iron fist. 
-
-The princess, with the help of a heroic young man, managed to defeat  
-Ganondorf and recover the Triforce.  
-
-Now history is repeating itself, and Princess Zelda has been captured by  
-Ganon. He has taken over the Guardians and filled Hyrule with monsters.  
-
-But a young man named 'Link' has just awakened and  
-must reclaim the Guardians to defeat Ganon and save Hyrule.  
-
-</p>
-
-</p>
-
-</div>
-
-
-<br/><br/>
-
-# Game controls
-
-#### Map controls
-
-*Terminal commands to move around the map*
-
-| Action            | Shortcut            | Example               |
-|-------------------|---------------------|-----------------------|
-| Lineal movement   | *Go 'X' 'direction'* | `Go 10 right`         |
-| Relative movement | *Go by the 'symbol'* | `Go by the M`         |
-| Region movement   | *Go to 'region'*    | `Go to Gerudo`        |
-
-<br/><br/>
-
-#### Interacion controls
-
-*Terminal commands to interact with entities*
-
-| Action | Definition                         | 
-|--------|------------------------------------|
-| Attack | `Attacks a nearby entity`   |
-| Attack | `Cuts a nearby bush`        |
-| Attack | `Hits a nearby tree`     |         
-| Fish | `Fishes in a nerby lake`  |         
-| Open Chest   | `Opens a chest`     |            
-| Open Santuary   | `Opens a sanctuary`  |  
-
-<br/><br/>
-
-#### Inventory controls
-
-*Terminal commands related to inventory*
-
-| Action            | Shortcut           | Example               |
-|-------------------|--------------------|-----------------------|
-| Equip weapon      | *Equip 'weapon'*   | `Equip Wood Sword`    |
-| Equip shield      | *Equip 'shield'*   | `Equip Shield`        |
-| Unequip weapon    | *Unequip 'weapon'* | `Unequip Sword`       |
-| Unequip shield    | *Unequip 'shield'* | `Unequip Wood Shield` |
-| Eat item          | *Eat 'food'*       | `Eat Vegetable`       |
-| Cook item         | *Cook 'recept'*    | `Cook Salad`          |
-
-<br/><br/>
-
-#### Show commands
-
-*Terminal commands to show the interfaces*
-
-| Action                 | Definition                             | 
-|------------------------|----------------------------------------|
-| Show inventory main    | `Shows the main inventory interface`   |
-| Show inventory weapons | `Shows the main weapons interface`     |
-| Show inventory food    | `Shows the main interface of the food` |         
-| Show map               | `Shows the map interface.`             |         
-
-<br/><br/>
-
-<div align="center" style="padding-bottom: 200px;">
-
-# 🍖 - Food Items - 🌿 
-
-<br/><br/>
-
-</div>
-
-<p align="center">
-  
-<img src="ReadmeImages/ingredientes.png" width = "100%" height=auto>
-
-</p>
-
-<br/><br/>
-
-<div align="center" style="padding-bottom: 200px;">
-
-# 🍲 - Recipes - 🥗
-
-<br/><br/>
-
-</div>
-
-<p backbround-color = "black" align="center">
-
-<img src="ReadmeImages/recetas.png" width = "100%" height=auto>
-
-</p>
-
-<br/><br/>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -217,6 +83,8 @@ must reclaim the Guardians to defeat Ganon and save Hyrule.
 
 
 # Civilizations
+
+![Foto](Civilization/M01-Programación/src/main/java/com/project/images/gifmedieval.gif)
 
 Civilizations es un simulador de batallas desarrollado en Java. En este proyecto, los jugadores pueden gestionar civilizaciones, entrenar unidades militares, mejorar tecnologías y enfrentar otras civilizaciones en combates estratégicos.
 
@@ -284,4 +152,8 @@ Las contribuciones son bienvenidas. Para contribuir:
 
 ## Contacto
 
-Para cualquier consulta o sugerencia, puedes contactar a [Joel Martínez](mailto:joelmv2004@gmail.com).
+Para cualquier consulta o sugerencia, puedes contactar a los siguientes correos:
+
+- [Joel Martínez](mailto:joelmv2004@gmail.com)
+- [Adrià Martínez](mailto:am76635@gmail.com)
+- [Pablo Vicente](mailto:pablovicenteroura2005@gmail.com)
