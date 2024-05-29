@@ -35,7 +35,7 @@ public class ShowEjercito extends JDialog {
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         int[] materiales = CivilizaciónControlador.civilización.getEjércitoInfo(type);
-        System.out.println("Food: " + materiales[0] + " Wood: " + materiales[1] + " Iron: " + materiales[2] + " Mana: " + materiales[3] + " armor: " + materiales[4] + " baseDamage: " + materiales[5] + " Chance attack again: " + materiales[6] + "%" + " Chance generating wastes: " + materiales[7] + "%");
+        System.out.println("Food: " + materiales[0] + " Wood: " + materiales[1] + " Iron: " + materiales[2] + " Mana: " + materiales[3] + " Armor: " + materiales[4] + " Base Damage: " + materiales[5] + " Chance of Attack Again: " + materiales[6] + "%" + " Chance of Generating Wastes: " + materiales[7] + "%");
 
         this.type = type;
         this.food = materiales[0];
@@ -50,7 +50,7 @@ public class ShowEjercito extends JDialog {
         setLayout(new BorderLayout());
         setUndecorated(true); // Elimina la decoración de la ventana (bordes, botones de cierre, etc.)
         setBackground(new Color(0, 0, 0, 100)); // Fondo transparente
-        setPreferredSize(new Dimension(585,415));
+        setPreferredSize(new Dimension(585, 415));
 
         // Configura el contenido de la ventana emergente
         JPanel contentPane = new JPanel(new GridBagLayout());
@@ -59,7 +59,7 @@ public class ShowEjercito extends JDialog {
 
         // Crear el botón con el GIF
         RoundedPanel roundedPanel = new RoundedPanel();
-        roundedPanel.setLayout(new GridLayout(3, 1));
+        roundedPanel.setLayout(new BoxLayout(roundedPanel, BoxLayout.Y_AXIS));
         roundedPanel.setCornerRadius(20);
 
         try {
@@ -91,30 +91,32 @@ public class ShowEjercito extends JDialog {
             }
         });
 
-        roundedPanel.setPreferredSize(new Dimension(250,315));
+        roundedPanel.setPreferredSize(new Dimension(250, 315));
 
         // Añadir el botón al panel de contenido
         contentPane.add(roundedPanel);
 
         JLabel titleLabel = new JLabel(type, SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        roundedPanel.add(titleLabel, BorderLayout.NORTH);
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setPreferredSize(new Dimension(200, 50));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        titleLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+        roundedPanel.add(titleLabel);
 
         URL = getEjercitoURL(type);
 
         JLabel imageLabel = new JLabel(new ImageIcon(URL));
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        roundedPanel.add(imageLabel, BorderLayout.CENTER);
+        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar la imagen
+        roundedPanel.add(imageLabel);
 
-        // Crear la tabla con 8 filas y 2 columnas
         String[][] data = new String[8][2]; // Inicializar la tabla vacía
         String[] columnNames = {"Attribute", "Value"};
         JTable table = new JTable(data, columnNames);
         table.setFillsViewportHeight(true);
         table.setShowGrid(true);
         table.setGridColor(Color.BLACK);
-
-        // Añadir nombre a la tabla
         table.setName("Estadísticas");
 
         // Añadir datos a la tabla
@@ -134,34 +136,27 @@ public class ShowEjercito extends JDialog {
         data[6][1] = Integer.toString(chanceAtt) + "%";
         data[7][0] = "Chance of Generating Wastes";
         data[7][1] = Integer.toString(chanceWst) + "%";
-        
-        // Añadir el panel de contenido a la ventana emergente
-        roundedPanel.add(table, BorderLayout.SOUTH);
 
-        table.setBorder(new EmptyBorder(10,10,100,0)); // Ajusta el borde vacío alrededor de la tabla
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setAlignmentX(Component.CENTER_ALIGNMENT); // Centrar la tabla
+        roundedPanel.add(scrollPane);
 
-        roundedPanel.setBorder(new EmptyBorder(0,5,10,5)); // Ajusta el borde alrededor del panel de contenido
-
-        // Añadir el panel de contenido a la ventana emergente
         getContentPane().add(contentPane, BorderLayout.CENTER);
 
-        // Establecer el tamaño de la ventana
         pack();
-
-        // Centrar la ventana en la pantalla
         setLocationRelativeTo(parent);
     }
 
     public String getEjercitoURL(String tipo) {
         switch (tipo) {
             case "Swordsman":
-                return "src\\main\\java\\com\\project\\images\\sprites\\guerrero.png";  
+                return "src\\main\\java\\com\\project\\images\\sprites\\guerrero.png";
             case "Spearman":
-                return "src\\main\\java\\com\\project\\images\\sprites\\lancero.png";  
+                return "src\\main\\java\\com\\project\\images\\sprites\\lancero.png";
             case "Crossbow":
-                return "src\\main\\java\\com\\project\\images\\sprite\\ballesta.png";            
+                return "src\\main\\java\\com\\project\\images\\sprites\\ballesta.png";
             case "Cannon":
-                return "src\\main\\java\\com\\project\\images\\sprites\\cañón.png";  
+                return "src\\main\\java\\com\\project\\images\\sprites\\cañón.png";
             case "Arrow Tower":
                 return "src\\main\\java\\com\\project\\images\\sprites\\arquero.png";
             case "Catapult":

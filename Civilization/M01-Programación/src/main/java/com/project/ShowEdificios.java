@@ -59,7 +59,7 @@ public class ShowEdificios extends JDialog {
 
         // Crear el botón con el GIF
         RoundedPanel roundedPanel = new RoundedPanel();
-        roundedPanel.setLayout(new GridLayout(3, 1));
+        roundedPanel.setLayout(new BoxLayout( roundedPanel, BoxLayout.Y_AXIS));
         roundedPanel.setCornerRadius(20);
 
         try {
@@ -98,13 +98,19 @@ public class ShowEdificios extends JDialog {
 
         JLabel titleLabel = new JLabel(type, SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        roundedPanel.add(titleLabel, BorderLayout.NORTH);
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setPreferredSize(new Dimension(200, 50));
+
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        titleLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
+
+        roundedPanel.add(titleLabel);
 
         URL = getEdificioURL(type);
 
         JLabel imageLabel = new JLabel(new ImageIcon(URL));
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        roundedPanel.add(imageLabel, BorderLayout.CENTER);
+        roundedPanel.add(imageLabel);
 
         String[][] data = new String[8][2]; // Inicializar la tabla vacía
         String[] columnNames = {"Attribute", "Value"};
@@ -135,11 +141,7 @@ public class ShowEdificios extends JDialog {
         data[7][1] = Integer.toString(manaGen) + "%";
         
         // Añadir el panel de contenido a la ventana emergente
-        roundedPanel.add(table, BorderLayout.SOUTH);
-
-        table.setBorder(new EmptyBorder(10,10,100,0)); // Ajusta el borde vacío alrededor de la tabla
-
-        roundedPanel.setBorder(new EmptyBorder(0,5,10,5));
+        roundedPanel.add(table);
 
         // Añadir el panel de contenido a la ventana emergente
         getContentPane().add(contentPane, BorderLayout.CENTER);
