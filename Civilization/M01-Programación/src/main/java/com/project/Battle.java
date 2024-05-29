@@ -338,9 +338,9 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         comida = 0;
         hierro = 0;
         for(int i = 0; i<enemyArmy.size(); i++){
-            madera += Variables.WOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-civilizationArmy.get(i).size());
-            comida += Variables.FOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-civilizationArmy.get(i).size());
-            hierro += Variables.IRON_COST_UNITS[i]*(initialArmies.get(1)[i]-civilizationArmy.get(i).size());
+            madera += Variables.WOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-enemyArmy.get(i).size());
+            comida += Variables.FOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-enemyArmy.get(i).size());
+            hierro += Variables.IRON_COST_UNITS[i]*(initialArmies.get(1)[i]-enemyArmy.get(i).size());
         }
         loss[0] = comida;
         loss[1] = madera;
