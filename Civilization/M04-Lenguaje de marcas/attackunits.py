@@ -52,11 +52,20 @@ def transform_units_to_html(xml_path, xsl_path, output_dir):
         # Aplicar la transformación a cada unidad y guardar el HTML individual
         units = xml_tree.xpath('//unit')
         for i, unit in enumerate(units):
-            unit_html_dom = transform(unit)
-            unit_html_result = etree.tostring(unit_html_dom, pretty_print=True, method="html").decode('utf-8')
-            unit_output_path = os.path.join(output_dir, f"attackunit_{i+1}.html")
-            write_html(unit_output_path, unit_html_result)
-            print(f"Transformación completa para unit_{i+1}: {unit_output_path}")
+            name_element = unit.find('name')
+            if name_element is not None:
+                unit_name = name_element.text.strip()
+                print(f"Transformando unidad {unit_name}: {etree.tostring(unit, pretty_print=True).decode('utf-8')}")
+                unit_html_dom = transform(unit)
+                if unit_html_dom is not None:
+                    unit_html_result = etree.tostring(unit_html_dom, pretty_print=True, method="html").decode('utf-8')
+                    unit_output_path = os.path.join(output_dir, f"{unit_name}.html")
+                    write_html(unit_output_path, unit_html_result)
+                    print(f"Transformación completa para {unit_name}: {unit_output_path}")
+                else:
+                    print(f"Error al transformar la unidad {unit_name}: resultado None")
+            else:
+                print(f"Unidad {i+1} no tiene un nombre especificado.")
     except Exception as e:
         print(f"Error al transformar las unidades de {xml_path}: {e}")
 
@@ -77,7 +86,7 @@ def main():
     # Transformar el archivo XML principal
     xml_path = os.path.join(input_dir, main_xml_file)
     main_xsl_path = os.path.join(input_dir, main_xsl_file)
-    output_path = os.path.join(output_dir, 'attack_units.html')
+    output_path = os.path.join(output_dir, 'index.html')
     transform_xml_to_html(xml_path, main_xsl_path, output_path)
 
     # Transformar cada unidad en un archivo HTML individual
