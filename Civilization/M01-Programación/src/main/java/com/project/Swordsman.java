@@ -33,6 +33,10 @@ public class Swordsman extends AttackUnit {
         }
     }
 
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
+
     public void setBaseDamage(int damage){
         this.baseDamage = damage;
     }

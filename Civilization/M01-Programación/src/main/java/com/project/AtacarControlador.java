@@ -83,6 +83,7 @@ public class AtacarControlador {
     private void llamarResultadoBatalla() {
         Battle battle = new Battle(CivilizaciónControlador.civilización.army, atacarFrame.enemyArmy);
         boolean winner = battle.startBattle(CivilizaciónControlador.civilización);
+        BattleDAO.save(CivilizaciónControlador.civilization_id, battle);
 
         //Unidades iniciales, unidades que se mueren de cada ejercito, coste incial de los ejercitos, perdidas de cada ejercito, madera, iron, food generados.
         //Más tarde el desarrollo resultadoBattallaFrame, battle.initialArmies, battle.civililizationDrops, battle.enemyDrops, battle.initialCostFleet, battle.resourcesLooses, battle.wasteWoodIron, 

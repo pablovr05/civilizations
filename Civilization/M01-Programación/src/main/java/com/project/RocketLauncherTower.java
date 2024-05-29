@@ -25,6 +25,9 @@ public class RocketLauncherTower extends DefenseUnit {
             return 0;
         }
     }
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
 
     public void setBaseDamage(int damage){
         this.baseDamage = damage;
