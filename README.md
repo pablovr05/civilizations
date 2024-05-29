@@ -1,18 +1,16 @@
 <div align="center" style="padding-bottom: 200px;">
 
 <h1 align="center">
-🏹 - Zelda Breath of the Wild - 🛡️  
+🏹 - Civilizations - 🛡️  
 <br/><br/>
 
 </h1>
-
-<img align="right" src="ReadmeImages/linealsymbol.png"/>
 
 <br/><br/>
 
 <h3 align="center">
         <samp>&gt; Hey There!, We are
-                <b><a target="_blank">ZeldaHaters</a></b>
+                <b><a target="_blank">Civilizations Haters</a></b>
         </samp>
 </h3>
 
@@ -41,10 +39,10 @@
 
 <p align="right"> 
   
- ✌️ &emsp; We are learning to program in python<br/><br/>
+ ✌️ &emsp; We are learning to program in Java<br/><br/>
  ❤️ &emsp; We enjoyed creating this project and have learned a lot<br/><br/>
  📧 &emsp; Reach us anytime: pablovicenteroura2005@gmail.com<br/><br/>
- 💬 &emsp; Ask us about anything [here](https://github.com/OscarMG018/DAM1-Projecto-Zelda-/issues)
+ 💬 &emsp; Ask us about anything [here](https://github.com/pablovr05/civilizations/issues)
 
  </p>
 
@@ -54,7 +52,7 @@
 
 
 <sub align="center">
-Coded with 💚​ by Óscar Medina, Víctor Valero and Pablo Vicente
+Coded with 💚​ by Adrán Martinez, Joel Martinez, Pablo Vicente
 </sub>
 
 <br/><br/>
@@ -62,27 +60,17 @@ Coded with 💚​ by Óscar Medina, Víctor Valero and Pablo Vicente
 # Use To Code
 
 ![Javascript](https://img.shields.io/badge/Javascript-F0DB4F?style=for-the-badge&labelColor=black&logo=javascript&logoColor=F0DB4F)
-![MySQL](https://img.shields.io/badge/-MYSQL-61DBFB?style=for-the-badge&labelColor=black&logo=MYSQL&logoColor=61DBFB)
+![SQL](https://img.shields.io/badge/-MYSQL-61DBFB?style=for-the-badge&labelColor=black&logo=SQL&logoColor=61DBFB)
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css&logoColor=white)
 ![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
 ![VSCode](https://img.shields.io/badge/Visual_Studio-0078d7?style=for-the-badge&logo=visual%20studio&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![Python](https://img.shields.io/badge/Python_-092749?style=for-the-badge&logo=Python&logoColor=06B6D4&labelColor=000000)
+![Java](https://img.shields.io/badge/Java-092749?style=for-the-badge&logo=Java&logoColor=06B6D4&labelColor=000000)
+![Xsl](https://img.shields.io/badge/XSL-092749?style=for-the-badge&logo=XSL&logoColor=06B6D4&labelColor=000000)
 
 <br/>
-
-
-
-
-
-
-
-
-
-
-
-# Civilizations
 
 ![Foto](Civilization/M01-Programación/src/main/java/com/project/images/gifmedieval.gif)
 
