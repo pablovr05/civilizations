@@ -1,0 +1,50 @@
+package com.project;
+
+import java.awt.event.ActionEvent;
+
+public class HistorialControlador {
+
+    private MainWindow mainWindow;
+    private HistorialFrame historialFrame;
+    private MenúFrame menúFrame;
+    private MenúControlador menúControlador;
+
+    public HistorialControlador(HistorialFrame vBasic, MainWindow mainWindow) {
+        this.historialFrame = vBasic;
+        this.mainWindow = mainWindow;
+        mainWindow.contadorAtacar.detenerContador();
+        mainWindow.contadorRecursos.detenerContador();
+        mainWindow.setSize(1150, 650);
+    }
+
+    public void start() {
+        setupActionListeners();
+    }
+
+    private void setupActionListeners() {
+        historialFrame.exitButtonHistorial.addActionListener(this::controllerButtonAction);
+    }
+
+    public void controllerButtonAction(ActionEvent e) {
+        String command = e.getActionCommand();
+        runCommand(command); 
+    }
+
+    public void runCommand(String command) {
+        if (command.equals("Volver")) {
+            SoundPlayer.playSound("clickselect.wav", 0.5f);
+            System.out.println("Se pulsó el botón Salir");
+            mainWindow.contadorAtacar.iniciarContador();
+            mainWindow.contadorRecursos.iniciarContador();
+            llamarMenú();
+        }
+    } 
+
+    private void llamarMenú() {
+        menúFrame = new MenúFrame();
+        mainWindow.cambiarPanel(menúFrame);
+        menúControlador = new MenúControlador(menúFrame, mainWindow);
+        menúControlador.start();
+        mainWindow.setSize(585,415);
+    }
+}
