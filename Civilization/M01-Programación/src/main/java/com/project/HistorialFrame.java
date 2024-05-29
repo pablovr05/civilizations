@@ -23,8 +23,6 @@ public class HistorialFrame extends JPanel {
 
     public HistorialFrame() {
 
-        System.out.println("okbdshfoisdbhvj");
-
         this.fondo = "src\\main\\java\\com\\project\\images\\historialgif.gif";
         
         setLayout(new BorderLayout());
@@ -85,7 +83,6 @@ public class HistorialFrame extends JPanel {
         rightPanel.setPreferredSize(new Dimension(685, 555));
         contentPanel.add(rightPanel);
 
-    
     }
 
     private JScrollPane crearScrollIzquierdo() {
@@ -109,6 +106,8 @@ public class HistorialFrame extends JPanel {
     
             RoundedPanel roundedPanel = new RoundedPanel();
             roundedPanel.setLayout(new GridLayout(3, 1));
+
+            roundedPanel.setPreferredSize(new Dimension(300, 50));
     
             JLabel primeraLinea = new JLabel(título);
             primeraLinea.setForeground(color);

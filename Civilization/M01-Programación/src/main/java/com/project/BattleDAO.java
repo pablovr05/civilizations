@@ -287,10 +287,11 @@ public class BattleDAO {
     }
 
     public static int[] getBattleWaste(int id_battle, int id_civilization){
+
         AppData db = AppData.getInstance();
 
         int[] listaWaste = new int[2];
-        List<Map<String, Object>> listaRecursos = db.query("SELECT winner FROM Battle_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+        List<Map<String, Object>> listaRecursos = db.query("SELECT WOOD_ACQUIRED, IRON_ACQUIRED FROM Battle_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
 
         listaWaste[0] = ((BigDecimal) listaRecursos.get(0).get("WOOD_ACQUIRED")).intValue();
         listaWaste[1] = ((BigDecimal) listaRecursos.get(0).get("IRON_ACQUIRED")).intValue();
