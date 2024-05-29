@@ -6,8 +6,6 @@
 
 </h1>
 
-<img align="right" src="ReadmeImages/linealsymbol.png"/>
-
 <br/><br/>
 
 <h3 align="center">
