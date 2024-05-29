@@ -74,18 +74,6 @@ Coded with 💚​ by Adrán Martinez, Joel Martinez, Pablo Vicente
 
 <br/>
 
-
-
-
-
-
-
-
-
-
-
-# Civilizations
-
 ![Foto](Civilization/M01-Programación/src/main/java/com/project/images/gifmedieval.gif)
 
 Civilizations es un simulador de batallas desarrollado en Java. En este proyecto, los jugadores pueden gestionar civilizaciones, entrenar unidades militares, mejorar tecnologías y enfrentar otras civilizaciones en combates estratégicos.
