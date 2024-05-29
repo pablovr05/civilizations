@@ -1,7 +1,7 @@
 <div align="center" style="padding-bottom: 200px;">
 
 <h1 align="center">
-🏹 - Zelda Breath of the Wild - 🛡️  
+🏹 - Civilizations - 🛡️  
 <br/><br/>
 
 </h1>
@@ -12,7 +12,7 @@
 
 <h3 align="center">
         <samp>&gt; Hey There!, We are
-                <b><a target="_blank">ZeldaHaters</a></b>
+                <b><a target="_blank">Civilizations Haters</a></b>
         </samp>
 </h3>
 
@@ -41,7 +41,7 @@
 
 <p align="right"> 
   
- ✌️ &emsp; We are learning to program in python<br/><br/>
+ ✌️ &emsp; We are learning to program in Java<br/><br/>
  ❤️ &emsp; We enjoyed creating this project and have learned a lot<br/><br/>
  📧 &emsp; Reach us anytime: pablovicenteroura2005@gmail.com<br/><br/>
  💬 &emsp; Ask us about anything [here](https://github.com/OscarMG018/DAM1-Projecto-Zelda-/issues)
