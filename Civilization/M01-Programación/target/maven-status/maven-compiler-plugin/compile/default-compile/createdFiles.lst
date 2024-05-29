@@ -46,6 +46,7 @@ com\project\ContadorAtacar$1.class
 com\project\ContadorAtacar.class
 com\project\CustomOptionPane.class
 com\project\FadeOutGifDialog.class
+com\project\HistorialFrame$2.class
 com\project\BackgroundPanel.class
 com\project\EjércitoControlador.class
 com\project\Catapult.class

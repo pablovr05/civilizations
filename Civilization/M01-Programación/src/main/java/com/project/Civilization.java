@@ -1074,7 +1074,7 @@ public class Civilization implements Variables {
         this.foodGeneration = CIVILIZATION_FOOD_GENERATED+this.farm*CIVILIZATION_FOOD_GENERATED_PER_FARM;
         this.woodGeneration = CIVILIZATION_WOOD_GENERATED+this.carpentry*CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY;
         this.ironGeneration = CIVILIZATION_IRON_GENERATED+this.smithy*CIVILIZATION_IRON_GENERATED_PER_SMITHY;
-        this.manaGeneration = 100000+this.magicTower*CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER;
+        this.manaGeneration = 0+this.magicTower*CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER;
     }
 
     public void generateResources(){

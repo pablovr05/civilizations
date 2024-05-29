@@ -51,7 +51,7 @@ public class HistorialFrame extends JPanel {
         leftPanel.setCornerRadius(20);
         leftPanel.setOpaque(false);
         leftPanel.setBackground(new Color(0, 0, 0, 150)); //color de fondo para cada panel
-        leftPanel.setPreferredSize(new Dimension(385, 500));
+        leftPanel.setPreferredSize(new Dimension(385, 512));
         contentPanel.add(leftPanel);
 
         RoundedPanel titlePanel = new RoundedPanel();
@@ -77,9 +77,27 @@ public class HistorialFrame extends JPanel {
 
         JPanel buttonPanel = new JPanel();
         exitButtonHistorial = new JButton("Volver");
+        exitButtonHistorial.setFont(new Font("Segoe UI", Font.ROMAN_BASELINE, 15));
+        exitButtonHistorial.setOpaque(false);
+        exitButtonHistorial.setContentAreaFilled(false);
+        exitButtonHistorial.setBorderPainted(false);
+        exitButtonHistorial.setFocusPainted(false);
+        exitButtonHistorial.setForeground(Color.RED);
+
+        exitButtonHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitButtonHistorial.setForeground(Color.ORANGE); // Cambia el color de fondo cuando el cursor entra
+                SoundPlayer.playSound("botónopciones.wav", 0.5f);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitButtonHistorial.setForeground(Color.RED); // Restaura el color de fondo cuando el cursor sale
+            }
+        });
+
         buttonPanel.add(exitButtonHistorial);
 
-        buttonPanel.setBorder(new EmptyBorder(0,285,10,0));
+        buttonPanel.setBorder(new EmptyBorder(0,285,0,0));
         buttonPanel.setBackground(new Color(0,0,0,0));
 
         leftPanel.add(buttonPanel);
@@ -110,8 +128,6 @@ public class HistorialFrame extends JPanel {
         rightPanelContent.setPreferredSize(new Dimension(673, 475));
 
         rightPanel.add(rightPanelContent);
-
-
 
         contentPanel.add(rightPanel);
 

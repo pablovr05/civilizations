@@ -24,7 +24,7 @@ public class BatallaPanel extends JPanel {
         logPanel.setLayout(new BorderLayout());
         
         // Crear y configurar la fuente
-        Font logFont = new Font("Scheherazade", Font.ROMAN_BASELINE, 14); // Cambia "Comfortaa" y el tamaño 18 según sea necesario
+        Font logFont = new Font("Scheherazade", Font.ROMAN_BASELINE, 13); // Cambia "Comfortaa" y el tamaño 18 según sea necesario
         
         logLabel = new JLabel();
         logLabel.setFont(logFont); // Aplicar la fuente al JLabel
