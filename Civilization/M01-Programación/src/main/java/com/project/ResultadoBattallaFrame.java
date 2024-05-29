@@ -114,7 +114,7 @@ public class ResultadoBattallaFrame extends JPanel {
         };
 
         JTable tableCivilization = new JTable(dataCivilization, columnNamesCivilization);
-        tableCivilization.setRowHeight(17); // Ajustar la altura de las filas
+        tableCivilization.setRowHeight(16); // Ajustar la altura de las filas
         tableCivilization.setFont(new Font("Segoe UI", Font.PLAIN, 8)); // Establecer la fuente del texto
         tableCivilization.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 8)); // Establecer la fuente del encabezado de la tabla
         tableCivilization.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -140,7 +140,7 @@ public class ResultadoBattallaFrame extends JPanel {
         };
 
         JTable tableEnemy = new JTable(dataEnemy, columnNamesEnemy);
-        tableEnemy.setRowHeight(17); // Ajustar la altura de las filas
+        tableEnemy.setRowHeight(16); // Ajustar la altura de las filas
         tableEnemy.setFont(new Font("Segoe UI", Font.PLAIN, 8)); // Establecer la fuente del texto
         tableEnemy.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 8)); // Establecer la fuente del encabezado de la tabla
         tableEnemy.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -170,7 +170,7 @@ public class ResultadoBattallaFrame extends JPanel {
         };
 
         JTable tableInitialCost = new JTable(dataInitialCost, columnNamesInitialCost);
-        tableInitialCost.setRowHeight(17); // Ajustar la altura de las filas
+        tableInitialCost.setRowHeight(16); // Ajustar la altura de las filas
         tableInitialCost.setFont(new Font("Segoe UI", Font.PLAIN, 8)); // Establecer la fuente del texto
         tableInitialCost.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 8)); // Establecer la fuente del encabezado de la tabla
         tableInitialCost.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -196,7 +196,7 @@ public class ResultadoBattallaFrame extends JPanel {
         };
 
         JTable tableResourcesLooses = new JTable(dataResourcesLooses, columnNamesResourcesLooses);
-        tableResourcesLooses.setRowHeight(17); // Ajustar la altura de las filas
+        tableResourcesLooses.setRowHeight(16); // Ajustar la altura de las filas
         tableResourcesLooses.setFont(new Font("Segoe UI", Font.PLAIN, 8)); // Establecer la fuente del texto
         tableResourcesLooses.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 8)); // Establecer la fuente del encabezado de la tabla
         tableResourcesLooses.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
