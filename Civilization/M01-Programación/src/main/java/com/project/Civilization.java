@@ -60,6 +60,7 @@ public class Civilization implements Variables {
     }
 
     public Civilization(String name){
+        this.id = CivilizationDAO.getIdByName(name).intValue();
         this.name = name;
         this.technologyDefense = 0;
         this.technologyAttack = 0;

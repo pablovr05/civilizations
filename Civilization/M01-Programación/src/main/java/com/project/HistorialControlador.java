@@ -12,6 +12,7 @@ public class HistorialControlador {
     public HistorialControlador(HistorialFrame vBasic, MainWindow mainWindow) {
         this.historialFrame = vBasic;
         this.mainWindow = mainWindow;
+        mainWindow.setSize(1150, 650);
     }
 
     public void start() {
@@ -40,5 +41,6 @@ public class HistorialControlador {
         mainWindow.cambiarPanel(menúFrame);
         menúControlador = new MenúControlador(menúFrame, mainWindow);
         menúControlador.start();
+        mainWindow.setSize(585,415);
     }
 }
