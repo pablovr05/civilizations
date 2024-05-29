@@ -133,13 +133,13 @@ public class ShowEdificios extends JDialog {
         data[3][0] = "Mana";
         data[3][1] = Integer.toString(mana);
         data[4][0] = "Food Gen";
-        data[4][1] = Integer.toString(foodGen) + "%";
+        data[4][1] = Integer.toString(foodGen);
         data[5][0] = "Wood Gen";
-        data[5][1] = Integer.toString(woodGen) + "%";
+        data[5][1] = Integer.toString(woodGen);
         data[6][0] = "Iron Gen";
-        data[6][1] = Integer.toString(ironGen) + "%";
+        data[6][1] = Integer.toString(ironGen);
         data[7][0] = "Mana Gen";
-        data[7][1] = Integer.toString(manaGen) + "%";
+        data[7][1] = Integer.toString(manaGen);
         
         // Añadir el panel de contenido a la ventana emergente
         roundedPanel.add(table);

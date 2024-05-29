@@ -31,6 +31,8 @@ public class HistorialFrame extends JPanel {
 
     public HistorialFrame() {
 
+        System.out.println(1);
+
         this.fondo = "src\\main\\java\\com\\project\\images\\historialgif.gif";
         
         setLayout(new BorderLayout());
@@ -138,11 +140,19 @@ public class HistorialFrame extends JPanel {
         scrollPane.setBorder(new EmptyBorder(10,10,10,10));
         JPanel contenido = new JPanel(); // Creamos un panel para contener los paneles redondeados
         contenido.setLayout(new BoxLayout(contenido, BoxLayout.Y_AXIS)); // Layout para organizar verticalmente
-        
         int id = CivilizaciónControlador.civilización.id;
         ArrayList<Integer> listaids = BattleDAO.listaBatallasCivilization(id);
         for (int i = 0; i < 7; i++ ) {
-            boolean winner = BattleDAO.getBattleWinner(listaids.get(i), id);
+
+            boolean winner = false; // Inicializar la variable para usarla fuera del bloque try
+
+            try {
+                winner = BattleDAO.getBattleWinner(listaids.get(i), id);
+            } catch (Exception e) {
+                scrollPane.setBackground(new Color(0,0,0,0));
+                return scrollPane;
+            }
+
             int[] wastes = BattleDAO.getBattleWaste(listaids.get(i), id);
             
             String título = "";
