@@ -23,6 +23,8 @@ public class HistorialFrame extends JPanel {
 
     public HistorialFrame() {
 
+        System.out.println("okbdshfoisdbhvj");
+
         this.fondo = "src\\main\\java\\com\\project\\images\\historialgif.gif";
         
         setLayout(new BorderLayout());

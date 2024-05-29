@@ -25,7 +25,7 @@ class AppData {
     }
 
     private void connect() {
-        String url = "jdbc:oracle:thin:@192.168.62.33:1521/orcl"; //IMPORTANTE: Cambiar la ip a la de la máquina, la contraseña y admin siempre es la misma
+        String url = "jdbc:oracle:thin:@192.168.147.240:1521/orcl"; //IMPORTANTE: Cambiar la ip a la de la máquina, la contraseña y admin siempre es la misma
         String user = "admin";
         String password = "admin";
 

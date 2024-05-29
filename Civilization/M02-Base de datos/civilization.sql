@@ -179,21 +179,21 @@ BEFORE INSERT ON defense_units_stats
 FOR EACH ROW
 BEGIN
     SELECT unit_id_defense_seq.NEXTVAL INTO :NEW.unit_id FROM dual;
-END;
+END unit_id_defense_trigger;
 
 CREATE OR REPLACE TRIGGER unit_id_special_trigger
 BEFORE INSERT ON special_units_stats
 FOR EACH ROW
 BEGIN
     SELECT unit_id_special_seq.NEXTVAL INTO :NEW.unit_id FROM dual;
-END;
+END unit_id_special_trigger;
 
 CREATE OR REPLACE TRIGGER battle_num_trigger
 BEFORE INSERT ON Battle_stats
 FOR EACH ROW
 BEGIN
     SELECT num_battle_seq.NEXTVAL INTO :NEW.num_battle FROM DUAL;
-END;
+END battle_num_trigger;
 
 CREATE OR REPLACE TRIGGER num_line_trigger
 BEFORE INSERT ON Battle_log
