@@ -21,13 +21,13 @@ Civilizations es un simulador de batallas desarrollado en Java. En este proyecto
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu_usuario/civilizations.git
+git clone https://github.com/pablovr05/civilizations.git
 ```
 ## Instalación
 
 1. Importa el proyecto en tu IDE de Java preferido.
 2. Compila el proyecto.
-3. Ejecuta la clase principal `Main.java`.
+3. Ejecuta la clase principal `MainSwing.java`.
 
 ## Uso
 
