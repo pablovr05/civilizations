@@ -47,6 +47,12 @@ El proyecto utiliza una base de datos para almacenar las estadísticas de las ci
 - `attack_units_stats`
 - `defense_units_stats`
 - `special_units_stats`
+- `Battle_stats`
+- `Enemy_attack_stats`
+- `Civilization_attack_stats`
+- `Civilization_defense_stats`
+- `Civilization_special_stats`
+. `Battle_log`
 
 ## Contribuciones
 
