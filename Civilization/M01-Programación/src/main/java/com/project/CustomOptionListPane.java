@@ -11,7 +11,16 @@ public class CustomOptionListPane extends JPanel {
     public CustomOptionListPane() {
         setLayout(new BorderLayout());
 
-        String[] options = {"Patata", "Fresa", "Ensalada"};
+        String[] options = CivilizationDAO.getCargarPartidaContent();
+        comboBox = new JComboBox<>(options);
+
+        add(comboBox, BorderLayout.CENTER);
+    }
+
+    public CustomOptionListPane(String[] optionsBox) {
+        setLayout(new BorderLayout());
+
+        String[] options = optionsBox;
         comboBox = new JComboBox<>(options);
 
         add(comboBox, BorderLayout.CENTER);

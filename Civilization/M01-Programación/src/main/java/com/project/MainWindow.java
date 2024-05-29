@@ -9,9 +9,9 @@ public class MainWindow extends JFrame {
     private CivilizaciónFrame civilizaciónFrame;
     private CivilizaciónControlador civilizaciónControlador;
     private Clip backgroundMusic;
-    private FloatControl volumeControl;
     public ContadorRecursos contadorRecursos;
     public ContadorAtacar contadorAtacar;
+    public static FixedPanel fixedPanel = new FixedPanel();
 
     public MainWindow() {
         super("CIVILIZATIONS");
@@ -27,12 +27,12 @@ public class MainWindow extends JFrame {
         contadorAtacar = new ContadorAtacar(this);
 
         System.out.println("Se creó el contadorRecursos");
-        contadorRecursos = new ContadorRecursos();
+        contadorRecursos = new ContadorRecursos(fixedPanel);
 
         civilizaciónControlador = new CivilizaciónControlador(civilizaciónFrame, this);
         civilizaciónControlador.start();
 
-        playBackgroundMusic("src\\main\\java\\com\\project\\music\\firesound.wav"); // Ruta de tu archivo de música de fondo
+        playBackgroundMusic("src\\main\\java\\com\\project\\music\\BandaSonora.wav"); // Ruta de tu archivo de música de fondo
     }
 
     private void initComponents() {
@@ -56,19 +56,8 @@ public class MainWindow extends JFrame {
             backgroundMusic.loop(Clip.LOOP_CONTINUOUSLY);
             backgroundMusic.start();
 
-            // Obtener el control de volumen del clip
-            volumeControl = (FloatControl) backgroundMusic.getControl(FloatControl.Type.MASTER_GAIN);
-            // Establecer el volumen (en dB)
-            setVolume(-10.0f); // Por ejemplo, -10.0f para bajar el volumen
-
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
-        }
-    }
-
-    private void setVolume(float volume) {
-        if (volumeControl != null) {
-            volumeControl.setValue(volume);
         }
     }
 }

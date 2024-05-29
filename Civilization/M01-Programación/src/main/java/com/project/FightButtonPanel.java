@@ -105,7 +105,5 @@ public class FightButtonPanel extends JDialog {
         if (clip != null && clip.isRunning()) {
             clip.stop();
         }
-    }
-    
-    
+    }  
 }

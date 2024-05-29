@@ -15,14 +15,45 @@ public class AtacarControlador {
     private ResultadoBatallaControlador resultadoBatallaControlador;
     private MainWindow mainWindow;
 
+    private MenúFrame menúFrame;
+    private MenúControlador menúControlador;
+
     public AtacarControlador(AtacarFrame atacarFrame, MainWindow mainWindow) {
         this.atacarFrame = atacarFrame;
         this.mainWindow = mainWindow;
         mainWindow.setSize(1150, 650);
     }
 
-    public void start() {
+    public void start() { 
+        setupActionListeners();
         startTimer();
+    }
+
+    private void setupActionListeners() {
+        // Agregar ActionListener para el botón "Empezar"
+        atacarFrame.empezarBotón.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Lógica cuando se hace clic en el botón "Empezar"
+                timer.stop();
+                System.out.println("Botón Empezar clicado");
+                llamarResultadoBatalla();
+            }
+        });
+
+        // Agregar ActionListener para el botón "Escapar"
+        atacarFrame.escaparBotón.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Lógica cuando se hace clic en el botón "Escapar"
+                timer.stop();
+                System.out.println("Botón Escapar clicado");
+                llamarMenú();
+                mainWindow.setSize(585,415);
+                mainWindow.contadorAtacar.iniciarContador();
+                mainWindow.contadorRecursos.iniciarContador();
+            }
+        });
     }
 
     private void startTimer() {
@@ -50,9 +81,31 @@ public class AtacarControlador {
     }
 
     private void llamarResultadoBatalla() {
-        resultadoBattallaFrame = new ResultadoBattallaFrame(true);
+        Battle battle = new Battle(CivilizaciónControlador.civilización.army, atacarFrame.enemyArmy);
+        boolean winner = battle.startBattle(CivilizaciónControlador.civilización);
+        BattleDAO.save(CivilizaciónControlador.civilization_id, battle);
+        saveGame(CivilizaciónControlador.civilización);
+
+        saveGame(CivilizaciónControlador.civilización);
+
+        //Unidades iniciales, unidades que se mueren de cada ejercito, coste incial de los ejercitos, perdidas de cada ejercito, madera, iron, food generados.
+        //Más tarde el desarrollo resultadoBattallaFrame, battle.initialArmies, battle.civililizationDrops, battle.enemyDrops, battle.initialCostFleet, battle.resourcesLooses, battle.wasteWoodIron, 
+
+        resultadoBattallaFrame = new ResultadoBattallaFrame(winner, battle);
         mainWindow.cambiarPanel(resultadoBattallaFrame);
         resultadoBatallaControlador = new ResultadoBatallaControlador(resultadoBattallaFrame, mainWindow);
         resultadoBatallaControlador.start();
+    }
+
+    private void llamarMenú() {
+        menúFrame = new MenúFrame();
+        mainWindow.cambiarPanel(menúFrame);
+        menúControlador = new MenúControlador(menúFrame, mainWindow);
+        menúControlador.start();
+    }
+
+    private void saveGame(Civilization civilización) {
+        civilización.printearBonito();
+        CivilizationDAO.save(civilización);
     }
 }

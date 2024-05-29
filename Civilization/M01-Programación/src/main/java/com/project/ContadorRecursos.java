@@ -7,18 +7,21 @@ public class ContadorRecursos {
 
     private Timer timer;
     public int segundos;
+    private FixedPanel fixedPanel;
 
-    public ContadorRecursos() {
-        segundos = 0;
+    public ContadorRecursos(FixedPanel fixedPanel) {
+        this.segundos = 0;
+        this.fixedPanel = fixedPanel;
     }
 
     public void iniciarContador() {
+        fixedPanel.updateQuantities();
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 segundos++;
-                if (segundos % 60 == 0) {
+                if (segundos % 1 == 0) {
                     accion();
                 }
             }
@@ -27,14 +30,18 @@ public class ContadorRecursos {
 
     // Método para detener el contador
     public void detenerContador() {
+        fixedPanel.updateQuantities();
         timer.cancel();
     }
 
     // Método para realizar la acción deseada cada segundo
     private void accion() {
         // Aquí puedes colocar la acción que deseas realizar cada segundo
-        System.out.println("Se generan recursos");
-        SoundPlayer.playSound("money.wav", 0.2f);
-        segundos = 0;
+
+        CivilizaciónControlador.civilización.updateResourceGeneration();
+        
+        CivilizaciónControlador.civilización.generateResourcesPerSecond();
+        
+        fixedPanel.updateQuantities();
     }
 }

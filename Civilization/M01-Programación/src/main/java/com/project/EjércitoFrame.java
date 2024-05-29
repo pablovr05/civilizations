@@ -14,6 +14,7 @@ public class EjércitoFrame extends JPanel {
     public JButton cancelButtonEjército;
     public JButton acceptButtonEjército;
     public JComboBox<String> optionsComboBoxEjército;
+    public JButton gifButton; // Botón sobre el GIF
 
     public EjércitoFrame() {
         // Establece el diseño del panel como BorderLayout
@@ -37,25 +38,25 @@ public class EjércitoFrame extends JPanel {
         // Título de Entrenar tropas
         JLabel entrenarTropasLabel = new JLabel("Entrenar tropas");
         entrenarTropasLabel.setFont(new Font("Candara", Font.BOLD, 24)); // Tamaño de fuente más grande
-        entrenarTropasLabel.setForeground(Color.WHITE); // Color verde oscuro
+        entrenarTropasLabel.setForeground(Color.WHITE); // Color blanco
         leftPanel.add(entrenarTropasLabel);
 
         // Tipo de tropa
-        JLabel typeTropaLabel = new JLabel("Tipo de tropa :");
+        JLabel typeTropaLabel = new JLabel("Tipo de tropa:");
         typeTropaLabel.setFont(new Font("Segoe UI", Font.ROMAN_BASELINE, 12)); // Tamaño de fuente más grande
-        typeTropaLabel.setForeground(Color.WHITE); // Color verde oscuro
+        typeTropaLabel.setForeground(Color.WHITE); // Color blanco
         leftPanel.add(typeTropaLabel);
 
         // ComboBox con opciones
-        String[] opciones = {"Swordsman","Spearman","Crossbow","Cannon","Arrow Tower","Catapult","Rocket Launcher Tower","Magician","Priest"};
+        String[] opciones = {"Swordsman", "Spearman", "Crossbow", "Cannon", "Arrow Tower", "Catapult", "Rocket Launcher Tower", "Magician", "Priest"};
         optionsComboBoxEjército = new JComboBox<>(opciones);
         optionsComboBoxEjército.setFont(new Font("Segoe UI", Font.ROMAN_BASELINE, 12));
         leftPanel.add(optionsComboBoxEjército);
 
         // Cantidad de tropas
-        JLabel cantidadTropaLabel = new JLabel("Cantidad de tropas :");
+        JLabel cantidadTropaLabel = new JLabel("Cantidad de tropas:");
         cantidadTropaLabel.setFont(new Font("Segoe UI", Font.ROMAN_BASELINE, 12)); // Tamaño de fuente más grande
-        cantidadTropaLabel.setForeground(Color.WHITE); // Color verde oscuro
+        cantidadTropaLabel.setForeground(Color.WHITE); // Color blanco
         leftPanel.add(cantidadTropaLabel);
 
         // Campo de texto
@@ -78,12 +79,50 @@ public class EjércitoFrame extends JPanel {
         leftPanel.add(buttonsPanel);
 
         // Agregar panel izquierdo al oeste del panel principal
-        leftPanel.setBorder(new EmptyBorder(80, 15, 80, 15)); // Ajusta el margen del panel izquierdo
+        leftPanel.setBorder(new EmptyBorder(80, 15, 80, 45)); // Ajusta el margen del panel izquierdo
         add(leftPanel, BorderLayout.WEST);
 
-        // Gif en la parte derecha
+        // Panel derecho con GIF y botón
+        JPanel rightPanel = new JPanel(new BorderLayout());
+        rightPanel.setPreferredSize(new Dimension(350, getHeight()));
+        rightPanel.setOpaque(false);
+
         ImageIcon gifIcon = new ImageIcon("src\\main\\java\\com\\project\\images\\CrearEjercito.gif"); // Reemplaza con la ruta de tu archivo gif
         JLabel gifLabel = new JLabel(gifIcon);
-        add(gifLabel, BorderLayout.EAST);
+        gifLabel.setLayout(new BorderLayout());
+
+        ImageIcon buttonIcon = new ImageIcon("src\\main\\java\\com\\project\\images\\informacion.png"); // Reemplaza con la ruta de tu archivo de imagen
+        gifButton = new JButton(buttonIcon);
+        gifButton.setOpaque(false);
+        gifButton.setContentAreaFilled(false);
+        gifButton.setBorderPainted(false);
+        gifButton.setFocusPainted(false);
+
+        gifButton.setActionCommand("GIF_BUTTON_CLICKED");
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setOpaque(false);
+        buttonPanel.add(gifButton);
+
+        buttonPanel.setBorder(new EmptyBorder(0,295,0,0));
+
+        gifLabel.add(buttonPanel, BorderLayout.SOUTH);
+        rightPanel.add(gifLabel);
+
+        add(rightPanel, BorderLayout.EAST);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("EjércitoFrame Demo");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(1150, 650);
+            frame.setLocationRelativeTo(null);
+
+            EjércitoFrame ejércitoFrame = new EjércitoFrame();
+            frame.add(ejércitoFrame);
+
+            frame.setVisible(true);
+        });
     }
 }

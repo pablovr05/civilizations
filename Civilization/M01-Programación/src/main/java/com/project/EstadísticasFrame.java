@@ -36,7 +36,7 @@ public class EstadísticasFrame extends JPanel {
         };
 
         JPanel titlePanel = new JPanel();
-        JLabel titleLabel = new JLabel("Estadísticas");
+        JLabel titleLabel = new JLabel("Estadísticas de " + CivilizaciónControlador.civilización.name);
         titleLabel.setFont(new Font("Candara", Font.BOLD, 24));
         titleLabel.setForeground(new Color(230, 230, 230));
         titlePanel.add(titleLabel);
@@ -47,59 +47,59 @@ public class EstadísticasFrame extends JPanel {
         List<Integer> results = new ArrayList<>();
 
         descriptions.add("Recursos: Cantidad de comida");
-        results.add(1);
+        results.add(CivilizaciónControlador.civilización.food);
         descriptions.add("Recursos: Cantidad de madera");
-        results.add(2);
+        results.add(CivilizaciónControlador.civilización.wood);
         descriptions.add("Recursos: Cantidad de hierro");
-        results.add(3);
+        results.add(CivilizaciónControlador.civilización.iron);
         descriptions.add("Recursos: Cantidad de maná");
-        results.add(4);
+        results.add(CivilizaciónControlador.civilización.mana);
 
         descriptions.add("Generación: Comida");
-        results.add(5);
+        results.add(CivilizaciónControlador.civilización.foodGeneration);
         descriptions.add("Generación: Madera");
-        results.add(6);
+        results.add(CivilizaciónControlador.civilización.woodGeneration);
         descriptions.add("Generación: Hierro");
-        results.add(7);
+        results.add(CivilizaciónControlador.civilización.ironGeneration);
         descriptions.add("Generación: Maná");
-        results.add(8);
+        results.add(CivilizaciónControlador.civilización.manaGeneration);
 
         descriptions.add("Nivel de tecnología: Defensa");
-        results.add(9);
+        results.add(CivilizaciónControlador.civilización.technologyDefense);
         descriptions.add("Nivel de tecnología: Ataque");
-        results.add(10);
+        results.add(CivilizaciónControlador.civilización.technologyAttack);
 
         descriptions.add("Construcciones: Farm");
-        results.add(11);
+        results.add(CivilizaciónControlador.civilización.farm);
         descriptions.add("Construcciones: Smithy");
-        results.add(12);
+        results.add(CivilizaciónControlador.civilización.smithy);
         descriptions.add("Construcciones: Carpentry");
-        results.add(13);
+        results.add(CivilizaciónControlador.civilización.carpentry);
         descriptions.add("Construcciones: Magic Tower");
-        results.add(14);
+        results.add(CivilizaciónControlador.civilización.magicTower);
         descriptions.add("Construcciones: Church");
-        results.add(15);
+        results.add(CivilizaciónControlador.civilización.church);
 
         descriptions.add("Defensas: Arrow Tower");
-        results.add(16);
+        results.add(CivilizaciónControlador.civilización.getNombreArrowTower());
         descriptions.add("Defensas: Catapult");
-        results.add(17);
+        results.add(CivilizaciónControlador.civilización.getNombreCatapult());
         descriptions.add("Defensas: Rocket Launcher");
-        results.add(18);
+        results.add(CivilizaciónControlador.civilización.getNombreRocketLauncher());
 
         descriptions.add("Unidades de ataque: Swordsman");
-        results.add(19);
+        results.add(CivilizaciónControlador.civilización.getNombreSwordsman());
         descriptions.add("Unidades de ataque: Spearman");
-        results.add(20);
+        results.add(CivilizaciónControlador.civilización.getNombreSpearman());
         descriptions.add("Unidades de ataque: Crossbow");
-        results.add(21);
+        results.add(CivilizaciónControlador.civilización.getNombreCrossbow());
         descriptions.add("Unidades de ataque: Cannon");
-        results.add(22);
+        results.add(CivilizaciónControlador.civilización.getNombreCannon());
 
         descriptions.add("Unidades especiales: Magician");
-        results.add(23);
+        results.add(CivilizaciónControlador.civilización.getNombreMagician());
         descriptions.add("Unidades especiales: Priest");
-        results.add(24);
+        results.add(CivilizaciónControlador.civilización.getNombrePriest());
 
         Object[][] data = new Object[24][2];
         for (int i = 0; i < 24; i++) {

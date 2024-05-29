@@ -138,9 +138,10 @@ public class MenúFrame extends JPanel {
             }
         });
 
-        FixedPanel fixedPanel = new FixedPanel();
+        FixedPanel fixedPanel = MainWindow.fixedPanel;
         fixedPanel.setBounds(0, 0, 200, 200);
         fixedPanel.setBorder(new EmptyBorder(25,225,0,0));
+        setVisible(true);
         add(fixedPanel);
     }
 

@@ -1,6 +1,7 @@
 package com.project;
 
 import java.awt.event.ActionEvent;
+import java.text.Format;
 
 public class CivilizaciónControlador {
 
@@ -8,7 +9,8 @@ public class CivilizaciónControlador {
     private MainWindow mainWindow;
     private MenúControlador menúControlador;
     private MenúFrame menúFrame;
-
+    public static int civilization_id = 0;
+    public static Civilization civilización;
     public CivilizaciónControlador(CivilizaciónFrame vBasic, MainWindow mainWindow) {
         this.civilizaciónFrame = vBasic;
         this.mainWindow = mainWindow;
@@ -36,6 +38,11 @@ public class CivilizaciónControlador {
             String selectedOption = CustomOptionListPane.showOptionListDialog(mainWindow, "Selecciona una opción:", "Cargar Partida", "src\\main\\java\\com\\project\\images\\logo.png");
             if (selectedOption != null) {
                 // Aquí puedes hacer algo con la opción seleccionada
+                civilization_id = CivilizationDAO.getIdByName(selectedOption).intValue();
+                System.out.println(civilization_id);
+                //Esto es lo que se utiliza para cargar una partida
+                civilización = CivilizationDAO.load(civilization_id); 
+                civilización.printearBonito();
                 SoundPlayer.playSound("botónASSERT.wav", 0.5f);
                 System.out.println("Opción seleccionada: " + selectedOption);
                 System.out.println("Se inició el contadorRecursos");
@@ -53,8 +60,13 @@ public class CivilizaciónControlador {
             String nombreCivilizacion = CustomOptionPane.showCivilizationNameInputDialog(mainWindow, "Introduce el nombre de tu nueva civilización:", "Nombre de la Civilización", "src\\main\\java\\com\\project\\images\\logo.png");
             if (nombreCivilizacion != null && !nombreCivilizacion.isEmpty()) {
                 // Aquí puedes hacer algo con el nombre de la civilización, como mostrarlo en la interfaz
-                SoundPlayer.playSound("botónASSERT.wav", 0.5f);
                 System.out.println("Nombre de la nueva civilización: " + nombreCivilizacion);
+                civilization_id = CivilizationDAO.addCivilization(nombreCivilizacion).intValue();
+                System.out.println(civilization_id);
+                //esto es lo que se utiliza para crear una partida nueva y cargarla
+                civilización = CivilizationDAO.load(civilization_id);
+                civilización.printearBonito();
+                SoundPlayer.playSound("botónASSERT.wav", 0.5f);
                 System.out.println("Se inició el contadorRecursos");
                 mainWindow.contadorRecursos.iniciarContador();
                 System.out.println("Se inició el contadorAtacar");

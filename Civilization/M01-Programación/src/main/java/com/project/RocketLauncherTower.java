@@ -10,6 +10,29 @@ public class RocketLauncherTower extends DefenseUnit {
         super.sanctified = false;
     }
 
+    public RocketLauncherTower(int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+        super.armor = armor;
+        super.initialArmor = Variables.ARMOR_ROCKETLAUNCHERTOWER;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+        super.sanctified = sanctified;
+    }
+
+    public int getSanctified(){
+        if(super.sanctified){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
+
+    public void setBaseDamage(int damage){
+        this.baseDamage = damage;
+    }
+
     public void sanctify(){
         if(super.sanctified == false){
             super.armor += armor*PLUS_ARMOR_UNIT_SANCTIFIED/100;
@@ -64,5 +87,10 @@ public class RocketLauncherTower extends DefenseUnit {
 
     public int getExperience(){
         return super.experience;
+    }
+
+    public void printearBonito() {
+        String sql = "Type: RocketLauncherTower" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience + " sanctified: " + this.sanctified;
+        System.out.println(sql);
     }
 }

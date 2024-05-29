@@ -3,14 +3,33 @@ package com.project;
 public class Magician extends SpecialUnit {
 
     public Magician(int armor, int baseDamage){
-        super.armor = 0;
-        super.initialArmor = 0;
+        super.armor = 1;
+        super.initialArmor = 1;
         super.baseDamage = BASE_DAMAGE_MAGICIAN + (PLUS_ATTACK_MAGICIAN_BY_TECHNOLOGY * baseDamage) * BASE_DAMAGE_MAGICIAN/100;
         super.experience = 0;
+    }
+    public Magician(int unitId, int armor, int baseDamage, int experience) {
+        super.armor = armor;
+        super.initialArmor = 1;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+    }
+
+    public int getSanctified(){
+        
+            return 0;
+        
+    }
+    public void setInitialArmor(int initialArmor){
+        
     }
 
     public void sanctify(){
         
+    }
+
+    public void setBaseDamage(int damage){
+        this.baseDamage = damage;
     }
 
     public int attack(){
@@ -59,5 +78,10 @@ public class Magician extends SpecialUnit {
 
     public int getExperience(){
         return super.experience;
+    }
+
+    public void printearBonito() {
+        String sql = "Type: Magician" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience;
+        System.out.println(sql);
     }
 }

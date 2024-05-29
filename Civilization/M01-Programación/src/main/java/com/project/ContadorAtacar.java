@@ -30,8 +30,12 @@ public class ContadorAtacar {
                     aviso();
                 }
                 if (segundos % 180 == 0) {
-                    accion();
-                    segundos = 0;
+                    if(CivilizaciónControlador.civilización.getArmyQuantity() == 0){
+                        segundos = 120;
+                    } else{
+                        accion();
+                        segundos = 0;
+                    }
                 }
             }
         }, 1000, 1000); // Iniciar el contador después de 1 segundo y repetir cada segundo
@@ -44,7 +48,6 @@ public class ContadorAtacar {
 
     // Método para realizar la acción deseada cada 30 segundos
     private void accion() {
-        System.out.println("Ha pasado 30 segundos");
         mainWindow.contadorAtacar.detenerContador();
         mainWindow.contadorRecursos.detenerContador();
         FightButtonPanel dialog = new FightButtonPanel(mainWindow);

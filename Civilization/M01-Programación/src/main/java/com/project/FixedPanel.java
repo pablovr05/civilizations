@@ -2,7 +2,6 @@ package com.project;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.*;
 
 public class FixedPanel extends JPanel {
@@ -12,19 +11,14 @@ public class FixedPanel extends JPanel {
     private JButton hierro;
     private JButton maná;
 
-    private String qmadera = "1233334";
-    private String qcomida = "2345444";
-    private String qhierro = "2345446";
-    private String qmaná = "1244434";
-
     public FixedPanel() {
         setOpaque(false); // Hace que el panel sea transparente
         setPreferredSize(new Dimension(200, 200)); // Establece el tamaño del panel
 
-        madera = createButton("Madera: " + qmadera, "src\\main\\java\\com\\project\\images\\madera.png");
-        comida = createButton("Comida: " + qcomida, "src\\main\\java\\com\\project\\images\\naranja.png");
-        hierro = createButton("Hierro: " + qhierro, "src\\main\\java\\com\\project\\images\\minerals.png");
-        maná = createButton("Maná: " + qmaná, "src\\main\\java\\com\\project\\images\\mana.png");
+        madera = createButton("Madera: " + -1, "src\\main\\java\\com\\project\\images\\madera.png");
+        comida = createButton("Comida: " + -1, "src\\main\\java\\com\\project\\images\\naranja.png");
+        hierro = createButton("Hierro: " + -1, "src\\main\\java\\com\\project\\images\\minerals.png");
+        maná = createButton("Maná: " + -1, "src\\main\\java\\com\\project\\images\\mana.png");
 
         // Cambia el layout a BoxLayout con orientación vertical
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -60,6 +54,14 @@ public class FixedPanel extends JPanel {
         button.setBorder(new EmptyBorder(7,0,0,0));
         
         return button;
+    }
+
+    public void updateQuantities() {
+        // Actualiza los textos de los botones con las nuevas cantidades
+        madera.setText("Madera: " + CivilizaciónControlador.civilización.wood);
+        comida.setText("Comida: " + CivilizaciónControlador.civilización.food);
+        hierro.setText("Hierro: " + CivilizaciónControlador.civilización.iron);
+        maná.setText("Maná: " + CivilizaciónControlador.civilización.mana);
     }
 
     @Override

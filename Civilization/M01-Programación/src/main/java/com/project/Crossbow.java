@@ -10,12 +10,35 @@ public class Crossbow extends AttackUnit {
         super.sanctified = false;
     }
 
+    public Crossbow(int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+        super.armor = armor;
+        super.initialArmor = Variables.ARMOR_CROSSBOW;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+        super.sanctified = sanctified;
+    }
+
     public Crossbow() {
         super.armor = ARMOR_CROSSBOW;
         super.initialArmor = ARMOR_CROSSBOW;
         super.baseDamage =  BASE_DAMAGE_CROSSBOW;
         super.experience = 0;
         super.sanctified = false;
+    }
+
+    public int getSanctified(){
+        if(super.sanctified){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
+
+    public void setBaseDamage(int damage){
+        this.baseDamage = damage;
     }
 
     public void sanctify(){
@@ -72,5 +95,10 @@ public class Crossbow extends AttackUnit {
 
     public int getExperience(){
         return super.experience;
+    }
+
+    public void printearBonito() {
+        String sql = "Type: Crossbow" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience + " sanctified: " + this.sanctified;
+        System.out.println(sql);
     }
 }

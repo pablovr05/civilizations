@@ -25,7 +25,7 @@ class AppData {
     }
 
     private void connect() {
-        String url = "jdbc:oracle:thin:@192.168.192.2:1521/orcl";
+        String url = "jdbc:oracle:thin:@192.168.1.40:1521/orcl"; //IMPORTANTE: Cambiar la ip a la de la máquina, la contraseña y admin siempre es la misma
         String user = "admin";
         String password = "admin";
 
@@ -134,4 +134,37 @@ class AppData {
         BigDecimal civilization_id = (BigDecimal) query.get(0).get("CIVILIZATION_ID");
         return civilization_id;
     }
+
+    public static void main(String[] args) {
+        AppData db = AppData.getInstance();
+        //Insertar para tipo 'Swordsman'
+        String sql = "INSERT INTO attack_units_stats (civilization_id, type, armor, base_damage, experience, sanctified) VALUES (165, 'Swordsman', 5, 10, 100, 0)";
+        db.update(sql);
+        //Insertar para tipo 'Spearman'
+        sql = "INSERT INTO attack_units_stats (civilization_id, type, armor, base_damage, experience, sanctified) VALUES (165, 'Spearman', 4, 8, 80, 1)";
+        db.update(sql);
+        //Insertar para tipo 'Crossbow'
+        sql = "INSERT INTO attack_units_stats (civilization_id, type, armor, base_damage, experience, sanctified) VALUES (165, 'Crossbow', 3, 12, 90, 0)";
+        db.update(sql);
+        //Insertar para tipo 'Cannon'
+        sql = "INSERT INTO attack_units_stats (civilization_id, type, armor, base_damage, experience, sanctified) VALUES (165, 'Cannon', 6, 15, 110, '1')";
+        db.update(sql);
+        //Insertar para tipo 'ArrowTower'
+        sql = "INSERT INTO defense_units_stats (civilization_id, type, armor, base_damage, experience, sanctified) VALUES (165, 'ArrowTower', 7, 9, 120, 0)";
+        db.update(sql);
+        //Insertar para tipo 'Catapult'
+        sql = "INSERT INTO defense_units_stats (civilization_id, type, armor, base_damage, experience, sanctified) VALUES (165, 'Catapult', 6, 14, 100, 0)";
+        db.update(sql);
+        //Insertar para tipo 'RocketLauncherTower'
+        sql = "INSERT INTO defense_units_stats (civilization_id, type, armor, base_damage, experience, sanctified) VALUES (165, 'RocketLauncherTower', 8, 20, 130, 1)";
+        db.update(sql);
+        //Insertar para tipo 'Magician'
+        sql = "INSERT INTO special_units_stats (civilization_id, type, armor, base_damage, experience) VALUES (165, 'Magician', 2, 18, 150)";
+        db.update(sql);
+        //Insertar para tipo 'Priest'
+        sql = "INSERT INTO special_units_stats (civilization_id, type, armor, base_damage, experience) VALUES (165, 'Priest', 3, 5, 200)";
+        db.update(sql);
+        db.update("COMMIT");
+    };
 }
+

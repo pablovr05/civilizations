@@ -10,12 +10,36 @@ public class Cannon extends AttackUnit  {
         super.sanctified = false;
     }
 
+    public Cannon(int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+        super.armor = armor;
+        super.initialArmor = Variables.ARMOR_CANNON;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+        super.sanctified = sanctified;
+    }
+
     public Cannon() {
         super.armor = ARMOR_CANNON;
         super.initialArmor = ARMOR_CANNON;
         super.baseDamage =  BASE_DAMAGE_CANNON;
         super.experience = 0;
         super.sanctified = false;
+    }
+
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
+
+    public int getSanctified(){
+        if(super.sanctified){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
+
+    public void setBaseDamage(int damage){
+        this.baseDamage = damage;
     }
 
     public void sanctify(){
@@ -72,6 +96,11 @@ public class Cannon extends AttackUnit  {
 
     public int getExperience(){
         return super.experience;
+    }
+
+    public void printearBonito() {
+        String sql = "Type: Cannon" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience + " sanctified: " + this.sanctified;
+        System.out.println(sql);
     }
 }
 

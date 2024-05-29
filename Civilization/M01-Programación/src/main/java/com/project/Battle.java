@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Battle {
+
+    boolean winner;
     ArrayList<ArrayList<MilitaryUnit>> civilizationArmy;
     ArrayList<ArrayList<MilitaryUnit>> enemyArmy;
     ArrayList<ArrayList<ArrayList<MilitaryUnit>>> armies;
     String battleDevelopment;
+    ArrayList<ArrayList<String[]>> desarrolloBatalla;
     ArrayList<int[]> initialCostFleet;
     int initialNumberUnitsCivilization;
     int initialNumberUnitsEnemy;
@@ -55,13 +58,24 @@ public class Battle {
         System.out.println(remainderPercentageFleet(enemyArmy));
     }
 
+/*
+lista -> [[["atacante_civilization", "defensor_enemy", "ataque", "defensa", "repetir"],["atacante_enemy", "defensor_civilization", ataque, defensa, repetir]], ...]
 
-    String startBattle() {
-        Scanner scan = new Scanner(System.in);
+La lista grande es todo el log, cada lista dentro de esta es un turno, y cada turno tiene una lista que es el ataque de la civilizacion y el ataque del enemigo.
+
+Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defensor, el numero de ataque, el número de defensa y el boleano de si se repite el ataque.
+*/
+
+
+
+    boolean startBattle(Civilization civilization) {
+
+        System.out.println(initialCostFleet);
+
+        this.desarrolloBatalla = new ArrayList<>();
         while (remainderPercentageFleet(civilizationArmy) >= 20 && remainderPercentageFleet(enemyArmy) >= 20) {
             int attackGroupCivilization = getCivilizationGroupAttacker();
             int attackGroupEnemy = getEnemyGroupAttacker();
-            
             // Verifica que los grupos no estén vacíos
             if (civilizationArmy.get(attackGroupCivilization).isEmpty() || enemyArmy.get(attackGroupEnemy).isEmpty()) {
                 continue;
@@ -72,49 +86,54 @@ public class Battle {
                     .get((int) (Math.random() * civilizationArmy.get(attackGroupCivilization).size()));
             MilitaryUnit defenderEnemy = enemyArmy.get(attackGroupEnemy)
                     .get((int) (Math.random() * enemyArmy.get(attackGroupEnemy).size()));
-            
-            // Imprime el estado de la batalla
-            // printBattle();
-            // String hola = scan.nextLine();  // Esto aparece para debugging, puedes quitarlo si no es necesario
-            
+
             // Ataca la unidad enemiga
             this.battleDevelopment += "********************CHANGE ATTACKER********************\n";
+            String[] turnoCivilizacion = new String[5];
             this.battleDevelopment += "Attacks Civilization: " + getClassName(attackerCivilization) + " attacks " + getClassName(defenderEnemy) + "\n";
+            turnoCivilizacion[0] = getClassName(attackerCivilization);
+            turnoCivilizacion[1] = getClassName(defenderEnemy);
             int attackCivilization = attackerCivilization.attack();
+            turnoCivilizacion[2] = String.valueOf(attackCivilization);
             this.battleDevelopment += getClassName(attackerCivilization) + " generates the damage = " + attackCivilization + "\n";
             defenderEnemy.takeDamage(attackCivilization);
             int defenseEnemy = defenderEnemy.getActualArmor();
+            turnoCivilizacion[3] = String.valueOf(defenseEnemy);
             this.battleDevelopment += getClassName(defenderEnemy) + " stays with armor = " + defenseEnemy + "\n";
-            
+
+            turnoCivilizacion[4] = "0";
             if (defenseEnemy <= 0) {
                 this.battleDevelopment += "We eliminate " + getClassName(defenderEnemy) + "\n";
                 generateWaste(defenderEnemy);
                 addDropUnit(defenderEnemy, true);
                 enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
-                Main.enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
-            }
-            
-            // Segunda posibilidad de ataque
-            int random = (int) (Math.random() * 100);
-            if (random <= attackerCivilization.getChanceAttackAgain() && !enemyArmy.get(attackGroupEnemy).isEmpty()) {
-                defenderEnemy = enemyArmy.get(attackGroupEnemy)
-                        .get((int) (Math.random() * enemyArmy.get(attackGroupEnemy).size()));
-                this.battleDevelopment += "Attacks Civilization: " + getClassName(attackerCivilization) + " attacks " + getClassName(defenderEnemy) + "\n";
-                attackCivilization = attackerCivilization.attack();
-                this.battleDevelopment += getClassName(attackerCivilization) + " generates the damage = " + attackCivilization + "\n";
-                defenderEnemy.takeDamage(attackCivilization);
-                defenseEnemy = defenderEnemy.getActualArmor();
-                this.battleDevelopment += getClassName(defenderEnemy) + " stays with armor = " + defenseEnemy + "\n";
-                if (defenseEnemy <= 0) {
-                    this.battleDevelopment += "We eliminate " + getClassName(defenderEnemy) + "\n";
-                    generateWaste(defenderEnemy);
-                    addDropUnit(defenderEnemy, true);
-                    enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
-                    Main.enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
-                    
+            } else{
+
+                // Segunda posibilidad de ataque
+                int random = (int) (Math.random() * 100);
+
+                if (random <= attackerCivilization.getChanceAttackAgain() && !enemyArmy.get(attackGroupEnemy).isEmpty()) {
+                    // defenderEnemy = enemyArmy.get(attackGroupEnemy)
+                    //         .get((int) (Math.random() * enemyArmy.get(attackGroupEnemy).size()));
+                    turnoCivilizacion[4] = "1";
+                    this.battleDevelopment += "Attacks Civilization: " + getClassName(attackerCivilization) + " attacks " + getClassName(defenderEnemy) + "\n";
+                    attackCivilization = attackerCivilization.attack();
+                    this.battleDevelopment += getClassName(attackerCivilization) + " generates the damage = " + attackCivilization + "\n";
+                    defenderEnemy.takeDamage(attackCivilization);
+                    defenseEnemy = defenderEnemy.getActualArmor();
+                    this.battleDevelopment += getClassName(defenderEnemy) + " stays with armor = " + defenseEnemy + "\n";
+                    if (defenseEnemy <= 0) {
+                        this.battleDevelopment += "We eliminate " + getClassName(defenderEnemy) + "\n";
+                        generateWaste(defenderEnemy);
+                        addDropUnit(defenderEnemy, true);
+                        enemyArmy.get(attackGroupEnemy).remove(defenderEnemy);
+                        
+                    } else {
+                    } 
+                } else {
                 }
             }
-            
+   
             this.actualNumberUnitsCivilization = getArrayQuantities(civilizationArmy);
             this.actualNumberUnitsEnemy = getArrayQuantities(enemyArmy);
             
@@ -132,56 +151,73 @@ public class Battle {
                     .get((int) (Math.random() * enemyArmy.get(attackGroupEnemy).size()));
             
             this.battleDevelopment += "********************CHANGE ATTACKER********************\n";
+            String[] turnoEnemigo = new String[5];
             this.battleDevelopment += "Attacks enemy army: " + getClassName(attackerEnemy) + " attacks " + getClassName(defenderCivilization) + "\n";
+
+            turnoEnemigo[0] = getClassName(attackerEnemy);
+            turnoEnemigo[1] = getClassName(defenderCivilization);
             int attackEnemy = attackerEnemy.attack();
             this.battleDevelopment += getClassName(attackerEnemy) + " generates the damage = " + attackEnemy + "\n";
+            turnoEnemigo[2] = String.valueOf(attackEnemy);
             defenderCivilization.takeDamage(attackEnemy);
             int defenseCivilization = defenderCivilization.getActualArmor();
+            turnoEnemigo[3] = String.valueOf(defenseCivilization);
             this.battleDevelopment += getClassName(defenderCivilization) + " stays with armor = " + defenseCivilization + "\n";
-            
+            turnoEnemigo[4] = "0";
+
             if (defenseCivilization <= 0) {
                 this.battleDevelopment += "We lose " + getClassName(defenderCivilization) + "\n";
                 generateWaste(defenderCivilization);
                 addDropUnit(defenderCivilization, false);
                 civilizationArmy.get(defenseGroup).remove(defenderCivilization);
-                Civilization.army.get(defenseGroup).remove(defenderCivilization);
-            }
-            
-            // Segunda posibilidad de ataque del enemigo
-            random = (int) (Math.random() * 100);
-            if (random <= attackerEnemy.getChanceAttackAgain() && !civilizationArmy.get(defenseGroup).isEmpty()) {
-                defenderCivilization = civilizationArmy.get(defenseGroup)
-                        .get((int) (Math.random() * civilizationArmy.get(defenseGroup).size()));
-                this.battleDevelopment += "Attacks enemy army: " + getClassName(attackerEnemy) + " attacks " + getClassName(defenderCivilization) + "\n";
-                attackEnemy = attackerEnemy.attack();
-                this.battleDevelopment += getClassName(attackerEnemy) + " generates the damage = " + attackEnemy + "\n";
-                defenderCivilization.takeDamage(attackEnemy);
-                defenseCivilization = defenderCivilization.getActualArmor();
-                this.battleDevelopment += getClassName(defenderCivilization) + " stays with armor = " + defenseCivilization + "\n";
-                if (defenseCivilization <= 0) {
-                    this.battleDevelopment += "We lose " + getClassName(defenderCivilization) + "\n";
-                    generateWaste(defenderCivilization);
-                    addDropUnit(defenderCivilization, false);
-                    civilizationArmy.get(defenseGroup).remove(defenderCivilization);
-                    Civilization.army.get(defenseGroup).remove(defenderCivilization);
+                civilization.army.get(defenseGroup).remove(defenderCivilization);
+            }else{
+                // Segunda posibilidad de ataque del enemigo
+                int random = (int) (Math.random() * 100);
+                if (random <= attackerEnemy.getChanceAttackAgain() && !civilizationArmy.get(defenseGroup).isEmpty()) {
+                    // defenderCivilization = civilizationArmy.get(defenseGroup)
+                    //         .get((int) (Math.random() * civilizationArmy.get(defenseGroup).size()));
+                    turnoEnemigo[4] = "1";
+                    this.battleDevelopment += "Attacks enemy army: " + getClassName(attackerEnemy) + " attacks " + getClassName(defenderCivilization) + "\n";
+                    attackEnemy = attackerEnemy.attack();
+                    this.battleDevelopment += getClassName(attackerEnemy) + " generates the damage = " + attackEnemy + "\n";
+                    defenderCivilization.takeDamage(attackEnemy);
+                    defenseCivilization = defenderCivilization.getActualArmor();
+                    this.battleDevelopment += getClassName(defenderCivilization) + " stays with armor = " + defenseCivilization + "\n";
+                    if (defenseCivilization <= 0) {
+                        this.battleDevelopment += "We lose " + getClassName(defenderCivilization) + "\n";
+                        generateWaste(defenderCivilization);
+                        addDropUnit(defenderCivilization, false);
+                        civilizationArmy.get(defenseGroup).remove(defenderCivilization);
+                        civilization.army.get(defenseGroup).remove(defenderCivilization);
+                    }
                 }
             }
+
+            ArrayList<String[]> turnoCompleto = new ArrayList<>();
+            turnoCompleto.add(turnoCivilizacion);
+            turnoCompleto.add(turnoEnemigo);
+            this.desarrolloBatalla.add(turnoCompleto);
             
             this.actualNumberUnitsCivilization = getArrayQuantities(civilizationArmy);
             this.actualNumberUnitsEnemy = getArrayQuantities(enemyArmy);
+
         }
 
         updateResourcesLooses();
-        
+        resetArmyArmor(civilization.army);
+        Civilization.gainExperience();
 
-        if (this.resourcesLooses.get(0)[3]>this.resourcesLooses.get(1)[3]) {
-            return "enemy";
+        if (remainderPercentageFleet(civilizationArmy) >= 20) {
+            civilization.setWood(civilization.getWood()+ wasteWoodIron[0]);
+            civilization.setIron(civilization.getIron()+ wasteWoodIron[1]);
+            this.winner = true;
         } else {
-            return "civilization";
+            this.winner = false;
         }
+        return this.winner;
     }
     
-
     int getEnemyGroupAttacker() {
         while (true) {
             int random = (int) (Math.random() * 100);
@@ -197,26 +233,29 @@ public class Battle {
         }
     }
     
-    int getCivilizationGroupAttacker() {
+    public int getCivilizationGroupAttacker() {
         while (true) {
             int random = (int) (Math.random() * 100);
             if (random <= 4 && !civilizationArmy.get(0).isEmpty()) {
                 return 0;
-            } else if (random <= 13 && !civilizationArmy.get(1).isEmpty()) {
+            } else if (random <= 16 && !civilizationArmy.get(1).isEmpty()) {
                 return 1;
-            } else if (random <= 26 && !civilizationArmy.get(2).isEmpty()) {
+            } else if (random <= 29 && !civilizationArmy.get(2).isEmpty()) {
                 return 2;
-            } else if (random <= 44 && !civilizationArmy.get(3).isEmpty()) {
+            } else if (random <= 47 && !civilizationArmy.get(3).isEmpty()) {
                 return 3;
-            } else if (random <= 70 && !civilizationArmy.get(4).isEmpty()) {
+            } else if (random <= 68 && !civilizationArmy.get(4).isEmpty()) {
                 return 4;
-            } else if (!civilizationArmy.get(5).isEmpty()) {
+            } else if (random <= 72 && !civilizationArmy.get(5).isEmpty()) {
                 return 5;
-            }
+            } else if (random <= 86 && !civilizationArmy.get(6).isEmpty()) {
+                return 6;
+            } else if (random <= 100 && !civilizationArmy.get(7).isEmpty()) {
+                return 7;
+            } 
         }
     }
     
-
     public int getArmyQuantity(ArrayList<ArrayList<MilitaryUnit>> army){
         int suma = 0;
         for(int i = 0; i<army.size(); i++){
@@ -226,7 +265,7 @@ public class Battle {
         return suma;
     }
 
-    public int[] getArrayQuantities(ArrayList<ArrayList<MilitaryUnit>> army){
+    public static int[] getArrayQuantities(ArrayList<ArrayList<MilitaryUnit>> army){
         int[] array = new int[army.size()];
         for(int i = 0; i<army.size(); i++){
             array[i] = army.get(i).size();
@@ -301,9 +340,9 @@ public class Battle {
         comida = 0;
         hierro = 0;
         for(int i = 0; i<enemyArmy.size(); i++){
-            madera += Variables.WOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-civilizationArmy.get(i).size());
-            comida += Variables.FOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-civilizationArmy.get(i).size());
-            hierro += Variables.IRON_COST_UNITS[i]*(initialArmies.get(1)[i]-civilizationArmy.get(i).size());
+            madera += Variables.WOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-enemyArmy.get(i).size());
+            comida += Variables.FOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-enemyArmy.get(i).size());
+            hierro += Variables.IRON_COST_UNITS[i]*(initialArmies.get(1)[i]-enemyArmy.get(i).size());
         }
         loss[0] = comida;
         loss[1] = madera;
@@ -333,16 +372,22 @@ public class Battle {
     }
     
 
-    int getGroupDefender(ArrayList<ArrayList<MilitaryUnit>> army){
+    public int getGroupDefender(ArrayList<ArrayList<MilitaryUnit>> army){
         int total = 0;
 
-        for(int i = 0; i<4; i++){
+        for(int i = 0; i<9; i++){
             total += actualNumberUnitsCivilization[i];
         }
 
         int swordsman = 100*actualNumberUnitsCivilization[0]/total;
         int spearman = swordsman + 100*actualNumberUnitsCivilization[1]/total;
         int crossbow = spearman + 100*actualNumberUnitsCivilization[2]/total;
+        int cannon = crossbow + 100*actualNumberUnitsCivilization[3]/total;
+        int arrow_tower = cannon + 100*actualNumberUnitsCivilization[4]/total;
+        int catapult = arrow_tower + 100*actualNumberUnitsCivilization[5]/total;
+        int rocketlaunchertower = catapult + 100*actualNumberUnitsCivilization[6]/total;
+        int magician = rocketlaunchertower + 100*actualNumberUnitsCivilization[7]/total;
+        int priest = magician + 100*actualNumberUnitsCivilization[8]/total;
 
         while(true){
             int random = (int)(Math.random()*100);
@@ -361,8 +406,33 @@ public class Battle {
                     if(!army.get(num).isEmpty()){
                         return num;
                     }
-            } else{
+            } else if(random<=cannon){
                 int num = 3;
+                    if(!army.get(num).isEmpty()){
+                        return num;
+                    }
+            }if(random<=arrow_tower){
+                int num = 4;
+                    if(!army.get(num).isEmpty()){
+                        return num;
+                    }
+            } else if(random<=catapult){
+                int num = 5;
+                    if(!army.get(num).isEmpty()){
+                        return num;
+                    }
+            } else if(random<=rocketlaunchertower){
+                int num = 6;
+                    if(!army.get(num).isEmpty()){
+                        return num;
+                    }
+            } else if(random<=magician){
+                int num = 7;
+                    if(!army.get(num).isEmpty()){
+                        return num;
+                    }
+            } else {
+                int num = 8;
                     if(!army.get(num).isEmpty()){
                         return num;
                     }
@@ -370,9 +440,9 @@ public class Battle {
         }
     }
 
-    void resetArmyArmor(){
-        for(int i = 0; i<civilizationArmy.size(); i++){
-            for(MilitaryUnit tropa : civilizationArmy.get(i)){
+    void resetArmyArmor(ArrayList<ArrayList<MilitaryUnit>> army){
+        for(int i = 0; i<army.size(); i++){
+            for(MilitaryUnit tropa : army.get(i)){
                 tropa.resetArmor();
             }
         }
@@ -384,55 +454,55 @@ public class Battle {
         switch (clase){
             case("Swordsman"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_SWORDSMAN){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_SWORDSMAN;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_SWORDSMAN;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_SWORDSMAN/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_SWORDSMAN/100;
                 } break;
             case("Spearman"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_SPEARMAN){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_SPEARMAN;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_SPEARMAN;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_SPEARMAN/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_SPEARMAN/100;
                 } break;
             case("Crossbow"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_CROSSBOW){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_CROSSBOW;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_CROSSBOW;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_CROSSBOW/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_CROSSBOW/100;
                 } break;
             case("Cannon"):
-                if(random<= Variables.CHANCE_GENERATNG_WASTE_SWORDSMAN){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_SWORDSMAN;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_SWORDSMAN;
+                if(random<= Variables.CHANCE_GENERATNG_WASTE_CANNON){
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_CANNON/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_CANNON/100;
                 } break;
             case("ArrowTower"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_ARROWTOWER){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_ARROWTOWER;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_ARROWTOWER;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_ARROWTOWER/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_ARROWTOWER/100;
                 } break;
             case("Catapult"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_CATAPULT){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_CATAPULT;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_CATAPULT;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_CATAPULT/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_CATAPULT/100;
                 } break;
             case("RocketLauncherTower"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_ROCKETLAUNCHERTOWER){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_ROCKETLAUNCHERTOWER;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_ROCKETLAUNCHERTOWER;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_ROCKETLAUNCHERTOWER/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_ROCKETLAUNCHERTOWER/100;
                 } break;
             case("Magician"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_MAGICIAN){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_MAGICIAN;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_MAGICIAN;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_MAGICIAN/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_MAGICIAN/100;
                 } break;
             case("Priest"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_PRIEST){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_PRIEST;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_PRIEST;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_PRIEST/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_PRIEST/100;
                 } break;
         }
     }
 
     void addDropUnit(MilitaryUnit unit, boolean enemy){
-        Class clase = unit.getClass();
-        switch (clase.getName()){
+        String clase = Battle.getClassName(unit);
+        switch (clase){
             case("Swordsman"):
                 if(enemy){
                     enemyDrops[0] += 1;
@@ -475,7 +545,7 @@ public class Battle {
         }
     }
 
-    public String getClassName(MilitaryUnit unit){
+    public static String getClassName(MilitaryUnit unit){
         Class clase = unit.getClass();
         String name = clase.getName();
         if(name.contains("Swordsman")){

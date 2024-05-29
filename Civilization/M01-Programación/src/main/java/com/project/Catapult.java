@@ -10,12 +10,36 @@ public class Catapult extends DefenseUnit {
         super.sanctified = false;
     }
 
+    public Catapult(int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+        super.armor = armor;
+        super.initialArmor = Variables.ARMOR_CATAPULT;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+        super.sanctified = sanctified;
+    }
+
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
+
+    public int getSanctified(){
+        if(super.sanctified){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
+
     public void sanctify(){
         if(super.sanctified == false){
             super.armor += armor*PLUS_ARMOR_UNIT_SANCTIFIED/100;
             super.baseDamage += baseDamage*PLUS_ATTACK_UNIT_SANCTIFIED/100;
         }
         super.sanctified = true;
+    }
+
+    public void setBaseDamage(int damage){
+        this.baseDamage = damage;
     }
 
     public int attack(){
@@ -64,5 +88,10 @@ public class Catapult extends DefenseUnit {
 
     public int getExperience(){
         return super.experience;
+    }
+
+    public void printearBonito() {
+        String sql = "Type: Catapult" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience + " sancitfied: " + this.sanctified;
+        System.out.println(sql);
     }
 }

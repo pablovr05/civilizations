@@ -9,6 +9,25 @@ public class ArrowTower extends DefenseUnit {
         super.experience = 0;
         super.sanctified = false;
     }
+    public ArrowTower(int unitId, int armor, int baseDamage, int experience, boolean sanctified) {
+        super.armor = armor;
+        super.initialArmor = Variables.ARMOR_ARROWTOWER;
+        super.baseDamage = baseDamage;
+        super.experience = experience;
+        super.sanctified = sanctified;
+    }
+
+    public int getSanctified(){
+        if(super.sanctified){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
+
+    public void setBaseDamage(int damage){
+        this.baseDamage = damage;
+    }
     
     public void sanctify(){
         if(super.sanctified == false){
@@ -58,11 +77,20 @@ public class ArrowTower extends DefenseUnit {
         super.armor = super.initialArmor;
     }
 
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
+
     public void setExperience(int n){
         super.experience = n;
     }
 
     public int getExperience(){
         return super.experience;
+    }
+
+    public void printearBonito() {
+        String sql = "Type: ArrowTower" + " armor: " + this.armor + " initialArmor: " + this.initialArmor + " baseDamage: " + this.baseDamage + " experience: " + this.experience + " sanctified: " + this.sanctified;
+        System.out.println(sql);
     }
 }

@@ -70,6 +70,7 @@ public class MenúControlador {
             mainWindow.contadorAtacar.detenerContador();
             mainWindow.contadorRecursos.segundos = 0;
             mainWindow.contadorRecursos.detenerContador();
+            saveGame(CivilizaciónControlador.civilización);
             llamarCivilización();
         }
     } 
@@ -114,5 +115,10 @@ public class MenúControlador {
         mainWindow.cambiarPanel(historialFrame);
         historialControlador = new HistorialControlador(historialFrame, mainWindow);
         historialControlador.start();
+    }
+
+    public void saveGame(Civilization civilización) {
+        civilización.printearBonito();
+        CivilizationDAO.save(civilización);
     }
 }
