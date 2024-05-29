@@ -33,6 +33,9 @@ public class Crossbow extends AttackUnit {
             return 0;
         }
     }
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
 
     public void setBaseDamage(int damage){
         this.baseDamage = damage;

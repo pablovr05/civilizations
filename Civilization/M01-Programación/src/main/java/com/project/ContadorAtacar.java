@@ -29,7 +29,7 @@ public class ContadorAtacar {
                 if (segundos % 150 == 0) {
                     aviso();
                 }
-                if (segundos % 180 == 0) {
+                if (segundos % 30 == 0) {
                     accion();
                     segundos = 0;
                 }

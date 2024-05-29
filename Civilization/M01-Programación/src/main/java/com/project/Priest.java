@@ -21,6 +21,9 @@ public class Priest extends SpecialUnit {
             return 0;
         
     }
+    public void setInitialArmor(int initialArmor){
+        
+    }
 
     public void sanctify(){
         

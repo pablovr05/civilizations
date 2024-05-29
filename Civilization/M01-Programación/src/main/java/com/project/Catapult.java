@@ -18,6 +18,10 @@ public class Catapult extends DefenseUnit {
         super.sanctified = sanctified;
     }
 
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
+
     public int getSanctified(){
         if(super.sanctified){
             return 1;

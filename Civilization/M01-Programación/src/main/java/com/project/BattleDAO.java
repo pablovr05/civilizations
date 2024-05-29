@@ -6,31 +6,38 @@ import java.util.List;
 import java.util.Map;
 
 public class BattleDAO {
-    public void save(int civilization_id, Battle battle){
+    public static void save(int civilization_id, Battle battle){
         AppData db = AppData.getInstance();
         String updateQuery;
 
         if(battle.winner){
             updateQuery = "INSERT INTO Battle_stats (Civilization_id, wood_acquired, iron_acquired, winner) VALUES ("+civilization_id+", "+battle.wasteWoodIron[0]+", "+battle.wasteWoodIron[1]+", "+1+")";
+            System.out.println("true");
         } else{
             updateQuery = "INSERT INTO Battle_stats (Civilization_id, wood_acquired, iron_acquired, winner) VALUES ("+civilization_id+", "+battle.wasteWoodIron[0]+", "+battle.wasteWoodIron[1]+", "+0+")";
+            System.out.println("false");
         }
         
-
+        System.out.println("adios");
         db.update(updateQuery);
+
+        System.out.println("hola");
         
-        List<Map<String, Object>> listaID = db.query("SELECT civilization_id FROM Battle_stats ORDER BY Civilization_id DESC LIMIT 1");
-        BigDecimal idBigDecimal = (BigDecimal) listaID.get(0).get("CIVILIZATION_ID");
+        List<Map<String, Object>> listaID = db.query("SELECT num_battle FROM Battle_stats ORDER BY num_battle DESC");
+        BigDecimal idBigDecimal = (BigDecimal) listaID.get(0).get("NUM_BATTLE");
         int id = idBigDecimal.intValue();
+
+        System.out.println(id);
 
         String[] tiposEnemigo = new String[]{"Swordsman", "Spearman", "Crossbow", "Cannon"};
 
         // añadir atacantes enemigos
-        for(int i = 0; i<4; i++){
+        for(int i = 0; i<tiposEnemigo.length; i++){
             updateQuery = "INSERT INTO Enemy_attack_stats (num_battle, civilization_id, type, initials, drops) VALUES ("+id+", "+civilization_id+", '"+tiposEnemigo[i]+"', "+battle.initialArmies.get(1)[i]+", "+battle.enemyDrops[i]+")";
 
             db.update(updateQuery);
         }
+        System.out.println("jeje");
 
         String[] tiposCivilizacion = new String[]{"Swordsman", "Spearman", "Crossbow", "Cannon", "ArrowTower","Catapult","RocketLauncherTower", "Magician","Priest"};
 
@@ -57,12 +64,17 @@ public class BattleDAO {
             }
         }
 
+        System.out.println("god");
+
         // Falta la tabla de battle_log después de crear la lista de battle
 
         for(int i = 0; i<battle.desarrolloBatalla.size(); i++){
             updateQuery = "INSERT INTO Battle_log (civilization_id, num_battle, num_line, atacante_civilization, defensor_enemy, ataque_civilization, defensa_enemy, repite_civilization, atacante_enemy, defensor_civilization, ataque_enemy, defensa_civilization, repite_enemy)"+
                 " VALUES ("+civilization_id+", "+id+", "+i+", '"+battle.desarrolloBatalla.get(i).get(0)[0]+"','"+battle.desarrolloBatalla.get(i).get(0)[1]+"', "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(0)[2])+", "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(0)[3])+", "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(0)[4])+", '"+battle.desarrolloBatalla.get(i).get(1)[0]+"','"+battle.desarrolloBatalla.get(i).get(1)[1]+"', "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(1)[2])+", "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(1)[3])+", "+Integer.parseInt(battle.desarrolloBatalla.get(i).get(1)[4])+")";
+            db.update(updateQuery);
         }
+
+        System.out.println("wow");
 
         db.update("COMMIT");
     }

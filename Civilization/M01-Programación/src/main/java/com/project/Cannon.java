@@ -26,6 +26,10 @@ public class Cannon extends AttackUnit  {
         super.sanctified = false;
     }
 
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
+
     public int getSanctified(){
         if(super.sanctified){
             return 1;

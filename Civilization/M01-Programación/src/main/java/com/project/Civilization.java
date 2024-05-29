@@ -1092,6 +1092,7 @@ public class Civilization implements Variables {
         for(int i = 0; i<army.size(); i++){
             for(MilitaryUnit unit : army.get(i)){
                 unit.setExperience(unit.getExperience()+1);
+                unit.getActualArmor();
                 unit.takeDamage(-(PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT));
                 unit.setBaseDamage(unit.attack()+PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT);
             }
