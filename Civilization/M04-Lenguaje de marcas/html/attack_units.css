@@ -152,7 +152,7 @@ body {
 }
 
 .footer {
-    margin-top: 20px;
+    margin-top: 27%;
     background-color: #4a90e2;
     color: white;
     padding: 20px;
@@ -161,6 +161,7 @@ body {
     bottom: 0;
     width: 100%;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    
 }
 
 .footer-content {

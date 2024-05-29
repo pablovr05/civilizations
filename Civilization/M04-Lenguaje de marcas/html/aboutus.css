@@ -166,6 +166,7 @@ html {
     bottom: 0;
     width: 100%;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10%;
 }
 
 .footer-content {
