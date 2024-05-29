@@ -86,9 +86,10 @@ public class Civilization implements Variables {
     public void sanctifyGroup(int group){
         if(group>=0 && group<=6){
             for(MilitaryUnit unit : army.get(group)){
+                System.out.println("santificada");
                 unit.sanctify();
             }
-        }
+        } 
     }
 
     public void setBattles(int battles) {
@@ -814,12 +815,12 @@ public class Civilization implements Variables {
                 } else {
                     String title = "Se han agregado " + cnt + " Priests";
                     String message = "Faltan recursos para añadir más Priests";
-                    return new String[]{title, message};
+                    return new String[]{title, message, String.valueOf(cnt)};
                 }
             }
             System.out.println("Se han agregado " + cnt + " Priests");
         }
-        return new String[]{"Se han agregado " + cnt + " Priests", ""};
+        return new String[]{"Se han agregado " + cnt + " Priests", "", String.valueOf(cnt)};
     }
         
 
@@ -1064,7 +1065,7 @@ public class Civilization implements Variables {
         this.foodGeneration = CIVILIZATION_FOOD_GENERATED+this.farm*CIVILIZATION_FOOD_GENERATED_PER_FARM;
         this.woodGeneration = CIVILIZATION_WOOD_GENERATED+this.carpentry*CIVILIZATION_WOOD_GENERATED_PER_CARPENTRY;
         this.ironGeneration = CIVILIZATION_IRON_GENERATED+this.smithy*CIVILIZATION_IRON_GENERATED_PER_SMITHY;
-        this.manaGeneration = 0+this.magicTower*CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER;
+        this.manaGeneration = 100000+this.magicTower*CIVILIZATION_MANA_GENERATED_PER_MAGIC_TOWER;
     }
 
     public void generateResources(){
