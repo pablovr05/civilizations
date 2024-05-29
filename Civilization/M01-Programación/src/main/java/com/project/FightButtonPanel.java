@@ -68,7 +68,7 @@ public class FightButtonPanel extends JDialog {
             @Override
             public void mouseEntered(MouseEvent e) {
                 System.out.println("Entra");
-                playSoundOne("clickfight.wav");
+                SoundPlayer.playSound("clickfight.wav", 0.5f);
             }
 
             @Override
@@ -82,22 +82,10 @@ public class FightButtonPanel extends JDialog {
                 System.out.println("click");
                 dispose(); // Cerrar la ventana emergente después de detener el sonido
                 System.out.println("Cerrando la ventana emergente...");
-                playSoundOne("selectbattle.wav");
+                SoundPlayer.playSound("selectbattle.wav", 0.5f);
             }
         });
         return button;
-    }
-
-    private void playSoundOne(String soundPath) {
-        try {
-            File file = new File(soundPath);
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-            clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            clip.start();
-        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException ex) {
-            ex.printStackTrace();
-        }
     }
 
     private Clip playSoundBucle(String soundPath) {

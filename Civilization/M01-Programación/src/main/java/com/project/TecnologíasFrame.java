@@ -18,7 +18,7 @@ public class TecnologíasFrame extends JPanel {
 
         // Agregar un título encima del panel
         JLabel titleLabel = new JLabel("Tecnologías");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        titleLabel.setFont(new Font("Reem Kufi", Font.BOLD, 24));
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titleLabel.setBorder(new EmptyBorder(0,0,30,0));
@@ -58,7 +58,6 @@ public class TecnologíasFrame extends JPanel {
 
         panelbuton.add(exitButtonTecnologías);
 
-        panelbuton.setBorder(new EmptyBorder(0,100,0,100));
         panelbuton.setBackground(new Color(255,0,0,100));
 
         background.add(panelbuton, BorderLayout.SOUTH);
