@@ -29,9 +29,13 @@ public class ContadorAtacar {
                 if (segundos % 150 == 0) {
                     aviso();
                 }
-                if (segundos % 30 == 0) {
-                    accion();
-                    segundos = 0;
+                if (segundos % 180 == 0) {
+                    if(CivilizaciónControlador.civilización.getArmyQuantity() == 0){
+                        segundos = 120;
+                    } else{
+                        accion();
+                        segundos = 0;
+                    }
                 }
             }
         }, 1000, 1000); // Iniciar el contador después de 1 segundo y repetir cada segundo

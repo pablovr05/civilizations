@@ -205,6 +205,14 @@ public class Civilization implements Variables {
     public int getNombrePriest() {
         return getElementCount(priest_index);
     }
+
+    public int getArmyQuantity() {
+        int quantity = 0;
+        for ( int i = 0; i < 8; i++){
+            quantity += getElementCount(i);
+        }
+        return quantity;
+    }
     
     public int getElementCount(int index) {
         if (index >= 0 && index < army.size()) {
