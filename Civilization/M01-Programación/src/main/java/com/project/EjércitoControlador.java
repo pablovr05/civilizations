@@ -34,7 +34,7 @@ public class EjércitoControlador {
     public void runCommand(String command) {
         if (command.equals("GIF_BUTTON_CLICKED")) {
             String tipo = ejércitoFrame.optionsComboBoxEjército.getSelectedItem().toString();
-            showEjercito dialog = new showEjercito(mainWindow, tipo);
+            ShowEjercito dialog = new ShowEjercito(mainWindow, tipo);
             dialog.setVisible(true);
         } if (command.equals("Cancelar")) {
             SoundPlayer.playSound("clickselect.wav", 0.5f);

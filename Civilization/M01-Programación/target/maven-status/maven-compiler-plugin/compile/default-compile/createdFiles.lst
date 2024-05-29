@@ -30,7 +30,6 @@ com\project\AttackUnit.class
 com\project\ResourceException.class
 com\project\RoundedPanel.class
 com\project\CivilizaciónFrame$2.class
-com\project\showEjercito$1.class
 com\project\Crossbow.class
 com\project\MainWindow.class
 com\project\CivilizaciónControlador.class
@@ -64,6 +63,8 @@ com\project\Cannon.class
 com\project\Magician.class
 com\project\TooltipHelper.class
 com\project\Variables.class
+com\project\ShowEjercito$1.class
+com\project\ShowEjercito.class
 com\project\FightButtonPanel$1.class
 com\project\FontViewer.class
 com\project\EstadísticasFrame$1.class
@@ -88,7 +89,6 @@ com\project\MenúFrame$6.class
 com\project\MenúFrame$3.class
 com\project\CivilizationDAO.class
 com\project\HistorialControlador.class
-com\project\showEjercito.class
 com\project\ArrowTower.class
 com\project\ContadorAtacar$1.class
 com\project\BatallaPanel$1.class

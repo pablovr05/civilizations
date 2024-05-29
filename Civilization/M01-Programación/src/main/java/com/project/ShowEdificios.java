@@ -28,6 +28,8 @@ public class ShowEdificios extends JDialog {
 
     private Image backgroundImage;
 
+    private String URL;
+
     public ShowEdificios(JFrame parent, String type) {
         super(parent, "Ventana emergente", true);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -53,10 +55,11 @@ public class ShowEdificios extends JDialog {
         // Configura el contenido de la ventana emergente
         JPanel contentPane = new JPanel(new GridBagLayout());
         contentPane.setOpaque(false); // Hace que el panel sea transparente
-        contentPane.setBorder(new EmptyBorder(4, 4, 4, 4)); // Añade un espacio en los bordes
+        contentPane.setBorder(new EmptyBorder(0, 0, 0, 0)); // Añade un espacio en los bordes
 
         // Crear el botón con el GIF
         RoundedPanel roundedPanel = new RoundedPanel();
+        roundedPanel.setLayout(new GridLayout(3, 1));
         roundedPanel.setCornerRadius(20);
 
         try {
@@ -97,9 +100,46 @@ public class ShowEdificios extends JDialog {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
         roundedPanel.add(titleLabel, BorderLayout.NORTH);
 
-        JLabel imageLabel = new JLabel(new ImageIcon("src\\main\\java\\com\\project\\images\\center_image.jpg"));
+        URL = getEdificioURL(type);
+
+        JLabel imageLabel = new JLabel(new ImageIcon(URL));
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         roundedPanel.add(imageLabel, BorderLayout.CENTER);
+
+        String[][] data = new String[8][2]; // Inicializar la tabla vacía
+        String[] columnNames = {"Attribute", "Value"};
+        JTable table = new JTable(data, columnNames);
+        table.setFillsViewportHeight(true);
+        table.setShowGrid(true);
+        table.setGridColor(Color.BLACK);
+
+        // Añadir nombre a la tabla
+        table.setName("Estadísticas");
+
+        // Añadir datos a la tabla
+        data[0][0] = "Food";
+        data[0][1] = Integer.toString(food);
+        data[1][0] = "Wood";
+        data[1][1] = Integer.toString(wood);
+        data[2][0] = "Iron";
+        data[2][1] = Integer.toString(iron);
+        data[3][0] = "Mana";
+        data[3][1] = Integer.toString(mana);
+        data[4][0] = "Food Gen";
+        data[4][1] = Integer.toString(foodGen) + "%";
+        data[5][0] = "Wood Gen";
+        data[5][1] = Integer.toString(woodGen) + "%";
+        data[6][0] = "Iron Gen";
+        data[6][1] = Integer.toString(ironGen) + "%";
+        data[7][0] = "Mana Gen";
+        data[7][1] = Integer.toString(manaGen) + "%";
+        
+        // Añadir el panel de contenido a la ventana emergente
+        roundedPanel.add(table, BorderLayout.SOUTH);
+
+        table.setBorder(new EmptyBorder(10,10,100,0)); // Ajusta el borde vacío alrededor de la tabla
+
+        roundedPanel.setBorder(new EmptyBorder(0,5,10,5));
 
         // Añadir el panel de contenido a la ventana emergente
         getContentPane().add(contentPane, BorderLayout.CENTER);
@@ -114,15 +154,15 @@ public class ShowEdificios extends JDialog {
     public String getEdificioURL(String tipo) {
         switch (tipo) {
             case "Farm":
-                return "";  
+                return "src\\main\\java\\com\\project\\images\\sprites\\granjero.png";  
             case "Smithy":
-                return "";  
+                return "src\\main\\java\\com\\project\\images\\sprites\\herrero.png";  
             case "Church":
-                return "";            
+                return "src\\main\\java\\com\\project\\images\\sprites\\vitral.png";            
             case "Magic Tower":
-                return "";  
+                return "src\\main\\java\\com\\project\\images\\sprites\\bruja.png";  
             case "Carpentry":
-                return "";
+                return "src\\main\\java\\com\\project\\\\images\\sprites\\carpinteria.png";
             default:
                 return null;
         }

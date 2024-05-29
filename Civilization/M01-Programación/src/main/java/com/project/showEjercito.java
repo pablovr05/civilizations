@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
-public class showEjercito extends JDialog {
+public class ShowEjercito extends JDialog {
 
     private JButton gifButton;
     private Clip Clblucle;
@@ -26,9 +26,11 @@ public class showEjercito extends JDialog {
     private int chanceAtt;
     private int chanceWst;
 
+    private String URL;
+
     private Image backgroundImage;
 
-    public showEjercito(JFrame parent, String type) {
+    public ShowEjercito(JFrame parent, String type) {
         super(parent, "Ventana emergente", true);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
@@ -53,10 +55,11 @@ public class showEjercito extends JDialog {
         // Configura el contenido de la ventana emergente
         JPanel contentPane = new JPanel(new GridBagLayout());
         contentPane.setOpaque(false); // Hace que el panel sea transparente
-        contentPane.setBorder(new EmptyBorder(4, 4, 4, 4)); // Añade un espacio en los bordes
+        contentPane.setBorder(new EmptyBorder(0, 0, 0, 0)); // Elimina el espacio en los bordes
 
         // Crear el botón con el GIF
         RoundedPanel roundedPanel = new RoundedPanel();
+        roundedPanel.setLayout(new GridLayout(3, 1));
         roundedPanel.setCornerRadius(20);
 
         try {
@@ -97,9 +100,47 @@ public class showEjercito extends JDialog {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
         roundedPanel.add(titleLabel, BorderLayout.NORTH);
 
-        JLabel imageLabel = new JLabel(new ImageIcon("src\\main\\java\\com\\project\\images\\center_image.jpg"));
+        URL = getEjercitoURL(type);
+
+        JLabel imageLabel = new JLabel(new ImageIcon(URL));
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         roundedPanel.add(imageLabel, BorderLayout.CENTER);
+
+        // Crear la tabla con 8 filas y 2 columnas
+        String[][] data = new String[8][2]; // Inicializar la tabla vacía
+        String[] columnNames = {"Attribute", "Value"};
+        JTable table = new JTable(data, columnNames);
+        table.setFillsViewportHeight(true);
+        table.setShowGrid(true);
+        table.setGridColor(Color.BLACK);
+
+        // Añadir nombre a la tabla
+        table.setName("Estadísticas");
+
+        // Añadir datos a la tabla
+        data[0][0] = "Food";
+        data[0][1] = Integer.toString(food);
+        data[1][0] = "Wood";
+        data[1][1] = Integer.toString(wood);
+        data[2][0] = "Iron";
+        data[2][1] = Integer.toString(iron);
+        data[3][0] = "Mana";
+        data[3][1] = Integer.toString(mana);
+        data[4][0] = "Armor";
+        data[4][1] = Integer.toString(armor);
+        data[5][0] = "Base Damage";
+        data[5][1] = Integer.toString(dmg);
+        data[6][0] = "Chance of Attack Again";
+        data[6][1] = Integer.toString(chanceAtt) + "%";
+        data[7][0] = "Chance of Generating Wastes";
+        data[7][1] = Integer.toString(chanceWst) + "%";
+        
+        // Añadir el panel de contenido a la ventana emergente
+        roundedPanel.add(table, BorderLayout.SOUTH);
+
+        table.setBorder(new EmptyBorder(10,10,100,0)); // Ajusta el borde vacío alrededor de la tabla
+
+        roundedPanel.setBorder(new EmptyBorder(0,5,10,5)); // Ajusta el borde alrededor del panel de contenido
 
         // Añadir el panel de contenido a la ventana emergente
         getContentPane().add(contentPane, BorderLayout.CENTER);
@@ -114,23 +155,23 @@ public class showEjercito extends JDialog {
     public String getEjercitoURL(String tipo) {
         switch (tipo) {
             case "Swordsman":
-                return "src\\main\\java\\com\\project\\images\\";  
+                return "src\\main\\java\\com\\project\\images\\sprites\\guerrero.png";  
             case "Spearman":
-                return "src\\main\\java\\com\\project\\images\\";  
+                return "src\\main\\java\\com\\project\\images\\sprites\\lancero.png";  
             case "Crossbow":
-                return "src\\main\\java\\com\\project\\images\\";            
+                return "src\\main\\java\\com\\project\\images\\sprite\\ballesta.png";            
             case "Cannon":
-                return "src\\main\\java\\com\\project\\images\\";  
+                return "src\\main\\java\\com\\project\\images\\sprites\\cañón.png";  
             case "Arrow Tower":
-                return "src\\main\\java\\com\\project\\images\\";
+                return "src\\main\\java\\com\\project\\images\\sprites\\arquero.png";
             case "Catapult":
-                return "src\\main\\java\\com\\project\\images\\";
+                return "src\\main\\java\\com\\project\\images\\sprites\\catapulta.png";
             case "Rocket Launcher Tower":
-                return "src\\main\\java\\com\\project\\images\\";
+                return "src\\main\\java\\com\\project\\images\\sprites\\misil.png";
             case "Magician":
-                return "src\\main\\java\\com\\project\\images\\";
+                return "src\\main\\java\\com\\project\\images\\sprites\\mago.png";
             case "Priest":
-                return "src\\main\\java\\com\\project\\images\\";
+                return "src\\main\\java\\com\\project\\images\\sprites\\sacerdote.png";
             default:
                 return null;
         }
