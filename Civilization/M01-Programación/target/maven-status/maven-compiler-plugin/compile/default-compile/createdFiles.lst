@@ -21,6 +21,7 @@ com\project\AtacarFramePanel$1.class
 com\project\TecnologíasFrame$1.class
 com\project\MilitaryUnit.class
 com\project\AtacarFrame$2.class
+com\project\BatallaPanel.class
 com\project\EjércitoFrame$1.class
 com\project\TecnologíasFrame.class
 com\project\EstadísticasFrame.class
@@ -66,6 +67,7 @@ com\project\Variables.class
 com\project\FightButtonPanel$1.class
 com\project\FontViewer.class
 com\project\EstadísticasFrame$1.class
+com\project\BatallaPanel$2.class
 com\project\CivilizaciónFrame$1.class
 com\project\ShowEdificios.class
 com\project\ResultadoBattallaFrame.class
@@ -89,5 +91,6 @@ com\project\HistorialControlador.class
 com\project\showEjercito.class
 com\project\ArrowTower.class
 com\project\ContadorAtacar$1.class
+com\project\BatallaPanel$1.class
 com\project\ContadorAtacar.class
 com\project\ResultadoBatallaControlador.class

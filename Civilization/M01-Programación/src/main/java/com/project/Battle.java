@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Battle {
 
-    String winner;
+    boolean winner;
     ArrayList<ArrayList<MilitaryUnit>> civilizationArmy;
     ArrayList<ArrayList<MilitaryUnit>> enemyArmy;
     ArrayList<ArrayList<ArrayList<MilitaryUnit>>> armies;
@@ -68,7 +68,7 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
 
 
 
-    String startBattle(Civilization civilization) {
+    boolean startBattle(Civilization civilization) {
 
         System.out.println(initialCostFleet);
 
@@ -209,9 +209,9 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         Civilization.gainExperience();
 
         if (remainderPercentageFleet(civilizationArmy) >= 20) {
-            this.winner = "civilization";
+            this.winner = true;
         } else {
-            this.winner = "enemy";
+            this.winner = false;
         }
         return this.winner;
     }
@@ -338,9 +338,9 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         comida = 0;
         hierro = 0;
         for(int i = 0; i<enemyArmy.size(); i++){
-            madera += Variables.WOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-civilizationArmy.get(i).size());
-            comida += Variables.FOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-civilizationArmy.get(i).size());
-            hierro += Variables.IRON_COST_UNITS[i]*(initialArmies.get(1)[i]-civilizationArmy.get(i).size());
+            madera += Variables.WOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-enemyArmy.get(i).size());
+            comida += Variables.FOOD_COST_UNITS[i]*(initialArmies.get(1)[i]-enemyArmy.get(i).size());
+            hierro += Variables.IRON_COST_UNITS[i]*(initialArmies.get(1)[i]-enemyArmy.get(i).size());
         }
         loss[0] = comida;
         loss[1] = madera;
@@ -499,8 +499,8 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
     }
 
     void addDropUnit(MilitaryUnit unit, boolean enemy){
-        Class clase = unit.getClass();
-        switch (clase.getName()){
+        String clase = Battle.getClassName(unit);
+        switch (clase){
             case("Swordsman"):
                 if(enemy){
                     enemyDrops[0] += 1;
@@ -543,7 +543,7 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         }
     }
 
-    public String getClassName(MilitaryUnit unit){
+    public static String getClassName(MilitaryUnit unit){
         Class clase = unit.getClass();
         String name = clase.getName();
         if(name.contains("Swordsman")){

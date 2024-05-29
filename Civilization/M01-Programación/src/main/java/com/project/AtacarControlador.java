@@ -81,14 +81,13 @@ public class AtacarControlador {
     }
 
     private void llamarResultadoBatalla() {
-        System.out.println(1);
         Battle battle = new Battle(CivilizaciónControlador.civilización.army, atacarFrame.enemyArmy);
-        System.out.println(1);
-        String mecagoentusmuertos = battle.startBattle(CivilizaciónControlador.civilización);
-        System.out.println(1);
-        System.out.println(mecagoentusmuertos);
+        boolean winner = battle.startBattle(CivilizaciónControlador.civilización);
 
-        resultadoBattallaFrame = new ResultadoBattallaFrame(false);
+        //Unidades iniciales, unidades que se mueren de cada ejercito, coste incial de los ejercitos, perdidas de cada ejercito, madera, iron, food generados.
+        //Más tarde el desarrollo resultadoBattallaFrame, battle.initialArmies, battle.civililizationDrops, battle.enemyDrops, battle.initialCostFleet, battle.resourcesLooses, battle.wasteWoodIron, 
+
+        resultadoBattallaFrame = new ResultadoBattallaFrame(winner, battle);
         mainWindow.cambiarPanel(resultadoBattallaFrame);
         resultadoBatallaControlador = new ResultadoBatallaControlador(resultadoBattallaFrame, mainWindow);
         resultadoBatallaControlador.start();
