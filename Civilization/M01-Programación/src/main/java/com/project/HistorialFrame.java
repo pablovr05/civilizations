@@ -65,7 +65,7 @@ public class HistorialFrame extends JPanel {
         leftContentPanel.setPreferredSize(new Dimension(350, 415));
         leftPanel.add(leftContentPanel);
 
-        crearScrollIzquierdo();
+        leftContentPanel.add(crearScrollIzquierdo());
 
         RoundedPanel rightPanel = new RoundedPanel();
         rightPanel.setCornerRadius(20);
@@ -83,10 +83,34 @@ public class HistorialFrame extends JPanel {
         int id = CivilizaciónControlador.civilización.id;
         ArrayList<Integer> listaids = BattleDAO.listaBatallasCivilization(id);
         for (int i = 0; i < listaids.size(); i++ ) {
+            boolean winner = BattleDAO.getBattleWinner(listaids.get(i), id);
+            int[] wastes = BattleDAO.getBattleWaste(listaids.get(i), id);
             
+            String título = "";
+            Color color = null;
+            if (winner) {
+                título = "Victoria";
+                color = Color.GREEN;
+            } else {
+                título = "Derrota";
+                color = Color.RED;
+            }
+    
+            RoundedPanel roundedPanel = new RoundedPanel();
+            roundedPanel.setLayout(new GridLayout(3, 1));
+    
+            JLabel primeraLinea = new JLabel(título);
+            primeraLinea.setForeground(color);
+            JLabel segundaLinea = new JLabel("Madera: " + wastes[0]);
+            JLabel terceraLinea = new JLabel("Hierro: " + wastes[1]);
+    
+            roundedPanel.add(primeraLinea);
+            roundedPanel.add(segundaLinea);
+            roundedPanel.add(terceraLinea);
+    
+            scrollPane.setViewportView(roundedPanel);
+    
         }
-
-
         return scrollPane;
     }
 }
