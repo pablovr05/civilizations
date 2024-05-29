@@ -133,6 +133,11 @@ html {
     margin-left: 30px;
 }
 
+.main-content ul {
+    font-size: 24px;
+    margin-left: 70px;
+}
+
 .main-content img {
     margin-top: 20px;
     text-align: left;
@@ -158,4 +163,8 @@ html {
 .leyenda a:hover {
     background-color: #b3e5fc;
     color: #01579b;
+}
+
+.negrita {
+    font-weight: bold;
 }

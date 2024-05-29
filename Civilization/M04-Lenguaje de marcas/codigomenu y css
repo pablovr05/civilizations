@@ -12,15 +12,15 @@
     <nav class="navbar">
         <ul class="nav-list">
             <li class="nav-item">
-                <a href="#" class="nav-link home-icon">
-                    <img src="home-icon.png" alt="Home" class="icon">
+                <a href="index.html" class="nav-link home-icon">
+                    <img src="imagenes/logo.png" class="icon">
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Home</a>
+                <a href="index.html" class="nav-link">Inicio</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle">Units and Buildings</a>
+                <a href="#" class="nav-link dropdown-toggle">Units and Buildings</a>
                 <ul class="dropdown-menu">
                     <li class="dropdown-item"><a href="attack_units.html" class="dropdown-link">Attack Units</a></li>
                     <li class="dropdown-item"><a href="defense_units.html" class="dropdown-link">Defense Units</a></li>
@@ -29,10 +29,10 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Tutorial</a>
+                <a href="tutorial.html" class="nav-link">Tutorial</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">About us</a>
+                <a href="aboutus.html" class="nav-link">Sobre Nosotros</a>
             </li>
         </ul>
     </nav>
@@ -43,17 +43,14 @@
 
 //css
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
-    margin: 0;
-    padding: 0;
-}
-
 .navbar {
     background-color: #4a90e2;
     padding: 10px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
 }
 
 .nav-list {
@@ -88,8 +85,8 @@ body {
 }
 
 .icon {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
     margin-right: 8px;
 }
 
