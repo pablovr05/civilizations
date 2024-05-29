@@ -385,7 +385,7 @@ public class BattleDAO {
     public static ArrayList<Integer> listaBatallasCivilization(int id_civilization){
         AppData db = AppData.getInstance();
 
-        List<Map<String, Object>> query = db.query("SELECT num_battle FROM Battle_stats WHERE civilization_id = "+id_civilization);
+        List<Map<String, Object>> query = db.query("SELECT num_battle FROM Battle_stats WHERE civilization_id = "+id_civilization + " ORDER BY NUM_BATTLE DESC");
 
         ArrayList<Integer> listaIds = new ArrayList<>();
         for(Map<String, Object> queryID : query){

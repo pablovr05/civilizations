@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.swing.border.EmptyBorder;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class HistorialFrame extends JPanel {
 
     private String fondo;
@@ -20,6 +23,11 @@ public class HistorialFrame extends JPanel {
     public ArrayList<ArrayList<String[]>> desarrolloBatalla;
 
     public JButton exitButtonHistorial;
+
+    private RoundedPanel rightPanelContent;
+
+    private JLabel textoTítuloRight;
+
 
     public HistorialFrame() {
 
@@ -79,8 +87,32 @@ public class HistorialFrame extends JPanel {
         RoundedPanel rightPanel = new RoundedPanel();
         rightPanel.setCornerRadius(20);
         rightPanel.setOpaque(false);
-        rightPanel.setBackground(new Color(255, 0, 0, 200)); //color de fondo de cada panel
+        rightPanel.setBackground(new Color(0, 0, 0, 200)); //color de fondo de cada panel
         rightPanel.setPreferredSize(new Dimension(685, 555));
+
+        RoundedPanel rightPanelTitle = new RoundedPanel();
+        rightPanelTitle.setCornerRadius(20);
+        rightPanelTitle.setOpaque(false);
+        rightPanelTitle.setBackground(new Color(255, 255, 255, 200)); //color de fondo de cada panel
+        rightPanelTitle.setPreferredSize(new Dimension(575, 65));
+
+        textoTítuloRight = new JLabel("Desarrollo Batalla");
+        textoTítuloRight.setFont(new Font("Reem Kufi", Font.BOLD, 25));
+        textoTítuloRight.setForeground(Color.BLACK);
+        rightPanelTitle.add(textoTítuloRight);
+
+        rightPanel.add(rightPanelTitle);
+
+        rightPanelContent = new RoundedPanel();
+        rightPanelContent.setCornerRadius(20);
+        rightPanelContent.setOpaque(false);
+        rightPanelContent.setBackground(new Color(255, 255, 255, 200)); //color de fondo de cada panel
+        rightPanelContent.setPreferredSize(new Dimension(673, 475));
+
+        rightPanel.add(rightPanelContent);
+
+
+
         contentPanel.add(rightPanel);
 
     }
@@ -88,25 +120,27 @@ public class HistorialFrame extends JPanel {
     private JScrollPane crearScrollIzquierdo() {
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBorder(new EmptyBorder(10,10,10,10));
+        JPanel contenido = new JPanel(); // Creamos un panel para contener los paneles redondeados
+        contenido.setLayout(new BoxLayout(contenido, BoxLayout.Y_AXIS)); // Layout para organizar verticalmente
+        
         int id = CivilizaciónControlador.civilización.id;
         ArrayList<Integer> listaids = BattleDAO.listaBatallasCivilization(id);
-        for (int i = 0; i < listaids.size(); i++ ) {
+        for (int i = 0; i < 7; i++ ) {
             boolean winner = BattleDAO.getBattleWinner(listaids.get(i), id);
             int[] wastes = BattleDAO.getBattleWaste(listaids.get(i), id);
             
             String título = "";
             Color color = null;
             if (winner) {
-                título = "Victoria";
+                título = listaids.get(i) + ". Victoria";
                 color = Color.GREEN;
             } else {
-                título = "Derrota";
+                título = listaids.get(i) + ". Derrota";
                 color = Color.RED;
             }
     
             RoundedPanel roundedPanel = new RoundedPanel();
             roundedPanel.setLayout(new GridLayout(3, 1));
-
             roundedPanel.setPreferredSize(new Dimension(300, 50));
     
             JLabel primeraLinea = new JLabel(título);
@@ -118,9 +152,56 @@ public class HistorialFrame extends JPanel {
             roundedPanel.add(segundaLinea);
             roundedPanel.add(terceraLinea);
     
-            scrollPane.setViewportView(roundedPanel);
+            roundedPanel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if (e.getClickCount() == 1) {
+                        String text = primeraLinea.getText() + ", " + segundaLinea.getText() + ", " + terceraLinea.getText();
+                        System.out.println("Panel seleccionado: " + text);
+
+                        String[] primeraLineaSplit = primeraLinea.getText().split("\\. ");
+                        int idBatallaSeleccionada = Integer.parseInt(primeraLineaSplit[0]);
+                        System.out.println("Id de la pelea seleccionada: " + idBatallaSeleccionada);
+
+                        textoTítuloRight.setText("Desarrollo Batalla: " + idBatallaSeleccionada);
+
+                        actualizarLista(idBatallaSeleccionada);
+                    }
+                }
+            });
     
+            contenido.add(roundedPanel); // Agregamos el panel redondeado al panel de contenido
         }
+    
+        // Establecemos el panel de contenido en el JScrollPane
+        scrollPane.setViewportView(contenido);
+        
+        // Establecemos la política de visualización de las barras de desplazamiento
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        
         return scrollPane;
+    }
+    
+    private void actualizarLista(int id) {
+        // Eliminar todo el contenido existente del rightPanelContent
+        rightPanelContent.removeAll();
+    
+        // Obtener el desarrollo de la batalla
+        ArrayList<ArrayList<String[]>> desarrolloBatalla = BattleDAO.getDesarrolloBatalla(id, CivilizaciónControlador.civilización.id);
+        
+        // Crear un nuevo BatallaPanel con el nuevo desarrollo de batalla
+        BatallaPanel batallaPanel = new BatallaPanel(desarrolloBatalla);
+        batallaPanel.setBorder(new EmptyBorder(5,0,0,0));
+        batallaPanel.setBackground(new Color(0,0,0,0));
+        batallaPanel.setBackground(new Color(0,0,0,0));
+        batallaPanel.setVisible(true);
+    
+        // Agregar el nuevo panel al rightPanelContent
+        rightPanelContent.add(batallaPanel);
+    
+        // Validar y actualizar el layout del rightPanelContent
+        rightPanelContent.revalidate();
+        rightPanelContent.repaint();
     }
 }

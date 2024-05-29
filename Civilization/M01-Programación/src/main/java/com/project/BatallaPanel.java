@@ -36,7 +36,7 @@ public class BatallaPanel extends JPanel {
         logPanel.setCornerRadius(20);
         logPanel.setBackground(new Color(255, 255, 255, 255));
         
-        logPanel.setPreferredSize(new Dimension(725, 440));
+        logPanel.setPreferredSize(new Dimension(725, 420));
         add(logPanel, BorderLayout.CENTER);
 
         // Panel para los botones

@@ -34,6 +34,8 @@ public class HistorialControlador {
         if (command.equals("Volver")) {
             SoundPlayer.playSound("clickselect.wav", 0.5f);
             System.out.println("Se pulsó el botón Salir");
+            mainWindow.contadorAtacar.iniciarContador();
+            mainWindow.contadorRecursos.iniciarContador();
             llamarMenú();
         }
     } 
@@ -44,7 +46,5 @@ public class HistorialControlador {
         menúControlador = new MenúControlador(menúFrame, mainWindow);
         menúControlador.start();
         mainWindow.setSize(585,415);
-        mainWindow.contadorAtacar.detenerContador();
-        mainWindow.contadorRecursos.detenerContador();
     }
 }
