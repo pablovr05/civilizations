@@ -84,6 +84,9 @@ public class Spearman extends AttackUnit {
     public void resetArmor(){
         super.armor = super.initialArmor;
     }
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
 
     public void setExperience(int n){
         super.experience = n;

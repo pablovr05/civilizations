@@ -207,6 +207,14 @@ public class Civilization implements Variables {
     public int getNombrePriest() {
         return getElementCount(priest_index);
     }
+
+    public int getArmyQuantity() {
+        int quantity = 0;
+        for ( int i = 0; i < 8; i++){
+            quantity += getElementCount(i);
+        }
+        return quantity;
+    }
     
     public int getElementCount(int index) {
         if (index >= 0 && index < army.size()) {
@@ -1102,6 +1110,7 @@ public class Civilization implements Variables {
         for(int i = 0; i<army.size(); i++){
             for(MilitaryUnit unit : army.get(i)){
                 unit.setExperience(unit.getExperience()+1);
+                unit.getActualArmor();
                 unit.takeDamage(-(PLUS_ARMOR_UNIT_PER_EXPERIENCE_POINT));
                 unit.setBaseDamage(unit.attack()+PLUS_ATTACK_UNIT_PER_EXPERIENCE_POINT);
             }

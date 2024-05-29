@@ -16,4 +16,5 @@ public abstract class MilitaryUnit {
     abstract void sanctify();
     abstract void setBaseDamage(int damage);
     abstract int getSanctified();
+    abstract void setInitialArmor(int initialArmor);
 }

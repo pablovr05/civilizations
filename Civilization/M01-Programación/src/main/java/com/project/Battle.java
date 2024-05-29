@@ -205,7 +205,7 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         }
 
         updateResourcesLooses();
-
+        resetArmyArmor(civilization.army);
         Civilization.gainExperience();
 
         if (remainderPercentageFleet(civilizationArmy) >= 20) {
@@ -438,9 +438,9 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         }
     }
 
-    void resetArmyArmor(){
-        for(int i = 0; i<civilizationArmy.size(); i++){
-            for(MilitaryUnit tropa : civilizationArmy.get(i)){
+    void resetArmyArmor(ArrayList<ArrayList<MilitaryUnit>> army){
+        for(int i = 0; i<army.size(); i++){
+            for(MilitaryUnit tropa : army.get(i)){
                 tropa.resetArmor();
             }
         }
@@ -452,48 +452,48 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         switch (clase){
             case("Swordsman"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_SWORDSMAN){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_SWORDSMAN;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_SWORDSMAN;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_SWORDSMAN/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_SWORDSMAN/100;
                 } break;
             case("Spearman"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_SPEARMAN){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_SPEARMAN;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_SPEARMAN;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_SPEARMAN/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_SPEARMAN/100;
                 } break;
             case("Crossbow"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_CROSSBOW){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_CROSSBOW;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_CROSSBOW;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_CROSSBOW/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_CROSSBOW/100;
                 } break;
             case("Cannon"):
-                if(random<= Variables.CHANCE_GENERATNG_WASTE_SWORDSMAN){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_SWORDSMAN;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_SWORDSMAN;
+                if(random<= Variables.CHANCE_GENERATNG_WASTE_CANNON){
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_CANNON/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_CANNON/100;
                 } break;
             case("ArrowTower"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_ARROWTOWER){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_ARROWTOWER;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_ARROWTOWER;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_ARROWTOWER/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_ARROWTOWER/100;
                 } break;
             case("Catapult"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_CATAPULT){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_CATAPULT;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_CATAPULT;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_CATAPULT/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_CATAPULT/100;
                 } break;
             case("RocketLauncherTower"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_ROCKETLAUNCHERTOWER){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_ROCKETLAUNCHERTOWER;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_ROCKETLAUNCHERTOWER;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_ROCKETLAUNCHERTOWER/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_ROCKETLAUNCHERTOWER/100;
                 } break;
             case("Magician"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_MAGICIAN){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_MAGICIAN;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_MAGICIAN;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_MAGICIAN/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_MAGICIAN/100;
                 } break;
             case("Priest"):
                 if(random<= Variables.CHANCE_GENERATNG_WASTE_PRIEST){
-                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_PRIEST;
-                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_PRIEST;
+                    wasteWoodIron[0] += Variables.PERCENTATGE_WASTE*Variables.WOOD_COST_PRIEST/100;
+                    wasteWoodIron[1] += Variables.PERCENTATGE_WASTE*Variables.IRON_COST_PRIEST/100;
                 } break;
         }
     }

@@ -77,6 +77,10 @@ public class ArrowTower extends DefenseUnit {
         super.armor = super.initialArmor;
     }
 
+    public void setInitialArmor(int initialArmor){
+        this.initialArmor = initialArmor;
+    }
+
     public void setExperience(int n){
         super.experience = n;
     }
