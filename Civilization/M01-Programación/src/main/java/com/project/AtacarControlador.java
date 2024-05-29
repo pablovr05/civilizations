@@ -84,6 +84,7 @@ public class AtacarControlador {
         Battle battle = new Battle(CivilizaciónControlador.civilización.army, atacarFrame.enemyArmy);
         boolean winner = battle.startBattle(CivilizaciónControlador.civilización);
         BattleDAO.save(CivilizaciónControlador.civilization_id, battle);
+        saveGame(CivilizaciónControlador.civilización);
 
         saveGame(CivilizaciónControlador.civilización);
 

@@ -117,7 +117,7 @@ public class MenúControlador {
         historialControlador.start();
     }
 
-    private void saveGame(Civilization civilización) {
+    public void saveGame(Civilization civilización) {
         civilización.printearBonito();
         CivilizationDAO.save(civilización);
     }

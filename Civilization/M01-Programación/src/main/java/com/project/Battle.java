@@ -209,6 +209,8 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         Civilization.gainExperience();
 
         if (remainderPercentageFleet(civilizationArmy) >= 20) {
+            civilization.setWood(civilization.getWood()+ wasteWoodIron[0]);
+            civilization.setIron(civilization.getIron()+ wasteWoodIron[1]);
             this.winner = true;
         } else {
             this.winner = false;

@@ -118,6 +118,7 @@ public class ShowEjercito extends JDialog {
         table.setShowGrid(true);
         table.setGridColor(Color.BLACK);
         table.setName("Estadísticas");
+        table.setEnabled(false);
 
         // Añadir datos a la tabla
         data[0][0] = "Food";

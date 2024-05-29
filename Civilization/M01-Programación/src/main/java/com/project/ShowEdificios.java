@@ -118,6 +118,7 @@ public class ShowEdificios extends JDialog {
         table.setFillsViewportHeight(true);
         table.setShowGrid(true);
         table.setGridColor(Color.BLACK);
+        table.setEnabled(false);
 
         // Añadir nombre a la tabla
         table.setName("Estadísticas");
