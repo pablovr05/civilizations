@@ -44,7 +44,7 @@
  ✌️ &emsp; We are learning to program in Java<br/><br/>
  ❤️ &emsp; We enjoyed creating this project and have learned a lot<br/><br/>
  📧 &emsp; Reach us anytime: pablovicenteroura2005@gmail.com<br/><br/>
- 💬 &emsp; Ask us about anything [here](https://github.com/OscarMG018/DAM1-Projecto-Zelda-/issues)
+ 💬 &emsp; Ask us about anything [here](https://github.com/pablovr05/civilizations/issues)
 
  </p>
 
