@@ -38,7 +38,7 @@ public class AtacarFramePanel extends JPanel {
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setBorder(null); // Establecer el borde como null para quitar el borde gris
-        button.setIcon(new ImageIcon("src\\main\\java\\com\\project\\images\\next.png")); // Ruta de la imagen
+        button.setIcon(new ImageIcon("src\\main\\java\\com\\project\\images\\nextT.png")); // Ruta de la imagen
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 changePhrase();

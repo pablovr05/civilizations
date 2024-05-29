@@ -499,7 +499,7 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
     }
 
     void addDropUnit(MilitaryUnit unit, boolean enemy){
-        String clase = getClassName(unit);
+        String clase = Battle.getClassName(unit);
         switch (clase){
             case("Swordsman"):
                 if(enemy){
@@ -543,7 +543,7 @@ Cada ataque se compone de 5 Strings: El nombre del atacante, el nombre del defen
         }
     }
 
-    public String getClassName(MilitaryUnit unit){
+    public static String getClassName(MilitaryUnit unit){
         Class clase = unit.getClass();
         String name = clase.getName();
         if(name.contains("Swordsman")){
