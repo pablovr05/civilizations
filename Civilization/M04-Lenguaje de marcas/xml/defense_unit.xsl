@@ -7,8 +7,7 @@
                 <meta charset="UTF-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <title>Civilizations</title>
-                <link rel="stylesheet" href="attack_unit.css"/>
-                <script src="shadowPartial.js"></script>
+                <link rel="stylesheet" href="defense_unit.css"/>
             </head>
             <body>
                 <div class="content">

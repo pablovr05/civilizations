@@ -86,7 +86,7 @@ def main():
     # Transformar el archivo XML principal
     xml_path = os.path.join(input_dir, main_xml_file)
     main_xsl_path = os.path.join(input_dir, main_xsl_file)
-    output_path = os.path.join(output_dir, 'index.html')
+    output_path = os.path.join(output_dir, 'attack_units.html')
     transform_xml_to_html(xml_path, main_xsl_path, output_path)
 
     # Transformar cada unidad en un archivo HTML individual

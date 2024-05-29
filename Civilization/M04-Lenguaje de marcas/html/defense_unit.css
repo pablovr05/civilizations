@@ -1,29 +1,16 @@
-html {
-    --s: 200px; /* control the size */
-    --c: #fff; /* first color */
-    
-    --_g: #0000 8%,var(--c) 0 17%,#0000 0 58%;
-    background: 
-      linear-gradient(135deg,#0000 20.5%,var(--c) 0 29.5%,#0000 0) 0 calc(var(--s)/4),
-      linear-gradient( 45deg,var(--_g)) calc(var(--s)/2) 0,
-      linear-gradient(135deg,var(--_g),var(--c) 0 67%,#0000 0),        
-      linear-gradient( 45deg,var(--_g),var(--c) 0 67%,#0000 0 83%,var(--c) 0 92%,#0000 0),
-      #1095c1; /* second color */
-    background-size: var(--s) var(--s);
-  }
-
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0;
     font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
     min-height: 100vh;
 }
 
 .content {
-    width: 90%;
-    max-width: 600px;
+    width: 60%;
+    max-width: 6000px;
     text-align: center;
     margin-top: 40px;
     padding: 20px;
@@ -32,17 +19,12 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 .content h1 {
     margin-bottom: 20px;
     color: #4682b4;
 }
 
-.hover-a {
-    text-decoration: none;
-    color: white;
-    font-weight: bolder;
-    font-size: 20px;
+.hover-div {
     width: 80%;
     margin: 20px auto;
     padding: 20px;
@@ -55,16 +37,38 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.hover-a p {
+.hover-div p {
     margin: 0;
     text-align: center;
     font-weight: 900;
     font-size: 20px;
     color: white
-
+    
 }
 
-.hover-a:hover {
+.hover-div:hover {
     transform: scale(1.1);
     background-color: lightcoral;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    margin-left: 33%;
+}
+.item {
+    display: flex;
+    align-items: center;
+    margin-right: 70px;
+}
+
+.item img {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.item span {
+    font-size: 30px;
+
 }

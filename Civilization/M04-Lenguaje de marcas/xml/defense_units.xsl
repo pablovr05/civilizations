@@ -8,15 +8,16 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <title>Civilizations</title>
                 <link rel="stylesheet" href="defense_units.css"/>
-                <script src="shadowPartial.js"></script>
             </head>
             <body>
                 <div class="content">
-                    <h1>Defense Units (Unidades de ataque)</h1>
+                    <h1>Attack Units (Unidades de ataque)</h1>
                     <xsl:for-each select="unit">
-                        <div class="hover-div">
-                            <h1><xsl:value-of select="name"/></h1>
-                        </div>
+                        <xsl:element name="a">
+                            <xsl:attribute name="class">hover-a</xsl:attribute>
+                            <xsl:attribute name="href"><xsl:value-of select="name"/>.html</xsl:attribute>
+                            <xsl:value-of select="name"></xsl:value-of>
+                        </xsl:element>
                     </xsl:for-each>
                 </div>
             </body>
