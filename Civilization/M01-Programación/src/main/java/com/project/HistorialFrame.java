@@ -62,10 +62,19 @@ public class HistorialFrame extends JPanel {
         leftContentPanel.setCornerRadius(20);
         leftContentPanel.setOpaque(false);
         leftContentPanel.setBackground(new Color(255, 255, 255, 100));
-        leftContentPanel.setPreferredSize(new Dimension(350, 415));
+        leftContentPanel.setPreferredSize(new Dimension(350, 400));
         leftPanel.add(leftContentPanel);
 
         leftContentPanel.add(crearScrollIzquierdo());
+
+        JPanel buttonPanel = new JPanel();
+        exitButtonHistorial = new JButton("Volver");
+        buttonPanel.add(exitButtonHistorial);
+
+        buttonPanel.setBorder(new EmptyBorder(0,285,10,0));
+        buttonPanel.setBackground(new Color(0,0,0,0));
+
+        leftPanel.add(buttonPanel);
 
         RoundedPanel rightPanel = new RoundedPanel();
         rightPanel.setCornerRadius(20);
