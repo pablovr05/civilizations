@@ -56,19 +56,19 @@ body {
     align-items: center;
     margin-left: 33%;
 }
-.item {
+
+.troop-sprite{
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+
+}
+
+.troop-name{
     display: flex;
     align-items: center;
-    margin-right: 70px;
 }
 
-.item img {
-    margin-right: 10px;
-    width: 40px;
-    height: 40px;
-}
-
-.item span {
-    font-size: 30px;
-
+.troop-name h1{
+    margin-left: 35%;
 }

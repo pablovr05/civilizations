@@ -11,20 +11,12 @@
             </head>
             <body>
                 <div class="content">
-                    <h1><xsl:value-of select="name"/></h1>
-                    <xsl:element name="img">
-                        <xsl:attribute name="src">imagenes/<xsl:value-of select="sprite"/>.png</xsl:attribute>
-                    </xsl:element>
-
-                    <div class="container">
-                        <span class="item">
-                            <img src="imagenes/damage.png"/>
-                            <span><xsl:value-of select="base_damage"/></span>
-                        </span>
-                        <span class="item">
-                            <img src="imagenes/armor.png"/>
-                            <span><xsl:value-of select="armour"/></span>
-                        </span>
+                    <div class="troop-name">
+                        <h1><xsl:value-of select="name"/></h1>
+                        <xsl:element name="img">
+                            <xsl:attribute name="class">troop-sprite</xsl:attribute>
+                            <xsl:attribute name="src">imagenes/<xsl:value-of select="sprite"/>.png</xsl:attribute>
+                        </xsl:element>
                     </div>
                 </div>
             </body>
