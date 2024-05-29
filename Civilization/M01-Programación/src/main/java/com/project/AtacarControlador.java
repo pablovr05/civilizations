@@ -84,6 +84,7 @@ public class AtacarControlador {
         Battle battle = new Battle(CivilizaciónControlador.civilización.army, atacarFrame.enemyArmy);
         boolean winner = battle.startBattle(CivilizaciónControlador.civilización);
         BattleDAO.save(CivilizaciónControlador.civilization_id, battle);
+        saveGame(CivilizaciónControlador.civilización);
 
         //Unidades iniciales, unidades que se mueren de cada ejercito, coste incial de los ejercitos, perdidas de cada ejercito, madera, iron, food generados.
         //Más tarde el desarrollo resultadoBattallaFrame, battle.initialArmies, battle.civililizationDrops, battle.enemyDrops, battle.initialCostFleet, battle.resourcesLooses, battle.wasteWoodIron, 
@@ -99,5 +100,10 @@ public class AtacarControlador {
         mainWindow.cambiarPanel(menúFrame);
         menúControlador = new MenúControlador(menúFrame, mainWindow);
         menúControlador.start();
+    }
+
+    private void saveGame(Civilization civilización) {
+        civilización.printearBonito();
+        CivilizationDAO.save(civilización);
     }
 }
