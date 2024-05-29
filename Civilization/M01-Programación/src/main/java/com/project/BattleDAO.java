@@ -1,9 +1,9 @@
 package com.project;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
 
 public class BattleDAO {
     public void save(int civilization_id, Battle battle){
@@ -325,5 +325,38 @@ public class BattleDAO {
         listaLosses.add(costes);
 
         return listaLosses;
+    }
+
+    public static ArrayList<ArrayList<String[]>> getDesarrolloBatalla(int id_battle, int id_civilization){
+        AppData db = AppData.getInstance();
+
+        ArrayList<ArrayList<String[]>> lista = new ArrayList<>();
+
+        List<Map<String, Object>> query = db.query("SELECT * FROM Battle_log WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
+
+        for(Map<String, Object> entrada : query){
+            ArrayList<String[]> turnoCompleto = new ArrayList<>();
+            String[] turnoCivilization = new String[5];
+            String[] turnoEnemy = new String[5];
+
+            turnoCivilization[0] =(String) entrada.get("ATACANTE_CIVILIZATION");
+            turnoCivilization[1] =(String) entrada.get("DEFENSOR_ENEMY");
+            turnoCivilization[2] =String.valueOf(((BigDecimal) entrada.get("ATAQUE_CIVILIZATION")).intValue());
+            turnoCivilization[3] =String.valueOf(((BigDecimal) entrada.get("DEFENSA_ENEMY")).intValue());
+            turnoCivilization[4] =String.valueOf(((BigDecimal) entrada.get("REPITE_CIVILIZATION")).intValue());
+
+
+            turnoEnemy[0] =(String) entrada.get("ATACANTE_ENEMY");
+            turnoEnemy[1] =(String) entrada.get("DEFENSOR_CIVILIZATION");
+            turnoEnemy[2] =String.valueOf(((BigDecimal) entrada.get("ATAQUE_ENEMY")).intValue());
+            turnoEnemy[3] =String.valueOf(((BigDecimal) entrada.get("DEFENSA_CIVILIZATION")).intValue());
+            turnoEnemy[4] =String.valueOf(((BigDecimal) entrada.get("REPITE_ENEMY")).intValue());
+
+            turnoCompleto.add(turnoCivilization);
+            turnoCompleto.add(turnoEnemy);
+            lista.add(turnoCompleto);
+        }
+
+        return lista;
     }
 }
