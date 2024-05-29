@@ -85,7 +85,7 @@ public class AtacarControlador {
         boolean mecagoentusmuertos = battle.startBattle(CivilizaciónControlador.civilización);
         System.out.println(mecagoentusmuertos);
 
-        resultadoBattallaFrame = new ResultadoBattallaFrame(false);
+        resultadoBattallaFrame = new ResultadoBattallaFrame(mecagoentusmuertos);
         mainWindow.cambiarPanel(resultadoBattallaFrame);
         resultadoBatallaControlador = new ResultadoBatallaControlador(resultadoBattallaFrame, mainWindow);
         resultadoBatallaControlador.start();

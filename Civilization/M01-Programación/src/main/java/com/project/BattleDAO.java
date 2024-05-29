@@ -8,8 +8,14 @@ import java.util.Map;
 public class BattleDAO {
     public void save(int civilization_id, Battle battle){
         AppData db = AppData.getInstance();
+        String updateQuery;
 
-        String updateQuery = "INSERT INTO Battle_stats (Civilization_id, wood_acquired, iron_acquired, winner) VALUES ("+civilization_id+", "+battle.wasteWoodIron[0]+", "+battle.wasteWoodIron[1]+", '"+battle.winner+"')";
+        if(battle.winner){
+            updateQuery = "INSERT INTO Battle_stats (Civilization_id, wood_acquired, iron_acquired, winner) VALUES ("+civilization_id+", "+battle.wasteWoodIron[0]+", "+battle.wasteWoodIron[1]+", "+1+")";
+        } else{
+            updateQuery = "INSERT INTO Battle_stats (Civilization_id, wood_acquired, iron_acquired, winner) VALUES ("+civilization_id+", "+battle.wasteWoodIron[0]+", "+battle.wasteWoodIron[1]+", "+0+")";
+        }
+        
 
         db.update(updateQuery);
         
@@ -255,14 +261,17 @@ public class BattleDAO {
         return civilizationArmy;
     }
 
-    public static String getBattleWinner(int id_battle, int id_civilization){
+    public static boolean getBattleWinner(int id_battle, int id_civilization){
         AppData db = AppData.getInstance();
 
         List<Map<String, Object>> listaGanador = db.query("SELECT winner FROM Battle_stats WHERE num_battle = "+id_battle+" and civilization_id = "+id_civilization);
 
-        String ganador = (String) listaGanador.get(0).get("WINNER");
-
-        return ganador;
+        int ganador = ((BigDecimal) listaGanador.get(0).get("WINNER")).intValue();
+        if(ganador == 1){
+            return true;
+        } else{
+            return false;
+        }
     }
 
     public static int[] getBattleWaste(int id_battle, int id_civilization){
@@ -358,5 +367,19 @@ public class BattleDAO {
         }
 
         return lista;
+    }
+
+    public static ArrayList<Integer> listaBatallasCivilization(int id_civilization){
+        AppData db = AppData.getInstance();
+
+        List<Map<String, Object>> query = db.query("SELECT num_battle FROM Battle_stats WHERE civilization_id = "+id_civilization);
+
+        ArrayList<Integer> listaIds = new ArrayList<>();
+        for(Map<String, Object> queryID : query){
+            int id = ((BigDecimal) queryID.get("NUM_BATTLE")).intValue();
+            listaIds.add(id);
+        }
+
+        return listaIds;
     }
 }
