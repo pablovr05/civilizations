@@ -35,7 +35,7 @@
 # About us
 
 <p>
- <img align="right" width="350" src="[https://static.wikia.nocookie.net/logopedia/images/5/53/763px-BotW_NA_Logo.png/revision/latest?cb=20160701154320](https://assets.2k.com/1a6ngf98576c/01BEwdXwNWQ1usU2K9dT4v/5f5016049c8a96b63a160c8761ccccfc/2KGMKT_CivilizationVI-GS_Game-Image_Pa_01__1_.jpg)" />
+ <img align="right" width="350" src="https://assets.2k.com/1a6ngf98576c/01BEwdXwNWQ1usU2K9dT4v/5f5016049c8a96b63a160c8761ccccfc/2KGMKT_CivilizationVI-GS_Game-Image_Pa_01__1_.jpg" />
 
 <p align="right"> 
   
