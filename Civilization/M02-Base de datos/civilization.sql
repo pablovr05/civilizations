@@ -85,7 +85,7 @@ CREATE TABLE Battle_stats (
     civilization_id INTEGER NOT NULL,
     wood_acquired INTEGER,
     iron_acquired INTEGER,
-    winner VARCHAR2(20),
+    winner NUMBER(1,0),
     FOREIGN KEY (civilization_id) REFERENCES Civilization_stats(civilization_id),
     PRIMARY KEY (num_battle, civilization_id)
 );
