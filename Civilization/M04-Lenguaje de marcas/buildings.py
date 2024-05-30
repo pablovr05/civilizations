@@ -50,7 +50,7 @@ def transform_units_to_html(xml_path, xsl_path, output_dir):
         transform = etree.XSLT(xsl_tree)
 
         # Aplicar la transformación a cada unidad y guardar el HTML individual
-        units = xml_tree.xpath('//unit')
+        units = xml_tree.xpath('//building')
         for i, unit in enumerate(units):
             name_element = unit.find('name')
             if name_element is not None:
@@ -79,14 +79,14 @@ def main():
         os.makedirs(output_dir)
 
     # Archivos XML y XSL principales
-    main_xml_file = 'special_units.xml'
-    main_xsl_file = 'special_units.xsl'
-    unit_xsl_file = 'special_unit.xsl'
+    main_xml_file = 'buildings.xml'
+    main_xsl_file = 'buildings.xsl'
+    unit_xsl_file = 'building.xsl'
 
     # Transformar el archivo XML principal
     xml_path = os.path.join(input_dir, main_xml_file)
     main_xsl_path = os.path.join(input_dir, main_xsl_file)
-    output_path = os.path.join(output_dir, 'special_units.html')
+    output_path = os.path.join(output_dir, 'buildings.html')
     transform_xml_to_html(xml_path, main_xsl_path, output_path)
 
     # Transformar cada unidad en un archivo HTML individual
