@@ -20,7 +20,7 @@
 			<iron_cost>500</iron_cost>
 			<mana_cost>5000</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>magician</sprite>
 	</unit>
 	<unit>
 		<name>PRIEST</name>
@@ -28,8 +28,8 @@
 		<waste_chance>0</waste_chance>
 		<attack_again_chance>0</attack_again_chance>
 		<plus_stats>
-			<armour_technology></armour_technology>
-			<attack_technology></attack_technology>
+			<armour_technology>0</armour_technology>
+			<attack_technology>0</attack_technology>
 			<armour_experience>4</armour_experience>
 			<attack_experience>4</attack_experience>
 			<armour_sanctified>7</armour_sanctified>
@@ -41,6 +41,6 @@
 			<iron_cost>0</iron_cost>
 			<mana_cost>15000</mana_cost>
 		</costs>
-		<sprite></sprite>
+		<sprite>priest</sprite>
 	</unit>
 </special_units>

@@ -8,7 +8,7 @@
                 <meta charset="UTF-8"/>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <title>Civilizations</title>
-                <link rel="stylesheet" href="attack_unit.css"/>
+                <link rel="stylesheet" href="special_unit.css"/>
             </head>
             <body>
                 <nav class="navbar">
@@ -54,7 +54,6 @@
                         <thead>
                             <tr>
                                 <th><img class="sprite" src="imagenes/damage.png"/> Daño base</th>
-                                <th><img class="sprite" src="imagenes/armor.png"/> Armadura</th>
                                 <th><img class="sprite" src="imagenes/waste_chance.png"/> Probabilidad restos</th>
                                 <th><img class="sprite" src="imagenes/attack_again.png"/> Probabilidad volver a atacar</th>
                                 <th><img class="sprite" src="imagenes/sanct.png"/> Santificable</th>
@@ -63,10 +62,9 @@
                         <tbody>
                             <tr>
                                 <td><xsl:value-of select="base_damage"></xsl:value-of></td>
-                                <td><xsl:value-of select="armour"></xsl:value-of></td>
                                 <td><xsl:value-of select="waste_chance"></xsl:value-of></td>
                                 <td><xsl:value-of select="attack_again_chance"></xsl:value-of></td>
-                                <td>Sí</td>
+                                <td>No</td>
                             </tr>
                         </tbody>
                     </table>
@@ -116,7 +114,7 @@
                     </table>
 
                     <br></br>
-                    <a href="attack_units.html" class="back-link">Volver Atrás</a>
+                    <a href="special_units.html" class="back-link">Volver Atrás</a>
                 </div>
                 <footer class="footer">
                     <div class="footer-content">
