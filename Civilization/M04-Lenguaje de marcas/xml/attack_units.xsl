@@ -50,6 +50,7 @@
                             <xsl:value-of select="name"></xsl:value-of>
                         </xsl:element>
                     </xsl:for-each>
+                    <a href="index.html" class="back-link">Volver Atrás</a>
                 </div>
                 <footer class="footer">
                     <div class="footer-content">
