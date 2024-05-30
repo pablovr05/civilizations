@@ -86,6 +86,7 @@ com\project\BattleDAO.class
 com\project\Cannon.class
 com\project\TooltipHelper.class
 com\project\ShowEjercito$1.class
+com\project\HistorialFrame$3.class
 com\project\BatallaPanel$2.class
 com\project\CivilizaciónFrame$1.class
 com\project\ResultadoBattallaFrame.class
