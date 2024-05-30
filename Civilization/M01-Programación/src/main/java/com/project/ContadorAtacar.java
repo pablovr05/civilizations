@@ -26,10 +26,10 @@ public class ContadorAtacar {
                 // Incrementar los segundos
                 segundos++;
                 // Si han pasado 30 segundos, realizar la acción y reiniciar el contador de segundos
-                if (segundos % 150 == 0) {
+                if (segundos % 90 == 0) {
                     aviso();
                 }
-                if (segundos % 180 == 0) {
+                if (segundos % 120 == 0) {
                     if(CivilizaciónControlador.civilización.getArmyQuantity() == 0){
                         segundos = 120;
                     } else{
