@@ -142,62 +142,122 @@ public class HistorialFrame extends JPanel {
         contenido.setLayout(new BoxLayout(contenido, BoxLayout.Y_AXIS)); // Layout para organizar verticalmente
         int id = CivilizaciónControlador.civilización.id;
         ArrayList<Integer> listaids = BattleDAO.listaBatallasCivilization(id);
-        for (int i = 0; i < 7; i++ ) {
+        if(listaids.size()<7){
+            for (int i = 0; i < listaids.size(); i++ ) {
 
-            boolean winner = false; // Inicializar la variable para usarla fuera del bloque try
-
-            try {
-                winner = BattleDAO.getBattleWinner(listaids.get(i), id);
-            } catch (Exception e) {
-                scrollPane.setBackground(new Color(0,0,0,0));
-                return scrollPane;
-            }
-
-            int[] wastes = BattleDAO.getBattleWaste(listaids.get(i), id);
-            
-            String título = "";
-            Color color = null;
-            if (winner) {
-                título = listaids.get(i) + ". Victoria";
-                color = Color.GREEN;
-            } else {
-                título = listaids.get(i) + ". Derrota";
-                color = Color.RED;
-            }
+                boolean winner = false; // Inicializar la variable para usarla fuera del bloque try
     
-            RoundedPanel roundedPanel = new RoundedPanel();
-            roundedPanel.setLayout(new GridLayout(3, 1));
-            roundedPanel.setPreferredSize(new Dimension(300, 50));
-    
-            JLabel primeraLinea = new JLabel(título);
-            primeraLinea.setForeground(color);
-            JLabel segundaLinea = new JLabel("Madera: " + wastes[0]);
-            JLabel terceraLinea = new JLabel("Hierro: " + wastes[1]);
-    
-            roundedPanel.add(primeraLinea);
-            roundedPanel.add(segundaLinea);
-            roundedPanel.add(terceraLinea);
-    
-            roundedPanel.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    if (e.getClickCount() == 1) {
-                        String text = primeraLinea.getText() + ", " + segundaLinea.getText() + ", " + terceraLinea.getText();
-                        System.out.println("Panel seleccionado: " + text);
-
-                        String[] primeraLineaSplit = primeraLinea.getText().split("\\. ");
-                        int idBatallaSeleccionada = Integer.parseInt(primeraLineaSplit[0]);
-                        System.out.println("Id de la pelea seleccionada: " + idBatallaSeleccionada);
-
-                        textoTítuloRight.setText("Desarrollo Batalla: " + idBatallaSeleccionada);
-
-                        actualizarLista(idBatallaSeleccionada);
-                    }
+                try {
+                    winner = BattleDAO.getBattleWinner(listaids.get(i), id);
+                } catch (Exception e) {
+                    scrollPane.setBackground(new Color(0,0,0,0));
+                    return scrollPane;
                 }
-            });
     
-            contenido.add(roundedPanel); // Agregamos el panel redondeado al panel de contenido
+                int[] wastes = BattleDAO.getBattleWaste(listaids.get(i), id);
+                
+                String título = "";
+                Color color = null;
+                if (winner) {
+                    título = listaids.get(i) + ". Victoria";
+                    color = Color.GREEN;
+                } else {
+                    título = listaids.get(i) + ". Derrota";
+                    color = Color.RED;
+                }
+        
+                RoundedPanel roundedPanel = new RoundedPanel();
+                roundedPanel.setLayout(new GridLayout(3, 1));
+                roundedPanel.setPreferredSize(new Dimension(300, 50));
+        
+                JLabel primeraLinea = new JLabel(título);
+                primeraLinea.setForeground(color);
+                JLabel segundaLinea = new JLabel("Madera: " + wastes[0]);
+                JLabel terceraLinea = new JLabel("Hierro: " + wastes[1]);
+        
+                roundedPanel.add(primeraLinea);
+                roundedPanel.add(segundaLinea);
+                roundedPanel.add(terceraLinea);
+        
+                roundedPanel.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        if (e.getClickCount() == 1) {
+                            String text = primeraLinea.getText() + ", " + segundaLinea.getText() + ", " + terceraLinea.getText();
+                            System.out.println("Panel seleccionado: " + text);
+    
+                            String[] primeraLineaSplit = primeraLinea.getText().split("\\. ");
+                            int idBatallaSeleccionada = Integer.parseInt(primeraLineaSplit[0]);
+                            System.out.println("Id de la pelea seleccionada: " + idBatallaSeleccionada);
+    
+                            textoTítuloRight.setText("Desarrollo Batalla: " + idBatallaSeleccionada);
+    
+                            actualizarLista(idBatallaSeleccionada);
+                        }
+                    }
+                });
+        
+                contenido.add(roundedPanel); // Agregamos el panel redondeado al panel de contenido
+            }
+        } else{
+            for (int i = 0; i < 7; i++ ) {
+
+                boolean winner = false; // Inicializar la variable para usarla fuera del bloque try
+    
+                try {
+                    winner = BattleDAO.getBattleWinner(listaids.get(i), id);
+                } catch (Exception e) {
+                    scrollPane.setBackground(new Color(0,0,0,0));
+                    return scrollPane;
+                }
+    
+                int[] wastes = BattleDAO.getBattleWaste(listaids.get(i), id);
+                
+                String título = "";
+                Color color = null;
+                if (winner) {
+                    título = listaids.get(i) + ". Victoria";
+                    color = Color.GREEN;
+                } else {
+                    título = listaids.get(i) + ". Derrota";
+                    color = Color.RED;
+                }
+        
+                RoundedPanel roundedPanel = new RoundedPanel();
+                roundedPanel.setLayout(new GridLayout(3, 1));
+                roundedPanel.setPreferredSize(new Dimension(300, 50));
+        
+                JLabel primeraLinea = new JLabel(título);
+                primeraLinea.setForeground(color);
+                JLabel segundaLinea = new JLabel("Madera: " + wastes[0]);
+                JLabel terceraLinea = new JLabel("Hierro: " + wastes[1]);
+        
+                roundedPanel.add(primeraLinea);
+                roundedPanel.add(segundaLinea);
+                roundedPanel.add(terceraLinea);
+        
+                roundedPanel.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        if (e.getClickCount() == 1) {
+                            String text = primeraLinea.getText() + ", " + segundaLinea.getText() + ", " + terceraLinea.getText();
+                            System.out.println("Panel seleccionado: " + text);
+    
+                            String[] primeraLineaSplit = primeraLinea.getText().split("\\. ");
+                            int idBatallaSeleccionada = Integer.parseInt(primeraLineaSplit[0]);
+                            System.out.println("Id de la pelea seleccionada: " + idBatallaSeleccionada);
+    
+                            textoTítuloRight.setText("Desarrollo Batalla: " + idBatallaSeleccionada);
+    
+                            actualizarLista(idBatallaSeleccionada);
+                        }
+                    }
+                });
+        
+                contenido.add(roundedPanel); // Agregamos el panel redondeado al panel de contenido
+            }
         }
+        
     
         // Establecemos el panel de contenido en el JScrollPane
         scrollPane.setViewportView(contenido);

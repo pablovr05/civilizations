@@ -137,7 +137,7 @@ html {
 }
 
 .main-content ul {
-    font-size: 24px;
+    font-size: 18px;
     margin-left: 70px;
 }
 
@@ -180,6 +180,7 @@ html {
     position: relative;
     bottom: 0;
     width: 100%;
+    margin-top: auto;
     box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
 }
 
